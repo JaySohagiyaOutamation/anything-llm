@@ -191,7 +191,7 @@ export default function DocumentSettings({ workspace, systemSettings }) {
   };
 
   return (
-    <div className="flex upload-modal -mt-6 z-10 relative">
+    <div className="flex upload-modal-mt-6 z-10 relative">
       <Directory
         files={availableDocs}
         setFiles={setAvailableDocs}
@@ -209,7 +209,7 @@ export default function DocumentSettings({ workspace, systemSettings }) {
         setLoadingMessage={setLoadingMessage}
       />
       <div className="upload-modal-arrow">
-        <ArrowsDownUp className="text-white text-base font-bold rotate-90 w-11 h-11" />
+        <ArrowsDownUp className="text-black text-base font-bold rotate-90 w-11 h-11" />
       </div>
       <WorkspaceDirectory
         workspace={workspace}

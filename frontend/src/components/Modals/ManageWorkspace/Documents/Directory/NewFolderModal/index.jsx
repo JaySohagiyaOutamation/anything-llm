@@ -30,18 +30,18 @@ export default function NewFolderModal({ closeModal, files, setFiles }) {
 
   return (
     <div className="relative w-full max-w-xl max-h-full">
-      <div className="relative bg-main-gradient rounded-lg shadow">
+      <div className="relative bg-[#e4ecf6] rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-          <h3 className="text-xl font-semibold text-white">
+          <h3 className="text-xl font-semibold text-black">
             Create New Folder
           </h3>
           <button
             onClick={closeModal}
             type="button"
-            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-[#c3d1e1] hover:border-slate-100 hover:border-opacity-50 border-transparent border"
             data-modal-hide="staticModal"
           >
-            <X className="text-gray-300 text-lg" />
+            <X className="text-black text-lg" />
           </button>
         </div>
         <form onSubmit={handleCreate}>
@@ -50,14 +50,14 @@ export default function NewFolderModal({ closeModal, files, setFiles }) {
               <div>
                 <label
                   htmlFor="folderName"
-                  className="block mb-2 text-sm font-medium text-white"
+                  className="block mb-2 text-sm font-medium text-black"
                 >
                   Folder Name
                 </label>
                 <input
                   name="folderName"
                   type="text"
-                  className="bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-[#acbaca] placeholder:text-gray-100 border-gray-500 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="Enter folder name"
                   required={true}
                   autoComplete="off"
@@ -72,13 +72,13 @@ export default function NewFolderModal({ closeModal, files, setFiles }) {
             <button
               onClick={closeModal}
               type="button"
-              className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
+              className="px-4 py-2 rounded-lg text-white bg-stone-900 transition-all duration-300 hover:bg-opacity-70"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+              className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black hover:bg-opacity-70 focus:ring-gray-800"
             >
               Create Folder
             </button>

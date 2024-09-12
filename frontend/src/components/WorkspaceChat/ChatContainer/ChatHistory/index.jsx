@@ -152,13 +152,13 @@ export default function ChatHistory({
 
   if (history.length === 0 && !hasAttachments) {
     return (
-      <div className="flex flex-col h-full md:mt-0 pb-44 md:pb-40 w-full justify-end items-center">
+      <div className="flex flex-col h-full bg-[#f8fafe] md:mt-0 pb-44 md:pb-40 w-full justify-end items-center">
         <div className="flex flex-col items-center md:items-start md:max-w-[600px] w-full px-4">
-          <p className="text-white/60 text-lg font-base py-4">
+          <p className="text-black/60 text-lg font-base py-4">
             Welcome to your new workspace.
           </p>
           {!user || user.role !== "default" ? (
-            <p className="w-full items-center text-white/60 text-lg font-base flex flex-col md:flex-row gap-x-1">
+            <p className="w-full items-center text-black/60 text-lg font-base flex flex-col md:flex-row gap-x-1">
               To get started either{" "}
               <span
                 className="underline font-medium cursor-pointer"
@@ -190,7 +190,7 @@ export default function ChatHistory({
 
   return (
     <div
-      className={`markdown text-white/80 font-light ${textSize} h-full md:h-[83%] pb-[100px] pt-6 md:pt-0 md:pb-20 md:mx-0 overflow-y-scroll flex flex-col justify-start no-scroll`}
+      className={`markdown text-black/80 font-light ${textSize} h-full md:h-[83%] pb-[100px] pt-6 md:pt-0 md:pb-20 md:mx-0 overflow-y-scroll flex flex-col justify-start no-scroll`}
       id="chat-history"
       ref={chatHistoryRef}
     >
@@ -284,7 +284,7 @@ function WorkspaceChatSuggestions({ suggestions = [], sendSuggestion }) {
       {suggestions.map((suggestion, index) => (
         <button
           key={index}
-          className="text-left p-2.5 border rounded-xl border-white/20 bg-sidebar hover:bg-workspace-item-selected-gradient"
+          className="text-left p-2.5 border rounded-xl border-white/20 bg-black hover:bg-workspace-item-selected-gradient"
           onClick={() => sendSuggestion(suggestion.heading, suggestion.message)}
         >
           <p className="font-semibold">{suggestion.heading}</p>

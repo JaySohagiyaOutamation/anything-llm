@@ -86,22 +86,22 @@ export default function ActiveWorkspaces() {
           >
             <div
               key={workspace.id}
-              className="flex gap-x-2 items-center justify-between"
+              className="flex gap-x-2 tems-center justify-between"
             >
               <a
                 href={isActive ? null : paths.workspace.chat(workspace.slug)}
                 aria-current={isActive ? "page" : ""}
                 className={`
               transition-all duration-[200ms]
-                flex flex-grow w-[75%] gap-x-2 py-[6px] px-[12px] rounded-[6px] text-white justify-start items-center
-                hover:bg-workspace-item-selected-gradient hover:font-bold bg-[#8497ad]
+                flex flex-grow w-[75%] gap-x-2 py-[6px] px-[12px] rounded-[6px] text-black justify-start items-center border-gray-400 border-2
+                hover:bg-yellow bg-[#e4ecf6]
                 ${
                   isActive
                     ? "bg-[#2c2e31] font-bold"
                     : ""
                 }`}
               >
-                <div className="flex flex-row justify-between w-full ">
+                <div className="flex flex-row justify-between w-full">
                   <div className="flex items-center space-x-2">
                     <SquaresFour
                       weight={isActive ? "fill" : "regular"}
@@ -110,7 +110,7 @@ export default function ActiveWorkspaces() {
                     />
                     <p
                       className={`text-[14px] leading-loose whitespace-nowrap overflow-hidden ${
-                        isActive ? "text-white " : "text-white"
+                        isActive ? "text-black " : "text-black"
                       }`}
                     >
                       {isActive || isHovered
