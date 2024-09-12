@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Sidebar() {
   const { user } = useUser();
-  const { logo } = useLogo();
+  // const { logo } = useLogo();
   const sidebarRef = useRef(null);
   const {
     showing: showingNewWsModal,
@@ -32,14 +32,14 @@ export default function Sidebar() {
         aria-label="Home"
       >
         <img
-          src={logo}
+          src={`https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/master/images/wordmark.png`}
           alt="Logo"
-          className="rounded max-h-[24px] object-contain"
+          className="rounded  max-h-[48px] object-contain"
         />
       </Link>
       <div
         ref={sidebarRef}
-        className="relative m-[16px] rounded-[16px] bg-sidebar border-2 border-outline min-w-[250px] p-[10px] h-[calc(100%-76px)]"
+        className="relative m-[16px] rounded-[16px] bg-[#e4ecf6] min-w-[250px] p-[10px] h-[calc(100%-76px)]"
       >
         <div className="flex flex-col h-full overflow-x-hidden">
           <div className="flex-grow flex flex-col min-w-[235px]">
@@ -49,10 +49,10 @@ export default function Sidebar() {
                   {(!user || user?.role !== "default") && (
                     <button
                       onClick={showNewWsModal}
-                      className="flex flex-grow w-[75%] h-[44px] gap-x-2 py-[5px] px-2.5 mb-2 bg-white rounded-[8px] text-sidebar justify-center items-center hover:bg-opacity-80 transition-all duration-300"
+                      className="flex flex-grow w-[75%] h-[44px] gap-x-2 py-[5px] px-2.5 mb-2 bg-[#8497ad] rounded-[8px] text-white  justify-center items-center hover:bg-menu-item-selected-gradient transition-all duration-300"
                     >
                       <Plus size={18} weight="bold" />
-                      <p className="text-sidebar text-sm font-semibold">
+                      <p className="text-white text-sm font-semibold">
                         {t("new-workspace.title")}
                       </p>
                     </button>
@@ -61,7 +61,7 @@ export default function Sidebar() {
                 <ActiveWorkspaces />
               </div>
             </div>
-            <div className="absolute bottom-0 left-0 right-0 pt-4 pb-3 rounded-b-[16px] bg-sidebar bg-opacity-80 backdrop-filter backdrop-blur-md z-10">
+            <div className="absolute bottom-0 left-0 right-0 pt-4 pb-3 rounded-b-[16px] bg-[#e4ecf6] bg-opacity-80 backdrop-filter backdrop-blur-md z-10">
               <Footer />
             </div>
           </div>

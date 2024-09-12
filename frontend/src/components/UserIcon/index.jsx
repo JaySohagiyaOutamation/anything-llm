@@ -13,7 +13,7 @@ const UserIcon = memo(({ role }) => {
         <img
           src={WorkspaceDefaultPfp}
           alt="system profile picture"
-          className="flex items-center justify-center rounded-full border border-white/40"
+          className="flex items-center justify-center rounded-full bg-black bg-opacity-75 border border-black/40"
         />
       )}
     </div>

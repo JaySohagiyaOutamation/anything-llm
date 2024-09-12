@@ -72,7 +72,7 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
                 type="submit"
                 className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
               >
-                Save
+                Confirm
               </button>
             </div>
           </form>

@@ -7,8 +7,8 @@ export const COMPLETE_QUESTIONNAIRE = "anythingllm_completed_questionnaire";
 export const SEEN_DOC_PIN_ALERT = "anythingllm_pinned_document_alert";
 export const SEEN_WATCH_ALERT = "anythingllm_watched_document_alert";
 
-export const USER_BACKGROUND_COLOR = "bg-historical-msg-user";
-export const AI_BACKGROUND_COLOR = "bg-historical-msg-system";
+export const USER_BACKGROUND_COLOR = "bg-[#e4ecf6]";
+export const AI_BACKGROUND_COLOR = "bg-[#f8fafe]";
 
 export const OLLAMA_COMMON_URLS = [
   "http://127.0.0.1:11434",
