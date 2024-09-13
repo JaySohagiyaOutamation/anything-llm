@@ -20,7 +20,7 @@ export default function ChatModelSelection({
           <label htmlFor="name" className="block input-label">
             {t("chat.model.title")}
           </label>
-          <p className="text-white text-opacity-60 text-xs font-medium py-1.5">
+          <p className="text-black text-opacity-60 text-xs font-medium py-1.5">
             {t("chat.model.description")}
           </p>
         </div>
@@ -44,7 +44,7 @@ export default function ChatModelSelection({
         <label htmlFor="name" className="block input-label">
           {t("chat.model.title")}
         </label>
-        <p className="text-white text-opacity-60 text-xs font-medium py-1.5">
+        <p className="text-black text-opacity-60 text-xs font-medium py-1.5">
           {t("chat.model.description")}
         </p>
       </div>

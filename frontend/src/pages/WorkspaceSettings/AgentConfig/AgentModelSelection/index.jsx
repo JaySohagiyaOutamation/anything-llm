@@ -28,7 +28,7 @@ export default function AgentModelSelection({
   if (DISABLED_PROVIDERS.includes(provider)) {
     return (
       <div className="w-full h-10 justify-center items-center flex">
-        <p className="text-sm font-base text-white text-opacity-60 text-center">
+        <p className="text-sm font-base text-black text-opacity-60 text-center">
           Multi-model support is not supported for this provider yet.
           <br />
           Agent's will use{" "}
@@ -54,7 +54,7 @@ export default function AgentModelSelection({
           <label htmlFor="name" className="block input-label">
             {t("agent.mode.chat.title")}
           </label>
-          <p className="text-white text-opacity-60 text-xs font-medium py-1.5">
+          <p className="text-black text-opacity-60 text-xs font-medium py-1.5">
             {t("agent.mode.chat.description")}
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function AgentModelSelection({
           name="agentModel"
           required={true}
           disabled={true}
-          className="bg-zinc-900 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          className="bg-white text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
           <option disabled={true} selected={true}>
             {t("agent.mode.wait")}
@@ -78,7 +78,7 @@ export default function AgentModelSelection({
         <label htmlFor="name" className="block input-label">
           {t("agent.mode.title")}
         </label>
-        <p className="text-white text-opacity-60 text-xs font-medium py-1.5">
+        <p className="text-black text-opacity-60 text-xs font-medium py-1.5">
           {t("agent.mode.description")}
         </p>
       </div>

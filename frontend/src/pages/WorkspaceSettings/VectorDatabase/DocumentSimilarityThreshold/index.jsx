@@ -11,14 +11,14 @@ export default function DocumentSimilarityThreshold({
         <label htmlFor="name" className="block input-label">
           {t("vector-workspace.doc.title")}
         </label>
-        <p className="text-white text-opacity-60 text-xs font-medium py-1.5">
+        <p className="text-black text-opacity-60 text-xs font-medium py-1.5">
           {t("vector-workspace.doc.description")}
         </p>
       </div>
       <select
         name="similarityThreshold"
         defaultValue={workspace?.similarityThreshold ?? 0.25}
-        className="bg-zinc-900 text-white text-sm mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        className="bg-black bg-opacity-55 text-white text-sm mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         onChange={() => setHasChanges(true)}
         required={true}
       >

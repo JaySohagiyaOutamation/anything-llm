@@ -37,7 +37,7 @@ export default function ChatModeSelection({ workspace, setHasChanges }) {
             {t("chat.mode.query.title")}
           </button>
         </div>
-        <p className="text-sm text-white/60">
+        <p className="text-sm text-black/60">
           {chatMode === "chat" ? (
             <>
               <b>{t("chat.mode.chat.title")}</b>{" "}

@@ -68,7 +68,7 @@ export default function WorkspaceLLMSelection({
 
   const selectedLLMObject = LLMS.find((llm) => llm.value === selectedLLM);
   return (
-    <div className="border-b border-white/40 pb-8">
+    <div className="border-b border-black/40 pb-8">
       <div className="flex flex-col">
         <label htmlFor="name" className="block input-label">
           {t("chat.llm.title")}
@@ -79,28 +79,28 @@ export default function WorkspaceLLMSelection({
       </div>
 
       <div className="relative">
-        <input type="hidden" name="chatProvider" value={selectedLLM} />
+        <input type="hidden" name="chatProvider" className="" value={selectedLLM} />
         {searchMenuOpen && (
           <div
-            className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 backdrop-blur-sm z-10"
+            className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 backdrop-blur-sm z-10"
             onClick={() => setSearchMenuOpen(false)}
           />
         )}
         {searchMenuOpen ? (
-          <div className="absolute top-0 left-0 w-full max-w-[640px] max-h-[310px] overflow-auto white-scrollbar min-h-[64px] bg-dark-input rounded-lg flex flex-col justify-between cursor-pointer border-2 border-primary-button z-20">
+          <div className="absolute top-0 left-0 w-full max-w-[640px] max-h-[310px] overflow-auto white-scrollbar min-h-[64px] bg-white rounded-lg flex flex-col justify-between cursor-pointer border-2 border-primary-button z-20">
             <div className="w-full flex flex-col gap-y-1">
-              <div className="flex items-center sticky top-0 border-b border-[#9CA3AF] mx-4 bg-dark-input">
+              <div className="flex items-center sticky top-0 border-b border-[#9CA3AF] mx-4 bg-white">
                 <MagnifyingGlass
                   size={20}
                   weight="bold"
-                  className="absolute left-4 z-30 text-white -ml-4 my-2"
+                  className="absolute left-4 z-30 text-black -ml-4 my-2"
                 />
                 <input
                   type="text"
                   name="llm-search"
                   autoComplete="off"
                   placeholder={t("chat.llm.search")}
-                  className="-ml-4 my-2 bg-transparent z-20 pl-12 h-[38px] w-full px-4 py-1 text-sm outline-none focus:outline-primary-button active:outline-primary-button outline-none text-white placeholder:text-white placeholder:font-medium"
+                  className="-ml-4 my-2 bg-transparent z-20 pl-12 h-[38px] w-full px-4 py-1 text-md focus:outline-primary-button active:outline-primary-button outline-none text-black placeholder:text-black placeholder:font-bold"
                   onChange={(e) => setSearchQuery(e.target.value)}
                   ref={searchInputRef}
                   onKeyDown={(e) => {
@@ -110,7 +110,7 @@ export default function WorkspaceLLMSelection({
                 <X
                   size={20}
                   weight="bold"
-                  className="cursor-pointer text-white hover:text-x-button"
+                  className="cursor-pointer text-black text-md hover:text-x-button"
                   onClick={handleXButton}
                 />
               </div>
@@ -132,7 +132,7 @@ export default function WorkspaceLLMSelection({
           </div>
         ) : (
           <button
-            className="w-full max-w-[640px] h-[64px] bg-dark-input rounded-lg flex items-center p-[14px] justify-between cursor-pointer border-2 border-transparent hover:border-primary-button transition-all duration-300"
+            className="w-full max-w-[640px] h-[64px] bg-black bg-opacity-55 rounded-lg flex items-center p-[14px] justify-between cursor-pointer border-2 border-transparent hover:border-primary-button transition-all duration-300"
             type="button"
             onClick={() => setSearchMenuOpen(true)}
           >
