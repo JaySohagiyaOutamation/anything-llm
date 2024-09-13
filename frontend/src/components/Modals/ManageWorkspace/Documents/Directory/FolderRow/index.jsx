@@ -22,7 +22,7 @@ export default function FolderRow({
     <>
       <tr
         onClick={onRowClick}
-        className={`text-white/80 text-xs grid grid-cols-12 py-2 pl-3.5 pr-8 bg-dark-highlight hover:bg-sky-500/20 cursor-pointer w-full file-row ${
+        className={`text-black text-xs grid grid-cols-12 py-2 pl-3.5 pr-8  hover:bg-sky-200 cursor-pointer w-full file-row ${
           selected ? "selected" : ""
         }`}
       >
@@ -37,7 +37,7 @@ export default function FolderRow({
               toggleSelection(item);
             }}
           >
-            {selected && <div className="w-2 h-2 bg-white rounded-[2px]" />}
+            {selected && <div className="w-2 h-2 bg-black rounded-[2px]" />}
           </div>
           <div
             onClick={handleExpandClick}
