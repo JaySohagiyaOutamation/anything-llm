@@ -11,7 +11,7 @@ export default function FileRow({ item, selected, toggleSelection }) {
   return (
     <tr
       onClick={() => toggleSelection(item)}
-      className={`text-white/80 text-xs grid grid-cols-12 py-2 pl-3.5 pr-8 hover:bg-sky-500/20 cursor-pointer file-row ${
+      className={`text-white/80 text-xs grid grid-cols-12 py-2 pl-3.5 pr-8 cursor-pointer file-row ${
         selected ? "selected" : ""
       }`}
     >
@@ -20,12 +20,12 @@ export default function FileRow({ item, selected, toggleSelection }) {
         className="col-span-10 w-fit flex gap-x-[4px] items-center relative"
       >
         <div
-          className="shrink-0 w-3 h-3 rounded border-[1px] border-white flex justify-center items-center cursor-pointer"
+          className="shrink-0 w-3 h-3 rounded border-[1px] border-black flex justify-center items-center cursor-pointer"
           role="checkbox"
           aria-checked={selected}
           tabIndex={0}
         >
-          {selected && <div className="w-2 h-2 bg-white rounded-[2px]" />}
+          {selected && <div className="w-2 h-2 bg-black rounded-[2px]" />}
         </div>
         <File
           className="shrink-0 text-base font-bold w-4 h-4 mr-[3px]"

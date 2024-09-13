@@ -78,30 +78,30 @@ export default function UploadFile({
   return (
     <div>
       <div
-        className={`w-[560px] border-2 border-dashed rounded-2xl bg-zinc-900/50 p-3 ${
+        className={`w-[560px] border-2 border-dashed border-black rounded-2xl bg-[#e4ecf6] p-3 ${
           ready ? "cursor-pointer" : "cursor-not-allowed"
-        } hover:bg-zinc-900/90`}
+        } hover:bg-[#eae4f6]`}
         {...getRootProps()}
       >
         <input {...getInputProps()} />
         {ready === false ? (
           <div className="flex flex-col items-center justify-center h-full">
             <CloudArrowUp className="w-8 h-8 text-white/80" />
-            <div className="text-white text-opacity-80 text-sm font-semibold py-1">
+            <div className="text-black text-opacity-80 text-sm font-semibold py-1">
               Document Processor Unavailable
             </div>
-            <div className="text-white text-opacity-60 text-xs font-medium py-1 px-20 text-center">
+            <div className="text-black text-opacity-60 text-xs font-medium py-1 px-20 text-center">
               We can't upload your files right now because the document
               processor is offline. Please try again later.
             </div>
           </div>
         ) : files.length === 0 ? (
           <div className="flex flex-col items-center justify-center">
-            <CloudArrowUp className="w-8 h-8 text-white/80" />
-            <div className="text-white text-opacity-80 text-sm font-semibold py-1">
+            <CloudArrowUp className="w-8 h-8 text-black/70" />
+            <div className="text-black text-opacity-70 text-sm font-semibold py-1">
               Click to upload or drag and drop
             </div>
-            <div className="text-white text-opacity-60 text-xs font-medium py-1">
+            <div className="text-black text-opacity-70 text-xs font-medium py-1">
               supports text files, csv's, spreadsheets, audio files, and more!
             </div>
           </div>
@@ -125,7 +125,7 @@ export default function UploadFile({
           </div>
         )}
       </div>
-      <div className="text-center text-white text-opacity-50 text-xs font-medium w-[560px] py-2">
+      <div className="text-center text-black text-opacity-80 text-xs font-medium w-[560px] py-2">
         or submit a link
       </div>
       <form onSubmit={handleSendLink} className="flex gap-x-2">
@@ -133,19 +133,19 @@ export default function UploadFile({
           disabled={fetchingUrl}
           name="link"
           type="url"
-          className="disabled:bg-zinc-600 disabled:text-slate-300 bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/4 p-2.5"
+          className="disabled:bg-black/80 disabled:text-slate-300 bg-black text-white placeholder:text-white/40 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/4 p-2.5"
           placeholder={"https://example.com"}
           autoComplete="off"
         />
         <button
           disabled={fetchingUrl}
           type="submit"
-          className="disabled:bg-white/20 disabled:text-slate-300 disabled:border-slate-400 disabled:cursor-wait bg bg-transparent hover:bg-slate-200 hover:text-slate-800 w-auto border border-white text-sm text-white p-2.5 rounded-lg"
+          className="disabled:bg-black/20 disabled:text-slate-300 disabled:border-slate-400 disabled:cursor-wait bg bg-transparent hover:bg-[#e4ecf6] hover:text-slate-800 w-auto border border-black text-sm font-bold text-black p-2.5 rounded-lg"
         >
           {fetchingUrl ? "Fetching..." : "Fetch website"}
         </button>
       </form>
-      <div className="mt-6 text-center text-white text-opacity-80 text-xs font-medium w-[560px]">
+      <div className="mt-6 text-center text-black text-opacity-90 text-xs font-medium w-[560px]">
         These files will be uploaded to the document processor running on this
         AnythingLLM instance. These files are not sent or shared with a third
         party.

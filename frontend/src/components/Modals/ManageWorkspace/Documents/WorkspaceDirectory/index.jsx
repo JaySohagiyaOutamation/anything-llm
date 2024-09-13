@@ -50,16 +50,16 @@ function WorkspaceDirectory({
     <>
       <div className="px-8">
         <div className="flex items-center justify-start w-[560px]">
-          <h3 className="text-white text-base font-bold ml-5">
+          <h3 className="text-black text-base font-bold ml-5">
             {workspace.name}
           </h3>
         </div>
         <div
-          className={`relative w-[560px] h-[445px] bg-zinc-900 rounded-2xl mt-5 overflow-y-auto border-4 ${
+          className={`relative w-[560px] h-[445px] bg-[#e4ecf6] rounded-2xl mt-5 overflow-y-auto border-4 ${
             highlightWorkspace ? "border-cyan-300/80" : "border-transparent"
           }`}
         >
-          <div className="text-white/80 text-xs grid grid-cols-12 py-2 px-8 border-b border-white/20 bg-zinc-900 sticky top-0 z-10">
+          <div className="text-black/80 text-xs grid grid-cols-12 py-2 px-8 border-b border-black/20 bg-[#e4ecf6] sticky top-0 z-10">
             <p className="col-span-5">Name</p>
             <p className="col-span-2" />
           </div>
@@ -86,7 +86,7 @@ function WorkspaceDirectory({
               </>
             ) : (
               <div className="w-full h-full flex items-center justify-center">
-                <p className="text-white text-opacity-40 text-sm font-medium">
+                <p className="text-black text-opacity-70 text-sm font-medium">
                   No Documents
                 </p>
               </div>
@@ -112,7 +112,7 @@ function WorkspaceDirectory({
 
             <button
               onClick={saveChanges}
-              className="border border-slate-200 px-5 py-2.5 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+              className="border border-black px-5 py-2.5 rounded-lg text-black font-bold text-sm items-center flex gap-x-2 hover:bg-[#e4ecf6] hover:text-slate-800 focus:ring-gray-800"
             >
               Save and Embed
             </button>

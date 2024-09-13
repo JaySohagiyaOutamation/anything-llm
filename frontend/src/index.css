@@ -616,11 +616,11 @@ dialog::backdrop {
 }
 
 .file-row:nth-child(even) {
-  @apply bg-dark-highlight;
+  @apply bg-[#e4ecf6];
 }
 
 .file-row:nth-child(odd) {
-  @apply bg-[#2C2C2C];
+  @apply bg-[#e4ecf6];
 }
 
 .file-row.selected:nth-child(even) {
