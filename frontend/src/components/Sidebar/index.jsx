@@ -5,6 +5,7 @@ import NewWorkspaceModal, {
 } from "../Modals/NewWorkspace";
 import ActiveWorkspaces from "./ActiveWorkspaces";
 import { USER_BACKGROUND_COLOR } from "@/utils/constants";
+import logo from '../../../../images/cropped-logo.png'; 
 import useLogo from "@/hooks/useLogo";
 import useUser from "@/hooks/useUser";
 import Footer from "../Footer";
@@ -32,9 +33,9 @@ export default function Sidebar() {
         aria-label="Home"
       >
         <img
-          src={`https://raw.githubusercontent.com/Mintplex-Labs/anything-llm/master/images/wordmark.png`}
+          src={logo}
           alt="Logo"
-          className="rounded  max-h-[48px] object-contain"
+          className="rounded  max-h-[24px] object-contain"
         />
       </Link>
       <div

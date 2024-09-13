@@ -71,7 +71,7 @@ export default function CreateWorkspace({
         <div className="w-full mt-4">
           <label
             htmlFor="name"
-            className="block mb-3 text-sm font-medium text-white"
+            className="block mb-3 text-sm font-medium text-black"
           >
             {t("common.workspaces-name")}
           </label>

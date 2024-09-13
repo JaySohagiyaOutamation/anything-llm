@@ -97,7 +97,7 @@ export default function ActiveWorkspaces() {
                 hover:bg-yellow bg-[#e4ecf6]
                 ${
                   isActive
-                    ? "bg-[#2c2e31] font-bold"
+                    ? "bg-[#e4ecf6] font-bold"
                     : ""
                 }`}
               >

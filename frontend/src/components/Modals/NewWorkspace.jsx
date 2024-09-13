@@ -48,7 +48,7 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block mb-2 text-sm font-medium text-black"
+                    className="block mb-2 text-sm font-normal text-black"
                   >
                     {t("common.workspaces-name")}
                   </label>

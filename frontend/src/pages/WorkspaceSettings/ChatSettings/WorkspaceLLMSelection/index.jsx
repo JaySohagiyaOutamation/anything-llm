@@ -73,7 +73,7 @@ export default function WorkspaceLLMSelection({
         <label htmlFor="name" className="block input-label">
           {t("chat.llm.title")}
         </label>
-        <p className="text-white text-opacity-60 text-xs font-medium py-1.5">
+        <p className="text-black text-opacity-60 text-xs font-medium py-1.5">
           {t("chat.llm.description")}
         </p>
       </div>

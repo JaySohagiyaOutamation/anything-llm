@@ -49,7 +49,7 @@ export default function WorkspacePfp({ workspace, slug }) {
     <div className="mt-6">
       <div className="flex flex-col">
         <label className="block input-label">{t("general.pfp.title")}</label>
-        <p className="text-white text-opacity-60 text-xs font-medium py-1.5">
+        <p className="text-black text-opacity-60 text-xs font-medium py-1.5">
           {t("general.pfp.description")}
         </p>
       </div>
@@ -85,7 +85,7 @@ export default function WorkspacePfp({ workspace, slug }) {
             <button
               type="button"
               onClick={handleRemovePfp}
-              className="mt-3 text-white text-opacity-60 text-sm font-medium hover:underline"
+              className="mt-3 text-black text-opacity-60 text-sm font-medium hover:underline"
             >
               {t("general.pfp.remove")}
             </button>

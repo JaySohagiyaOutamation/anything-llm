@@ -33,7 +33,7 @@ export default function ThreadItem({
 
   return (
     <div
-      className="w-full relative flex h-[38px] items-center border-none hover:bg-slate-600/20 rounded-lg"
+      className="w-full relative flex h-[38px] items-center text-black border-none hover:bg-slate-600/20 rounded-lg"
       role="listitem"
     >
       {/* Curved line Element and leader if required */}
@@ -66,7 +66,7 @@ export default function ThreadItem({
         {thread.deleted ? (
           <div className="w-full flex justify-between">
             <div className="w-full ">
-              <p className={`text-left text-sm text-slate-400/50 italic`}>
+              <p className={`text-left text-sm text-black italic`}>
                 deleted thread
               </p>
             </div>
@@ -77,7 +77,7 @@ export default function ThreadItem({
                 onClick={() => toggleMarkForDeletion(thread.id)}
               >
                 <ArrowCounterClockwise
-                  className="text-zinc-300 hover:text-white"
+                  className="text-black hover:text-white"
                   size={18}
                 />
               </button>
@@ -93,7 +93,7 @@ export default function ThreadItem({
           >
             <p
               className={`text-left text-sm ${
-                isActive ? "font-medium text-white" : "text-slate-400"
+                isActive ? "font-medium text-black" : "text-slate-400"
               }`}
             >
               {truncate(thread.name, 25)}
@@ -109,7 +109,7 @@ export default function ThreadItem({
                 onClick={() => toggleMarkForDeletion(thread.id)}
               >
                 <X
-                  className="text-zinc-300 hover:text-white"
+                  className="text-black hover:text-white"
                   weight="bold"
                   size={18}
                 />
@@ -122,7 +122,7 @@ export default function ThreadItem({
                   onClick={() => setShowOptions(!showOptions)}
                   aria-label="Thread options"
                 >
-                  <DotsThree className="text-slate-300" size={25} />
+                  <DotsThree className="text-black" size={25} />
                 </button>
               </div>
             )}
