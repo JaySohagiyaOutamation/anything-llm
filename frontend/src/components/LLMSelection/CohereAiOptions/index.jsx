@@ -3,13 +3,13 @@ export default function CohereAiOptions({ settings }) {
     <div className="w-full flex flex-col">
       <div className="w-full flex items-center gap-[36px] mt-1.5">
         <div className="flex flex-col w-60">
-          <label className="text-white text-sm font-semibold block mb-3">
+          <label className="text-black text-sm font-semibold block mb-3">
             Cohere API Key
           </label>
           <input
             type="password"
             name="CohereApiKey"
-            className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+            className="bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
             placeholder="Cohere API Key"
             defaultValue={settings?.CohereApiKey ? "*".repeat(20) : ""}
             required={true}
@@ -18,14 +18,14 @@ export default function CohereAiOptions({ settings }) {
           />
         </div>
         <div className="flex flex-col w-60">
-          <label className="text-white text-sm font-semibold block mb-3">
+          <label className="text-black text-sm font-semibold block mb-3">
             Chat Model Selection
           </label>
           <select
             name="CohereModelPref"
             defaultValue={settings?.CohereModelPref || "command-r"}
             required={true}
-            className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+            className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg block w-full p-2.5"
           >
             {[
               "command-r",

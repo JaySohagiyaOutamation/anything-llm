@@ -103,9 +103,9 @@ function SetupProvider({
   return createPortal(
     <ModalWrapper isOpen={isOpen}>
       <div className="relative w-fit max-w-1/2 max-h-full">
-        <div className="relative bg-main-gradient rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.25)]">
+        <div className="relative bg-white rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.25)]">
           <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-            <h3 className="text-xl font-semibold text-white">
+            <h3 className="text-xl font-semibold text-black">
               Setup {LLMOption.name}
             </h3>
             <button
@@ -120,7 +120,7 @@ function SetupProvider({
 
           <form id="provider-form" onSubmit={handleUpdate}>
             <div className="py-[17px] px-[20px] flex flex-col gap-y-6">
-              <p className="text-sm text-white">
+              <p className="text-sm text-black">
                 To use {LLMOption.name} as this workspace's LLM you need to set
                 it up first.
               </p>
@@ -130,14 +130,14 @@ function SetupProvider({
               <button
                 type="button"
                 onClick={closeModal}
-                className="border-none text-xs px-2 py-1 font-semibold rounded-lg bg-white hover:bg-transparent border-2 border-transparent hover:border-white hover:text-white h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
+                className="border-none text-xs px-2 py-1 text-white font-semibold rounded-lg bg-black hover:text-black  border-2 border-transparent  h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 form="provider-form"
-                className="border-none text-xs px-2 py-1 font-semibold rounded-lg bg-primary-button hover:bg-secondary border-2 border-transparent hover:border-primary-button hover:text-white h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
+                className="border-none text-xs px-2 py-1 font-semibold rounded-lg bg-primary-button  border-2 border-transparent hover:border-primary-button hover:text-white h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
               >
                 Save {LLMOption.name} settings
               </button>

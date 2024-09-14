@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Sidebar() {
   const { user } = useUser();
-  // const { logo } = useLogo();
+  const { logo } = useLogo();
   const sidebarRef = useRef(null);
   const {
     showing: showingNewWsModal,
@@ -35,7 +35,7 @@ export default function Sidebar() {
         <img
           src={logo}
           alt="Logo"
-          className="rounded  max-h-[24px] object-contain"
+          className="rounded  max-h-[48px] object-contain"
         />
       </Link>
       <div

@@ -3,13 +3,13 @@ export default function GeminiLLMOptions({ settings }) {
     <div className="w-full flex flex-col">
       <div className="w-full flex items-center gap-[36px] mt-1.5">
         <div className="flex flex-col w-60">
-          <label className="text-white text-sm font-semibold block mb-3">
+          <label className="text-black text-sm font-semibold block mb-3">
             Google AI API Key
           </label>
           <input
             type="password"
             name="GeminiLLMApiKey"
-            className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+            className="bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
             placeholder="Google Gemini API Key"
             defaultValue={settings?.GeminiLLMApiKey ? "*".repeat(20) : ""}
             required={true}
@@ -21,14 +21,14 @@ export default function GeminiLLMOptions({ settings }) {
         {!settings?.credentialsOnly && (
           <>
             <div className="flex flex-col w-60">
-              <label className="text-white text-sm font-semibold block mb-3">
+              <label className="text-black text-sm font-semibold block mb-3">
                 Chat Model Selection
               </label>
               <select
                 name="GeminiLLMModelPref"
                 defaultValue={settings?.GeminiLLMModelPref || "gemini-pro"}
                 required={true}
-                className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+                className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg block w-full p-2.5"
               >
                 {[
                   "gemini-pro",
@@ -46,7 +46,7 @@ export default function GeminiLLMOptions({ settings }) {
               </select>
             </div>
             <div className="flex flex-col w-60">
-              <label className="text-white text-sm font-semibold block mb-3">
+              <label className="text-black text-sm font-semibold block mb-3">
                 Safety Setting
               </label>
               <select
@@ -55,7 +55,7 @@ export default function GeminiLLMOptions({ settings }) {
                   settings?.GeminiSafetySetting || "BLOCK_MEDIUM_AND_ABOVE"
                 }
                 required={true}
-                className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+                className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500  text-sm rounded-lg block w-full p-2.5"
               >
                 <option value="BLOCK_NONE">None</option>
                 <option value="BLOCK_ONLY_HIGH">Block few</option>

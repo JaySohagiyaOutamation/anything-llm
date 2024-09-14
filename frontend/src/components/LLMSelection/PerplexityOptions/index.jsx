@@ -5,13 +5,13 @@ export default function PerplexityOptions({ settings }) {
   return (
     <div className="flex gap-[36px] mt-1.5">
       <div className="flex flex-col w-60">
-        <label className="text-white text-sm font-semibold block mb-3">
+        <label className="text-black text-sm font-semibold block mb-3">
           Perplexity API Key
         </label>
         <input
           type="password"
           name="PerplexityApiKey"
-          className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+          className="bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
           placeholder="Perplexity API Key"
           defaultValue={settings?.PerplexityApiKey ? "*".repeat(20) : ""}
           required={true}
@@ -43,13 +43,13 @@ function PerplexityModelSelection({ settings }) {
   if (loading || customModels.length == 0) {
     return (
       <div className="flex flex-col w-60">
-        <label className="text-white text-sm font-semibold block mb-3">
+        <label className="text-black text-sm font-semibold block mb-3">
           Chat Model Selection
         </label>
         <select
           name="PerplexityModelPref"
           disabled={true}
-          className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+          className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg block w-full p-2.5"
         >
           <option disabled={true} selected={true}>
             -- loading available models --
@@ -61,13 +61,13 @@ function PerplexityModelSelection({ settings }) {
 
   return (
     <div className="flex flex-col w-60">
-      <label className="text-white text-sm font-semibold block mb-3">
+      <label className="text-black text-sm font-semibold block mb-3">
         Chat Model Selection
       </label>
       <select
         name="PerplexityModelPref"
         required={true}
-        className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+        className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg block w-full p-2.5"
       >
         {customModels.length > 0 && (
           <optgroup label="Available Perplexity Models">

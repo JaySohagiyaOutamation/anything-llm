@@ -36,7 +36,7 @@ export default function WorkspaceLLM({
       <div
         onClick={handleProviderSelection}
         className={`w-full p-2 rounded-md hover:cursor-pointer hover:bg-black/10 ${
-          checked ? "bg-black/10" : ""
+          checked ? "bg-white/10" : ""
         }`}
       >
         <input
@@ -103,24 +103,24 @@ function SetupProvider({
   return createPortal(
     <ModalWrapper isOpen={isOpen}>
       <div className="relative w-fit max-w-1/2 max-h-full">
-        <div className="relative bg-main-gradient rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.25)]">
+        <div className="relative bg-white rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.25)]">
           <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-            <h3 className="text-xl font-semibold text-white">
+            <h3 className="text-xl font-semibold text-black">
               Setup {LLMOption.name}
             </h3>
             <button
               onClick={closeModal}
               type="button"
-              className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+              className="transition-all duration-300 text-gray-800 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
               data-modal-hide="staticModal"
             >
-              <X className="text-gray-300 text-lg" />
+              <X className="text-black text-lg" />
             </button>
           </div>
 
           <form id="provider-form" onSubmit={handleUpdate}>
             <div className="py-[17px] px-[20px] flex flex-col gap-y-6">
-              <p className="text-sm text-white">
+              <p className="text-sm text-black">
                 To use {LLMOption.name} as this workspace's LLM you need to set
                 it up first.
               </p>
@@ -130,7 +130,7 @@ function SetupProvider({
               <button
                 type="button"
                 onClick={closeModal}
-                className="text-xs px-2 py-1 font-semibold rounded-lg bg-white hover:bg-transparent border-2 border-transparent hover:border-white hover:text-white h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
+                className="text-xs px-2 py-1 font-semibold rounded-lg text-white bg-black  border-2 border-transparent hover:border-white  h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
               >
                 Cancel
               </button>
