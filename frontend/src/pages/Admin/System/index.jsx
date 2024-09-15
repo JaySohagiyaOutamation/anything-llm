@@ -38,11 +38,11 @@ export default function AdminSystem() {
   }, []);
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-sidebar flex">
+    <div className="w-screen h-screen overflow-hidden bg-white flex">
       <Sidebar />
       <div
         style={{ height: isMobile ? "100%" : "calc(100% - 32px)" }}
-        className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-main-gradient w-full h-full overflow-y-scroll"
+        className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-[#f8fafe] w-full h-full overflow-y-scroll"
       >
         <form
           onSubmit={handleSubmit}
@@ -51,11 +51,11 @@ export default function AdminSystem() {
         >
           <div className="w-full flex flex-col gap-y-1 pb-6 border-white border-b-2 border-opacity-10">
             <div className="items-center">
-              <p className="text-lg leading-6 font-bold text-white">
+              <p className="text-lg leading-6 font-bold text-black">
                 System Preferences
               </p>
             </div>
-            <p className="text-xs leading-[18px] font-base text-white text-opacity-60">
+            <p className="text-xs leading-[18px] font-base text-black text-opacity-60">
               These are the overall settings and configurations of your
               instance.
             </p>
@@ -69,10 +69,10 @@ export default function AdminSystem() {
           )}
           <div className="mt-4 mb-8">
             <div className="flex flex-col gap-y-1">
-              <h2 className="text-base leading-6 font-bold text-white">
+              <h2 className="text-base leading-6 font-bold text-black">
                 Limit messages per user per day
               </h2>
-              <p className="text-xs leading-[18px] font-base text-white/60">
+              <p className="text-xs leading-[18px] font-base text-black/60">
                 Restrict non-admin users to a number of successful queries or
                 chats within a 24 hour window. Enable this to prevent users from
                 running up OpenAI costs.
@@ -92,14 +92,14 @@ export default function AdminSystem() {
                     }}
                     className="peer sr-only"
                   />
-                  <div className="pointer-events-none peer h-6 w-11 rounded-full bg-stone-400 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:shadow-xl after:border after:border-gray-600 after:bg-white after:box-shadow-md after:transition-all after:content-[''] peer-checked:bg-lime-300 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800"></div>
+                  <div className="pointer-events-none peer h-6 w-11 rounded-full bg-stone-400 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:shadow-xl after:border after:border-gray-600 after:bg-white after:box-shadow-md after:transition-all after:content-[''] peer-checked:bg-sky-300 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-400"></div>
                   <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
                 </label>
               </div>
             </div>
             {messageLimit.enabled && (
               <div className="mt-4">
-                <label className="text-white text-sm font-semibold block mb-4">
+                <label className="text-black text-sm font-semibold block mb-4">
                   Message limit per day
                 </label>
                 <div className="relative mt-2">
@@ -115,7 +115,7 @@ export default function AdminSystem() {
                     }}
                     value={messageLimit.limit}
                     min={1}
-                    className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-60 p-2.5"
+                    className="bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:border-white block w-60 p-2.5"
                   />
                 </div>
               </div>

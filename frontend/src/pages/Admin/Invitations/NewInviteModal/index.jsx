@@ -59,18 +59,18 @@ export default function NewInviteModal({ closeModal }) {
 
   return (
     <div className="relative w-[500px] max-w-2xl max-h-full overflow-auto">
-      <div className="relative bg-main-gradient rounded-lg shadow">
+      <div className="relative bg-white rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-          <h3 className="text-xl font-semibold text-white">
+          <h3 className="text-xl font-semibold text-black">
             Create new invite
           </h3>
           <button
             onClick={closeModal}
             type="button"
-            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+            className="transition-all duration-300 text-white bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
             data-modal-hide="staticModal"
           >
-            <X className="text-gray-300 text-lg" />
+            <X className="text-gray-400 text-lg" />
           </button>
         </div>
         <form onSubmit={handleCreate}>
@@ -82,10 +82,10 @@ export default function NewInviteModal({ closeModal }) {
                   type="url"
                   defaultValue={`${window.location.origin}/accept-invite/${invite.code}`}
                   disabled={true}
-                  className="rounded-lg px-4 py-2 text-white bg-zinc-900 border border-gray-500/50"
+                  className="rounded-lg px-4 py-2 text-white bg-black bg-opacity-55 border border-gray-500/50"
                 />
               )}
-              <p className="text-white text-xs md:text-sm">
+              <p className="text-black text-xs md:text-sm">
                 After creation you will be able to copy the invite and send it
                 to a new user where they can create an account as the{" "}
                 <b>default</b> role and automatically be added to workspaces
@@ -100,11 +100,11 @@ export default function NewInviteModal({ closeModal }) {
                 <div className="flex flex-col gap-y-1  mb-2">
                   <label
                     htmlFor="workspaces"
-                    className="text-sm font-medium text-white"
+                    className="text-sm font-medium text-black"
                   >
                     Auto-add invitee to workspaces
                   </label>
-                  <p className="text-white/60 text-xs">
+                  <p className="text-black/60 text-xs">
                     You can optionally automatically assign the user to the
                     workspaces below by selecting them. By default, the user
                     will not have any workspaces visible. You can assign
@@ -132,13 +132,13 @@ export default function NewInviteModal({ closeModal }) {
                 <button
                   onClick={closeModal}
                   type="button"
-                  className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
+                  className="px-4 py-2 rounded-lg text-white bg-stone-900 transition-all duration-300"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+                  className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-black text-sm items-center flex gap-x-2 bg-slate-200 hover:bg-black hover:text-white focus:ring-gray-800"
                 >
                   Create Invite
                 </button>
@@ -148,7 +148,7 @@ export default function NewInviteModal({ closeModal }) {
                 onClick={copyInviteLink}
                 type="button"
                 disabled={copied}
-                className="w-full transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800 text-center justify-center"
+                className="w-full transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-black text-sm items-center flex gap-x-2 bg-slate-200 hover:bg-black hover:text-white focus:ring-gray-800 text-center justify-center"
               >
                 {copied ? "Copied Link" : "Copy Invite Link"}
               </button>
@@ -165,7 +165,7 @@ function WorkspaceOption({ workspace, selected, toggleSelection }) {
     <button
       type="button"
       onClick={() => toggleSelection(workspace.id)}
-      className={`transition-all duration-300 w-full h-11 p-2.5 bg-white/10 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
+      className={`transition-all duration-300 w-full h-11 p-2.5 bg-black/10 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
         selected ? "border-white border-opacity-40" : "border-none "
       } hover:border-white/60`}
     >
@@ -178,10 +178,10 @@ function WorkspaceOption({ workspace, selected, toggleSelection }) {
       />
       <div
         className={`w-4 h-4 rounded-full border-2 border-white mr-2 ${
-          selected ? "bg-white" : ""
+          selected ? "bg-gray-700" : ""
         }`}
       ></div>
-      <div className="text-white text-sm font-medium font-['Plus Jakarta Sans'] leading-tight">
+      <div className="text-black text-sm font-medium font-['Plus Jakarta Sans'] leading-tight">
         {workspace.name}
       </div>
     </button>

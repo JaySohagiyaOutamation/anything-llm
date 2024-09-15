@@ -32,9 +32,9 @@ export default function NewUserModal() {
 
   return (
     <div className="relative w-full max-w-2xl max-h-full">
-      <div className="relative bg-main-gradient rounded-lg shadow">
+      <div className="relative bg-white rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-          <h3 className="text-xl font-semibold text-white">
+          <h3 className="text-xl font-semibold text-black">
             Create a new account
           </h3>
         </div>

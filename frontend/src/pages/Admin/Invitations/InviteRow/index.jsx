@@ -42,7 +42,7 @@ export default function InviteRow({ invite }) {
     <>
       <tr
         ref={rowRef}
-        className="bg-transparent text-white text-opacity-80 text-sm font-medium"
+        className="bg-transparent text-black text-opacity-80 text-sm font-medium"
       >
         <td scope="row" className="px-6 py-4 whitespace-nowrap">
           {titleCase(status)}
@@ -62,7 +62,7 @@ export default function InviteRow({ invite }) {
               <button
                 onClick={copyInviteLink}
                 disabled={copied}
-                className="font-medium text-blue-300 rounded-lg hover:text-white hover:text-opacity-60 hover:underline"
+                className="font-medium text-blue-300 rounded-lg hover:text-black hover:text-opacity-60 hover:underline"
               >
                 {copied ? "Copied" : "Copy Invite Link"}
               </button>
