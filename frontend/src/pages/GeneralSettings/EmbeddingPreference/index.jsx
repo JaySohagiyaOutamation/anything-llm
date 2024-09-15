@@ -211,12 +211,12 @@ export default function GeneralEmbeddingPreference() {
   );
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-sidebar flex">
+    <div className="w-screen h-screen overflow-hidden bg-white flex">
       <Sidebar />
       {loading ? (
         <div
           style={{ height: isMobile ? "100%" : "calc(100% - 32px)" }}
-          className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-main-gradient w-full h-full overflow-y-scroll"
+          className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-[#f8fafe] w-full h-full overflow-y-scroll"
         >
           <div className="w-full h-full flex justify-center items-center">
             <PreLoader />
@@ -225,7 +225,7 @@ export default function GeneralEmbeddingPreference() {
       ) : (
         <div
           style={{ height: isMobile ? "100%" : "calc(100% - 32px)" }}
-          className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-main-gradient w-full h-full overflow-y-scroll"
+          className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-[#f8fafe] w-full h-full overflow-y-scroll"
         >
           <form
             id="embedding-form"
@@ -235,11 +235,11 @@ export default function GeneralEmbeddingPreference() {
             <div className="flex flex-col w-full px-1 md:pl-6 md:pr-[50px] md:py-6 py-16">
               <div className="w-full flex flex-col gap-y-1 pb-6 border-white border-b-2 border-opacity-10">
                 <div className="flex gap-x-4 items-center">
-                  <p className="text-lg leading-6 font-bold text-white">
+                  <p className="text-lg leading-6 font-bold text-black">
                     {t("embedding.title")}
                   </p>
                 </div>
-                <p className="text-xs leading-[18px] font-base text-white text-opacity-60">
+                <p className="text-xs leading-[18px] font-base text-black text-opacity-60">
                   {t("embedding.desc-start")}
                   <br />
                   {t("embedding.desc-end")}
@@ -255,7 +255,7 @@ export default function GeneralEmbeddingPreference() {
                   </CTAButton>
                 )}
               </div>
-              <div className="text-base font-bold text-white mt-6 mb-4">
+              <div className="text-base font-bold text-black mt-6 mb-4">
                 {t("embedding.provider.title")}
               </div>
               <div className="relative">
@@ -266,20 +266,20 @@ export default function GeneralEmbeddingPreference() {
                   />
                 )}
                 {searchMenuOpen ? (
-                  <div className="absolute top-0 left-0 w-full max-w-[640px] max-h-[310px] overflow-auto white-scrollbar min-h-[64px] bg-dark-input rounded-lg flex flex-col justify-between cursor-pointer border-2 border-primary-button z-20">
+                  <div className="absolute top-0 left-0 w-full max-w-[640px] max-h-[310px] overflow-auto white-scrollbar min-h-[64px] bg-white rounded-lg flex flex-col justify-between cursor-pointer border-2 border-primary-button z-20">
                     <div className="w-full flex flex-col gap-y-1">
-                      <div className="flex items-center sticky top-0 border-b border-[#9CA3AF] mx-4 bg-dark-input">
+                      <div className="flex items-center sticky top-0 border-b border-[#9CA3AF] mx-4 bg-white">
                         <MagnifyingGlass
                           size={20}
                           weight="bold"
-                          className="absolute left-4 z-30 text-white -ml-4 my-2"
+                          className="absolute left-4 z-30 text-black -ml-4 my-2"
                         />
                         <input
                           type="text"
                           name="embedder-search"
                           autoComplete="off"
                           placeholder="Search all embedding providers"
-                          className="-ml-4 my-2 bg-transparent z-20 pl-12 h-[38px] w-full px-4 py-1 text-sm outline-none text-white placeholder:text-white placeholder:font-medium"
+                          className="-ml-4 my-2 bg-transparent z-20 pl-12 h-[38px] w-full px-4 py-1 text-sm outline-none text-black placeholder:text-black placeholder:font-medium"
                           onChange={(e) => setSearchQuery(e.target.value)}
                           ref={searchInputRef}
                           onKeyDown={(e) => {
@@ -289,7 +289,7 @@ export default function GeneralEmbeddingPreference() {
                         <X
                           size={20}
                           weight="bold"
-                          className="cursor-pointer text-white hover:text-x-button"
+                          className="cursor-pointer text-black hover:text-x-button"
                           onClick={handleXButton}
                         />
                       </div>
@@ -310,7 +310,7 @@ export default function GeneralEmbeddingPreference() {
                   </div>
                 ) : (
                   <button
-                    className="w-full max-w-[640px] h-[64px] bg-dark-input rounded-lg flex items-center p-[14px] justify-between cursor-pointer border-2 border-transparent hover:border-primary-button transition-all duration-300"
+                    className="w-full max-w-[640px] h-[64px] bg-black bg-opacity-55 rounded-lg flex items-center p-[14px] justify-between cursor-pointer border-2 border-transparent hover:border-primary-button transition-all duration-300"
                     type="button"
                     onClick={() => setSearchMenuOpen(true)}
                   >

@@ -35,13 +35,13 @@ export default function OllamaEmbeddingOptions({ settings }) {
           basePath={basePath.value}
         />
         <div className="flex flex-col w-60">
-          <label className="text-white text-sm font-semibold block mb-2">
+          <label className="text-black text-sm font-semibold block mb-2">
             Max Embedding Chunk Length
           </label>
           <input
             type="number"
             name="EmbeddingModelMaxChunkLength"
-            className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+            className="bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
             placeholder="8192"
             min={1}
             value={maxChunkLength}
@@ -50,7 +50,7 @@ export default function OllamaEmbeddingOptions({ settings }) {
             required={true}
             autoComplete="off"
           />
-          <p className="text-xs leading-[18px] font-base text-white text-opacity-60 mt-2">
+          <p className="text-xs leading-[18px] font-base text-black text-opacity-60 mt-2">
             Maximum length of text chunks for embedding.
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function OllamaEmbeddingOptions({ settings }) {
             e.preventDefault();
             setShowAdvancedControls(!showAdvancedControls);
           }}
-          className="text-white hover:text-white/70 flex items-center text-sm"
+          className="text-black hover:text-black/70 flex items-center text-sm"
         >
           {showAdvancedControls ? "Hide" : "Show"} Manual Endpoint Input
           {showAdvancedControls ? (
@@ -76,7 +76,7 @@ export default function OllamaEmbeddingOptions({ settings }) {
         <div className="w-full flex items-start gap-4">
           <div className="flex flex-col w-60">
             <div className="flex justify-between items-center mb-2">
-              <label className="text-white text-sm font-semibold">
+              <label className="text-black text-sm font-semibold">
                 Ollama Base URL
               </label>
               {loading ? (
@@ -97,7 +97,7 @@ export default function OllamaEmbeddingOptions({ settings }) {
             <input
               type="url"
               name="EmbeddingBasePath"
-              className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+              className="bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
               placeholder="http://127.0.0.1:11434"
               value={basePathValue.value}
               required={true}
@@ -106,7 +106,7 @@ export default function OllamaEmbeddingOptions({ settings }) {
               onChange={basePath.onChange}
               onBlur={basePath.onBlur}
             />
-            <p className="text-xs leading-[18px] font-base text-white text-opacity-60 mt-2">
+            <p className="text-xs leading-[18px] font-base text-black text-opacity-60 mt-2">
               Enter the URL where Ollama is running.
             </p>
           </div>
@@ -143,13 +143,13 @@ function OllamaEmbeddingModelSelection({ settings, basePath = null }) {
   if (loading || customModels.length == 0) {
     return (
       <div className="flex flex-col w-60">
-        <label className="text-white text-sm font-semibold block mb-2">
+        <label className="text-black text-sm font-semibold block mb-2">
           Ollama Embedding Model
         </label>
         <select
           name="EmbeddingModelPref"
           disabled={true}
-          className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+          className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg block w-full p-2.5"
         >
           <option disabled={true} selected={true}>
             {!!basePath
@@ -157,7 +157,7 @@ function OllamaEmbeddingModelSelection({ settings, basePath = null }) {
               : "Enter Ollama URL first"}
           </option>
         </select>
-        <p className="text-xs leading-[18px] font-base text-white text-opacity-60 mt-2">
+        <p className="text-xs leading-[18px] font-base text-black text-opacity-60 mt-2">
           Select the Ollama model for embeddings. Models will load after
           entering a valid Ollama URL.
         </p>
@@ -167,13 +167,13 @@ function OllamaEmbeddingModelSelection({ settings, basePath = null }) {
 
   return (
     <div className="flex flex-col w-60">
-      <label className="text-white text-sm font-semibold block mb-2">
+      <label className="text-black text-sm font-semibold block mb-2">
         Ollama Embedding Model
       </label>
       <select
         name="EmbeddingModelPref"
         required={true}
-        className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+        className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg block w-full p-2.5"
       >
         {customModels.length > 0 && (
           <optgroup label="Your loaded models">
@@ -191,7 +191,7 @@ function OllamaEmbeddingModelSelection({ settings, basePath = null }) {
           </optgroup>
         )}
       </select>
-      <p className="text-xs leading-[18px] font-base text-white text-opacity-60 mt-2">
+      <p className="text-xs leading-[18px] font-base text-black text-opacity-60 mt-2">
         Choose the Ollama model you want to use for generating embeddings.
       </p>
     </div>
