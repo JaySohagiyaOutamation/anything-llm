@@ -16,18 +16,18 @@ export default function AdminUsers() {
   const { isOpen, openModal, closeModal } = useModal();
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-sidebar flex">
+    <div className="w-screen h-screen overflow-hidden bg-white flex">
       <Sidebar />
       <div
         style={{ height: isMobile ? "100%" : "calc(100% - 32px)" }}
-        className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-main-gradient w-full h-full overflow-y-scroll"
+        className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-[#f8fafe]  w-full h-full overflow-y-scroll"
       >
         <div className="flex flex-col w-full px-1 md:pl-6 md:pr-[50px] md:py-6 py-16">
-          <div className="w-full flex flex-col gap-y-1 pb-6 border-white border-b-2 border-opacity-10">
+          <div className="w-full flex flex-col gap-y-1 pb-6 border-black border-b-2 border-opacity-10">
             <div className="items-center flex gap-x-4">
-              <p className="text-lg leading-6 font-bold text-white">Users</p>
+              <p className="text-lg leading-6 font-bold text-black">Users</p>
             </div>
-            <p className="text-xs leading-[18px] font-base text-white text-opacity-60">
+            <p className="text-xs leading-[18px] font-base text-black text-opacity-60">
               These are all the accounts which have an account on this instance.
               Removing an account will instantly remove their access to this
               instance.
@@ -78,7 +78,7 @@ function UsersContainer() {
 
   return (
     <table className="w-full text-sm text-left rounded-lg">
-      <thead className="text-white text-opacity-80 text-xs leading-[18px] font-bold uppercase border-white border-b border-opacity-60">
+      <thead className="text-black text-opacity-80 text-xs leading-[18px] font-bold uppercase border-black border-b border-opacity-60">
         <tr>
           <th scope="col" className="px-6 py-3 rounded-tl-lg">
             Username
@@ -122,11 +122,11 @@ const ROLE_HINT = {
 export function RoleHintDisplay({ role }) {
   return (
     <div className="flex flex-col gap-y-1 py-1 pb-4">
-      <p className="text-sm font-medium text-white">Permissions</p>
+      <p className="text-sm font-medium text-black">Permissions</p>
       <ul className="flex flex-col gap-y-1 list-disc px-4">
         {ROLE_HINT[role ?? "default"].map((hints, i) => {
           return (
-            <li key={i} className="text-xs text-white/60">
+            <li key={i} className="text-xs text-black/60">
               {hints}
             </li>
           );

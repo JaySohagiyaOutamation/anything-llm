@@ -23,18 +23,18 @@ export default function NewUserModal({ closeModal }) {
 
   return (
     <div className="relative w-full max-w-2xl max-h-full">
-      <div className="relative bg-main-gradient rounded-lg shadow">
+      <div className="relative bg-white rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-          <h3 className="text-xl font-semibold text-white">
+          <h3 className="text-xl font-semibold text-black">
             Add user to instance
           </h3>
           <button
             onClick={closeModal}
             type="button"
-            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-white hover:bg-gray-200 hover:border-slate-100 hover:border-opacity-50 border-transparent border"
             data-modal-hide="staticModal"
           >
-            <X className="text-gray-300 text-lg" />
+            <X className="text-gray-700 text-lg" />
           </button>
         </div>
         <form onSubmit={handleCreate}>
@@ -43,14 +43,14 @@ export default function NewUserModal({ closeModal }) {
               <div>
                 <label
                   htmlFor="username"
-                  className="block mb-2 text-sm font-medium text-white"
+                  className="block mb-2 text-sm font-medium text-black"
                 >
                   Username
                 </label>
                 <input
                   name="username"
                   type="text"
-                  className="bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="User's username"
                   minLength={2}
                   required={true}
@@ -63,7 +63,7 @@ export default function NewUserModal({ closeModal }) {
                   }
                   onChange={(e) => e.target.setCustomValidity("")}
                 />
-                <p className="mt-2 text-xs text-white/60">
+                <p className="mt-2 text-xs text-black/60">
                   Username must be only contain lowercase letters, numbers,
                   underscores, and hyphens with no spaces
                 </p>
@@ -71,27 +71,27 @@ export default function NewUserModal({ closeModal }) {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-white"
+                  className="block mb-2 text-sm font-medium text-black"
                 >
                   Password
                 </label>
                 <input
                   name="password"
                   type="text"
-                  className="bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="User's initial password"
                   required={true}
                   autoComplete="off"
                   minLength={8}
                 />
-                <p className="mt-2 text-xs text-white/60">
+                <p className="mt-2 text-xs text-black/60">
                   Password must be at least 8 characters long
                 </p>
               </div>
               <div>
                 <label
                   htmlFor="role"
-                  className="block mb-2 text-sm font-medium text-white"
+                  className="block mb-2 text-sm font-medium text-black"
                 >
                   Role
                 </label>
@@ -100,7 +100,7 @@ export default function NewUserModal({ closeModal }) {
                   required={true}
                   defaultValue={"default"}
                   onChange={(e) => setRole(e.target.value)}
-                  className="rounded-lg bg-zinc-900 px-4 py-2 text-sm text-white border-gray-500 focus:ring-blue-500 focus:border-blue-500 w-full"
+                  className="rounded-lg bg-black bg-opacity-55 text-white placeholder:text-white/70 px-4 py-2 text-sm border-gray-500 focus:ring-blue-500 focus:border-blue-500 w-full"
                 >
                   <option value="default">Default</option>
                   <option value="manager">Manager</option>
@@ -111,7 +111,7 @@ export default function NewUserModal({ closeModal }) {
                 <RoleHintDisplay role={role} />
               </div>
               {error && <p className="text-red-400 text-sm">Error: {error}</p>}
-              <p className="text-white text-xs md:text-sm">
+              <p className="text-black text-xs md:text-sm">
                 After creating a user they will need to login with their initial
                 login to get access.
               </p>
@@ -121,13 +121,13 @@ export default function NewUserModal({ closeModal }) {
             <button
               onClick={closeModal}
               type="button"
-              className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
+              className="px-4 py-2 rounded-lg text-white bg-stone-900 hover:bg-opacity-80 transition-all duration-300"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+              className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-black text-sm items-center flex gap-x-2 bg-slate-200 hover:text-white focus:ring-gray-800 hover:bg-black"
             >
               Add user
             </button>

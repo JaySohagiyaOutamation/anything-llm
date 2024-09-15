@@ -57,7 +57,7 @@ export default function UserRow({ currUser, user }) {
     <>
       <tr
         ref={rowRef}
-        className="bg-transparent text-white text-opacity-80 text-sm font-medium"
+        className="bg-transparent text-black text-opacity-80 text-sm font-medium"
       >
         <th scope="row" className="px-6 py-4 whitespace-nowrap">
           {user.username}
@@ -68,7 +68,7 @@ export default function UserRow({ currUser, user }) {
           {canModify && (
             <button
               onClick={openModal}
-              className="text-sm font-medium text-white/80 rounded-lg hover:text-white px-2 py-1 hover:bg-white hover:bg-opacity-10"
+              className="text-sm font-medium text-black/80 rounded-lg hover:text-black px-2 py-1 hover:bg-black hover:bg-opacity-10"
             >
               Edit
             </button>
@@ -77,13 +77,13 @@ export default function UserRow({ currUser, user }) {
             <>
               <button
                 onClick={handleSuspend}
-                className="text-sm font-medium text-white/80 hover:text-orange-300 rounded-lg px-2 py-1 hover:bg-white hover:bg-opacity-10"
+                className="text-sm font-medium text-black/80 text-orange-500 rounded-lg px-2 py-1 hover:bg-black hover:bg-opacity-10"
               >
                 {suspended ? "Unsuspend" : "Suspend"}
               </button>
               <button
                 onClick={handleDelete}
-                className="text-sm font-medium text-white/80 hover:text-red-300 px-2 py-1 rounded-lg hover:bg-red-800 hover:bg-opacity-20"
+                className="text-sm font-medium text-black/80 hover:text-red-700 px-2 py-1 rounded-lg hover:bg-red-700 hover:bg-opacity-40"
               >
                 Delete
               </button>

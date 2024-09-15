@@ -20,7 +20,7 @@ export default function WorkspaceRow({ workspace, users }) {
     <>
       <tr
         ref={rowRef}
-        className="bg-transparent text-white text-opacity-80 text-sm font-medium"
+        className="bg-transparent text-black text-opacity-80 text-sm font-medium"
       >
         <th scope="row" className="px-6 py-4 whitespace-nowrap">
           {workspace.name}
@@ -30,7 +30,7 @@ export default function WorkspaceRow({ workspace, users }) {
             href={paths.workspace.chat(workspace.slug)}
             target="_blank"
             rel="noreferrer"
-            className="text-white flex items-center hover:underline"
+            className="text-black flex items-center hover:underline"
           >
             <LinkSimple className="mr-2 w-5 h-5" /> {workspace.slug}
           </a>
@@ -38,7 +38,7 @@ export default function WorkspaceRow({ workspace, users }) {
         <td className="px-6 py-4">
           <a
             href={paths.workspace.settings.members(workspace.slug)}
-            className="text-white flex items-center underline"
+            className="text-black flex items-center underline"
           >
             {workspace.userIds?.length}
           </a>
