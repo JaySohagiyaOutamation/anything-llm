@@ -7,7 +7,7 @@ export default function ChangeWarningModal({
 }) {
   return (
     <div className="relative w-full max-w-2xl max-h-full">
-      <div className="relative bg-main-gradient rounded-lg shadow">
+      <div className="relative bg-white rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
           <div className="flex items-center gap-2">
             <Warning
@@ -17,7 +17,7 @@ export default function ChangeWarningModal({
             <h3 className="text-xl font-semibold text-yellow-300">Warning</h3>
           </div>
         </div>
-        <div className="w-[550px] p-6 text-white">
+        <div className="w-[550px] p-6 text-black">
           <p>
             {warningText}
             <br />
