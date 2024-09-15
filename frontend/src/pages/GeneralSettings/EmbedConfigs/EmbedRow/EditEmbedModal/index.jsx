@@ -31,9 +31,9 @@ export default function EditEmbedModal({ embed, closeModal }) {
 
   return (
     <div className="relative max-w-2xl max-h-full">
-      <div className="relative bg-main-gradient rounded-lg shadow">
+      <div className="relative bg-white rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-          <h3 className="text-xl font-semibold text-white">
+          <h3 className="text-xl font-semibold text-black">
             Update embed #{embed.id}
           </h3>
           <button
@@ -89,7 +89,7 @@ export default function EditEmbedModal({ embed, closeModal }) {
               />
 
               {error && <p className="text-red-400 text-sm">Error: {error}</p>}
-              <p className="text-white text-xs md:text-sm pb-8">
+              <p className="text-black text-xs md:text-sm pb-8">
                 After creating an embed you will be provided a link that you can
                 publish on your website with a simple
                 <code className="bg-stone-800 text-white mx-1 px-1 rounded-sm">
@@ -103,13 +103,13 @@ export default function EditEmbedModal({ embed, closeModal }) {
             <button
               onClick={closeModal}
               type="button"
-              className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
+              className="px-4 py-2 rounded-lg text-white bg-stone-900 transition-all duration-300"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+              className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-black text-sm items-center flex gap-x-2 bg-slate-200 hover:bg-black hover:text-white focus:ring-gray-800"
             >
               Update embed
             </button>

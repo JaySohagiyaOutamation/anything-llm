@@ -37,7 +37,7 @@ export default function NewApiKeyModal({ closeModal }) {
 
   return (
     <div className="relative w-[500px] max-w-2xl max-h-full">
-      <div className="relative bg-[#e4ecf6] rounded-lg shadow">
+      <div className="relative bg-white rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-black border-opacity-30">
           <h3 className="text-xl font-semibold text-black">
             Create new API key

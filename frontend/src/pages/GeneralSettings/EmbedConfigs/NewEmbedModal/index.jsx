@@ -290,12 +290,12 @@ export const PermittedDomains = ({ defaultValue = [] }) => {
         value={domains}
         onChange={handleChange}
         onBlur={handleBlur}
-        placeholder="https://mysite.com, https://anythingllm.com"
         classNames={{
-          tag: "bg-white-300/10 text-white m-1",
+          tag: "bg-white text-black m-1",
           input:
-            "flex bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none p-2.5",
+            "flex bg-opacity-55 text-white bg-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none p-2.5",
         }}
+        placeHolder="https://mysite.com, https://anythingllm.com"
       />
     </div>
   );
