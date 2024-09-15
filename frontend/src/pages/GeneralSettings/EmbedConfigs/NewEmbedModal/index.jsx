@@ -38,18 +38,18 @@ export default function NewEmbedModal({ closeModal }) {
 
   return (
     <div className="relative w-full max-w-2xl max-h-full">
-      <div className="relative bg-main-gradient rounded-lg shadow">
-        <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-          <h3 className="text-xl font-semibold text-white">
+      <div className="relative bg-[#f8fafe] rounded-lg shadow">
+        <div className="flex items-start justify-between p-4 border-b rounded-t border-black-500">
+          <h3 className="text-xl font-semibold text-black">
             Create new embed for workspace
           </h3>
           <button
             onClick={closeModal}
             type="button"
-            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+            className="transition-all duration-300 text-black bg-transparent  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center  hover:bg-[#acbaca]  border-transparent border"
             data-modal-hide="staticModal"
           >
-            <X className="text-gray-300 text-lg" />
+            <X className="text-black text-lg" />
           </button>
         </div>
         <form onSubmit={handleCreate}>
@@ -85,10 +85,10 @@ export default function NewEmbedModal({ closeModal }) {
               />
 
               {error && <p className="text-red-400 text-sm">Error: {error}</p>}
-              <p className="text-white text-xs md:text-sm pb-8">
+              <p className="text-black text-xs md:text-sm pb-8">
                 After creating an embed you will be provided a link that you can
                 publish on your website with a simple
-                <code className="bg-stone-800 text-white mx-1 px-1 rounded-sm">
+                <code className="bg-black/65 text-white mx-1 px-1 rounded-sm">
                   &lt;script&gt;
                 </code>{" "}
                 tag.
@@ -99,13 +99,13 @@ export default function NewEmbedModal({ closeModal }) {
             <button
               onClick={closeModal}
               type="button"
-              className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
+              className="px-4 py-2 rounded-lg text-white bg-black hover:bg-opacity-90  transition-all duration-300"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+              className="transition-all duration-300 border border-black px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black hover:bg-opacity-90"
             >
               Create embed
             </button>
@@ -131,11 +131,11 @@ export const WorkspaceSelection = ({ defaultValue = null }) => {
       <div className="flex flex-col mb-2">
         <label
           htmlFor="workspace_id"
-          className="block  text-sm font-medium text-white"
+          className="block  text-sm font-medium text-black"
         >
           Workspace
         </label>
-        <p className="text-slate-300 text-xs">
+        <p className="text-black/65 text-xs">
           This is the workspace your chat window will be based on. All defaults
           will be inherited from the workspace unless overridden by this config.
         </p>
@@ -144,7 +144,7 @@ export const WorkspaceSelection = ({ defaultValue = null }) => {
         name="workspace_id"
         required={true}
         defaultValue={defaultValue}
-        className="min-w-[15rem] rounded-lg bg-zinc-900 px-4 py-2 text-sm text-white focus:ring-blue-500 focus:border-blue-500"
+        className="min-w-[15rem] rounded-lg bg-black/65 px-4 py-2 text-sm text-white focus:ring-blue-500 focus:border-blue-500"
       >
         {workspaces.map((workspace) => {
           return (
@@ -168,12 +168,12 @@ export const ChatModeSelection = ({ defaultValue = null }) => {
     <div>
       <div className="flex flex-col mb-2">
         <label
-          className="block text-sm font-medium text-white"
+          className="block text-sm font-medium text-black"
           htmlFor="chat_mode"
         >
           Allowed chat method
         </label>
-        <p className="text-slate-300 text-xs">
+        <p className="text-black/70 text-xs">
           Set how your chatbot should operate. Query means it will only respond
           if a document helps answer the query.
           <br />
@@ -183,9 +183,9 @@ export const ChatModeSelection = ({ defaultValue = null }) => {
       </div>
       <div className="mt-2 gap-y-3 flex flex-col">
         <label
-          className={`transition-all duration-300 w-full h-11 p-2.5 bg-white/10 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
-            chatMode === "chat" ? "border-white border-opacity-40" : ""
-          } hover:border-white/60`}
+          className={`transition-all duration-300 w-full h-11 p-2.5 bg-black/65 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
+            chatMode === "chat" ? "border-black border-opacity-40" : ""
+          } hover:border-black/60`}
         >
           <input
             type="radio"
@@ -205,9 +205,9 @@ export const ChatModeSelection = ({ defaultValue = null }) => {
           </div>
         </label>
         <label
-          className={`transition-all duration-300 w-full h-11 p-2.5 bg-white/10 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
-            chatMode === "query" ? "border-white border-opacity-40" : ""
-          } hover:border-white/60`}
+          className={`transition-all duration-300 w-full h-11 p-2.5 bg-black/65 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
+            chatMode === "query" ? "border-black border-opacity-40" : ""
+          } hover:border-black/60`}
         >
           <input
             type="radio"
@@ -274,11 +274,11 @@ export const PermittedDomains = ({ defaultValue = [] }) => {
       <div className="flex flex-col mb-2">
         <label
           htmlFor="allowlist_domains"
-          className="block text-sm font-medium text-white"
+          className="block text-sm font-medium text-black"
         >
           Restrict requests from domains
         </label>
-        <p className="text-slate-300 text-xs">
+        <p className="text-black/70 text-xs">
           This filter will block any requests that come from a domain other than
           the list below.
           <br />
@@ -292,7 +292,7 @@ export const PermittedDomains = ({ defaultValue = [] }) => {
         onBlur={handleBlur}
         placeholder="https://mysite.com, https://anythingllm.com"
         classNames={{
-          tag: "bg-blue-300/10 text-zinc-800 m-1",
+          tag: "bg-white-300/10 text-white m-1",
           input:
             "flex bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none p-2.5",
         }}
@@ -305,15 +305,15 @@ export const NumberInput = ({ name, title, hint, defaultValue = 0 }) => {
   return (
     <div>
       <div className="flex flex-col mb-2">
-        <label htmlFor={name} className="block text-sm font-medium text-white">
+        <label htmlFor={name} className="block text-sm font-medium text-black">
           {title}
         </label>
-        <p className="text-slate-300 text-xs">{hint}</p>
+        <p className="text-black/70 text-xs">{hint}</p>
       </div>
       <input
         type="number"
         name={name}
-        className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-[15rem] p-2.5"
+        className="bg-black/65 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-[15rem] p-2.5"
         min={0}
         defaultValue={defaultValue}
         onScroll={(e) => e.target.blur()}
@@ -328,10 +328,10 @@ export const BooleanInput = ({ name, title, hint, defaultValue = null }) => {
   return (
     <div>
       <div className="flex flex-col mb-2">
-        <label htmlFor={name} className="block text-sm font-medium text-white">
+        <label htmlFor={name} className="block text-sm font-medium text-black">
           {title}
         </label>
-        <p className="text-slate-300 text-xs">{hint}</p>
+        <p className="text-black/70 text-xs">{hint}</p>
       </div>
       <label className="relative inline-flex cursor-pointer items-center">
         <input
@@ -341,7 +341,7 @@ export const BooleanInput = ({ name, title, hint, defaultValue = null }) => {
           checked={status}
           className="peer sr-only pointer-events-none"
         />
-        <div className="pointer-events-none peer h-6 w-11 rounded-full bg-stone-400 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:shadow-xl after:border after:border-gray-600 after:bg-white after:box-shadow-md after:transition-all after:content-[''] peer-checked:bg-lime-300 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800" />
+        <div className="pointer-events-none peer h-6 w-11 rounded-full bg-black/65 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:shadow-xl after:border after:border-gray-600 after:bg-white after:box-shadow-md after:transition-all after:content-[''] peer-checked:bg-sky-500 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-white" />
       </label>
     </div>
   );

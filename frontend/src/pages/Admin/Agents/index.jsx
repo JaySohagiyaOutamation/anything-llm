@@ -170,9 +170,9 @@ export default function AdminAgents() {
               activeSkills={agentSkills}
             />
 
-            <div className="text-white flex items-center gap-x-2">
+            <div className="text-black flex items-center gap-x-2">
               <Plug size={24} />
-              <p className="text-lg font-medium">Custom Skills</p>
+              <p className="text-lg text-black font-medium">Custom Skills</p>
             </div>
             <ImportedSkillList
               skills={importedSkills}
@@ -260,7 +260,7 @@ export default function AdminAgents() {
 
         {/* Skill settings nav */}
         <div className="flex flex-col gap-y-[18px]">
-          <div className="text-white flex items-center gap-x-2">
+          <div className="text-black flex items-center gap-x-2">
             <Robot size={24} />
             <p className="text-lg font-medium">Agent Skills</p>
           </div>
@@ -333,7 +333,7 @@ function SkillLayout({ children, hasChanges, handleSubmit, handleCancel }) {
   return (
     <div
       id="workspace-agent-settings-container"
-      className="w-screen h-screen overflow-hidden bg-sidebar flex md:mt-0 mt-6"
+      className="w-screen h-screen overflow-hidden bg-white flex md:mt-0 mt-6"
     >
       <Sidebar />
       <div
@@ -362,7 +362,7 @@ function SkillList({
 
   return (
     <div
-      className={`bg-white/5 text-white rounded-xl ${
+      className={`bg-[#e4ecf6] text-dark-highlight rounded-xl ${
         isMobile ? "w-full" : "min-w-[360px] w-fit"
       }`}
     >
@@ -375,7 +375,7 @@ function SkillList({
             index === Object.keys(skills).length - 1
               ? "rounded-b-xl"
               : "border-b border-white/10"
-          } cursor-pointer transition-all duration-300  hover:bg-white/5 ${
+          } cursor-pointer transition-all duration-300  hover:bg-[#7E858E]/15 ${
             selectedSkill === skill ? "bg-white/10" : ""
           }`}
           onClick={() => handleClick?.(skill)}
@@ -385,11 +385,11 @@ function SkillList({
             {isDefault ? (
               <DefaultBadge title={skill} />
             ) : (
-              <div className="text-sm text-white/60 font-medium">
+              <div className="text-sm text-black/60 font-medium">
                 {activeSkills.includes(skill) ? "On" : "Off"}
               </div>
             )}
-            <CaretRight size={14} weight="bold" className="text-white/80" />
+            <CaretRight size={14} weight="bold" className="text-black/80" />
           </div>
         </div>
       ))}

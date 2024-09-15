@@ -27,8 +27,8 @@ export default function LogRow({ log }) {
     <>
       <tr
         onClick={handleRowClick}
-        className={`bg-transparent text-white text-opacity-80 text-sm font-medium ${
-          hasMetadata ? "cursor-pointer hover:bg-white/5" : ""
+        className={`bg-transparent text-black text-opacity-80 text-sm font-medium ${
+          hasMetadata ? "cursor-pointer hover:bg-[#8497ad]/10" : ""
         }`}
       >
         <EventBadge event={log.event} />
@@ -45,14 +45,14 @@ export default function LogRow({ log }) {
                 className={`px-2 gap-x-1 flex items-center justify-center transform transition-transform duration-200 hover:scale-105`}
               >
                 <CaretUp weight="bold" size={20} />
-                <p className="text-xs text-white/50 w-[20px]">hide</p>
+                <p className="text-xs text-black/70 w-[20px]">hide</p>
               </td>
             ) : (
               <td
                 className={`px-2 gap-x-1 flex items-center justify-center transform transition-transform duration-200 hover:scale-105`}
               >
                 <CaretDown weight="bold" size={20} />
-                <p className="text-xs text-white/50 w-[20px]">show</p>
+                <p className="text-xs text-black/70 w-[20px]">show</p>
               </td>
             )}
           </>
@@ -66,15 +66,15 @@ export default function LogRow({ log }) {
 const EventMetadata = ({ metadata, expanded = false }) => {
   if (!metadata || !expanded) return null;
   return (
-    <tr className="bg-sidebar">
+    <tr className="bg-[#8497ad]/40">
       <td
         colSpan="2"
-        className="px-6 py-4 font-medium text-white rounded-l-2xl"
+        className="px-6 py-4 font-bold text-black rounded-l-2xl"
       >
         Event Metadata
       </td>
       <td colSpan="4" className="px-6 py-4 rounded-r-2xl">
-        <div className="w-full rounded-lg bg-main-2 p-2 text-white shadow-sm border-white border bg-opacity-10">
+        <div className="w-full rounded-lg bg-black p-2 text-white shadow-sm border-white border bg-opacity-70">
           <pre className="overflow-scroll">
             {JSON.stringify(metadata, null, 2)}
           </pre>

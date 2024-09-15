@@ -49,17 +49,17 @@ export default function NewBrowserExtensionApiKeyModal({
 
   return (
     <div className="relative w-[500px] max-w-2xl max-h-full">
-      <div className="relative bg-main-gradient rounded-lg shadow">
-        <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-          <h3 className="text-xl font-semibold text-white">
+      <div className="relative bg-[#e4ecf6] rounded-lg shadow">
+        <div className="flex items-start justify-between p-4 border-b rounded-t border-black border-opacity-40">
+          <h3 className="text-xl font-semibold text-black">
             New Browser Extension API Key
           </h3>
           <button
             onClick={closeModal}
             type="button"
-            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border border-none cursor-pointer"
+            className="transition-all duration-300  hover:bg-[#acbaca] rounded-lg text-sm p-1.5 ml-auto inline-flex items-center  hover:border-black hover:border-opacity-20 border-transparent border cursor-pointer"
           >
-            <X className="text-gray-300 text-lg" />
+            <X className="text-black text-lg" />
           </button>
         </div>
         <form onSubmit={handleCreate}>
@@ -75,17 +75,17 @@ export default function NewBrowserExtensionApiKeyModal({
                 />
               )}
               {isMultiUser && (
-                <p className="text-yellow-300 text-xs md:text-sm font-semibold">
+                <p className="text-yellow-500 text-xs md:text-sm font-semibold">
                   Warning: You are in multi-user mode, this API key will allow
                   access to all workspaces associated with your account. Please
                   share it cautiously.
                 </p>
               )}
-              <p className="text-white text-xs md:text-sm">
+              <p className="text-black text-xs md:text-sm">
                 After clicking "Create API Key", AnythingLLM will attempt to
                 connect to your browser extension automatically.
               </p>
-              <p className="text-white text-xs md:text-sm">
+              <p className="text-black  text-xs md:text-sm">
                 If you see "Connected to AnythingLLM" in the extension, the
                 connection was successful. If not, please copy the connection
                 string and paste it into the extension manually.
@@ -98,13 +98,13 @@ export default function NewBrowserExtensionApiKeyModal({
                 <button
                   onClick={closeModal}
                   type="button"
-                  className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300 border-none"
+                  className="px-4 py-2 rounded-lg text-white bg-black hover:bg-opacity-80 transition-all duration-300 border-none"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800 border-none"
+                  className="transition-all duration-300 border px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black hover:bg-opacity-80"
                 >
                   Create API Key
                 </button>

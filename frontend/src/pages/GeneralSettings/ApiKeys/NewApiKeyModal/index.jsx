@@ -37,18 +37,18 @@ export default function NewApiKeyModal({ closeModal }) {
 
   return (
     <div className="relative w-[500px] max-w-2xl max-h-full">
-      <div className="relative bg-main-gradient rounded-lg shadow">
-        <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-          <h3 className="text-xl font-semibold text-white">
+      <div className="relative bg-[#e4ecf6] rounded-lg shadow">
+        <div className="flex items-start justify-between p-4 border-b rounded-t border-black border-opacity-30">
+          <h3 className="text-xl font-semibold text-black">
             Create new API key
           </h3>
           <button
             onClick={closeModal}
             type="button"
-            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+            className="transition-all duration-300  bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-[#acbaca] hover:border-black hover:border-opacity-20 border-transparent border"
             data-modal-hide="staticModal"
           >
-            <X className="text-gray-300 text-lg" />
+            <X className="text-black text-lg" />
           </button>
         </div>
         <form onSubmit={handleCreate}>
@@ -60,10 +60,10 @@ export default function NewApiKeyModal({ closeModal }) {
                   type="text"
                   defaultValue={`${apiKey.secret}`}
                   disabled={true}
-                  className="rounded-lg px-4 py-2 text-white bg-zinc-900 border border-gray-500/50"
+                  className="rounded-lg px-4 py-2 text-black bg-black border border-black"
                 />
               )}
-              <p className="text-white text-xs md:text-sm">
+              <p className="text-black text-xs md:text-sm">
                 Once created the API key can be used to programmatically access
                 and configure this AnythingLLM instance.
               </p>
@@ -71,7 +71,7 @@ export default function NewApiKeyModal({ closeModal }) {
                 href={paths.apiDocs()}
                 target="_blank"
                 rel="noreferrer"
-                className="text-blue-400 hover:underline"
+                className="text-blue-500 hover:underline"
               >
                 Read the API documentation &rarr;
               </a>
@@ -83,13 +83,13 @@ export default function NewApiKeyModal({ closeModal }) {
                 <button
                   onClick={closeModal}
                   type="button"
-                  className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
+                  className="px-4 py-2 rounded-lg text-white bg-black hover:bg-opacity-80 transition-all duration-300"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+                  className="transition-all duration-300  px-4 py-2 rounded-lg text-white bg-black hover:bg-opacity-80 text-sm items-center flex gap-x-2"
                 >
                   Create API key
                 </button>

@@ -59,7 +59,7 @@ export default function BrowserExtensionApiKeyRow({
   return (
     <tr
       ref={rowRef}
-      className="bg-transparent text-white text-opacity-80 text-sm font-medium"
+      className="bg-transparent text-black text-opacity-80 text-sm font-medium"
     >
       <td scope="row" className="px-6 py-4 whitespace-nowrap flex items-center">
         <span className="mr-2 font-mono">{connectionString}</span>
@@ -68,7 +68,7 @@ export default function BrowserExtensionApiKeyRow({
             onClick={handleCopy}
             data-tooltip-id={`copy-connection-text-${apiKey.id}`}
             data-tooltip-content="Copy connection string"
-            className="text-white hover:text-white/80 transition-colors duration-200 p-1 rounded"
+            className="text-black hover:text-black/80 transition-colors duration-200 p-1 rounded"
           >
             {copied ? (
               <Check className="h-5 w-5 text-green-500" />
@@ -87,7 +87,7 @@ export default function BrowserExtensionApiKeyRow({
             onClick={handleConnect}
             data-tooltip-id={`auto-connection-${apiKey.id}`}
             data-tooltip-content="Automatically connect to extension"
-            className="text-white hover:text-white/80 transition-colors duration-200 p-1 rounded"
+            className="text-black hover:text-black/80 transition-colors duration-200 p-1 rounded"
           >
             <Plug className="h-5 w-5" />
             <Tooltip
@@ -110,7 +110,7 @@ export default function BrowserExtensionApiKeyRow({
       <td className="px-6 py-4">
         <button
           onClick={handleRevoke}
-          className="font-medium px-2 py-1 rounded-lg hover:bg-sidebar-gradient text-white hover:text-white/80 hover:bg-opacity-20"
+          className="font-medium px-2 py-1 rounded-lg bg-black text-white hover:bg-opacity-70"
         >
           <Trash className="h-5 w-5" />
         </button>

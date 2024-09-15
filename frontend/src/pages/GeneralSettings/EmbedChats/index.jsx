@@ -16,16 +16,16 @@ export default function EmbedChats() {
       <Sidebar />
       <div
         style={{ height: isMobile ? "100%" : "calc(100% - 32px)" }}
-        className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-main-gradient w-full h-full overflow-y-scroll"
+        className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-[#f8fafe] w-full h-full overflow-y-scroll"
       >
         <div className="flex flex-col w-full px-1 md:pl-6 md:pr-[86px] md:py-6 py-16">
-          <div className="w-full flex flex-col gap-y-1 pb-6 border-white border-b-2 border-opacity-10">
+          <div className="w-full flex flex-col gap-y-1 pb-6 border-black border-b border-opacity-60">
             <div className="flex gap-x-4 items-center">
-              <p className="text-lg leading-6 font-bold text-white">
+              <p className="text-lg leading-6 font-bold text-black">
                 {t("embed-chats.title")}
               </p>
             </div>
-            <p className="text-xs leading-[18px] font-base text-white text-opacity-60">
+            <p className="text-xs leading-[18px] font-base text-black text-opacity-60">
               {t("embed-chats.description")}
             </p>
           </div>
@@ -82,7 +82,7 @@ function ChatsContainer() {
   return (
     <>
       <table className="w-full text-sm text-left rounded-lg mt-5">
-        <thead className="text-white text-opacity-80 text-sm font-bold uppercase border-white border-b border-opacity-60">
+        <thead className="text-black text-opacity-80 text-sm font-bold uppercase border-black border-b border-opacity-60">
           <tr>
             <th scope="col" className="px-6 py-3 rounded-tl-lg">
               {t("embed-chats.table.embed")}
@@ -114,7 +114,7 @@ function ChatsContainer() {
       <div className="flex w-full justify-between items-center">
         <button
           onClick={handlePrevious}
-          className="px-4 py-2 rounded-lg border border-slate-200 text-slate-200 text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 disabled:invisible"
+          className="px-4 py-2 rounded-lg border border-slate-200 text-slate-200 text-sm items-center flex gap-x-2 bg-black hover:bg-opacity-50 disabled:invisible"
           disabled={offset === 0}
         >
           {" "}
@@ -122,7 +122,7 @@ function ChatsContainer() {
         </button>
         <button
           onClick={handleNext}
-          className="px-4 py-2 rounded-lg border border-slate-200 text-slate-200 text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 disabled:invisible"
+          className="px-4 py-2 rounded-lg border border-slate-200 text-slate-200 text-sm items-center flex gap-x-2 bg-black hover:bg-opacity-50 disabled:invisible"
           disabled={!canNext}
         >
           {t("common.next")}

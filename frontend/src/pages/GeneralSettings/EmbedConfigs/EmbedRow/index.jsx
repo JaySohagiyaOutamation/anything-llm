@@ -63,7 +63,7 @@ export default function EmbedRow({ embed }) {
     <>
       <tr
         ref={rowRef}
-        className="bg-transparent text-white text-opacity-80 text-sm"
+        className="bg-transparent text-black text-opacity-80 text-sm"
       >
         <th
           scope="row"
@@ -73,7 +73,7 @@ export default function EmbedRow({ embed }) {
             href={paths.workspace.chat(embed.workspace.slug)}
             target="_blank"
             rel="noreferrer"
-            className="text-white flex items-center hover:underline"
+            className="text-black flex items-center hover:underline"
           >
             <LinkSimple className="mr-2 w-5 h-5" /> {embed.workspace.name}
           </a>
@@ -87,7 +87,7 @@ export default function EmbedRow({ embed }) {
         <td className="px-6 py-4 flex items-center gap-x-6">
           <button
             onClick={openSettingsModal}
-            className="font-medium text-white text-opacity-80 rounded-lg hover:text-white px-2 py-1 hover:text-opacity-60 hover:bg-white hover:bg-opacity-10"
+            className="font-medium text-black text-opacity-80 rounded-lg hover:text-black px-2 py-1 hover:text-opacity-60 hover:bg-white hover:bg-opacity-10"
           >
             <DotsThreeOutline weight="fill" className="h-5 w-5" />
           </button>

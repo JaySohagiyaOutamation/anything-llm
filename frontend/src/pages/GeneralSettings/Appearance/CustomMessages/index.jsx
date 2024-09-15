@@ -60,11 +60,11 @@ export default function CustomMessages() {
         <h2 className="text-base leading-6 font-bold text-black">
           {t("appearance.message.title")}
         </h2>
-        <p className="text-xs leading-[18px] font-base text-black/60">
+        <p className="text-xs leading-[18px] font-base text-black/70">
           {t("appearance.message.description")}
         </p>
       </div>
-      <div className="mt-3 flex flex-col gap-y-6 bg-dark-highlight rounded-lg pr-[31px] pl-[12px] pt-4 max-w-[700px]">
+      <div className="mt-3 flex flex-col gap-y-6 bg-[#8497ad]/50 rounded-lg pr-[31px] pl-[12px] pt-4 max-w-[700px]">
         {messages.map((message, index) => (
           <div key={index} className="flex flex-col gap-y-2">
             {message.user && (
@@ -89,7 +89,7 @@ export default function CustomMessages() {
         ))}
         <div className="flex gap-4 mt-12 justify-between pb-[15px]">
           <button
-            className="self-end text-white hover:text-white/60 transition"
+            className="self-end text-black hover:text-black/80 transition"
             onClick={() => addMessage("response")}
           >
             <div className="flex items-center justify-start text-sm font-normal -ml-2">
@@ -104,7 +104,7 @@ export default function CustomMessages() {
             </div>
           </button>
           <button
-            className="self-end text-white hover:text-white/60 transition"
+            className="self-end text-black hover:text-black/80 transition"
             onClick={() => addMessage("user")}
           >
             <div className="flex items-center justify-start text-sm font-normal">
@@ -123,7 +123,7 @@ export default function CustomMessages() {
       {hasChanges && (
         <div className="flex justify-start pt-6">
           <button
-            className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+            className="transition-all duration-300 border px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black/80 hover:bg-opacity-60"
             onClick={handleMessageSave}
           >
             {t("appearance.message.save")}

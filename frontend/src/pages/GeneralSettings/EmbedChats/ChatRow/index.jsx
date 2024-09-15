@@ -35,13 +35,13 @@ export default function ChatRow({ chat, onDelete }) {
 
   return (
     <>
-      <tr className="bg-transparent text-white text-opacity-80 text-sm font-medium">
-        <td className="px-6 py-4 font-medium whitespace-nowrap text-white">
+      <tr className="bg-transparent text-black text-opacity-80 text-sm font-medium">
+        <td className="px-6 py-4 font-medium whitespace-nowrap text-black">
           <a
             href={paths.settings.embedSetup()}
             target="_blank"
             rel="noreferrer"
-            className="text-white flex items-center hover:underline"
+            className="text-black flex items-center hover:underline"
           >
             <LinkSimple className="mr-2 w-5 h-5" />{" "}
             {chat.embed_config.workspace.name}
@@ -74,7 +74,7 @@ export default function ChatRow({ chat, onDelete }) {
         <td className="px-6 py-4 flex items-center gap-x-6">
           <button
             onClick={handleDelete}
-            className="font-medium px-2 py-1 rounded-lg hover:bg-sidebar-gradient text-white hover:text-white/80 hover:bg-opacity-20"
+            className="font-medium px-2 py-1 rounded-lg hover:bg-sidebar-gradient text-black hover:text-black/80 hover:bg-opacity-20"
           >
             <Trash className="h-5 w-5" />
           </button>

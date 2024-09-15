@@ -56,7 +56,7 @@ export default function NewIconForm({ icon, url, onSave, onRemove }) {
     <form onSubmit={handleSubmit} className="flex items-center gap-x-1.5">
       <div className="relative" ref={dropdownRef}>
         <div
-          className="h-[34px] w-[34px] bg-dark-highlight rounded-full flex items-center justify-center cursor-pointer hover:outline-primary-button hover:outline"
+          className="h-[34px] w-[34px] bg-black/80 rounded-full flex items-center justify-center cursor-pointer hover:outline-primary-button hover:outline"
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
           {React.createElement(ICON_COMPONENTS[selectedIcon] || Plus, {
@@ -65,12 +65,12 @@ export default function NewIconForm({ icon, url, onSave, onRemove }) {
           })}
         </div>
         {isDropdownOpen && (
-          <div className="absolute z-10 grid grid-cols-4 bg-[#41444C] mt-2 rounded-md w-[150px] h-[78px] overflow-y-auto border border-white/20 shadow-lg">
+          <div className="absolute z-10 grid grid-cols-4 bg-[#BEC9D6] mt-2 rounded-md w-[150px] h-[78px] overflow-y-auto border border-black/20 shadow-lg">
             {Object.keys(ICON_COMPONENTS).map((iconName) => (
               <button
                 key={iconName}
                 type="button"
-                className="flex justify-center items-center border border-transparent hover:bg-dark-highlight hover:border-slate-100 rounded-full p-2"
+                className="flex justify-center items-center border border-transparent bg-black/70 hover:bg-dark-highlight hover:border-slate-100 rounded-full p-2"
                 onClick={() => handleIconChange(iconName)}
               >
                 {React.createElement(ICON_COMPONENTS[iconName], {
@@ -87,7 +87,7 @@ export default function NewIconForm({ icon, url, onSave, onRemove }) {
         value={selectedUrl}
         onChange={handleUrlChange}
         placeholder="https://example.com"
-        className="bg-zinc-900 text-white placeholder-white/20 text-sm rounded-md p-2.5 w-[300px] h-[32px] focus:outline-primary-button active:outline-primary-button outline-none"
+        className="bg-black/80 text-white placeholder-white/45 text-sm rounded-md p-2.5 w-[300px] h-[32px] focus:outline-primary-button active:outline-primary-button outline-none"
         required
       />
       {selectedIcon !== "Plus" && (
@@ -103,7 +103,7 @@ export default function NewIconForm({ icon, url, onSave, onRemove }) {
             <button
               type="button"
               onClick={handleRemove}
-              className="hover:text-red-500 text-white/80 px-2 py-2 rounded-md text-sm font-bold"
+              className="hover:text-red-500 text-white/80 bg-black hover:bg-opacity-80 px-2 py-2 rounded-md text-sm font-bold"
             >
               <X size={20} />
             </button>
