@@ -17,7 +17,7 @@ export default function LiteLLMOptions({ settings }) {
           <input
             type="url"
             name="LiteLLMBasePath"
-            className="bg-black bg-opacity-55 text-white placeholder:text-black/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+            className="bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
             placeholder="http://127.0.0.1:4000"
             defaultValue={settings?.LiteLLMBasePath}
             required={true}

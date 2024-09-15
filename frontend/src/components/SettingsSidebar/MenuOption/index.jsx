@@ -66,15 +66,15 @@ export default function MenuOption({
           rounded-[6px]
           ${
             isActive
-              ? "bg-white/5 font-medium border-outline"
-              : "hover:bg-white/5"
+              ? "bg-black/5 font-medium border-outline"
+              : "hover:bg-black/5"
           }
         `}
       >
         <Link
           to={href}
           className={`flex flex-grow items-center px-[12px] h-[32px] font-medium ${
-            isChild ? "text-white/70 hover:text-white" : "text-white"
+            isChild ? "text-black/70 hover:text-black" : "text-black"
           }`}
           onClick={hasChildren ? handleClick : undefined}
         >
@@ -83,7 +83,7 @@ export default function MenuOption({
             className={`${
               isChild ? "text-xs" : "text-sm"
             } leading-loose whitespace-nowrap overflow-hidden ml-2 ${
-              isActive ? "text-white" : ""
+              isActive ? "text-black" : ""
             } ${!icon && "pl-5"}`}
           >
             {btnText}
@@ -91,7 +91,7 @@ export default function MenuOption({
         </Link>
         {hasChildren && (
           <button onClick={handleClick} className="p-2 text-white">
-            <CaretRight
+            <CaretRight color="black"
               size={16}
               weight="bold"
               className={`transition-transform ${

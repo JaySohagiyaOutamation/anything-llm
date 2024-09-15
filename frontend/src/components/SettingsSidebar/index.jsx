@@ -47,18 +47,18 @@ export default function SettingsSidebar() {
   if (isMobile) {
     return (
       <>
-        <div className="fixed top-0 left-0 right-0 z-10 flex justify-between items-center px-4 py-2 bg-sidebar text-slate-200 shadow-lg h-16">
+        <div className="fixed top-0 left-0 right-0 z-10 flex justify-between items-center px-4 py-2 bg-white text-black shadow-lg h-16">
           <button
             onClick={() => setShowSidebar(true)}
-            className="rounded-md p-2 flex items-center justify-center text-slate-200"
+            className="rounded-md p-2 flex items-center justify-center text-black"
           >
-            <List className="h-6 w-6" />
+            <List  color="black" className="h-6 w-6" />
           </button>
           <div className="flex items-center justify-center flex-grow">
             <img
               src={logo}
               alt="Logo"
-              className="block mx-auto h-6 w-auto"
+              className="block mx-auto h-8 w-auto"
               style={{ maxHeight: "40px", objectFit: "contain" }}
             />
           </div>
@@ -122,7 +122,7 @@ export default function SettingsSidebar() {
                   </div>
                 </div>
               </div>
-              <div className="absolute bottom-2 left-0 right-0 pt-2 bg-sidebar bg-opacity-80 backdrop-filter backdrop-blur-md">
+              <div className="absolute bottom-2 left-0 right-0 pt-2 bg-white  bg-opacity-80 backdrop-filter backdrop-blur-md">
                 <Footer />
               </div>
             </div>
@@ -134,7 +134,7 @@ export default function SettingsSidebar() {
 
   return (
     <>
-      <div>
+      <div className="bg-white">
         <Link
           to={paths.home()}
           className="flex shrink-0 max-w-[55%] items-center justify-start mx-[38px] my-[18px]"
@@ -148,31 +148,31 @@ export default function SettingsSidebar() {
         </Link>
         <div
           ref={sidebarRef}
-          className="transition-all duration-500 relative m-[16px] rounded-[16px] bg-sidebar border-2 border-outline min-w-[250px] p-[10px] h-[calc(100%-76px)]"
+          className="transition-all duration-500 relative m-[16px] rounded-[16px] bg-[#e4ecf6] text-black min-w-[250px] p-[10px] h-[calc(100%-76px)]"
         >
           <div className="w-full h-full flex flex-col overflow-x-hidden items-between min-w-[235px]">
-            <div className="text-white text-opacity-60 text-sm font-medium uppercase mt-[4px] mb-0 ml-2">
+            <div className="text-black text-opacity-60 text-sm font-medium uppercase mt-[4px] mb-0 ml-2">
               {t("settings.title")}
             </div>
             <div className="relative h-[calc(100%-60px)] flex flex-col w-full justify-between pt-[10px] overflow-y-scroll no-scroll">
               <div className="h-auto sidebar-items">
                 <div className="flex flex-col gap-y-2 pb-[60px] overflow-y-scroll no-scroll">
                   <SidebarOptions user={user} t={t} />
-                  <div className="h-[1.5px] bg-[#3D4147] mx-3 mt-[14px]" />
+                  <div className="h-[1.5px] bg-[#71767d] mx-3 mt-[14px]" />
                   <SupportEmail />
                   <Link
                     hidden={
                       user?.hasOwnProperty("role") && user.role !== "admin"
                     }
                     to={paths.settings.privacy()}
-                    className="text-darker hover:text-white text-xs leading-[18px] mx-3"
+                    className="text-lighter hover:text-black text-xs leading-[18px] mx-3"
                   >
                     {t("settings.privacy")}
                   </Link>
                 </div>
               </div>
             </div>
-            <div className="absolute bottom-0 left-0 right-0 pt-4 pb-3 rounded-b-[16px] bg-sidebar bg-opacity-80 backdrop-filter backdrop-blur-md z-10">
+            <div className="absolute bottom-0 left-0 right-0 pt-4 pb-3 rounded-b-[16px] bg-[#e4ecf6] bg-opacity-80 backdrop-filter backdrop-blur-md z-10">
               <Footer />
             </div>
           </div>
@@ -202,18 +202,18 @@ function SupportEmail() {
   return (
     <Link
       to={supportEmail}
-      className="text-darker hover:text-white text-xs leading-[18px] mx-3 mt-1"
+      className="text-lighter hover:text-black text-xs leading-[18px] mx-3 mt-1"
     >
       {t("settings.contact")}
     </Link>
   );
 }
 
-const SidebarOptions = ({ user = null, t }) => (
+const  SidebarOptions = ({ user = null, t }) => (
   <>
     <Option
       btnText={t("settings.ai-providers")}
-      icon={<Gear className="h-5 w-5 flex-shrink-0" />}
+      icon={<Gear color="black" className="h-5 w-5 flex-shrink-0" />}
       user={user}
       childOptions={[
         {

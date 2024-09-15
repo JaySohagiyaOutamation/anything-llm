@@ -130,7 +130,7 @@ function SetupProvider({
               <button
                 type="button"
                 onClick={closeModal}
-                className="border-none text-xs px-2 py-1 text-white font-semibold rounded-lg bg-black hover:text-black  border-2 border-transparent  h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
+                className="border-none text-xs px-2 py-1 text-white font-semibold rounded-lg bg-black  border-2 border-transparent  h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
               >
                 Cancel
               </button>

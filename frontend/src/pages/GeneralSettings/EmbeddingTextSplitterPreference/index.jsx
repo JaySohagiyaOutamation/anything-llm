@@ -63,12 +63,12 @@ export default function EmbeddingTextSplitterPreference() {
   }, []);
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-sidebar flex">
+    <div className="w-screen h-screen overflow-hidden bg-white flex">
       <Sidebar />
       {loading ? (
         <div
           style={{ height: isMobile ? "100%" : "calc(100% - 32px)" }}
-          className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-main-gradient w-full h-full overflow-y-scroll"
+          className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-[#f8fafe] w-full h-full overflow-y-scroll"
         >
           <div className="w-full h-full flex justify-center items-center">
             <PreLoader />
@@ -77,7 +77,7 @@ export default function EmbeddingTextSplitterPreference() {
       ) : (
         <div
           style={{ height: isMobile ? "100%" : "calc(100% - 32px)" }}
-          className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-main-gradient w-full h-full overflow-y-scroll"
+          className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-[#f8fafe] w-full h-full overflow-y-scroll"
         >
           <form
             onSubmit={handleSubmit}
@@ -87,15 +87,15 @@ export default function EmbeddingTextSplitterPreference() {
             <div className="flex flex-col w-full px-1 md:pl-6 md:pr-[50px] md:py-6 py-16">
               <div className="w-full flex flex-col gap-y-1 pb-4 border-white border-b-2 border-opacity-10">
                 <div className="flex gap-x-4 items-center">
-                  <p className="text-lg leading-6 font-bold text-white">
+                  <p className="text-lg leading-6 font-bold text-black">
                     {t("text.title")}
                   </p>
                 </div>
-                <p className="text-xs leading-[18px] font-base text-white text-opacity-60">
+                <p className="text-xs leading-[18px] font-base text-black text-opacity-60">
                   {t("text.desc-start")} <br />
                   {t("text.desc-end")}
                 </p>
-                <p className="text-xs leading-[18px] font-semibold text-white/80">
+                <p className="text-xs leading-[18px] font-semibold text-black/80">
                   {t("text.warn-start")} <i>{t("text.warn-center")}</i>
                   {t("text.warn-end")}
                 </p>
@@ -111,10 +111,10 @@ export default function EmbeddingTextSplitterPreference() {
               <div className="flex flex-col gap-y-4 mt-8">
                 <div className="flex flex-col max-w-[300px]">
                   <div className="flex flex-col gap-y-2 mb-4">
-                    <label className="text-white text-sm font-semibold block">
+                    <label className="text-black text-sm font-semibold block">
                       {t("text.size.title")}
                     </label>
-                    <p className="text-xs text-white/60">
+                    <p className="text-xs text-black/60">
                       {t("text.size.description")}
                     </p>
                   </div>
@@ -124,7 +124,7 @@ export default function EmbeddingTextSplitterPreference() {
                     min={1}
                     max={settings?.max_embed_chunk_size || 1000}
                     onWheel={(e) => e?.currentTarget?.blur()}
-                    className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+                    className="border-none bg-black bg-opacity-55 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
                     placeholder="maximum length of vectorized text"
                     defaultValue={
                       isNullOrNaN(settings?.text_splitter_chunk_size)
@@ -134,7 +134,7 @@ export default function EmbeddingTextSplitterPreference() {
                     required={true}
                     autoComplete="off"
                   />
-                  <p className="text-xs text-white/40 mt-2">
+                  <p className="text-xs text-black/40 mt-2">
                     {t("text.size.recommend")}{" "}
                     {numberWithCommas(settings?.max_embed_chunk_size || 1000)}.
                   </p>
@@ -144,10 +144,10 @@ export default function EmbeddingTextSplitterPreference() {
               <div className="flex flex-col gap-y-4 mt-8">
                 <div className="flex flex-col max-w-[300px]">
                   <div className="flex flex-col gap-y-2 mb-4">
-                    <label className="text-white text-sm font-semibold block">
+                    <label className="text-black text-sm font-semibold block">
                       {t("text.overlap.title")}
                     </label>
-                    <p className="text-xs text-white/60">
+                    <p className="text-xs text-black/60">
                       {t("text.overlap.description")}
                     </p>
                   </div>
@@ -156,7 +156,7 @@ export default function EmbeddingTextSplitterPreference() {
                     name="text_splitter_chunk_overlap"
                     min={0}
                     onWheel={(e) => e?.currentTarget?.blur()}
-                    className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+                    className="border-none bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
                     placeholder="maximum length of vectorized text"
                     defaultValue={
                       isNullOrNaN(settings?.text_splitter_chunk_overlap)

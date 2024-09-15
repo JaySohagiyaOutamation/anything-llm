@@ -61,14 +61,14 @@ export default function AddMemberModal({ closeModal, workspace, users }) {
 
   return (
     <div className="relative w-full max-w-[550px] max-h-full">
-      <div className="relative bg-main-gradient rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.25)]">
+      <div className="relative bg-white rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.25)]">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
           <div className="flex items-center gap-x-4">
-            <h3 className="text-base font-semibold text-white">Users</h3>
+            <h3 className="text-base font-semibold text-black">Users</h3>
             <div className="relative">
               <input
                 onChange={handleSearch}
-                className="w-[400px] h-[34px] bg-[#030712] rounded-[100px] text-white placeholder:text-white/50 text-sm px-10 pl-10"
+                className="w-[400px] h-[34px] bg-[#747577] rounded-[100px] text-white placeholder:text-white/50 text-sm px-10 pl-10"
                 placeholder="Search for a user"
               />
               <MagnifyingGlass
@@ -81,10 +81,10 @@ export default function AddMemberModal({ closeModal, workspace, users }) {
           <button
             onClick={closeModal}
             type="button"
-            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-gray-200 hover:border-slate-100 hover:border-opacity-50 border-transparent border"
             data-modal-hide="staticModal"
           >
-            <X className="text-gray-300 text-lg" />
+            <X className="text-gray-600 text-lg" />
           </button>
         </div>
         <form onSubmit={handleUpdate}>
@@ -107,13 +107,13 @@ export default function AddMemberModal({ closeModal, workspace, users }) {
                         <div className="w-2 h-2 bg-white rounded-[2px]" />
                       )}
                     </div>
-                    <p className="text-white text-sm font-medium">
+                    <p className="text-black text-sm font-medium">
                       {user.username}
                     </p>
                   </tr>
                 ))
               ) : (
-                <p className="text-white text-opacity-60 text-sm font-medium ">
+                <p className="text-black text-opacity-60 text-sm font-medium ">
                   No users found
                 </p>
               )}

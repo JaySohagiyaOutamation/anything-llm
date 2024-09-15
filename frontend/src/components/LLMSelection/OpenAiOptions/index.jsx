@@ -14,7 +14,7 @@ export default function OpenAiOptions({ settings }) {
         <input
           type="password"
           name="OpenAiKey"
-          className="bg-black bg-opacity-55 text-black placeholder:text-black/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+          className="bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
           placeholder="OpenAI API Key"
           defaultValue={settings?.OpenAiKey ? "*".repeat(20) : ""}
           required={true}
@@ -66,7 +66,7 @@ function OpenAIModelSelection({ apiKey, settings }) {
         <select
           name="OpenAiModelPref"
           disabled={true}
-          className="bg-black bg-opacity-55 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+          className="bg-black bg-opacity-55    border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
         >
           <option disabled={true} selected={true}>
             -- loading available models --
@@ -78,13 +78,13 @@ function OpenAIModelSelection({ apiKey, settings }) {
 
   return (
     <div className="flex flex-col w-60">
-      <label className="text-white text-sm font-semibold block mb-3">
+      <label className="text-black text-sm font-semibold block mb-3">
         Chat Model Selection
       </label>
       <select
         name="OpenAiModelPref"
         required={true}
-        className="bg-black border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+        className="bg-black bg-opacity-55 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
       >
         {Object.keys(groupedModels)
           .sort()

@@ -20,14 +20,14 @@ export default function AnthropicAiOptions({ settings }) {
 
         {!settings?.credentialsOnly && (
           <div className="flex flex-col w-60">
-            <label className="text-white text-sm font-semibold block mb-3">
+            <label className="text-black text-sm font-semibold block mb-3">
               Chat Model Selection
             </label>
             <select
               name="AnthropicModelPref"
               defaultValue={settings?.AnthropicModelPref || "claude-2"}
               required={true}
-              className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+              className="bg-black bg-opacity-55 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
             >
               {[
                 "claude-instant-1.2",
