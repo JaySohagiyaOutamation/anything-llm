@@ -93,7 +93,7 @@ export default function CustomLogo() {
                 onChange={handleFileUpload}
               />
               <div
-                className="w-80 py-4 bg-[#8497ad]/50 hover:bg-opacity-90 rounded-2xl border-2 border-dashed border-black border-opacity-70 justify-center items-center inline-flex cursor-pointer"
+                className="w-80 py-4 bg-[#8497ad]/30 hover:bg-opacity-90 rounded-2xl border-2 border-dashed border-black border-opacity-70 justify-center items-center inline-flex cursor-pointer"
                 htmlFor="logo-upload"
               >
                 <div className="flex flex-col items-center justify-center">

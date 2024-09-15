@@ -13,14 +13,14 @@ export default function DefaultSkillPanel({ title, description, image, icon }) {
                 color: "white",
                 weight: "bold",
               })}
-            <label htmlFor="name" className="text-white text-md font-bold">
+            <label htmlFor="name" className="text-black text-md font-bold">
               {title}
             </label>
             <DefaultBadge title={title} />
           </div>
         </div>
         <img src={image} alt={title} className="w-full rounded-md" />
-        <p className="text-white text-opacity-60 text-xs font-medium py-1.5">
+        <p className="text-black text-opacity-60 text-xs font-medium py-1.5">
           {description}
         </p>
       </div>

@@ -16,7 +16,7 @@ export default function EditingChatBubble({
 
   return (
     <div>
-      <p className={`text-xs text-white ${isUser ? "text-right" : ""}`}>
+      <p className={`text-xs text-black ${isUser ? "text-right" : ""}`}>
         {isUser ? t("common.user") : t("appearance.message.assistant")}
       </p>
       <div
@@ -35,7 +35,7 @@ export default function EditingChatBubble({
         </button>
         <div
           className={`p-2 max-w-full md:w-[290px] text-black rounded-[8px] ${
-            isUser ? "bg-[#8497ad]/60 text-black" : "bg-[#8497ad]/60 text-black"
+            isUser ? "bg-[#8497ad]/40 text-black" : "bg-[#8497ad]/40 text-black"
           }
         }`}
           onDoubleClick={() => setIsEditing(true)}

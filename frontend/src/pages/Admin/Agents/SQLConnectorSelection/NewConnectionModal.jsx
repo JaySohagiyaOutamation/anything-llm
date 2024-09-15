@@ -75,18 +75,18 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
   return createPortal(
     <ModalWrapper isOpen={isOpen}>
       <div className="relative w-full md:w-1/3 max-w-2xl max-h-full md:mt-8">
-        <div className="relative bg-main-gradient rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.25)] max-h-[85vh] overflow-y-scroll no-scroll">
-          <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-            <h3 className="text-xl font-semibold text-white">
+        <div className="relative bg-[#e4ecf6] rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.25)] max-h-[85vh] overflow-y-scroll no-scroll">
+          <div className="flex items-start justify-between p-4 border-b rounded-t border-black border-opacity-50">
+            <h3 className="text-xl font-semibold text-black">
               New SQL Connection
             </h3>
             <button
               onClick={handleClose}
               type="button"
-              className="border-none transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+              className="border-none transition-all duration-300 text-black bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-[#8497ad]/50 hover:border-opacity-20 border-black"
               data-modal-hide="staticModal"
             >
-              <X className="text-gray-300 text-lg" />
+              <X className="text-black text-lg" />
             </button>
           </div>
 
@@ -96,12 +96,12 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
             onChange={onFormChange}
           >
             <div className="py-[17px] px-[20px] flex flex-col gap-y-6">
-              <p className="text-sm text-white">
+              <p className="text-sm text-black">
                 Add the connection information for your database below and it
                 will be available for future SQL agent calls.
               </p>
               <div className="flex flex-col w-full">
-                <div className="border border-red-800 bg-zinc-800 p-4 rounded-lg flex items-center gap-x-2 text-sm text-red-400">
+                <div className="border border-red-800 bg-black/75 p-4 rounded-lg flex items-center gap-x-2 text-sm text-red-400">
                   <WarningOctagon size={28} className="shrink-0" />
                   <p>
                     <b>WARNING:</b> The SQL agent has been <i>instructed</i> to
@@ -111,7 +111,7 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
                   </p>
                 </div>
 
-                <label className="text-white text-sm font-semibold block my-4">
+                <label className="text-black text-sm font-semibold block my-4">
                   Select your SQL engine
                 </label>
                 <div className="grid md:grid-cols-4 gap-4 grid-cols-2">
@@ -134,13 +134,13 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
               </div>
 
               <div className="flex flex-col w-full">
-                <label className="text-white text-sm font-semibold block mb-3">
+                <label className="text-black text-sm font-semibold block mb-3">
                   Connection name
                 </label>
                 <input
                   type="text"
                   name="name"
-                  className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+                  className="border-none bg-black/75 text-white placeholder:text-white/45 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
                   placeholder="a unique name to identify this SQL connection"
                   required={true}
                   autoComplete="off"
@@ -150,13 +150,13 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="flex flex-col">
-                  <label className="text-white text-sm font-semibold block mb-3">
+                  <label className="text-black text-sm font-semibold block mb-3">
                     Database user
                   </label>
                   <input
                     type="text"
                     name="username"
-                    className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+                    className="border-none bg-black/75 text-white placeholder:text-white/45 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
                     placeholder="root"
                     required={true}
                     autoComplete="off"
@@ -164,13 +164,13 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <label className="text-white text-sm font-semibold block mb-3">
+                  <label className="text-black text-sm font-semibold block mb-3">
                     Database user password
                   </label>
                   <input
                     type="text"
                     name="password"
-                    className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+                    className="border-none bg-black/75 text-white placeholder:text-white/45 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
                     placeholder="password123"
                     required={true}
                     autoComplete="off"
@@ -181,13 +181,13 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div className="sm:col-span-2">
-                  <label className="text-white text-sm font-semibold block mb-3">
+                  <label className="text-black text-sm font-semibold block mb-3">
                     Server endpoint
                   </label>
                   <input
                     type="text"
                     name="host"
-                    className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+                    className="border-none bg-black/75 text-white placeholder:text-white/45 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
                     placeholder="the hostname or endpoint for your database"
                     required={true}
                     autoComplete="off"
@@ -195,13 +195,13 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
                   />
                 </div>
                 <div>
-                  <label className="text-white text-sm font-semibold block mb-3">
+                  <label className="text-black text-sm font-semibold block mb-3">
                     Port
                   </label>
                   <input
                     type="text"
                     name="port"
-                    className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+                    className="border-none bg-black/75 text-white placeholder:text-white/45 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
                     placeholder="3306"
                     required={false}
                     autoComplete="off"
@@ -211,28 +211,28 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
               </div>
 
               <div className="flex flex-col">
-                <label className="text-white text-sm font-semibold block mb-3">
+                <label className="text-black text-sm font-semibold block mb-3">
                   Database
                 </label>
                 <input
                   type="text"
                   name="database"
-                  className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+                  className="border-none bg-black/75 text-white placeholder:text-white/45 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
                   placeholder="the database the agent will interact with"
                   required={true}
                   autoComplete="off"
                   spellCheck={false}
                 />
               </div>
-              <p className="text-white/40 text-sm">
+              <p className="text-black/80 text-sm">
                 {assembleConnectionString({ engine, ...config })}
               </p>
             </div>
-            <div className="flex w-full justify-between items-center p-3 space-x-2 border-t rounded-b border-gray-500/50">
+            <div className="flex w-full justify-between items-center p-3 space-x-2 border-t rounded-b border-black/75">
               <button
                 type="button"
                 onClick={handleClose}
-                className="border-none text-xs px-2 py-1 font-semibold rounded-lg bg-white hover:bg-transparent border-2 border-transparent hover:border-white hover:text-white h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
+                className="border-none text-xs px-2 py-1 font-semibold rounded-lg bg-black/80 border-2 border-transparent text-white hover:bg-black/70 h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
               >
                 Cancel
               </button>
@@ -257,7 +257,7 @@ function DBEngine({ provider, active, onClick }) {
     <button
       type="button"
       onClick={onClick}
-      className={`flex flex-col p-4 border border-white/40 bg-zinc-800 rounded-lg w-fit hover:bg-zinc-700 ${
+      className={`flex flex-col p-4 border border-white/40 bg-black/75 rounded-lg w-fit hover:bg-black-20 ${
         active ? "!bg-blue-500/50" : ""
       }`}
     >

@@ -145,7 +145,7 @@ export default function AdminAgents() {
 
           {/* Skill settings nav */}
           <div hidden={showSkillModal} className="flex flex-col gap-y-[18px]">
-            <div className="text-white flex items-center gap-x-2">
+            <div className="text-black flex items-center gap-x-2">
               <Robot size={24} />
               <p className="text-lg font-medium">Agent Skills</p>
             </div>
@@ -201,7 +201,7 @@ export default function AdminAgents() {
                   </button>
                 </div>
                 <div className="flex-1 overflow-y-auto p-4">
-                  <div className="bg-[#303237] text-white rounded-xl p-4">
+                  <div className="bg-[#e4ecf6]/55 text-black rounded-xl p-4">
                     {SelectedSkillComponent ? (
                       <>
                         {selectedSkill.imported ? (
@@ -225,7 +225,7 @@ export default function AdminAgents() {
                         )}
                       </>
                     ) : (
-                      <div className="flex flex-col items-center justify-center h-full text-white/60">
+                      <div className="flex flex-col items-center justify-center h-full text-black/70">
                         <Robot size={40} />
                         <p className="font-medium">Select an agent skill</p>
                       </div>
@@ -293,7 +293,7 @@ export default function AdminAgents() {
 
         {/* Selected agent skill setting panel */}
         <div className="flex-[2] flex flex-col gap-y-[18px] mt-10">
-          <div className="bg-[#303237] text-white rounded-xl flex-1 p-4">
+          <div className="bg-[#e4ecf6]/55 text-black rounded-xl flex-1 p-4">
             {SelectedSkillComponent ? (
               <>
                 {selectedSkill.imported ? (
@@ -317,7 +317,7 @@ export default function AdminAgents() {
                 )}
               </>
             ) : (
-              <div className="flex flex-col items-center justify-center h-full text-white/60">
+              <div className="flex flex-col items-center justify-center h-full text-black/70">
                 <Robot size={40} />
                 <p className="font-medium">Select an agent skill</p>
               </div>
@@ -333,7 +333,7 @@ function SkillLayout({ children, hasChanges, handleSubmit, handleCancel }) {
   return (
     <div
       id="workspace-agent-settings-container"
-      className="w-screen h-screen overflow-hidden bg-white flex md:mt-0 mt-6"
+      className="w-screen h-screen overflow-hidden bg-[#f8fafe] flex md:mt-0 mt-6"
     >
       <Sidebar />
       <div
@@ -362,7 +362,7 @@ function SkillList({
 
   return (
     <div
-      className={`bg-[#e4ecf6] text-dark-highlight rounded-xl ${
+      className={`bg-[#e4ecf6]/70 text-dark-highlight rounded-xl ${
         isMobile ? "w-full" : "min-w-[360px] w-fit"
       }`}
     >
@@ -375,7 +375,7 @@ function SkillList({
             index === Object.keys(skills).length - 1
               ? "rounded-b-xl"
               : "border-b border-white/10"
-          } cursor-pointer transition-all duration-300  hover:bg-[#7E858E]/15 ${
+          } cursor-pointer transition-all duration-300  hover:bg-[#7E858E]/10 ${
             selectedSkill === skill ? "bg-white/10" : ""
           }`}
           onClick={() => handleClick?.(skill)}
@@ -385,11 +385,11 @@ function SkillList({
             {isDefault ? (
               <DefaultBadge title={skill} />
             ) : (
-              <div className="text-sm text-black/60 font-medium">
+              <div className="text-sm text-black/75 font-medium">
                 {activeSkills.includes(skill) ? "On" : "Off"}
               </div>
             )}
-            <CaretRight size={14} weight="bold" className="text-black/80" />
+            <CaretRight size={14} weight="bold" className="text-black/75" />
           </div>
         </div>
       ))}

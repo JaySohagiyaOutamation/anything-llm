@@ -3,7 +3,7 @@ export default function SearchProviderItem({ provider, checked, onClick }) {
   return (
     <div
       onClick={onClick}
-      className={`w-full p-2 rounded-md hover:cursor-pointer hover:bg-white/10 ${
+      className={`w-full p-2 rounded-md hover:cursor-pointer hover:bg-black/15 ${
         checked ? "bg-white/10" : ""
       }`}
     >
@@ -18,8 +18,8 @@ export default function SearchProviderItem({ provider, checked, onClick }) {
       <div className="flex gap-x-4 items-center">
         <img src={logo} alt={`${name} logo`} className="w-10 h-10 rounded-md" />
         <div className="flex flex-col">
-          <div className="text-sm font-semibold text-white">{name}</div>
-          <div className="mt-1 text-xs text-description">{description}</div>
+          <div className="text-sm font-semibold text-black">{name}</div>
+          <div className="mt-1 text-xs text-black">{description}</div>
         </div>
       </div>
     </div>

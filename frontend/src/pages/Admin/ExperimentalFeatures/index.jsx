@@ -47,7 +47,7 @@ export default function ExperimentalFeatures() {
       <div className="flex-1 flex gap-x-6 p-4 mt-10">
         {/* Feature settings nav */}
         <div className="flex flex-col gap-y-[18px]">
-          <div className="text-white flex items-center gap-x-2">
+          <div className="text-black flex items-center gap-x-2">
             <Flask size={24} />
             <p className="text-lg font-medium">Experimental Features</p>
           </div>
@@ -65,7 +65,7 @@ export default function ExperimentalFeatures() {
         {/* Selected feature setting panel */}
         <FeatureVerification>
           <div className="flex-[2] flex flex-col gap-y-[18px] mt-10">
-            <div className="bg-[#303237] text-white rounded-xl flex-1 p-4">
+            <div className="bg-[#e4ecf6]/50 text-white rounded-xl flex-1 p-4">
               {selectedFeature ? (
                 <SelectedFeatureComponent
                   feature={configurableFeatures[selectedFeature]}
@@ -90,7 +90,7 @@ function FeatureLayout({ children }) {
   return (
     <div
       id="workspace-feature-settings-container"
-      className="w-screen h-screen overflow-hidden bg-sidebar flex md:mt-0 mt-6"
+      className="w-screen h-screen overflow-hidden bg-[#f8fafe] flex md:mt-0 mt-6"
     >
       <Sidebar />
       <div
@@ -113,7 +113,7 @@ function FeatureList({
 
   return (
     <div
-      className={`bg-white/5 text-white rounded-xl ${
+      className={`bg-[#e4ecf6]/70 text-black rounded-xl ${
         isMobile ? "w-full" : "min-w-[360px] w-fit"
       }`}
     >
@@ -125,18 +125,18 @@ function FeatureList({
           } ${
             index === Object.keys(features).length - 1
               ? "rounded-b-xl"
-              : "border-b border-white/10"
-          } cursor-pointer transition-all duration-300  hover:bg-white/5 ${
+              : "border-b border-black/10"
+          } cursor-pointer transition-all duration-300  hover:bg-black/5 ${
             selectedFeature === feature ? "bg-white/10" : ""
           }`}
           onClick={() => handleClick?.(feature)}
         >
           <div className="text-sm font-light">{settings.title}</div>
           <div className="flex items-center gap-x-2">
-            <div className="text-sm text-white/60 font-medium">
+            <div className="text-sm text-black/70 font-medium">
               {activeFeatures.includes(settings.key) ? "On" : "Off"}
             </div>
-            <CaretRight size={14} weight="bold" className="text-white/80" />
+            <CaretRight size={14} weight="bold" className="text-black/80" />
           </div>
         </div>
       ))}
@@ -183,14 +183,14 @@ function FeatureVerification({ children }) {
             onSubmit={acceptTos}
             className="relative w-full max-w-2xl max-h-full"
           >
-            <div className="relative bg-main-gradient rounded-lg shadow">
+            <div className="relative bg-[#f8fafe] rounded-lg shadow">
               <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-                <h3 className="text-xl font-semibold text-white">
+                <h3 className="text-xl font-semibold text-black">
                   Terms of use for experimental features
                 </h3>
               </div>
               <div className="p-6 space-y-6 flex h-full w-full">
-                <div className="w-full flex flex-col gap-y-4 text-white">
+                <div className="w-full flex flex-col gap-y-4 text-black">
                   <p>
                     Experimental features of AnythingLLM are features that we
                     are piloting and are <b>opt-in</b>. We proactively will
@@ -258,13 +258,13 @@ function FeatureVerification({ children }) {
               <div className="flex w-full justify-between items-center p-6 space-x-2 border-t rounded-b border-gray-500/50">
                 <a
                   href={paths.home()}
-                  className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
+                  className="px-4 py-2 rounded-lg text-white bg-black/80 hover:bg-black/60 transition-all duration-300"
                 >
                   Reject & Close
                 </a>
                 <button
                   type="submit"
-                  className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+                  className="transition-all duration-300 border  px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black/80 hover:bg-black/60"
                 >
                   I understand
                 </button>

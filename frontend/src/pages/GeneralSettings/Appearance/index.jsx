@@ -12,7 +12,7 @@ import CustomSiteSettings from "./CustomSiteSettings";
 export default function Appearance() {
   const { t } = useTranslation();
   return (
-    <div className="w-screen h-screen overflow-hidden bg-sidebar flex">
+    <div className="w-screen h-screen overflow-hidden bg-white flex">
       <Sidebar />
       <div
         style={{ height: isMobile ? "100%" : "calc(100% - 32px)" }}

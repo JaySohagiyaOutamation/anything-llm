@@ -33,7 +33,7 @@ export default function LiveSyncToggle({ enabled = false, onToggle }) {
     <div className="p-4">
       <div className="flex flex-col gap-y-6 max-w-[500px]">
         <div className="flex items-center justify-between">
-          <h2 className="text-white text-md font-bold">
+          <h2 className="text-black text-md font-bold">
             Automatic Document Content Sync
           </h2>
           <label className="relative inline-flex cursor-pointer items-center">
@@ -43,20 +43,20 @@ export default function LiveSyncToggle({ enabled = false, onToggle }) {
               checked={status}
               className="peer sr-only pointer-events-none"
             />
-            <div className="pointer-events-none peer h-6 w-11 rounded-full bg-stone-400 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:shadow-xl after:border after:border-gray-600 after:bg-white after:box-shadow-md after:transition-all after:content-[''] peer-checked:bg-lime-300 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800"></div>
+            <div className="pointer-events-none peer h-6 w-11 rounded-full bg-stone-400 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:shadow-xl after:border after:border-gray-600 after:bg-white after:box-shadow-md after:transition-all after:content-[''] peer-checked:bg-sky-500 peer-checked:after:translate-x-full peer-checked:after:border-white"></div>
           </label>
         </div>
         <div className="flex flex-col space-y-4">
-          <p className="text-white/90 text-sm">
+          <p className="text-black/90 text-sm">
             Enable the ability to specify a document to be "watched". Watched
             document's content will be regularly fetched and updated in
             AnythingLLM.
           </p>
-          <p className="text-white/90 text-sm">
+          <p className="text-black/90 text-sm">
             Watched documents will automatically update in all workspaces they
             are referenced in at the same time of update.
           </p>
-          <p className="text-white/80 text-xs italic">
+          <p className="text-black/80 text-xs italic">
             This feature only applies to web-based content, such as websites,
             Confluence, YouTube, and GitHub files.
           </p>
