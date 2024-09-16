@@ -65,9 +65,9 @@ export default function AccountModal({ user, hideModal }) {
       id="account-modal"
       className="bg-black/60 backdrop-blur-sm fixed top-0 left-0 outline-none w-screen h-screen flex items-center justify-center"
     >
-      <div className="relative w-[500px] max-w-2xl max-h-full bg-main-gradient rounded-lg shadow">
+      <div className="relative w-[500px] max-w-2xl max-h-full bg-white rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-          <h3 className="text-xl font-semibold text-white">Edit Account</h3>
+          <h3 className="text-xl font-semibold text-black">Edit Account</h3>
           <button
             onClick={hideModal}
             type="button"
@@ -109,7 +109,7 @@ export default function AccountModal({ user, hideModal }) {
                 <button
                   type="button"
                   onClick={handleRemovePfp}
-                  className="mt-3 text-white text-opacity-60 text-sm font-medium hover:underline"
+                  className="mt-3 text-black text-opacity-60 text-sm font-medium hover:underline"
                 >
                   Remove Profile Picture
                 </button>
@@ -120,21 +120,21 @@ export default function AccountModal({ user, hideModal }) {
             <div>
               <label
                 htmlFor="username"
-                className="block mb-2 text-sm font-medium text-white"
+                className="block mb-2 text-sm font-medium text-black"
               >
                 Username
               </label>
               <input
                 name="username"
                 type="text"
-                className="bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-black bg-opacity-55 placeholder:text-white/70 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="User's username"
                 minLength={2}
                 defaultValue={user.username}
                 required
                 autoComplete="off"
               />
-              <p className="mt-2 text-xs text-white/60">
+              <p className="mt-2 text-xs text-black/60">
                 Username must be only contain lowercase letters, numbers,
                 underscores, and hyphens with no spaces
               </p>
@@ -142,18 +142,18 @@ export default function AccountModal({ user, hideModal }) {
             <div>
               <label
                 htmlFor="password"
-                className="block mb-2 text-sm font-medium text-white"
+                className="block mb-2 text-sm font-medium text-black"
               >
                 New Password
               </label>
               <input
                 name="password"
                 type="text"
-                className="bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-black bg-opacity-55 placeholder:text-white/70 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder={`${user.username}'s new password`}
                 minLength={8}
               />
-              <p className="mt-2 text-xs text-white/60">
+              <p className="mt-2 text-xs text-black/60">
                 Password must be at least 8 characters long
               </p>
             </div>
@@ -163,13 +163,13 @@ export default function AccountModal({ user, hideModal }) {
             <button
               onClick={hideModal}
               type="button"
-              className="px-4 py-2 rounded-lg text-white bg-transparent hover:bg-stone-900"
+              className="px-4 py-2 rounded-lg text-white bg-stone-900"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 rounded-lg text-white bg-transparent border border-slate-200 hover:bg-slate-200 hover:text-slate-800"
+              className="px-4 py-2 rounded-lg border border-slate-200 bg-slate-200 text-slate-800"
             >
               Update Account
             </button>
@@ -198,7 +198,7 @@ function LanguagePreference() {
       </label>
       <select
         name="userLang"
-        className="bg-zinc-900 w-fit mt-2 px-4 border-gray-500 text-white text-sm rounded-lg block py-2"
+        className="bg-black bg-opacity-55 placeholder:text-white/70 w-fit mt-2 px-4 border-gray-500 text-white text-sm rounded-lg block py-2"
         defaultValue={currentLanguage || "en"}
         onChange={(e) => changeLanguage(e.target.value)}
       >

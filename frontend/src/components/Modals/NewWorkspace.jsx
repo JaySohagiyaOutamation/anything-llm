@@ -29,7 +29,7 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
         onClick={hideModal}
       />
       <div className="relative w-[500px] max-h-full">
-        <div className="relative bg-[#e4ecf6] rounded-lg shadow-md">
+        <div className="relative bg-white rounded-lg shadow-md">
           <div className="flex items-start justify-between p-4 border-b rounded-t border-white/10">
             <h3 className="text-xl font-semibold text-black">
               {t("new-workspace.title")}
@@ -37,7 +37,7 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
             <button
               onClick={hideModal}
               type="button"
-              className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-[sidebar-button] hover:bg-[#c3d1e1] hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+              className="transition-all duration-300 text-gray-400 hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-[sidebar-button] hover:bg-gray-200 hover:border-slate-100 hover:border-opacity-50 border-transparent border"
             >
               <X className="text-black text-lg" />
             </button>
@@ -56,7 +56,7 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
                     name="name"
                     type="text"
                     id="name"
-                    className="bg-[#acbaca] w-full text-white placeholder:text-gray-100 text-sm rounded-lg outline-black block w-full p-2.5"
+                    className="bg-black bg-opacity-55 w-full text-white placeholder:text-gray-100 text-sm rounded-lg outline-black block w-full p-2.5"
                     placeholder={t("new-workspace.placeholder")}
                     required={true}
                     autoComplete="off"

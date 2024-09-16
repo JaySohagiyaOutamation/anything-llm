@@ -10,7 +10,7 @@ export default function DefaultSkillPanel({ title, description, image, icon }) {
             {icon &&
               React.createElement(icon, {
                 size: 24,
-                color: "white",
+                color: "black",
                 weight: "bold",
               })}
             <label htmlFor="name" className="text-black text-md font-bold">

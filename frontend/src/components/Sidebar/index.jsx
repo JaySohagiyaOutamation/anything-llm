@@ -40,7 +40,7 @@ export default function Sidebar() {
       </Link>
       <div
         ref={sidebarRef}
-        className="relative m-[16px] rounded-[16px] bg-[#e4ecf6] min-w-[250px] p-[10px] h-[calc(100%-76px)]"
+        className="relative m-[16px] rounded-[16px] bg-[#e4ecf6] min-w-[250px] p-[10px] h-[calc(100%-90px)]"
       >
         <div className="flex flex-col h-full overflow-x-hidden">
           <div className="flex-grow flex flex-col min-w-[235px]">
