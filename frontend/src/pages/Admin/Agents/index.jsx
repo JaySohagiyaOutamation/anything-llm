@@ -280,7 +280,7 @@ export default function AdminAgents() {
             activeSkills={agentSkills}
           />
 
-          <div className="text-white flex items-center gap-x-2">
+          <div className="text-black flex items-center gap-x-2">
             <Plug size={24} />
             <p className="text-lg font-medium">Custom Skills</p>
           </div>
