@@ -70,7 +70,7 @@ export default function CustomAppName() {
         <input
           name="customAppName"
           type="text"
-          className="bg-black/80 mt-3 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 max-w-[275px] placeholder:text-white/55"
+          className="bg-black/70 mt-3 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 max-w-[275px] placeholder:text-white/55"
           placeholder="AnythingLLM"
           required={true}
           autoComplete="off"
@@ -90,7 +90,7 @@ export default function CustomAppName() {
       {hasChanges && (
         <button
           type="submit"
-          className="transition-all mt-6 w-fit duration-300 px-5 py-2.5 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black/80 hover:bg-opacity-40"
+          className="transition-all mt-6 w-fit duration-300 px-5 py-2.5 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black/70 hover:bg-opacity-40"
         >
           Save
         </button>

@@ -15,7 +15,7 @@ export default function ContextualSaveBar({
       </div>
       <div className="flex items-center gap-x-2">
         <button
-          className="border-none text-white font-medium text-sm px-[10px] py-[6px] rounded-md bg-black/80 hover:bg-black/60"
+          className="border-none text-white font-medium text-sm px-[10px] py-[6px] rounded-md bg-black/70 hover:bg-black/60"
           onClick={onCancel}
         >
           Cancel

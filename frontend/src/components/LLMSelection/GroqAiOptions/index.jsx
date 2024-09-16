@@ -14,7 +14,7 @@ export default function GroqAiOptions({ settings }) {
         <input
           type="password"
           name="GroqApiKey"
-          className="border-none bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+          className="border-none bg-black bg-opacity-70 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
           placeholder="Groq API Key"
           defaultValue={settings?.GroqApiKey ? "*".repeat(20) : ""}
           required={true}
@@ -67,7 +67,7 @@ function GroqAIModelSelection({ apiKey, settings }) {
         <select
           name="GroqModelPref"
           disabled={true}
-          className="border-none bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg block w-full p-2.5"
+          className="border-none bg-black bg-opacity-70 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg block w-full p-2.5"
         >
           <option disabled={true} selected={true}>
             --loading available models--
@@ -88,7 +88,7 @@ function GroqAIModelSelection({ apiKey, settings }) {
       <select
         name="GroqModelPref"
         required={true}
-        className="border-none bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg block w-full p-2.5"
+        className="border-none bg-black bg-opacity-70 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg block w-full p-2.5"
       >
         {customModels.length > 0 && (
           <optgroup label="Available models">

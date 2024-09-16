@@ -16,7 +16,7 @@ export default function OpenAiTextToSpeechOptions({ settings }) {
         <input
           type="password"
           name="TTSOpenAIKey"
-          className="bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+          className="bg-black bg-opacity-70 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
           placeholder="OpenAI API Key"
           defaultValue={apiKey ? "*".repeat(20) : ""}
           required={true}
@@ -31,7 +31,7 @@ export default function OpenAiTextToSpeechOptions({ settings }) {
         <select
           name="TTSOpenAIVoiceModel"
           defaultValue={settings?.TTSOpenAIVoiceModel ?? "alloy"}
-          className="bg-black bg-opacity-55 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+          className="bg-black bg-opacity-70 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
         >
           {["alloy", "echo", "fable", "onyx", "nova", "shimmer"].map(
             (voice) => {

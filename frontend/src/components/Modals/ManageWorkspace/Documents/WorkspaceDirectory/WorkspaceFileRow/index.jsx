@@ -41,8 +41,8 @@ export default function WorkspaceFileRow({
   const isMovedItem = movedItems?.some((movedItem) => movedItem.id === item.id);
   return (
     <div
-      className={`items-center text-white/80 text-xs grid grid-cols-12 py-2 pl-3.5 pr-8 hover:bg-sky-500/20 cursor-pointer ${
-        isMovedItem ? "bg-green-800/40" : "file-row"
+      className={`items-center text-black/80 text-xs grid grid-cols-12 py-2 pl-3.5 pr-8 hover:bg-sky-500/20 cursor-pointer ${
+        isMovedItem ? "bg-sky-400/40" : "file-row"
       }`}
     >
       <div

@@ -9,7 +9,7 @@ export default function CohereEmbeddingOptions({ settings }) {
           <input
             type="password"
             name="CohereApiKey"
-            className="bg-black bg-opacity-55 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+            className="bg-black bg-opacity-70 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
             placeholder="Cohere API Key"
             defaultValue={settings?.CohereApiKey ? "*".repeat(20) : ""}
             required={true}
@@ -24,7 +24,7 @@ export default function CohereEmbeddingOptions({ settings }) {
           <select
             name="EmbeddingModelPref"
             required={true}
-            className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500  text-sm rounded-lg block w-full p-2.5"
+            className="bg-black bg-opacity-70 text-white placeholder:text-white/70 border-gray-500  text-sm rounded-lg block w-full p-2.5"
           >
             <optgroup label="Available embedding models">
               {[

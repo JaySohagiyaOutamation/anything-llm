@@ -64,7 +64,7 @@ export default function DataConnectors() {
           <input
             type="text"
             placeholder="Search data connectors"
-            className="border-none bg-black bg-opacity-80 z-20 pl-10 h-[38px] rounded-full w-full px-4 py-1 text-sm border-2 border-slate-300/40 text-white placeholder-white/55"
+            className="border-none bg-black bg-opacity-70 z-20 pl-10 h-[38px] rounded-full w-full px-4 py-1 text-sm border-2 border-slate-300/40 text-white placeholder-white/55"
             autoComplete="off"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}

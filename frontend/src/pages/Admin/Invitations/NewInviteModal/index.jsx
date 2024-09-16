@@ -82,7 +82,7 @@ export default function NewInviteModal({ closeModal }) {
                   type="url"
                   defaultValue={`${window.location.origin}/accept-invite/${invite.code}`}
                   disabled={true}
-                  className="rounded-lg px-4 py-2 text-white bg-black bg-opacity-55 border border-gray-500/50"
+                  className="rounded-lg px-4 py-2 text-white bg-black bg-opacity-70 border border-gray-500/50"
                 />
               )}
               <p className="text-black text-xs md:text-sm">

@@ -50,7 +50,7 @@ export default function NewUserModal({ closeModal }) {
                 <input
                   name="username"
                   type="text"
-                  className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-black bg-opacity-70 text-white placeholder:text-white/70 border-gray-500  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="User's username"
                   minLength={2}
                   required={true}
@@ -78,7 +78,7 @@ export default function NewUserModal({ closeModal }) {
                 <input
                   name="password"
                   type="text"
-                  className="bg-black bg-opacity-55 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-black bg-opacity-70 text-white placeholder:text-white/70 border-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="User's initial password"
                   required={true}
                   autoComplete="off"
@@ -100,7 +100,7 @@ export default function NewUserModal({ closeModal }) {
                   required={true}
                   defaultValue={"default"}
                   onChange={(e) => setRole(e.target.value)}
-                  className="rounded-lg bg-black bg-opacity-55 text-white placeholder:text-white/70 px-4 py-2 text-sm border-gray-500 focus:ring-blue-500 focus:border-blue-500 w-full"
+                  className="rounded-lg bg-black bg-opacity-70 text-white placeholder:text-white/70 px-4 py-2 text-sm border-gray-500 focus:ring-blue-500 focus:border-blue-500 w-full"
                 >
                   <option value="default">Default</option>
                   <option value="manager">Manager</option>

@@ -77,7 +77,7 @@ export default function GithubOptions() {
                 <input
                   type="url"
                   name="repo"
-                  className="bg-black text-white placeholder-white/55 text-sm rounded-lg  block w-full p-2.5"
+                  className="bg-black/70 text-white placeholder-white/55 text-sm rounded-lg  block w-full p-2.5"
                   placeholder="https://github.com/Mintplex-Labs/anything-llm"
                   required={true}
                   autoComplete="off"
@@ -102,7 +102,7 @@ export default function GithubOptions() {
                 <input
                   type="text"
                   name="accessToken"
-                  className="bg-black text-white placeholder-white/55 text-sm rounded-lg block w-full p-2.5"
+                  className="bg-black/70 text-white placeholder-white/55 text-sm rounded-lg block w-full p-2.5"
                   placeholder="github_pat_1234_abcdefg"
                   required={false}
                   autoComplete="off"
@@ -130,7 +130,7 @@ export default function GithubOptions() {
               <TagsInput
                 value={ignores}
                 onChange={setIgnores}
-                name="ignores"
+                name="ignores"            
                 placeholder="!*.js, images/*, .DS_Store, bin/*"
                 classNames={{
                   tag: "bg-white-300/10 text-zinc-800",
@@ -219,7 +219,7 @@ function GitHubBranchSelection({ repo, accessToken }) {
       <select
         name="branch"
         required={true}
-        className="bg-black border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+        className="bg-black/70 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
       >
         {allBranches.map((branch) => {
           return (
@@ -236,7 +236,7 @@ function GitHubBranchSelection({ repo, accessToken }) {
 function PATAlert({ accessToken }) {
   if (!!accessToken) return null;
   return (
-    <div className="flex flex-col md:flex-row md:items-center gap-x-2 text-black mb-4 bg-[#acbaca] w-fit rounded-lg px-4 py-2">
+    <div className="flex flex-col md:flex-row md:items-center gap-x-2 text-white mb-4 bg-blue-800/40 w-fit rounded-lg px-4 py-2">
       <div className="gap-x-2 flex items-center">
         <Info className="shrink-0" size={25} />
         <p className="text-sm">

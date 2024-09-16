@@ -127,7 +127,7 @@ export default function AccountModal({ user, hideModal }) {
               <input
                 name="username"
                 type="text"
-                className="bg-black bg-opacity-55 placeholder:text-white/70 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-black bg-opacity-70 placeholder:text-white/70 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="User's username"
                 minLength={2}
                 defaultValue={user.username}
@@ -149,7 +149,7 @@ export default function AccountModal({ user, hideModal }) {
               <input
                 name="password"
                 type="text"
-                className="bg-black bg-opacity-55 placeholder:text-white/70 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                className="bg-black bg-opacity-70 placeholder:text-white/70 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder={`${user.username}'s new password`}
                 minLength={8}
               />
@@ -192,13 +192,13 @@ function LanguagePreference() {
     <div>
       <label
         htmlFor="userLang"
-        className="block mb-2 text-sm font-medium text-white"
+        className="block mb-2 text-sm font-medium text-black"
       >
         Preferred language
       </label>
       <select
         name="userLang"
-        className="bg-black bg-opacity-55 placeholder:text-white/70 w-fit mt-2 px-4 border-gray-500 text-white text-sm rounded-lg block py-2"
+        className="bg-black bg-opacity-70 placeholder:text-white/70 w-fit mt-2 px-4 border-gray-500 text-white text-sm rounded-lg block py-2"
         defaultValue={currentLanguage || "en"}
         onChange={(e) => changeLanguage(e.target.value)}
       >

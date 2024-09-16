@@ -44,7 +44,7 @@ export default function NewWorkspaceModal({ closeModal }) {
                 <input
                   name="name"
                   type="text"
-                  className=" bg-black bg-opacity-55 text-white placeholder:text-white/70  border-gray-500  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className=" bg-black bg-opacity-70 text-white placeholder:text-white/70  border-gray-500  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="My workspace"
                   minLength={4}
                   required={true}

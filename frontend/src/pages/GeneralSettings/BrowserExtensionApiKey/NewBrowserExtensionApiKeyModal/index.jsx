@@ -104,7 +104,7 @@ export default function NewBrowserExtensionApiKeyModal({
                 </button>
                 <button
                   type="submit"
-                  className="transition-all duration-300 border px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black hover:bg-opacity-80"
+                  className="transition-all duration-300 border px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black"
                 >
                   Create API Key
                 </button>
@@ -114,7 +114,7 @@ export default function NewBrowserExtensionApiKeyModal({
                 onClick={copyApiKey}
                 type="button"
                 disabled={copied}
-                className="w-full transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800 text-center justify-center border-none cursor-pointer"
+                className="w-full transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-black text-sm items-center flex gap-x-2 bg-slate-200   text-center justify-center cursor-pointer"
               >
                 {copied ? "API Key Copied!" : "Copy API Key"}
               </button>

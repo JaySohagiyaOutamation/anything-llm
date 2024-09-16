@@ -49,17 +49,17 @@ export default function YoutubeOptions() {
             <div className="w-full flex flex-col gap-4">
               <div className="flex flex-col pr-10">
                 <div className="flex flex-col gap-y-1 mb-4">
-                  <label className="text-white text-sm font-bold">
+                  <label className="text-black text-sm font-bold">
                     YouTube Video URL
                   </label>
-                  <p className="text-xs font-normal text-white/50">
+                  <p className="text-xs font-normal text-black/50">
                     URL of the YouTube video you wish to transcribe.
                   </p>
                 </div>
                 <input
                   type="url"
                   name="url"
-                  className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+                  className="bg-black/70 text-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
                   placeholder="https://youtube.com/watch?v=abc123"
                   required={true}
                   autoComplete="off"

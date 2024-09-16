@@ -258,13 +258,13 @@ function FeatureVerification({ children }) {
               <div className="flex w-full justify-between items-center p-6 space-x-2 border-t rounded-b border-gray-500/50">
                 <a
                   href={paths.home()}
-                  className="px-4 py-2 rounded-lg text-white bg-black/80 hover:bg-black/60 transition-all duration-300"
+                  className="px-4 py-2 rounded-lg text-white bg-black/70 hover:bg-black/60 transition-all duration-300"
                 >
                   Reject & Close
                 </a>
                 <button
                   type="submit"
-                  className="transition-all duration-300 border  px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black/80 hover:bg-black/60"
+                  className="transition-all duration-300 border  px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black/70 hover:bg-black/60"
                 >
                   I understand
                 </button>

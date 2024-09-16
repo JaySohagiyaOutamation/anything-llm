@@ -66,7 +66,7 @@ export default function SupportEmail() {
         <input
           name="supportEmail"
           type="email"
-          className="bg-black/80 mt-3 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 max-w-[275px] placeholder:text-white/45"
+          className="bg-black/70 mt-3 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 max-w-[275px] placeholder:text-white/45"
           placeholder="support@mycompany.com"
           required={true}
           autoComplete="off"
@@ -86,7 +86,7 @@ export default function SupportEmail() {
       {hasChanges && (
         <button
           type="submit"
-          className="transition-all mt-6 w-fit duration-300 border border-slate-200 px-5 py-2.5 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black/80 hover:bg-opacity-60"
+          className="transition-all mt-6 w-fit duration-300 border border-slate-200 px-5 py-2.5 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black/70 hover:bg-opacity-60"
         >
           Save
         </button>

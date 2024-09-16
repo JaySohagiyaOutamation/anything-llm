@@ -22,7 +22,7 @@ export default function LanguagePreference() {
       <div className="flex items-center gap-x-4">
         <select
           name="userLang"
-          className="bg-black/80 w-fit mt-2 px-4 border-black  text-white text-sm rounded-lg block py-2"
+          className="bg-black/70 w-fit mt-2 px-4 border-black  text-white text-sm rounded-lg block py-2"
           defaultValue={currentLanguage || "en"}
           onChange={(e) => changeLanguage(e.target.value)}
         >

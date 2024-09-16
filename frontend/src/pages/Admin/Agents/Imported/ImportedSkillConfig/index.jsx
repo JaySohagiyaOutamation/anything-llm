@@ -162,7 +162,7 @@ export default function ImportedSkillConfig({
                 <button
                   onClick={handleSubmit}
                   type="button"
-                  className="bg-black/80 text-white rounded-md p-2"
+                  className="bg-black/70 text-white rounded-md p-2"
                 >
                   Save
                 </button>

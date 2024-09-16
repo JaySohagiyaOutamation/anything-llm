@@ -8,7 +8,7 @@ export default function TextGenWebUIOptions({ settings }) {
         <input
           type="url"
           name="TextGenWebUIBasePath"
-          className="bg-black bg-opacity-55 text-white placeholder:text-black/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+          className="bg-black bg-opacity-70 text-white placeholder:text-black/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
           placeholder="http://127.0.0.1:5000/v1"
           defaultValue={settings?.TextGenWebUIBasePath}
           required={true}
@@ -23,7 +23,7 @@ export default function TextGenWebUIOptions({ settings }) {
         <input
           type="number"
           name="TextGenWebUITokenLimit"
-          className="bg-black bg-opacity-55 text-white placeholder:text-black/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+          className="bg-black bg-opacity-70 text-white placeholder:text-black/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
           placeholder="Content window limit (eg: 4096)"
           min={1}
           onScroll={(e) => e.target.blur()}
@@ -39,7 +39,7 @@ export default function TextGenWebUIOptions({ settings }) {
         <input
           type="password"
           name="TextGenWebUIAPIKey"
-          className="bg-black bg-opacity-55 text-white placeholder:text-black/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
+          className="bg-black bg-opacity-70 text-white placeholder:text-black/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5"
           placeholder="TextGen Web UI API Key"
           defaultValue={settings?.TextGenWebUIAPIKey ? "*".repeat(20) : ""}
           autoComplete="off"

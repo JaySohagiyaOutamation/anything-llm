@@ -67,17 +67,17 @@ export default function GitlabOptions() {
             <div className="w-full flex flex-col gap-4">
               <div className="flex flex-col pr-10">
                 <div className="flex flex-col gap-y-1 mb-4">
-                  <label className="text-white text-sm font-bold">
+                  <label className="text-black text-sm font-bold">
                     GitLab Repo URL
                   </label>
-                  <p className="text-xs font-normal text-white/50">
+                  <p className="text-xs font-normal text-black/50">
                     URL of the GitLab repo you wish to collect.
                   </p>
                 </div>
                 <input
                   type="url"
                   name="repo"
-                  className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
+                  className="border-none bg-black/70 text-white placeholder:text-white/70 text-sm rounded-lg focus:border-white block w-full p-2.5"
                   placeholder="https://gitlab.com/gitlab-org/gitlab"
                   required={true}
                   autoComplete="off"
@@ -90,20 +90,20 @@ export default function GitlabOptions() {
               <div className="flex flex-col pr-10">
                 <div className="flex flex-col gap-y-1 mb-4">
                   <label className="text-white font-bold text-sm flex gap-x-2 items-center">
-                    <p className="font-bold text-white">GitLab Access Token</p>{" "}
-                    <p className="text-xs text-white/50 font-light flex items-center">
+                    <p className="font-bold text-black">GitLab Access Token</p>{" "}
+                    <p className="text-xs text-black/50 font-light flex items-center">
                       optional
                       <PATTooltip accessToken={accessToken} />
                     </p>
                   </label>
-                  <p className="text-xs font-normal text-white/50">
+                  <p className="text-xs font-normal text-black/50">
                     Access Token to prevent rate limiting.
                   </p>
                 </div>
                 <input
                   type="text"
                   name="accessToken"
-                  className="border-none bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-full p-2.5"
+                  className="border-none bg-black/70 text-white placeholder:text-white/70 text-sm rounded-lg focus:border-white block w-full p-2.5"
                   placeholder="glpat-XXXXXXXXXXXXXXXXXXXX"
                   required={false}
                   autoComplete="off"
@@ -120,10 +120,10 @@ export default function GitlabOptions() {
 
             <div className="flex flex-col w-full py-4 pr-10">
               <div className="flex flex-col gap-y-1 mb-4">
-                <label className="text-white text-sm flex gap-x-2 items-center">
-                  <p className="text-white text-sm font-bold">File Ignores</p>
+                <label className="text-black text-sm flex gap-x-2 items-center">
+                  <p className="text-black text-sm font-bold">File Ignores</p>
                 </label>
-                <p className="text-xs font-normal text-white/50">
+                <p className="text-xs font-normal text-black/50">
                   List in .gitignore format to ignore specific files during
                   collection. Press enter after each entry you want to save.
                 </p>
@@ -136,7 +136,7 @@ export default function GitlabOptions() {
                 classNames={{
                   tag: "bg-blue-300/10 text-zinc-800",
                   input:
-                    "flex bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white",
+                    "flex bg-zinc-900 text-white placeholder:text-white/70 text-sm rounded-lg focus:border-white",
                 }}
               />
             </div>
@@ -191,15 +191,15 @@ function GitLabBranchSelection({ repo, accessToken }) {
     return (
       <div className="flex flex-col w-60">
         <div className="flex flex-col gap-y-1 mb-4">
-          <label className="text-white text-sm font-bold">Branch</label>
-          <p className="text-xs font-normal text-white/50">
+          <label className="text-black text-sm font-bold">Branch</label>
+          <p className="text-xs font-normal text-black/50">
             Branch you wish to collect files from.
           </p>
         </div>
         <select
           name="branch"
           required={true}
-          className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+          className="bg-black/70 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
         >
           <option disabled={true} selected={true}>
             -- loading available branches --
@@ -212,15 +212,15 @@ function GitLabBranchSelection({ repo, accessToken }) {
   return (
     <div className="flex flex-col w-60">
       <div className="flex flex-col gap-y-1 mb-4">
-        <label className="text-white text-sm font-bold">Branch</label>
-        <p className="text-xs font-normal text-white/50">
+        <label className="text-black text-sm font-bold">Branch</label>
+        <p className="text-xs font-normal text-black/50">
           Branch you wish to collect files from.
         </p>
       </div>
       <select
         name="branch"
         required={true}
-        className="bg-zinc-900 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
+        className="bg-black/70 border-gray-500 text-white text-sm rounded-lg block w-full p-2.5"
       >
         {allBranches.map((branch) => {
           return (
@@ -237,7 +237,7 @@ function GitLabBranchSelection({ repo, accessToken }) {
 function PATAlert({ accessToken }) {
   if (!!accessToken) return null;
   return (
-    <div className="flex flex-col md:flex-row md:items-center gap-x-2 text-white mb-4 bg-blue-800/30 w-fit rounded-lg px-4 py-2">
+    <div className="flex flex-col md:flex-row md:items-center gap-x-2 text-white mb-4 bg-blue-800/40 w-fit rounded-lg px-4 py-2">
       <div className="gap-x-2 flex items-center">
         <Info className="shrink-0" size={25} />
         <p className="text-sm">

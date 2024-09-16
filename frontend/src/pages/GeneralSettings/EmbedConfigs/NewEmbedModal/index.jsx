@@ -293,9 +293,9 @@ export const PermittedDomains = ({ defaultValue = [] }) => {
         classNames={{
           tag: "bg-white text-black m-1",
           input:
-            "flex bg-opacity-55 text-white bg-white placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none p-2.5",
+            "flex text-white bg-dark-input placeholder:text-white/70 text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none p-2.5",
         }}
-        placeHolder="https://mysite.com, https://anythingllm.com"
+        placeHolder="https://mysite.com"
       />
     </div>
   );

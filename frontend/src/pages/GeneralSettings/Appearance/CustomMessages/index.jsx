@@ -123,7 +123,7 @@ export default function CustomMessages() {
       {hasChanges && (
         <div className="flex justify-start pt-6">
           <button
-            className="transition-all duration-300 border px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black/80 hover:bg-opacity-60"
+            className="transition-all duration-300 border px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black/70 hover:bg-opacity-60"
             onClick={handleMessageSave}
           >
             {t("appearance.message.save")}

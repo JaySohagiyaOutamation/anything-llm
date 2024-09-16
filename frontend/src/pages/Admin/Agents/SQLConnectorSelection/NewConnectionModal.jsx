@@ -232,7 +232,7 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
               <button
                 type="button"
                 onClick={handleClose}
-                className="border-none text-xs px-2 py-1 font-semibold rounded-lg bg-black/80 border-2 border-transparent text-white hover:bg-black/70 h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
+                className="border-none text-xs px-2 py-1 font-semibold rounded-lg bg-black/70 border-2 border-transparent text-white hover:bg-black/70 h-[32px] w-fit -mr-8 whitespace-nowrap shadow-[0_4px_14px_rgba(0,0,0,0.25)]"
               >
                 Cancel
               </button>

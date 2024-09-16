@@ -133,7 +133,7 @@ export default function UploadFile({
           disabled={fetchingUrl}
           name="link"
           type="url"
-          className="disabled:bg-black/80 disabled:text-slate-300 bg-black text-white placeholder:text-white/40 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/4 p-2.5"
+          className="disabled:bg-black/70 disabled:text-slate-300 bg-black/70 text-white placeholder:text-white/40 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/4 p-2.5"
           placeholder={"https://example.com"}
           autoComplete="off"
         />

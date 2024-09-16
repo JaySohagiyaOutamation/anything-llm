@@ -89,7 +89,7 @@ export default function AgentModelSelection({
         onChange={() => {
           setHasChanges(true);
         }}
-        className="bg-black bg-opacity-55 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        className="bg-black bg-opacity-70 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       >
         {defaultModels.length > 0 && (
           <optgroup label="General models">

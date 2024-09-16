@@ -116,7 +116,7 @@ export default function AgentLLMSelection({
         <input type="hidden" name="agentProvider"  value={selectedLLM} />
         {searchMenuOpen && (
           <div
-            className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-55 backdrop-blur-sm z-10"
+            className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 backdrop-blur-sm z-10"
             onClick={() => setSearchMenuOpen(false)}
           />
         )}
@@ -166,7 +166,7 @@ export default function AgentLLMSelection({
           </div>
         ) : (
           <button
-            className="w-full max-w-[640px] h-[64px] bg-black bg-opacity-55 rounded-lg flex items-center p-[14px] justify-between cursor-pointer border-2 border-transparent hover:border-primary-button transition-all duration-300"
+            className="w-full max-w-[640px] h-[64px] bg-black bg-opacity-70 rounded-lg flex items-center p-[14px] justify-between cursor-pointer border-2 border-transparent hover:border-primary-button transition-all duration-300"
             type="button"
             onClick={() => setSearchMenuOpen(true)}
           >
