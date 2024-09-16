@@ -56,7 +56,7 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
               placeholder={t("login.multi-user.placeholder-username")}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="bg-black bg-opacity-70 text-white placeholder-white/70  text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
+              className="bg-blue-100 bg-opacity-70 text-black placeholder-black/70  text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
               required
             />
           </div>
@@ -76,7 +76,7 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
                   onChange={(e) =>
                     handleRecoveryCodeChange(index, e.target.value)
                   }
-                  className="bg-black bg-opacity-70 text-white placeholder-white/70  text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
+                  className="bg-blue-100 bg-opacity-70 text-black placeholder-black/70  text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
                   required
                 />
               </div>
@@ -118,14 +118,14 @@ const ResetPasswordForm = ({ onSubmit }) => {
       className="flex flex-col justify-center items-center relative rounded-2xl md:bg-[#e4ecf6] md:shadow-[0_4px_14px_rgba(0,0,0,0.25)] md:px-12 px-0 py-4 w-full md:w-fit -mt-24 md:-mt-28"
     >
       <div className="flex items-start justify-between pt-11 pb-9 w-screen md:w-full md:px-12 px-6">
-        <div className="flex flex-col gap-y-4 w-full">
-          <h3 className="text-4xl md:text-2xl font-bold text-white text-center md:text-left">
+        <div className="flex flex-col relative z-40 p-4 bg-[#e4ecf6] gap-y-4 w-full">
+          <h3 className="text-4xl md:text-2xl font-bold text-black text-center md:text-left">
             Reset Password
           </h3>
-          <p className="text-sm text-white/90 md:text-left md:max-w-[300px] px-4 md:px-0 text-center">
+          <p className="text-sm text-black/90 md:text-left md:max-w-[300px] px-4 md:px-0 text-center">
             Enter your new password.
           </p>
-        </div>
+        </div> 
       </div>
       <div className="md:px-12 px-6 space-y-6 flex h-full w-full">
         <div className="w-full flex flex-col gap-y-4">
@@ -136,7 +136,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
               placeholder="New Password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
-              className="bg-zinc-900 text-white placeholder-white/20 text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
+              className="bg-blue-100 text-black placeholder-black/70 text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
               required
             />
           </div>
@@ -147,7 +147,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
               placeholder="Confirm Password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="bg-zinc-900 text-white placeholder-white/20 text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
+              className="bg-blue-100 text-black placeholder-black/70 text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
               required
             />
           </div>
@@ -156,7 +156,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
       <div className="flex items-center md:p-12 md:px-0 px-6 mt-12 md:mt-0 space-x-2 border-gray-600 w-full flex-col gap-y-8">
         <button
           type="submit"
-          className="md:text-primary-button md:bg-transparent md:w-[300px] text-dark-text text-sm font-bold focus:ring-4 focus:outline-none rounded-md border-[1.5px] border-primary-button md:h-[34px] h-[48px] md:hover:text-white md:hover:bg-primary-button bg-primary-button focus:z-10 w-full"
+          className="  md:w-[300px] text-whitet text-sm font-bold focus:ring-4 focus:outline-none rounded-md border-[1.5px] border-primary-button md:h-[34px] h-[48px] text-white md:hover:bg-primary-button bg-primary-button focus:z-10 w-full"
         >
           Reset Password
         </button>
@@ -305,7 +305,7 @@ export default function MultiUserAuth() {
                   name="username"
                   type="text"
                   placeholder={t("login.multi-user.placeholder-username")}
-                  className="bg-black bg-opacity-70 text-white placeholder-white/70 text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
+                  className="bg-blue-100 bg-opacity-70 text-black placeholder-black/70 text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
                   required={true}
                   autoComplete="off"
                 />
@@ -315,7 +315,7 @@ export default function MultiUserAuth() {
                   name="password"
                   type="password"
                   placeholder={t("login.multi-user.placeholder-password")}
-                  className="bg-black bg-opacity-70 text-white placeholder-white/70  text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
+                  className="bg-blue-100 bg-opacity-70 text-black placeholder-black/70  text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
                   required={true}
                   autoComplete="off"
                 />

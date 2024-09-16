@@ -70,18 +70,18 @@ export default function SingleUserAuth() {
   return (
     <>
       <form onSubmit={handleLogin}>
-        <div className="flex flex-col justify-center items-center relative rounded-2xl md:bg-login-gradient md:shadow-[0_4px_14px_rgba(0,0,0,0.25)] md:px-12 py-12 -mt-36 md:-mt-10">
+        <div className="flex flex-col justify-center items-center relative rounded-2xl md:bg-[#f8fafe] md:shadow-[0_4px_14px_rgba(0,0,0,0.25)] md:px-12 py-12 -mt-36 md:-mt-10">
           <div className="flex items-start justify-between pt-11 pb-9 rounded-t">
             <div className="flex items-center flex-col gap-y-4">
               <div className="flex gap-x-1">
-                <h3 className="text-md md:text-2xl font-bold text-white text-center white-space-nowrap hidden md:block">
+                <h3 className="text-md md:text-2xl font-bold text-black text-center white-space-nowrap hidden md:block">
                   {t("login.multi-user.welcome")}
                 </h3>
-                <p className="text-4xl md:text-2xl font-bold bg-gradient-to-r from-[#75D6FF] via-[#FFFFFF] to-[#FFFFFF] bg-clip-text text-transparent">
+                <p className="text-4xl md:text-2xl font-bold bg-black from-[#75D6FF] via-black to-black bg-clip-text text-transparent">
                   {customAppName || "AnythingLLM"}
                 </p>
               </div>
-              <p className="text-sm text-white/90 text-center">
+              <p className="text-sm text-black/90 text-center">
                 {t("login.sign-in.start")} {customAppName || "AnythingLLM"}{" "}
                 {t("login.sign-in.end")}
               </p>
@@ -94,7 +94,7 @@ export default function SingleUserAuth() {
                   name="password"
                   type="password"
                   placeholder="Password"
-                  className="bg-zinc-900 text-white placeholder-white/20 text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
+                  className="bg-blue-100 bg-opacity-70 text-black placeholder-black/70  text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
                   required={true}
                   autoComplete="off"
                 />
@@ -107,8 +107,8 @@ export default function SingleUserAuth() {
             <button
               disabled={loading}
               type="submit"
-              className="md:text-primary-button md:bg-transparent text-dark-text text-sm font-bold focus:ring-4 focus:outline-none rounded-md border-[1.5px] border-primary-button md:h-[34px] h-[48px] md:hover:text-white md:hover:bg-primary-button bg-primary-button focus:z-10 w-full"
-            >
+              className=" md:w-[300px] text-white text-sm font-bold focus:ring-4 focus:outline-none rounded-md border-[1.5px] border-primary-button md:h-[34px] h-[48px]  bg-primary-button focus:z-10 w-full"
+              >
               {loading ? "Validating..." : "Login"}
             </button>
           </div>
