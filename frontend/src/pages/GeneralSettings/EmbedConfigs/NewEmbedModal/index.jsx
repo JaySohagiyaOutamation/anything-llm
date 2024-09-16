@@ -38,7 +38,7 @@ export default function NewEmbedModal({ closeModal }) {
 
   return (
     <div className="relative w-full max-w-2xl max-h-full">
-      <div className="relative bg-[#f8fafe] rounded-lg shadow">
+      <div className="relative bg-white rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-black-500">
           <h3 className="text-xl font-semibold text-black">
             Create new embed for workspace

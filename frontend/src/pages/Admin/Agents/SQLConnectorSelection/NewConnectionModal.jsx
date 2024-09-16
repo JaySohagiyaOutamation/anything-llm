@@ -75,7 +75,7 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
   return createPortal(
     <ModalWrapper isOpen={isOpen}>
       <div className="relative w-full md:w-1/3 max-w-2xl max-h-full md:mt-8">
-        <div className="relative bg-[#e4ecf6] rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.25)] max-h-[85vh] overflow-y-scroll no-scroll">
+        <div className="relative bg-white rounded-xl shadow-[0_4px_14px_rgba(0,0,0,0.25)] max-h-[85vh] overflow-y-scroll no-scroll">
           <div className="flex items-start justify-between p-4 border-b rounded-t border-black border-opacity-50">
             <h3 className="text-xl font-semibold text-black">
               New SQL Connection

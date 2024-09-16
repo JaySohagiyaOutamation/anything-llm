@@ -21,7 +21,7 @@ export default function TextSizeButton() {
       >
         <TextT
           weight="fill"
-          className="w-6 h-6 pointer-events-none text-white"
+          className="w-6 h-6 pointer-events-none text-black"
         />
         <Tooltip
           id="tooltip-text-size-btn"
@@ -72,7 +72,7 @@ function TextSizeMenu({ showing, setShowing, buttonRef }) {
     <div hidden={!showing}>
       <div
         ref={formRef}
-        className="absolute bottom-16 -ml-8 w-[140px] p-2 bg-zinc-800 rounded-lg shadow-md flex flex-col justify-center items-start gap-2 z-50"
+        className="absolute bottom-16 -ml-8 w-[140px] p-2 bg-[#e4ecf6] rounded-lg shadow-md flex flex-col justify-center items-start gap-2 z-50"
       >
         <button
           onClick={(e) => {
@@ -81,11 +81,11 @@ function TextSizeMenu({ showing, setShowing, buttonRef }) {
             handleTextSizeChange("small");
           }}
           className={`w-full hover:cursor-pointer px-2 py-1 rounded-md flex flex-col justify-start group ${
-            selectedSize === "small" ? "bg-zinc-700" : "hover:bg-zinc-700"
+            selectedSize === "small" ? "bg-zinc-700/20" : "hover:bg-zinc-700/20"
           }`}
         >
           <div className="w-full flex-col text-left flex pointer-events-none">
-            <div className="text-white text-xs">Small</div>
+            <div className="text-black text-xs">Small</div>
           </div>
         </button>
 
@@ -96,11 +96,11 @@ function TextSizeMenu({ showing, setShowing, buttonRef }) {
             handleTextSizeChange("normal");
           }}
           className={`w-full hover:cursor-pointer px-2 py-1 rounded-md flex flex-col justify-start group ${
-            selectedSize === "normal" ? "bg-zinc-700" : "hover:bg-zinc-700"
+            selectedSize === "normal" ? "bg-zinc-700/20" : "hover:bg-zinc-700/20"
           }`}
         >
           <div className="w-full flex-col text-left flex pointer-events-none">
-            <div className="text-white text-sm">Normal</div>
+            <div className="text-black text-sm">Normal</div>
           </div>
         </button>
 
@@ -111,11 +111,11 @@ function TextSizeMenu({ showing, setShowing, buttonRef }) {
             handleTextSizeChange("large");
           }}
           className={`w-full hover:cursor-pointer px-2 py-1 rounded-md flex flex-col justify-start group ${
-            selectedSize === "large" ? "bg-zinc-700" : "hover:bg-zinc-700"
+            selectedSize === "large" ? "bg-zinc-700/20" : "hover:bg-zinc-700/20"
           }`}
         >
           <div className="w-full flex-col text-left flex pointer-events-none">
-            <div className="text-white text-[16px]">Large</div>
+            <div className="text-black text-[16px]">Large</div>
           </div>
         </button>
       </div>

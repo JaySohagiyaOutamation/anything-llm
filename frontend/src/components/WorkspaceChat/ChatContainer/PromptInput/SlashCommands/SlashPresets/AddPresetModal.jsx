@@ -29,25 +29,25 @@ export default function AddPresetModal({ isOpen, onClose, onSave }) {
         onSubmit={handleSubmit}
         className="relative w-full max-w-2xl max-h-full"
       >
-        <div className="relative bg-main-gradient rounded-lg shadow">
+        <div className="relative bg-white rounded-lg shadow">
           <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-            <h3 className="text-xl font-semibold text-white">Add New Preset</h3>
+            <h3 className="text-xl font-semibold text-black">Add New Preset</h3>
             <button
               onClick={onClose}
               type="button"
-              className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+              className="transition-all duration-300 bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-[#e4ecf6] border-black/80"
             >
-              <X className="text-gray-300 text-lg" />
+              <X className="text-black text-lg" />
             </button>
           </div>
           <div className="p-6 space-y-6 flex h-full w-full">
             <div className="w-full flex flex-col gap-y-4">
               <div>
-                <label className="block mb-2 text-sm font-medium text-white">
+                <label className="block mb-2 text-sm font-medium text-black">
                   Command
                 </label>
                 <div className="flex items-center">
-                  <span className="text-white text-sm mr-2 font-bold">/</span>
+                  <span className="text-black text-sm mr-2 font-bold">/</span>
                   <input
                     name="command"
                     type="text"
@@ -57,12 +57,12 @@ export default function AddPresetModal({ isOpen, onClose, onSave }) {
                     maxLength={25}
                     autoComplete="off"
                     required={true}
-                    className="border-none bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="border-none bg-black/70 placeholder:text-white/45 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   />
                 </div>
               </div>
               <div>
-                <label className="block mb-2 text-sm font-medium text-white">
+                <label className="block mb-2 text-sm font-medium text-black">
                   Prompt
                 </label>
                 <textarea
@@ -70,11 +70,11 @@ export default function AddPresetModal({ isOpen, onClose, onSave }) {
                   autoComplete="off"
                   placeholder="This is the content that will be injected in front of your prompt."
                   required={true}
-                  className="border-none bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="border-none bg-black/70 placeholder:text-white/45 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 ></textarea>
               </div>
               <div>
-                <label className="border-none block mb-2 text-sm font-medium text-white">
+                <label className="border-none block mb-2 text-sm font-medium text-black">
                   Description
                 </label>
                 <input
@@ -84,7 +84,7 @@ export default function AddPresetModal({ isOpen, onClose, onSave }) {
                   maxLength={80}
                   autoComplete="off"
                   required={true}
-                  className="border-none bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="border-none bg-black/70 placeholder:text-white/45 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 />
               </div>
             </div>
@@ -93,13 +93,13 @@ export default function AddPresetModal({ isOpen, onClose, onSave }) {
             <button
               onClick={onClose}
               type="button"
-              className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
+              className="px-4 py-2 rounded-lg text-white bg-black/90 hover:bg-black/70 transition-all duration-300"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+              className="transition-all duration-300 text-white border border-slate-200 px-4 py-2 rounded-lg text-sm items-center flex gap-x-2 bg-black/90 hover:bg-black/70"
             >
               Save
             </button>

@@ -30,7 +30,7 @@ export default function NewFolderModal({ closeModal, files, setFiles }) {
 
   return (
     <div className="relative w-full max-w-xl max-h-full">
-      <div className="relative bg-[#e4ecf6] rounded-lg shadow">
+      <div className="relative bg-white rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
           <h3 className="text-xl font-semibold text-black">
             Create New Folder

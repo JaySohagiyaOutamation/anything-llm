@@ -106,11 +106,11 @@ export default function SlashPresets({ setShowing, sendCommand }) {
       ))}
       <button
         onClick={openAddModal}
-        className="w-full hover:cursor-pointer hover:bg-zinc-700 px-2 py-1 rounded-xl flex flex-col justify-start"
+        className="w-full hover:cursor-pointer hover:bg-zinc-700/20 px-2 py-1 rounded-xl flex flex-col justify-start"
       >
         <div className="w-full flex-row flex pointer-events-none items-center gap-2">
-          <Plus size={24} weight="fill" fill="white" />
-          <div className="text-white text-sm font-medium">Add New Preset </div>
+          <Plus size={24} weight="fill" fill="black" />
+          <div className="text-black text-sm font-medium">Add New Preset </div>
         </div>
       </button>
       <AddPresetModal
