@@ -1,7 +1,7 @@
 export default function PreLoader({ size = "16" }) {
   return (
     <div
-      className={`h-${size} w-${size} animate-spin rounded-full border-4 border-solid border-primary border-t-transparent`}
+      className={`h-${size} w-${size} animate-spin rounded-full border-4 border-solid border-black border-t-transparent`}
     ></div>
   );
 }

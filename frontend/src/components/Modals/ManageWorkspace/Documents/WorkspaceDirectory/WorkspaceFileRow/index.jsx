@@ -141,7 +141,7 @@ const PinItemToWorkspace = memo(({ workspace, docPath, item }) => {
     <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className="flex gap-x-2 items-center hover:bg-main-gradient p-[2px] rounded ml-2"
+      className="flex gap-x-2 items-center hover:bg-white/50 p-[2px] rounded ml-2"
     >
       <PushPin
         data-tooltip-id={`pin-${item.id}`}

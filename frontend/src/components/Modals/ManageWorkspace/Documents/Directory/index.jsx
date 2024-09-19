@@ -209,7 +209,7 @@ function Directory({
             {loading ? (
               <div className="w-full h-full flex items-center justify-center flex-col gap-y-5">
                 <PreLoader />
-                <p className="text-white/80 text-sm font-semibold animate-pulse text-center w-1/3">
+                <p className="text-black/80 text-sm font-semibold animate-pulse text-center w-1/3">
                   {loadingMessage}
                 </p>
               </div>

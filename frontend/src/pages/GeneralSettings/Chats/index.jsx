@@ -122,7 +122,7 @@ export default function WorkspaceChats() {
         className="relative md:ml-[2px] md:mr-[16px] md:my-[16px] md:rounded-[16px] bg-[#f8fafe] w-full h-full overflow-y-scroll"
       >
         <div className="flex flex-col w-full px-1 md:pl-6 md:pr-[50px] md:py-6 py-16">
-          <div className="w-full flex flex-col gap-y-1 pb-6 border-black border-b-2 border-opacity-10">
+          <div className="w-full flex flex-col gap-y-1 pb-6 border-black border-b border-opacity-60">
             <div className="flex gap-x-4 items-center">
               <p className="text-lg leading-6 font-bold text-black">
                 {t("recorded.title")}
@@ -163,18 +163,18 @@ export default function WorkspaceChats() {
                 <>
                   <button
                     onClick={handleClearAllChats}
-                    className="flex items-center gap-x-2 px-4 py-1 border hover:border-transparent border-white/40 text-white/40 rounded-lg bg-transparent hover:text-black text-xs font-semibold hover:bg-red-500 shadow-[0_4px_14px_rgba(0,0,0,0.25)] h-[34px] w-fit"
+                    className="flex items-center gap-x-2 px-4 py-1 border hover:border-transparent border-white/40 text-black rounded-lg  hover:text-black text-xs font-semibold bg-red-400 shadow-[0_4px_14px_rgba(0,0,0,0.25)] h-[34px] w-fit"
                   >
                     <Trash size={18} weight="bold" />
                     Clear Chats
                   </button>
-                  <a
+                  {/* <a
                     href={paths.orderFineTune()}
                     className="flex items-center gap-x-2 px-4 py-1 border hover:border-transparent border-yellow-300 text-yellow-300/80 rounded-lg bg-transparent hover:text-black text-xs font-semibold hover:bg-yellow-300/75 shadow-[0_4px_14px_rgba(0,0,0,0.25)] h-[34px] w-fit"
                   >
                     <Sparkle size={18} weight="bold" />
                     Order Fine-Tune Model
-                  </a>
+                  </a> */}
                 </>
               )}
             </div>

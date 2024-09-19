@@ -44,7 +44,7 @@ export default function NewUserModal() {
               <div>
                 <label
                   htmlFor="username"
-                  className="block mb-2 text-sm font-medium text-white"
+                  className="block mb-2 text-sm font-medium text-black"
                 >
                   Username
                 </label>
@@ -61,7 +61,7 @@ export default function NewUserModal() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-white"
+                  className="block mb-2 text-sm font-medium text-black"
                 >
                   Password
                 </label>
@@ -76,7 +76,7 @@ export default function NewUserModal() {
                 />
               </div>
               {error && <p className="text-red-400 text-sm">Error: {error}</p>}
-              <p className="text-slate-200 text-xs md:text-sm">
+              <p className="text-black/80 text-xs md:text-sm">
                 After creating your account you will be able to login with these
                 credentials and start using workspaces.
               </p>
@@ -85,7 +85,7 @@ export default function NewUserModal() {
           <div className="flex w-full justify-between items-center p-6 space-x-2 border-t rounded-b border-gray-500/50">
             <button
               type="submit"
-              className="w-full transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800 text-center justify-center"
+              className="w-full transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-black text-sm items-center flex gap-x-2 bg-slate-200  focus:ring-gray-800 text-center justify-center"
             >
               Accept Invitation
             </button>

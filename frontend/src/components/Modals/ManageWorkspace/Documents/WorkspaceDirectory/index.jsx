@@ -146,16 +146,16 @@ const PinAlert = memo(() => {
   return (
     <ModalWrapper isOpen={showAlert} noPortal={true}>
       <div className="relative w-full max-w-2xl max-h-full">
-        <div className="relative bg-main-gradient rounded-lg shadow">
+        <div className="relative bg-white rounded-lg shadow">
           <div className="flex items-start justify-between p-4 rounded-t border-gray-500/50">
             <div className="flex items-center gap-2">
               <PushPin className="text-red-600 text-lg w-6 h-6" weight="fill" />
-              <h3 className="text-xl font-semibold text-white">
+              <h3 className="text-xl font-semibold text-black">
                 What is document pinning?
               </h3>
             </div>
           </div>
-          <div className="w-full p-6 text-white text-md flex flex-col gap-y-2">
+          <div className="w-full p-6 text-black text-md flex flex-col gap-y-2">
             <p>
               When you <b>pin</b> a document in AnythingLLM we will inject the
               entire content of the document into your prompt window for your
@@ -176,7 +176,7 @@ const PinAlert = memo(() => {
             <button disabled={true} className="invisible" />
             <button
               onClick={dismissAlert}
-              className="border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+              className="border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 bg-black/80 focus:ring-gray-800"
             >
               Okay, got it
             </button>

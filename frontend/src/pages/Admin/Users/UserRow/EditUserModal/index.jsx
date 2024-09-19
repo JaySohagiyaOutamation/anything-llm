@@ -23,18 +23,18 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
 
   return (
     <div className="relative w-[500px] max-w-2xl max-h-full">
-      <div className="relative bg-main-gradient rounded-lg shadow">
+      <div className="relative bg-white rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-          <h3 className="text-xl font-semibold text-white">
+          <h3 className="text-xl font-semibold text-black">
             Edit {user.username}
           </h3>
           <button
             onClick={closeModal}
             type="button"
-            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+            className="transition-all duration-300  bg-transparent  rounded-lg text-sm p-1.5 ml-auto inline-flex items-center  hover:bg-[#e4ecf6] hover:border-slate-100 hover:border-opacity-50 border-transparent border"
             data-modal-hide="staticModal"
           >
-            <X className="text-gray-300 text-lg" />
+            <X className="text-black text-lg" />
           </button>
         </div>
         <form onSubmit={handleUpdate}>
@@ -43,21 +43,21 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
               <div>
                 <label
                   htmlFor="username"
-                  className="block mb-2 text-sm font-medium text-white"
+                  className="block mb-2 text-sm font-medium text-black"
                 >
                   Username
                 </label>
                 <input
                   name="username"
                   type="text"
-                  className="bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-black/80 placeholder:text-white/40 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="User's username"
                   defaultValue={user.username}
                   minLength={2}
                   required={true}
                   autoComplete="off"
                 />
-                <p className="mt-2 text-xs text-white/60">
+                <p className="mt-2 text-xs text-black/80">
                   Username must be only contain lowercase letters, numbers,
                   underscores, and hyphens with no spaces
                 </p>
@@ -65,26 +65,26 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-white"
+                  className="block mb-2 text-sm font-medium text-black"
                 >
                   New Password
                 </label>
                 <input
                   name="password"
                   type="text"
-                  className="bg-zinc-900 placeholder:text-white/20 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  className="bg-black/80 placeholder:text-white/40 border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder={`${user.username}'s new password`}
                   autoComplete="off"
                   minLength={8}
                 />
-                <p className="mt-2 text-xs text-white/60">
+                <p className="mt-2 text-xs text-black/80">
                   Password must be at least 8 characters long
                 </p>
               </div>
               <div>
                 <label
                   htmlFor="role"
-                  className="block mb-2 text-sm font-medium text-white"
+                  className="block mb-2 text-sm font-medium text-black"
                 >
                   Role
                 </label>
@@ -93,7 +93,7 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
                   required={true}
                   defaultValue={user.role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="rounded-lg bg-zinc-900 px-4 py-2 text-sm text-white border-gray-500 focus:ring-blue-500 focus:border-blue-500 w-full"
+                  className="rounded-lg bg-black/80 px-4 py-2 text-sm text-white border-gray-500 focus:ring-blue-500 focus:border-blue-500 w-full"
                 >
                   <option value="default">Default</option>
                   <option value="manager">Manager</option>
@@ -110,13 +110,13 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
             <button
               onClick={closeModal}
               type="button"
-              className="px-4 py-2 rounded-lg text-white hover:bg-stone-900 transition-all duration-300"
+              className="px-4 py-2 rounded-lg text-white bg-black/90 transition-all duration-300"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
+              className="transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-black text-sm items-center flex gap-x-2 bg-slate-200 hover:text-slate-800 focus:ring-gray-800"
             >
               Update user
             </button>
