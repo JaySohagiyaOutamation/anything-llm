@@ -335,7 +335,7 @@ export default function MultiUserAuth() {
             </button>
             <button
               type="button"
-              className="text-white text-sm flex gap-x-1 text-primary-button hover:underline"
+              className=" text-sm flex gap-x-1 text-primary-button hover:underline"
               onClick={handleResetPassword}
             >
               {t("login.multi-user.forgot-pass")}?
