@@ -87,13 +87,13 @@ export function OnboardingLayout({ children }) {
   }
 
   return (
-    <div className="w-screen overflow-y-auto bg-mobile-onboarding md:bg-main-gradient flex justify-center overflow-hidden">
+    <div className="w-screen overflow-y-auto bg-white md:bg-white flex justify-center overflow-hidden">
       <div className="flex w-1/5 h-screen justify-center items-center">
         {backBtn.showing && (
           <button
             disabled={backBtn.disabled}
             onClick={backBtn.onClick}
-            className="group p-2 rounded-lg border-2 border-zinc-600 h-fit w-fit disabled:cursor-not-allowed hover:bg-zinc-100 disabled:hover:bg-transparent"
+            className="group p-2 rounded-lg border-2 border-black h-fit w-fit disabled:cursor-not-allowed hover:bg-zinc-100 disabled:hover:bg-transparent"
             aria-label="Back"
           >
             <ArrowLeft
@@ -106,10 +106,10 @@ export function OnboardingLayout({ children }) {
 
       <div className="w-full md:w-3/5 relative h-full py-10">
         <div className="flex flex-col w-fit mx-auto gap-y-1 mb-[55px]">
-          <h1 className="text-white font-semibold text-center text-2xl">
+          <h1 className="text-black font-semibold text-center text-2xl">
             {header.title}
           </h1>
-          <p className="text-zinc-400 text-base text-center">
+          <p className="text-black/80 text-base text-center">
             {header.description}
           </p>
         </div>
@@ -121,11 +121,11 @@ export function OnboardingLayout({ children }) {
           <button
             disabled={forwardBtn.disabled}
             onClick={forwardBtn.onClick}
-            className="group p-2 rounded-lg border-2 border-zinc-300 disabled:border-zinc-600 h-fit w-fit disabled:cursor-not-allowed hover:bg-zinc-100 disabled:hover:bg-transparent"
+            className="group p-2 rounded-lg border-2 border-black disabled:border-zinc-600 h-fit w-fit disabled:cursor-not-allowed hover:bg-zinc-100 disabled:hover:bg-transparent"
             aria-label="Continue"
           >
             <ArrowRight
-              className="text-white group-hover:text-black group-disabled:text-gray-500"
+              className="text-black group-hover:text-black group-disabled:text-gray-500"
               size={30}
             />
           </button>

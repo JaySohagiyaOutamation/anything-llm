@@ -114,7 +114,7 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
     <div className="w-full flex justify-center">
       <form onSubmit={handleSubmit} ref={formRef} className="">
         <div className="md:min-w-[400px]">
-          <label htmlFor="email" className="text-white text-base font-medium">
+          <label htmlFor="email" className="text-black text-base font-medium">
             What's your email?{" "}
           </label>
           <input
@@ -122,22 +122,22 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
             type="email"
             placeholder="you@gmail.com"
             required={true}
-            className="mt-2 bg-zinc-900 text-white placeholder:text-white/20 text-sm font-medium font-['Plus Jakarta Sans'] leading-tight w-full h-11 p-2.5 bg-zinc-900 rounded-lg"
+            className="mt-2 bg-black/70 text-white placeholder:text-white/40 text-sm font-medium font-['Plus Jakarta Sans'] leading-tight w-full h-11 p-2.5 rounded-lg"
           />
         </div>
 
         <div className="mt-8">
           <label
-            className="text-white text-base font-medium"
+            className="text-black text-base font-medium"
             htmlFor="use_case"
           >
             What will you use AnythingLLM for?{" "}
           </label>
           <div className="mt-2 gap-y-3 flex flex-col">
             <label
-              className={`transition-all duration-300 w-full h-11 p-2.5 bg-white/10 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
-                selectedOption === "job" ? "border-white border-opacity-40" : ""
-              } hover:border-white/60`}
+              className={`transition-all duration-300 w-full h-11 p-2.5 bg-black/70 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
+                selectedOption === "job" ? "border-black border-opacity-40" : ""
+              } hover:border-black/60`}
             >
               <input
                 type="radio"
@@ -148,7 +148,7 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
                 className="hidden"
               />
               <div
-                className={`w-4 h-4 rounded-full border-2 border-white mr-2 ${
+                className={`w-4 h-4 rounded-full border-2 border-white/50 mr-2 ${
                   selectedOption === "job" ? "bg-white" : ""
                 }`}
               ></div>
@@ -157,11 +157,11 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
               </div>
             </label>
             <label
-              className={`transition-all duration-300 w-full h-11 p-2.5 bg-white/10 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
+              className={`transition-all duration-300 w-full h-11 p-2.5 bg-black/70 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
                 selectedOption === "personal"
-                  ? "border-white border-opacity-40"
+                  ? "border-black border-opacity-40"
                   : ""
-              } hover:border-white/60`}
+              } hover:border-black/60`}
             >
               <input
                 type="radio"
@@ -172,7 +172,7 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
                 className="hidden"
               />
               <div
-                className={`w-4 h-4 rounded-full border-2 border-white mr-2 ${
+                className={`w-4 h-4 rounded-full border-2 border-white/50 mr-2 ${
                   selectedOption === "personal" ? "bg-white" : ""
                 }`}
               ></div>
@@ -181,11 +181,11 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
               </div>
             </label>
             <label
-              className={`transition-all duration-300 w-full h-11 p-2.5 bg-white/10 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
+              className={`transition-all duration-300 w-full h-11 p-2.5 bg-black/70 rounded-lg flex justify-start items-center gap-2.5 cursor-pointer border border-transparent ${
                 selectedOption === "other"
-                  ? "border-white border-opacity-40"
+                  ? "border-black border-opacity-40"
                   : ""
-              } hover:border-white/60`}
+              } hover:border-black/60`}
             >
               <input
                 type="radio"
@@ -196,7 +196,7 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
                 className="hidden"
               />
               <div
-                className={`w-4 h-4 rounded-full border-2 border-white mr-2 ${
+                className={`w-4 h-4 rounded-full border-2 border-white/30 mr-2 ${
                   selectedOption === "other" ? "bg-white" : ""
                 }`}
               ></div>
@@ -208,16 +208,16 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
         </div>
 
         <div className="mt-8">
-          <label htmlFor="comment" className="text-white text-base font-medium">
+          <label htmlFor="comment" className="text-black text-base font-medium">
             Any comments for the team?{" "}
-            <span className="text-neutral-400 text-base font-light">
+            <span className="text-black/80 text-base font-light">
               (Optional)
             </span>
           </label>
           <textarea
             name="comment"
             rows={5}
-            className="mt-2 bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            className="mt-2 bg-black/80 text-white placeholder:text-white/30 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             placeholder="If you have any questions or comments right now, you can leave them here and we will get back to you. You can also email team@mintplexlabs.com"
             wrap="soft"
             autoComplete="off"
@@ -234,7 +234,7 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
           <button
             type="button"
             onClick={skipSurvey}
-            className="text-white text-base font-medium text-opacity-30 hover:text-opacity-100 mt-8"
+            className="text-black text-base font-medium text-opacity-70 hover:text-opacity-100 mt-8"
           >
             Skip Survey
           </button>

@@ -269,7 +269,7 @@ export default function LLMPreference({
   return (
     <div>
       <form ref={formRef} onSubmit={handleSubmit} className="w-full">
-        <div className="w-full relative border-slate-300/40 shadow border-2 rounded-lg text-white">
+        <div className="w-full relative border-black/40 shadow border-2 rounded-lg text-white">
           <div className="w-full p-4 absolute top-0 rounded-t-lg backdrop-blur-sm">
             <div className="w-full flex items-center sticky top-0">
               <MagnifyingGlass
@@ -280,7 +280,7 @@ export default function LLMPreference({
               <input
                 type="text"
                 placeholder="Search LLM providers"
-                className="bg-zinc-600 z-20 pl-10 h-[38px] rounded-full w-full px-4 py-1 text-sm border-2 border-slate-300/40 outline-none focus:outline-primary-button active:outline-primary-button outline-none text-white"
+                className="bg-black/80 z-20 pl-10 h-[38px] rounded-full w-full px-4 py-1 text-sm border-2 border-slate-300/40 outline-none focus:outline-primary-button active:outline-primary-button text-white placeholder:text-white/40"
                 onChange={(e) => setSearchQuery(e.target.value)}
                 autoComplete="off"
                 onKeyDown={(e) => {

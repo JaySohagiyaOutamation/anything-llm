@@ -1,14 +1,14 @@
 import paths from "@/utils/paths";
 import LGroupImg from "./l_group.png";
 import RGroupImg from "./r_group.png";
-import AnythingLLMLogo from "@/media/logo/anything-llm.png";
+import AnythingLLMLogo from "@/media/logo/anything-llm-old.png";
 import { useNavigate } from "react-router-dom";
 
 export default function OnboardingHome() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="relative w-screen h-screen flex overflow-hidden bg-mobile-onboarding md:bg-main-gradient">
+      <div className="relative w-screen h-screen flex overflow-hidden bg-mobile-onboarding md:bg-[#f8fafe]">
         <div
           className="hidden md:block fixed bottom-10 left-10 w-[320px] h-[320px] bg-no-repeat bg-contain"
           style={{ backgroundImage: `url(${LGroupImg})` }}
@@ -21,7 +21,7 @@ export default function OnboardingHome() {
 
         <div className="relative flex justify-center items-center m-auto">
           <div className="flex flex-col justify-center items-center">
-            <p className="text-zinc-300 font-thin text-[24px]">Welcome to</p>
+            <p className="text-black font-thin text-[24px]">Welcome to</p>
             <img
               src={AnythingLLMLogo}
               alt="AnythingLLM"
@@ -29,7 +29,7 @@ export default function OnboardingHome() {
             />
             <button
               onClick={() => navigate(paths.onboarding.llmPreference())}
-              className="animate-pulse w-full md:max-w-[350px] md:min-w-[300px] text-center py-3 bg-white text-black font-semibold text-sm my-10 rounded-md hover:bg-gray-200"
+              className="animate-pulse w-full md:max-w-[350px] md:min-w-[300px] text-center py-3 bg-black/80 text-white font-semibold text-sm my-10 rounded-md hover:bg-black/50"
             >
               Get started
             </button>

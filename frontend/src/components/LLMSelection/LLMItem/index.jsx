@@ -29,7 +29,7 @@ export default function LLMItem({
         />
         <div className="flex flex-col">
           <div className="text-sm font-semibold text-black">{name}</div>
-          <div className="mt-1 text-xs text-gray-400">{description}</div>
+          <div className="mt-1 text-xs text-black/80">{description}</div>
         </div>
       </div>
     </div>
