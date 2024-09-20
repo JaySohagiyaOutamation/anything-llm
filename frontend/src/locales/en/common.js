@@ -46,6 +46,7 @@ const TRANSLATIONS = {
     "multi-user": {
       welcome: "Welcome to",
       "placeholder-username": "Username",
+      "placeholder-email": "Email",
       "placeholder-password": "Password",
       login: "Login",
       validating: "Validating...",
@@ -451,6 +452,7 @@ const TRANSLATIONS = {
       description:
         "By default, you will be the only admin. As an admin you will need to create accounts for all new users or admins. Do not lose your password as only an Admin user can reset passwords.",
       username: "Admin account username",
+      email: "Admin account email",
       password: "Admin account password",
     },
     password: {

@@ -11,10 +11,10 @@ async function generateRecoveryCodes(userId) {
   const plainTextCodes = [];
   for (let i = 0; i < 4; i++) {
     const code = v4();
-    const hashedCode = bcrypt.hashSync(code, 10);
+    // const hashedCode = bcrypt.hashSync(code, 10);
     newRecoveryCodes.push({
       user_id: userId,
-      code_hash: hashedCode,
+      code_hash: code,
     });
     plainTextCodes.push(code);
   }
@@ -30,7 +30,7 @@ async function generateRecoveryCodes(userId) {
   return plainTextCodes;
 }
 
-async function recoverAccount(username = "", recoveryCodes = []) {
+async function recoverAccount(username = "",email="", recoveryCodes = []) {
   const user = await User.get({ username: String(username) });
   if (!user) return { success: false, error: "Invalid recovery codes." };
 
@@ -51,7 +51,7 @@ async function recoverAccount(username = "", recoveryCodes = []) {
   const validCodes = uniqueRecoveryCodes.every((code) => {
     let valid = false;
     allUserHashes.forEach((hash) => {
-      if (bcrypt.compareSync(code, hash)) valid = true;
+      if (hash === code) valid = true;
     });
     return valid;
   });

@@ -259,6 +259,7 @@ function systemEndpoints(app) {
         const { username, recoveryCodes } = reqBody(request);
         const { success, resetToken, error } = await recoverAccount(
           username,
+          email,
           recoveryCodes
         );
 
@@ -476,10 +477,11 @@ function systemEndpoints(app) {
           return;
         }
 
-        const { username, password } = reqBody(request);
+        const { username, password,email } = reqBody(request);
         const { user, error } = await User.create({
           username,
           password,
+          email,
           role: ROLES.admin,
         });
 

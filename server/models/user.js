@@ -48,7 +48,7 @@ const User = {
     return { ...rest };
   },
 
-  create: async function ({ username, password, role = "default" }) {
+  create: async function ({ username, password, email, role = "default" }) {
     const passwordCheck = this.checkPasswordComplexity(password);
     if (!passwordCheck.checkedOK) {
       return { user: null, error: passwordCheck.error };
@@ -67,6 +67,7 @@ const User = {
         data: {
           username: this.validations.username(username),
           password: hashedPassword,
+          email: email,
           role: this.validations.role(role),
         },
       });

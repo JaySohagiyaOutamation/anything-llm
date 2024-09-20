@@ -80,11 +80,11 @@ const System = {
         return { valid: false, message: e.message };
       });
   },
-  recoverAccount: async function (username, recoveryCodes) {
+  recoverAccount: async function (username,email, recoveryCodes) {
     return await fetch(`${API_BASE}/system/recover-account`, {
       method: "POST",
       headers: baseHeaders(),
-      body: JSON.stringify({ username, recoveryCodes }),
+      body: JSON.stringify({ username,email, recoveryCodes }),
     })
       .then(async (res) => {
         const data = await res.json();

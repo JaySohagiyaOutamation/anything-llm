@@ -11,6 +11,7 @@ import { t } from "i18next";
 
 const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [recoveryCodeInputs, setRecoveryCodeInputs] = useState(
     Array(2).fill("")
   );
@@ -26,7 +27,7 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
     const recoveryCodes = recoveryCodeInputs.filter(
       (code) => code.trim() !== ""
     );
-    onSubmit(username, recoveryCodes);
+    onSubmit(username,email, recoveryCodes);
   };
 
   return (
@@ -56,6 +57,20 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
               placeholder={t("login.multi-user.placeholder-username")}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              className="bg-blue-100 bg-opacity-70 text-black placeholder-black/70  text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
+              required
+            />
+          </div>
+          <div className="flex flex-col gap-y-2">
+            <label className="text-black text-sm font-bold">
+              {t("login.multi-user.placeholder-email")}
+            </label>
+            <input
+              name="email"
+              type="email"
+              placeholder={t("login.multi-user.placeholder-email")}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="bg-blue-100 bg-opacity-70 text-black placeholder-black/70  text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
               required
             />
@@ -213,9 +228,10 @@ export default function MultiUserAuth() {
 
   const handleDownloadComplete = () => setDownloadComplete(true);
   const handleResetPassword = () => setShowRecoveryForm(true);
-  const handleRecoverySubmit = async (username, recoveryCodes) => {
+  const handleRecoverySubmit = async (username,email, recoveryCodes) => {
     const { success, resetToken, error } = await System.recoverAccount(
       username,
+      email,
       recoveryCodes
     );
 

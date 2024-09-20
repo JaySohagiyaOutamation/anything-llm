@@ -5,7 +5,6 @@ import NewWorkspaceModal, {
 } from "../Modals/NewWorkspace";
 import ActiveWorkspaces from "./ActiveWorkspaces";
 import { USER_BACKGROUND_COLOR } from "@/utils/constants";
-import logo from '../../../../images/cropped-logo.png'; 
 import useLogo from "@/hooks/useLogo";
 import useUser from "@/hooks/useUser";
 import Footer from "../Footer";

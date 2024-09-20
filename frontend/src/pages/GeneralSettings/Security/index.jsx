@@ -40,6 +40,7 @@ function MultiUserMode() {
       const form = new FormData(e.target);
       const data = {
         username: form.get("username"),
+        email: form.get("email"),
         password: form.get("password"),
       };
 
@@ -148,6 +149,25 @@ function MultiUserMode() {
                         type="text"
                         className="bg-zinc-900 text-white text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5 placeholder:text-white/20 focus:ring-blue-500"
                         placeholder="Your admin username"
+                        minLength={2}
+                        required={true}
+                        autoComplete="off"
+                        disabled={multiUserModeEnabled}
+                        defaultValue={multiUserModeEnabled ? "********" : ""}
+                      />
+                    </div>
+                    <div className="mt-4 w-80">
+                      <label
+                        htmlFor="email"
+                        className="block mb-3 font-medium text-white"
+                      >
+                        {t("multi.enable.email")}
+                      </label>
+                      <input
+                        name="email"
+                        type="text"
+                        className="bg-zinc-900 text-white text-sm rounded-lg focus:outline-primary-button active:outline-primary-button outline-none block w-full p-2.5 placeholder:text-white/20 focus:ring-blue-500"
+                        placeholder="Your admin email"
                         minLength={2}
                         required={true}
                         autoComplete="off"
