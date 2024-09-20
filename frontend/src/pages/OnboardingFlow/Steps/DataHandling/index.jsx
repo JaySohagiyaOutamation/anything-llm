@@ -365,26 +365,26 @@ export default function DataHandling({ setHeader, setForwardBtn, setBackBtn }) {
   return (
     <div className="w-full flex items-center justify-center flex-col gap-y-6">
       <div className="p-8 flex flex-col gap-8">
-        <div className="flex flex-col gap-y-2 border-b border-zinc-500/50 pb-4">
-          <div className="text-white text-base font-bold">LLM Selection</div>
+        <div className="flex flex-col gap-y-2 border-b border-black/60 pb-4">
+          <div className="text-black text-base font-bold">LLM Selection</div>
           <div className="flex items-center gap-2.5">
             <img
               src={LLM_SELECTION_PRIVACY[llmChoice].logo}
               alt="LLM Logo"
               className="w-8 h-8 rounded"
             />
-            <p className="text-white text-sm font-bold">
+            <p className="text-black text-sm font-bold">
               {LLM_SELECTION_PRIVACY[llmChoice].name}
             </p>
           </div>
           <ul className="flex flex-col list-disc ml-4">
             {LLM_SELECTION_PRIVACY[llmChoice].description.map((desc) => (
-              <li className="text-white/90 text-sm">{desc}</li>
+              <li className="text-black/90 text-sm">{desc}</li>
             ))}
           </ul>
         </div>
-        <div className="flex flex-col gap-y-2 border-b border-zinc-500/50 pb-4">
-          <div className="text-white text-base font-bold">
+        <div className="flex flex-col gap-y-2 border-b border-black/60 pb-4">
+          <div className="text-black text-base font-bold">
             Embedding Preference
           </div>
           <div className="flex items-center gap-2.5">
@@ -393,39 +393,39 @@ export default function DataHandling({ setHeader, setForwardBtn, setBackBtn }) {
               alt="LLM Logo"
               className="w-8 h-8 rounded"
             />
-            <p className="text-white text-sm font-bold">
+            <p className="text-black text-sm font-bold">
               {EMBEDDING_ENGINE_PRIVACY[embeddingEngine].name}
             </p>
           </div>
           <ul className="flex flex-col list-disc ml-4">
             {EMBEDDING_ENGINE_PRIVACY[embeddingEngine].description.map(
               (desc) => (
-                <li className="text-white/90 text-sm">{desc}</li>
+                <li className="text-black/90 text-sm">{desc}</li>
               )
             )}
           </ul>
         </div>
 
         <div className="flex flex-col gap-y-2 pb-4">
-          <div className="text-white text-base font-bold">Vector Database</div>
+          <div className="text-black text-base font-bold">Vector Database</div>
           <div className="flex items-center gap-2.5">
             <img
               src={VECTOR_DB_PRIVACY[vectorDb].logo}
               alt="LLM Logo"
               className="w-8 h-8 rounded"
             />
-            <p className="text-white text-sm font-bold">
+            <p className="text-black text-sm font-bold">
               {VECTOR_DB_PRIVACY[vectorDb].name}
             </p>
           </div>
           <ul className="flex flex-col list-disc ml-4">
             {VECTOR_DB_PRIVACY[vectorDb].description.map((desc) => (
-              <li className="text-white/90 text-sm">{desc}</li>
+              <li className="text-black/90 text-sm">{desc}</li>
             ))}
           </ul>
         </div>
       </div>
-      <p className="text-white/60 text-sm font-medium py-1">
+      <p className="text-black/80 text-sm font-medium py-1">
         These settings can be reconfigured at any time in the settings.
       </p>
     </div>
