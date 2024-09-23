@@ -60,6 +60,23 @@ export default function NewUserModal() {
               </div>
               <div>
                 <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-black"
+                >
+                  Email
+                </label>
+                <input
+                  name="email"
+                  type="email"
+                  className="bg-zinc-900 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  placeholder="My email"
+                  minLength={2}
+                  required={true}
+                  autoComplete="off"
+                />
+              </div>
+              <div>
+                <label
                   htmlFor="password"
                   className="block mb-2 text-sm font-medium text-black"
                 >

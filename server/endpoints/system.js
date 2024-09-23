@@ -48,6 +48,7 @@ const { CollectorApi } = require("../utils/collectorApi");
 const {
   recoverAccount,
   resetPassword,
+  sendRecoveryCodesToEmail,
   generateRecoveryCodes,
 } = require("../utils/PasswordRecovery");
 const { SlashCommandPresets } = require("../models/slashCommandsPresets");
@@ -259,7 +260,6 @@ function systemEndpoints(app) {
         const { username, recoveryCodes } = reqBody(request);
         const { success, resetToken, error } = await recoverAccount(
           username,
-          email,
           recoveryCodes
         );
 
@@ -269,7 +269,30 @@ function systemEndpoints(app) {
           response.status(400).json({ success, message: error });
         }
       } catch (error) {
-        console.error("Error recovering account:", error);
+        console.error("Error recovering account:", error.message);
+        response
+          .status(500)
+          .json({ success: false, message: "Internal server error" });
+      }
+    }
+  );
+  app.post(
+    "/system/recover-codes",
+    [isMultiUserSetup],
+    async (request, response) => {
+      try {
+        const { email } = reqBody(request);
+        const { success, message, error } = await sendRecoveryCodesToEmail(
+          email
+        );
+
+        if (success) {
+          response.status(200).json({ success, message });
+        } else {
+          response.status(400).json({ success, message: error });
+        }
+      } catch (error) {
+        console.error("Error sending code to email", error.message);
         response
           .status(500)
           .json({ success: false, message: "Internal server error" });

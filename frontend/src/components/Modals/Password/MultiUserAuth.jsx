@@ -12,6 +12,9 @@ import { t } from "i18next";
 const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState('');
+
+
   const [recoveryCodeInputs, setRecoveryCodeInputs] = useState(
     Array(2).fill("")
   );
@@ -27,12 +30,34 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
     const recoveryCodes = recoveryCodeInputs.filter(
       (code) => code.trim() !== ""
     );
-    onSubmit(username,email, recoveryCodes);
+    onSubmit(username, recoveryCodes);
   };
 
+  const sendRecoveryCodes = async () => {
+    try {
+      // Log the value of email to ensure it's correct
+      console.log("Sending email:", email);
+  
+      const response = await System.sendRecoveryCodes(email);
+  
+      // Log the response for debugging
+      console.log("Response:", response);
+  
+      if (response.success) {
+        setMessage('Recovery codes sent successfully.');
+      } else {
+        setMessage(response.message || 'Failed to send recovery codes.');
+      }
+    } catch (error) {
+      console.error("Error sending recovery codes:", error);
+      setMessage('Error sending recovery codes.');
+    }
+  };
+  
+  
+
   return (
-    <form
-      onSubmit={handleSubmit}
+    <div
       className="flex flex-col justify-center items-center relative rounded-2xl md:bg-[#f8fafe] md:shadow-[0_4px_14px_rgba(0,0,0,0.25)] md:px-8 px-0 py-4 w-full md:w-fit mt-10 md:mt-0"
     >
       <div className="flex items-start justify-between pt-11 pb-9 w-screen md:w-full md:px-12 px-6 ">
@@ -72,9 +97,23 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="bg-blue-100 bg-opacity-70 text-black placeholder-black/70  text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
-              required
+
             />
+            {email && (
+              <button
+                onClick={sendRecoveryCodes}
+                className="bg-blue-500 text-white text-sm font-bold py-2 px-4 rounded mt-2"
+              >
+                Send Recovery Codes to Email
+              </button>
+            )}
+
+            {/* Display response message */}
+            {message && (
+              <p className="text-sm text-blue-500 mt-2">{message}</p>
+            )}
           </div>
+
           <div className="flex flex-col gap-y-2">
             <label className="text-black text-sm font-bold">
               {t("login.password-reset.recovery-codes")}
@@ -102,6 +141,7 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
       <div className="flex items-center md:p-12 md:px-0 px-6 mt-12 md:mt-0 space-x-2 border-gray-600 w-full flex-col gap-y-8">
         <button
           type="submit"
+          onClick={handleSubmit}
           className=" md:w-[300px] text-white text-sm font-bold focus:ring-4 focus:outline-none rounded-md border-[1.5px] border-primary-button md:h-[34px] h-[48px]  bg-primary-button focus:z-10 w-full"
         >
           {t("login.password-reset.title")}
@@ -114,7 +154,9 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
           {t("login.password-reset.back-to-login")}
         </button>
       </div>
-    </form>
+
+    </div>
+
   );
 };
 
@@ -140,7 +182,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
           <p className="text-sm text-black/90 md:text-left md:max-w-[300px] px-4 md:px-0 text-center">
             Enter your new password.
           </p>
-        </div> 
+        </div>
       </div>
       <div className="md:px-12 px-6 space-y-6 flex h-full w-full">
         <div className="w-full flex flex-col gap-y-4">
@@ -228,10 +270,9 @@ export default function MultiUserAuth() {
 
   const handleDownloadComplete = () => setDownloadComplete(true);
   const handleResetPassword = () => setShowRecoveryForm(true);
-  const handleRecoverySubmit = async (username,email, recoveryCodes) => {
+  const handleRecoverySubmit = async (username, recoveryCodes) => {
     const { success, resetToken, error } = await System.recoverAccount(
       username,
-      email,
       recoveryCodes
     );
 

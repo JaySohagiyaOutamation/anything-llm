@@ -80,14 +80,33 @@ const System = {
         return { valid: false, message: e.message };
       });
   },
-  recoverAccount: async function (username,email, recoveryCodes) {
+  recoverAccount: async function (username, recoveryCodes) {
     return await fetch(`${API_BASE}/system/recover-account`, {
       method: "POST",
       headers: baseHeaders(),
-      body: JSON.stringify({ username,email, recoveryCodes }),
+      body: JSON.stringify({ username, recoveryCodes }),
     })
       .then(async (res) => {
         const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || "Error recovering account.");
+        }
+        return data;
+      })
+      .catch((e) => {
+        console.error(e);
+        return { success: false, error: e.message };
+      });
+  },
+  sendRecoveryCodes: async function (email) {
+    return await fetch(`${API_BASE}/system/recover-codes`, {
+      method: "POST",
+      headers: baseHeaders(),
+      body: JSON.stringify({ email }),
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        console.log('data: ', data);
         if (!res.ok) {
           throw new Error(data.message || "Error recovering account.");
         }

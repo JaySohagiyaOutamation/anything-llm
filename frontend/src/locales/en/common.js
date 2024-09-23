@@ -46,7 +46,7 @@ const TRANSLATIONS = {
     "multi-user": {
       welcome: "Welcome to",
       "placeholder-username": "Username",
-      "placeholder-email": "Email",
+      "placeholder-email": "Enter Email to get Recovery Codes",
       "placeholder-password": "Password",
       login: "Login",
       validating: "Validating...",

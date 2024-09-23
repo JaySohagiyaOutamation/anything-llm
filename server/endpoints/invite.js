@@ -46,6 +46,7 @@ function inviteEndpoints(app) {
       const { user, error } = await User.create({
         username,
         password,
+        email,
         role: "default",
       });
       if (!user) {

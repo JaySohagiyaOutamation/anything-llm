@@ -1,10 +1,61 @@
 const bcrypt = require("bcrypt");
+const nodemailer = require('nodemailer');
 const { v4, validate } = require("uuid");
 const { User } = require("../../models/user");
 const {
   RecoveryCode,
   PasswordResetToken,
 } = require("../../models/passwordRecovery");
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'jayoutamation@gmail.com',
+    pass: 'tvbfxlvkwkdocipm',
+  },
+});
+
+async function sendRecoveryCodesToEmail(email = "") {
+  const user = await User.get({ email});
+  if (!user) return { success: false, error: "User not found." };
+
+  const allUserHashes = await RecoveryCode.hashesForUser(user.id);
+  if (allUserHashes.length === 0)
+    return { success: false, error: "No recovery codes available for this user." };
+
+  const userEmail = user.email;
+  if (!userEmail) return { success: false, error: "User does not have an associated email." };
+
+  const recoveryCodesMessage = `
+    Hello ${user.username},
+
+    Here are your recovery codes:
+
+    ${allUserHashes.join("\n")}
+
+    Please keep these codes safe. They are used to recover your account.
+
+    Regards,
+    Your Service Team
+    Outamation
+  `;
+
+  // Send email using Nodemailer
+  const mailOptions = {
+    from: 'jayoutamation@gmail.com',
+    to: userEmail,
+    subject: 'Your Account Recovery Codes',
+    text: recoveryCodesMessage,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return { success: true, message: "Recovery codes sent successfully to the associated email." };
+  } catch (error) {
+    return { success: false, error: "Failed to send email: " + error.message };
+  }
+}
+
 
 async function generateRecoveryCodes(userId) {
   const newRecoveryCodes = [];
@@ -30,7 +81,7 @@ async function generateRecoveryCodes(userId) {
   return plainTextCodes;
 }
 
-async function recoverAccount(username = "",email="", recoveryCodes = []) {
+async function recoverAccount(username = "", recoveryCodes = []) {
   const user = await User.get({ username: String(username) });
   if (!user) return { success: false, error: "Invalid recovery codes." };
 
@@ -100,4 +151,5 @@ module.exports = {
   recoverAccount,
   resetPassword,
   generateRecoveryCodes,
+  sendRecoveryCodesToEmail
 };
