@@ -18,6 +18,8 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
   const [recoveryCodeInputs, setRecoveryCodeInputs] = useState(
     Array(2).fill("")
   );
+  const areRecoveryCodesFilled = recoveryCodeInputs.every(code => code.trim() !== "");
+
 
   const handleRecoveryCodeChange = (index, value) => {
     const updatedCodes = [...recoveryCodeInputs];
@@ -35,18 +37,12 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
 
   const sendRecoveryCodes = async () => {
     try {
-      // Log the value of email to ensure it's correct
-      console.log("Sending email:", email);
-  
       const response = await System.sendRecoveryCodes(email);
-  
-      // Log the response for debugging
-      console.log("Response:", response);
-  
+      console.log('response: ', response);
       if (response.success) {
         setMessage('Recovery codes sent successfully.');
       } else {
-        setMessage(response.message || 'Failed to send recovery codes.');
+        setMessage(response.error);
       }
     } catch (error) {
       console.error("Error sending recovery codes:", error);
@@ -102,7 +98,7 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
             {email && (
               <button
                 onClick={sendRecoveryCodes}
-                className="bg-blue-500 text-white text-sm font-bold py-2 px-4 rounded mt-2"
+                className="bg-sky-400 text-white text-sm font-bold py-2 px-4 rounded mt-2"
               >
                 Send Recovery Codes to Email
               </button>
@@ -110,7 +106,7 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
 
             {/* Display response message */}
             {message && (
-              <p className="text-sm text-blue-500 mt-2">{message}</p>
+              <p className="text-sm text-sky-500 mt-2">{message}</p>
             )}
           </div>
 
@@ -142,6 +138,7 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
         <button
           type="submit"
           onClick={handleSubmit}
+          disabled={username.trim() === "" || !areRecoveryCodesFilled}  // Check array length for recovery codes
           className=" md:w-[300px] text-white text-sm font-bold focus:ring-4 focus:outline-none rounded-md border-[1.5px] border-primary-button md:h-[34px] h-[48px]  bg-primary-button focus:z-10 w-full"
         >
           {t("login.password-reset.title")}

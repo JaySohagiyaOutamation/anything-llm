@@ -280,6 +280,7 @@ export default function GeneralEmbeddingPreference() {
                           autoComplete="off"
                           placeholder="Search all embedding providers"
                           className="-ml-4 my-2 bg-transparent z-20 pl-12 h-[38px] w-full px-4 py-1 text-sm outline-none text-black placeholder:text-black placeholder:font-medium"
+                          defaultValue={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
                           ref={searchInputRef}
                           onKeyDown={(e) => {

@@ -8,11 +8,13 @@ const {
 } = require("../../models/passwordRecovery");
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.office365.com',
+  port: 587,
+  secure: false,
   auth: {
-    user: 'jayoutamation@gmail.com',
-    pass: 'tvbfxlvkwkdocipm',
-  },
+    user: 'donotreply@outamationmail.com', // Double-check this
+    pass: 'vmpcmkylbzpjclpn'              // Double-check this
+  }
 });
 
 async function sendRecoveryCodesToEmail(email = "") {
@@ -42,10 +44,10 @@ async function sendRecoveryCodesToEmail(email = "") {
 
   // Send email using Nodemailer
   const mailOptions = {
-    from: 'jayoutamation@gmail.com',
-    to: userEmail,
+    from: 'Outamate Mods <donotreply@outamationmail.com>',  // Office 365 email
+    to: userEmail,                                          // Recipient's email
     subject: 'Your Account Recovery Codes',
-    text: recoveryCodesMessage,
+    text: recoveryCodesMessage,                             // Recovery codes message in plain text
   };
 
   try {
