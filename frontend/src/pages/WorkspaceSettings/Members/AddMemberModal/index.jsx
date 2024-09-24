@@ -98,13 +98,13 @@ export default function AddMemberModal({ closeModal, workspace, users }) {
                     onClick={() => handleUserSelect(user.id)}
                   >
                     <div
-                      className="shrink-0 w-3 h-3 rounded border-[1px] border-white flex justify-center items-center"
+                      className="shrink-0 w-3 h-3 bg-gray-300 rounded border-[1px] border-white flex justify-center items-center"
                       role="checkbox"
                       aria-checked={isUserSelected(user.id)}
                       tabIndex={0}
                     >
                       {isUserSelected(user.id) && (
-                        <div className="w-2 h-2 bg-white rounded-[2px]" />
+                        <div className="w-2 h-2 bg-slate-700 rounded-[2px]" />
                       )}
                     </div>
                     <p className="text-black text-sm font-medium">
@@ -127,16 +127,16 @@ export default function AddMemberModal({ closeModal, workspace, users }) {
                 className="flex items-center gap-x-2 ml-2"
               >
                 <div
-                  className="shrink-0 w-3 h-3 rounded border-[1px] border-white flex justify-center items-center cursor-pointer"
+                  className="shrink-0 w-3 h-3 rounded border-[1px] border-black flex justify-center items-center cursor-pointer"
                   role="checkbox"
                   aria-checked={selectedUsers.length === filteredUsers.length}
                   tabIndex={0}
                 >
                   {selectedUsers.length === filteredUsers.length && (
-                    <div className="w-2 h-2 bg-white rounded-[2px]" />
+                    <div className="w-2 h-2 bg-black rounded-[2px]" />
                   )}
                 </div>
-                <p className="text-white text-sm font-medium">Select All</p>
+                <p className="text-black text-sm font-medium">Select All</p>
               </button>
               {selectedUsers.length > 0 && (
                 <button
@@ -144,7 +144,7 @@ export default function AddMemberModal({ closeModal, workspace, users }) {
                   onClick={handleUnselect}
                   className="flex items-center gap-x-2 ml-2"
                 >
-                  <p className="text-white/60 text-sm font-medium hover:text-white">
+                  <p className="text-black/60 text-sm font-medium hover:text-black">
                     Unselect
                   </p>
                 </button>
