@@ -18,7 +18,7 @@ export default function ImportedSkillList({
             target="_blank"
             className="text-black/80 hover:underline"
           >
-            AnythingLLM Agent Docs
+            OutamationLLM Agent Docs
           </a>
           .
         </p>

@@ -803,3 +803,7 @@ does not extend the close button beyond the viewport. */
 .katex-mathml {
   font-size: 20px;
 }
+
+.custom-span strong{
+  color : black;
+}

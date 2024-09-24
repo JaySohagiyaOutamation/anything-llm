@@ -167,10 +167,10 @@ export default function PromptInput({
                   showing={showSlashCommand}
                   setShowSlashCommand={setShowSlashCommand}
                 />
-                <AvailableAgentsButton
+                {/* <AvailableAgentsButton
                   showing={showAgents}
                   setShowAgents={setShowAgents}
-                />
+                /> */}
                 <TextSizeButton />
               </div>
               <div className="flex gap-x-2">

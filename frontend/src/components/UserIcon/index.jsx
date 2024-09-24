@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import usePfp from "../../hooks/usePfp";
 import UserDefaultPfp from "./user.svg";
-import WorkspaceDefaultPfp from "./workspace.svg";
+import WorkspaceDefaultPfp from "../../../public/favicon.png";
 
 const UserIcon = memo(({ role }) => {
   const { pfp } = usePfp();
@@ -13,7 +13,7 @@ const UserIcon = memo(({ role }) => {
         <img
           src={WorkspaceDefaultPfp}
           alt="system profile picture"
-          className="flex items-center justify-center rounded-full bg-black bg-opacity-75 border border-black/40"
+          className="flex items-center justify-center rounded-full bg-white bg-opacity-75"
         />
       )}
     </div>

@@ -44,7 +44,7 @@ export default function CustomLogo() {
   };
 
   const handleRemoveLogo = async () => {
-    setLogo("");
+   
     setIsDefaultLogo(true);
 
     const { success, error } = await System.removeCustomLogo();

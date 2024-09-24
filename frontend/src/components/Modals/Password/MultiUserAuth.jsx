@@ -343,11 +343,11 @@ export default function MultiUserAuth() {
                   {t("login.multi-user.welcome")}
                 </h3>
                 <p className="text-4xl md:text-2xl font-bold bg-gradient-to-r from-[#75D6FF] via-black to-black bg-clip-text text-transparent">
-                  {customAppName || "AnythingLLM"}
+                  {customAppName || "OutamationLLM"}
                 </p>
               </div>
               <p className="text-sm text-black/90 text-center">
-                {t("login.sign-in.start")} {customAppName || "AnythingLLM"}{" "}
+                {t("login.sign-in.start")} {customAppName || "OutamationLLM"}{" "}
                 {t("login.sign-in.end")}
               </p>
             </div>
