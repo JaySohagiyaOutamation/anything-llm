@@ -97,7 +97,7 @@ export default function Survey({ setHeader, setForwardBtn, setBackBtn }) {
         <div className="w-full flex items-center justify-center px-1 md:px-8 py-4">
           <div className="w-auto flex flex-col gap-y-1 items-center">
             <CheckCircle size={60} className="text-green-500" />
-            <p className="text-white text-lg">Thank you for your feedback!</p>
+            <p className="text-black text-lg">Thank you for your feedback!</p>
             <a
               href={paths.mailToMintplex()}
               className="text-sky-400 underline text-xs"

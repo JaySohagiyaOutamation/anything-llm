@@ -60,7 +60,7 @@ export default function NewApiKeyModal({ closeModal }) {
                   type="text"
                   defaultValue={`${apiKey.secret}`}
                   disabled={true}
-                  className="rounded-lg px-4 py-2 text-black bg-black border border-black"
+                  className="rounded-lg px-4 py-2 text-white bg-black border border-black"
                 />
               )}
               <p className="text-black text-xs md:text-sm">
@@ -99,7 +99,7 @@ export default function NewApiKeyModal({ closeModal }) {
                 onClick={copyApiKey}
                 type="button"
                 disabled={copied}
-                className="w-full transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-white text-sm items-center flex gap-x-2 hover:bg-slate-200 hover:text-slate-800 focus:ring-gray-800 text-center justify-center"
+                className="w-full transition-all duration-300 border border-slate-200 px-4 py-2 rounded-lg text-black text-sm items-center flex gap-x-2 bg-slate-200  hover:bg-slate-300 text-center justify-center"
               >
                 {copied ? "Copied API key" : "Copy API key"}
               </button>
