@@ -3,7 +3,7 @@ import useCopyText from "@/hooks/useCopyText";
 import { Check, ThumbsUp, ArrowsClockwise, Copy } from "@phosphor-icons/react";
 import { Tooltip } from "react-tooltip";
 import Workspace from "@/models/workspace";
-import { EditMessageAction } from "./EditMessage";
+// import { EditMessageAction } from "./EditMessage";
 import ActionMenu from "./ActionMenu";
 
 const Actions = ({
@@ -29,12 +29,12 @@ const Actions = ({
     <div className="flex w-full justify-between items-center">
       <div className="flex justify-start items-center gap-x-[8px]">
         <CopyMessage message={message} />
-        <div className="md:group-hover:opacity-100 transition-all duration-300 md:opacity-0 flex justify-start items-center gap-x-[8px]">
-          <EditMessageAction
+        <div className="transition-all duration-300 flex justify-start items-center gap-x-[8px]">
+          {/* <EditMessageAction
             chatId={chatId}
             role={role}
             isEditing={isEditing}
-          />
+          /> */}
           {isLastMessage && !isEditing && (
             <RegenerateMessage
               regenerateMessage={regenerateMessage}
@@ -76,7 +76,7 @@ function FeedbackButton({
         onClick={handleFeedback}
         data-tooltip-id={tooltipId}
         data-tooltip-content={tooltipContent}
-        className="text-zinc-300"
+        className="text-zinc-500"
         aria-label={tooltipContent}
       >
         <IconComponent
@@ -105,7 +105,7 @@ function CopyMessage({ message }) {
           onClick={() => copyText(message)}
           data-tooltip-id="copy-assistant-text"
           data-tooltip-content="Copy"
-          className="text-zinc-300"
+          className="text-zinc-500"
           aria-label="Copy"
         >
           {copied ? (
@@ -133,7 +133,7 @@ function RegenerateMessage({ regenerateMessage, chatId }) {
         onClick={() => regenerateMessage(chatId)}
         data-tooltip-id="regenerate-assistant-text"
         data-tooltip-content="Regenerate response"
-        className="border-none text-zinc-300"
+        className="border-none text-zinc-500"
         aria-label="Regenerate"
       >
         <ArrowsClockwise size={20} className="mb-1" weight="fill" />

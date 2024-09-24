@@ -8,6 +8,7 @@ const { User } = require("../models/user");
 const { DocumentVectors } = require("../models/vectors");
 const { Workspace } = require("../models/workspace");
 const { WorkspaceChats } = require("../models/workspaceChats");
+const {sendRecoveryCodesToEmail } = require("../utils/PasswordRecovery")
 const {
   getVectorDbClass,
   getEmbeddingEngineSelection,
@@ -61,6 +62,8 @@ function adminEndpoints(app) {
 
         const { user: newUser, error } = await User.create(newUserParams);
         if (!!newUser) {
+         const {message,success} = await sendRecoveryCodesToEmail(newUserParams.email);
+         console.log('message: ', message,success);
           await EventLogs.logEvent(
             "user_created",
             {
@@ -70,6 +73,7 @@ function adminEndpoints(app) {
             currUser.id
           );
         }
+       
 
         response.status(200).json({ user: newUser, error });
       } catch (e) {

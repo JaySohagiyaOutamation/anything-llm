@@ -1,3 +1,4 @@
+const { user } = require("elevenlabs/api");
 const { EventLogs } = require("../../../models/eventLogs");
 const { Invite } = require("../../../models/invite");
 const { SystemSettings } = require("../../../models/systemSettings");
@@ -7,6 +8,7 @@ const { WorkspaceChats } = require("../../../models/workspaceChats");
 const { canModifyAdmin } = require("../../../utils/helpers/admin");
 const { multiUserMode, reqBody } = require("../../../utils/http");
 const { validApiKey } = require("../../../utils/middleware/validApiKey");
+const { sendRecoveryCodesToEmail } = require("../../../utils/PasswordRecovery");
 
 function apiAdminEndpoints(app) {
   if (!app) return;
@@ -132,6 +134,9 @@ function apiAdminEndpoints(app) {
 
       const newUserParams = reqBody(request);
       const { user: newUser, error } = await User.create(newUserParams);
+      if(user){
+        await sendRecoveryCodesToEmail(newUserParams.email);
+      }
       response.status(newUser ? 200 : 400).json({ user: newUser, error });
     } catch (e) {
       console.error(e);

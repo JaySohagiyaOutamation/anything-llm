@@ -21,7 +21,8 @@ const Admin = {
       headers: baseHeaders(),
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
+    .then( (res) =>  res.json()
+    )
       .catch((e) => {
         console.error(e);
         return { user: null, error: e.message };

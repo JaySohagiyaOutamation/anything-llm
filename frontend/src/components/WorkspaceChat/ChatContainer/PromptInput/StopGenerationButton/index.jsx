@@ -13,7 +13,7 @@ export default function StopGenerationButton() {
         onClick={emitHaltEvent}
         data-tooltip-id="stop-generation-button"
         data-tooltip-content="Stop generating response"
-        className="border-none text-white/60 cursor-pointer group"
+        className="border-none text-black/60 cursor-pointer group"
         aria-label="Stop generating"
       >
         <svg
@@ -24,14 +24,14 @@ export default function StopGenerationButton() {
           xmlns="http://www.w3.org/2000/svg"
         >
           <circle
-            className="group-hover:stroke-primary-button stroke-white"
+            className="group-hover:stroke-primary-button stroke-black"
             cx="10"
             cy="10.562"
             r="9"
             strokeWidth="2"
           />
           <rect
-            className="group-hover:fill-primary-button fill-white"
+            className="group-hover:fill-primary-button fill-black"
             x="6.3999"
             y="6.96204"
             width="7.2"

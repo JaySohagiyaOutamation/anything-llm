@@ -4,7 +4,7 @@ import DataConnector from "./dataConnector";
 import LiveDocumentSync from "./experimental/liveSync";
 import AgentPlugins from "./experimental/agentPlugins";
 
-const System = {
+ const System = {
   cacheKeys: {
     footerIcons: "anythingllm_footer_links",
     supportEmail: "anythingllm_support_email",
@@ -106,7 +106,6 @@ const System = {
     })
       .then(async (res) => {
         const data = await res.json();
-        console.log('data: ', data);
         if (!res.ok) {
           throw new Error(data.message || "Error recovering account.");
         }

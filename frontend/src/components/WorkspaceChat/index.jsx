@@ -43,14 +43,14 @@ export default function WorkspaceChat({ loading, workspace }) {
                 <p className="font-semibold text-red-500 text-xl">
                   Workspace not found!
                 </p>
-                <p className="text-sm mt-4 text-white">
+                <p className="text-sm mt-4 text-black">
                   It looks like a workspace by this name is not available.
                 </p>
 
                 <div className="flex w-full justify-center items-center mt-4">
                   <a
                     href={paths.home()}
-                    className="border border-slate-200 text-white hover:bg-slate-200 hover:text-slate-800 px-4 py-2 rounded-lg text-sm items-center flex gap-x-2 transition-all duration-300"
+                    className="border border-slate-200 text-black hover:bg-slate-600 hover:text-slate-800 px-4 py-2 rounded-lg text-sm items-center flex gap-x-2 transition-all duration-300"
                   >
                     Go back to homepage
                   </a>

@@ -169,7 +169,7 @@ export default function ChatHistory({
               or <b className="font-medium italic">send a chat.</b>
             </p>
           ) : (
-            <p className="w-full items-center text-white/60 text-lg font-base flex flex-col md:flex-row gap-x-1">
+            <p className="w-full items-center text-black/60 text-lg font-base flex flex-col md:flex-row gap-x-1">
               To get started <b className="font-medium italic">send a chat.</b>
             </p>
           )}
@@ -247,10 +247,10 @@ export default function ChatHistory({
       {!isAtBottom && (
         <div className="fixed bottom-40 right-10 md:right-20 z-50 cursor-pointer animate-pulse">
           <div className="flex flex-col items-center">
-            <div className="p-1 rounded-full border border-white/10 bg-white/10 hover:bg-white/20 hover:text-white">
+            <div className="p-1 rounded-full border border-white/10 bg-black/20 hover:text-black">
               <ArrowDown
                 weight="bold"
-                className="text-white/60 w-5 h-5"
+                className="text-black/60 w-5 h-5"
                 onClick={scrollToBottom}
               />
             </div>
@@ -267,7 +267,7 @@ function StatusResponse({ props }) {
       <div className="py-2 px-4 w-full flex gap-x-5 md:max-w-[80%] flex-col">
         <div className="flex gap-x-5">
           <span
-            className={`text-xs inline-block p-2 rounded-lg text-white/60 font-mono whitespace-pre-line`}
+            className={`text-xs inline-block p-2 rounded-lg text-black/60 font-mono whitespace-pre-line`}
           >
             {props.content}
           </span>
@@ -280,7 +280,7 @@ function StatusResponse({ props }) {
 function WorkspaceChatSuggestions({ suggestions = [], sendSuggestion }) {
   if (suggestions.length === 0) return null;
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-white/60 text-xs mt-10 w-full justify-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-black/60 text-xs mt-10 w-full justify-center">
       {suggestions.map((suggestion, index) => (
         <button
           key={index}

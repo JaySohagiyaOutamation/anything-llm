@@ -183,8 +183,8 @@ export default function DnDFileUploaderWrapper({ children }) {
         <div className="w-full h-full flex justify-center items-center rounded-xl">
           <div className="flex flex-col gap-y-[14px] justify-center items-center">
             <img src={DndIcon} width={69} height={69} />
-            <p className="text-white text-[24px] font-semibold">Add anything</p>
-            <p className="text-white text-[16px] text-center">
+            <p className="text-black text-[24px] font-semibold">Add anything</p>
+            <p className="text-black text-[16px] text-center">
               Drop your file here to embed it into your <br />
               workspace auto-magically.
             </p>
