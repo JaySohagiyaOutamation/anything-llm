@@ -12,8 +12,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: 'donotreply@outamationmail.com', // Double-check this
-    pass: ''              // Double-check this
+    user: process.env.SMTP_EMAIL, // Double-check this
+    pass: process.env.SMTP_PASS,            // Double-check this
   }
 });
 
@@ -44,7 +44,7 @@ async function sendRecoveryCodesToEmail(email = "") {
 
   // Send email using Nodemailer
   const mailOptions = {
-    from: 'Outamate Mods <donotreply@outamationmail.com>',  // Office 365 email
+    from:  `Outamate Mods <${process.env.SMTP_EMAIL}>`,  // Office 365 email
     to: userEmail,                                          // Recipient's email
     subject: 'Your Account Recovery Codes',
     text: recoveryCodesMessage,                             // Recovery codes message in plain text
