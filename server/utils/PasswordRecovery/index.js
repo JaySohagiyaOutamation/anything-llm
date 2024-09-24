@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
   secure: false,
   auth: {
     user: 'donotreply@outamationmail.com', // Double-check this
-    pass: 'vmpcmkylbzpjclpn'              // Double-check this
+    pass: ''              // Double-check this
   }
 });
 
