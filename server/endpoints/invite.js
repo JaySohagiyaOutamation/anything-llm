@@ -2,7 +2,7 @@ const { EventLogs } = require("../models/eventLogs");
 const { Invite } = require("../models/invite");
 const { User } = require("../models/user");
 const { reqBody } = require("../utils/http");
-const { sendRecoveryCodesToEmail } = require("../utils/PasswordRecovery");
+// const { sendRecoveryCodesToEmail } = require("../utils/PasswordRecovery");
 
 function inviteEndpoints(app) {
   if (!app) return;
@@ -67,15 +67,15 @@ function inviteEndpoints(app) {
         },
         user.id
       );
-      if (!!user) {
-        try {
-          console.log("Sending recovery codes to:", user.email);
-          await sendRecoveryCodesToEmail(user.email);
-          console.log("Recovery codes sent successfully.");
-        } catch (error) {
-          console.error("Error while sending recovery codes:", error);
-        }
-      }
+      // if (!!user) {
+      //   try {
+      //     console.log("Sending recovery codes to:", user.email);
+      //     await sendRecoveryCodesToEmail(user.email);
+      //     console.log("Recovery codes sent successfully.");
+      //   } catch (error) {
+      //     console.error("Error while sending recovery codes:", error);
+      //   }
+      // }
 
       response.status(200).json({ success: true, error: null });
     } catch (e) {

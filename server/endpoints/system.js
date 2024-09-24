@@ -522,7 +522,7 @@ function systemEndpoints(app) {
           message_limit: 25,
         });
         await BrowserExtensionApiKey.migrateApiKeysToMultiUser(user.id);
-        await sendRecoveryCodesToEmail(email);
+        // await sendRecoveryCodesToEmail(email);
 
         await updateENV(
           {
