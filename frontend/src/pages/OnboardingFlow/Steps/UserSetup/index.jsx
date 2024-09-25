@@ -226,8 +226,9 @@ const JustMe = ({
 };
 
 const MyTeam = ({ setMultiUserLoginValid, myTeamSubmitRef, navigate }) => {
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -236,6 +237,7 @@ const MyTeam = ({ setMultiUserLoginValid, myTeamSubmitRef, navigate }) => {
     const data = {
       username: formData.get("username"),
       password: formData.get("password"),
+      email: formData.get("email"),
     };
     const { success, error } = await System.setupMultiUser(data);
     if (!success) {
@@ -254,8 +256,10 @@ const MyTeam = ({ setMultiUserLoginValid, myTeamSubmitRef, navigate }) => {
 
   const setNewUsername = (e) => setUsername(e.target.value);
   const setNewPassword = (e) => setPassword(e.target.value);
+  const setNewEmail = (e) => setEmail(e.target.value);
   const handleUsernameChange = debounce(setNewUsername, 500);
   const handlePasswordChange = debounce(setNewPassword, 500);
+  const handleEmailChange = debounce(setNewEmail, 500);
 
   useEffect(() => {
     if (username.length >= 6 && password.length >= 8) {
@@ -263,7 +267,7 @@ const MyTeam = ({ setMultiUserLoginValid, myTeamSubmitRef, navigate }) => {
     } else {
       setMultiUserLoginValid(false);
     }
-  }, [username, password]);
+  }, [username, password,email]);
   return (
     <div className="w-full flex items-center justify-center border max-w-[600px] rounded-lg border-black/40 bg-[#f8fafe]/50">
       <form onSubmit={handleSubmit}>
@@ -295,7 +299,28 @@ const MyTeam = ({ setMultiUserLoginValid, myTeamSubmitRef, navigate }) => {
               </p>
               <div className="mt-4">
                 <label
-                  htmlFor="name"
+                  htmlFor="email"
+                  className="block mb-3 text-sm font-medium text-black"
+                >
+                  Admin account email
+                </label>
+                <input
+                  name="email"
+                  type="email"
+                  className="bg-black/80 text-white text-sm rounded-lg block w-full p-2.5 focus:outline-primary-button active:outline-primary-button outline-none"
+                  placeholder="Your admin email"
+                  minLength={8}
+                  required={true}
+                  autoComplete="off"
+                  onChange={handleEmailChange}
+                />
+              </div>
+              <p className=" text-black text-opacity-80 text-xs font-base">
+                Email must be in proper format.
+              </p>
+              <div className="mt-4">
+                <label
+                  htmlFor="password"
                   className="block mb-3 text-sm font-medium text-black"
                 >
                   Admin account password
@@ -312,8 +337,9 @@ const MyTeam = ({ setMultiUserLoginValid, myTeamSubmitRef, navigate }) => {
                 />
               </div>
               <p className=" text-black text-opacity-80 text-xs font-base">
-                Password must be at least 8 characters long.
+              Password must be at least 8 characters long
               </p>
+           
             </div>
           </div>
         </div>
