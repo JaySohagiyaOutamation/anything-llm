@@ -24,7 +24,7 @@ export default function SpeechToText({ sendCommand }) {
   function startSTTSession() {
     if (!isMicrophoneAvailable) {
       alert(
-        "OutamationLLM does not have access to microphone. Please enable for this site to use this feature."
+        "OutamationAI does not have access to microphone. Please enable for this site to use this feature."
       );
       return;
     }

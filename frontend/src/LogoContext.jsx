@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import OutamationLLM from "../public/outamation-llm.png";
+import OutamationAI from "../public/outamation-llm.png";
 import DefaultLoginLogo from "../public/favicon.png";
 import System from "./models/system";
 import { OUTAMATION_LOGO_URL } from "./utils/constants";
@@ -21,12 +21,12 @@ export function LogoProvider({ children }) {
           setLoginLogo(isCustomLogo ? logoURL : DefaultLoginLogo);
           setIsCustomLogo(isCustomLogo);
         } else {
-          setLogo(OutamationLLM);
+          setLogo(OutamationAI);
           setLoginLogo(DefaultLoginLogo);
           setIsCustomLogo(false);
         }
       } catch (err) {
-        setLogo(OutamationLLM);
+        setLogo(OutamationAI);
         setLoginLogo(DefaultLoginLogo);
         setIsCustomLogo(false);
         console.error("Failed to fetch logo:", err);

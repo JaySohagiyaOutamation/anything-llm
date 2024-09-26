@@ -1,6 +1,6 @@
 import PreLoader from "@/components/Preloader";
 import System from "@/models/system";
-import OutamationLLMIcon from "@/media/logo/outamation-llm-icon.png";
+import OutamationAIIcon from "@/media/logo/outamation-llm-icon.png";
 import OpenAiLogo from "@/media/llmprovider/openai.png";
 import GenericOpenAiLogo from "@/media/llmprovider/generic-openai.png";
 import AzureOpenAiLogo from "@/media/llmprovider/azure.png";
@@ -95,9 +95,9 @@ export const LLM_SELECTION_PRIVACY = {
   native: {
     name: "Custom Llama Model",
     description: [
-      "Your model and chats are only accessible on this OutamationLLM instance",
+      "Your model and chats are only accessible on this OutamationAI instance",
     ],
-    logo: OutamationLLMIcon,
+    logo: OutamationAIIcon,
   },
   togetherai: {
     name: "TogetherAI",
@@ -244,7 +244,7 @@ export const VECTOR_DB_PRIVACY = {
   lancedb: {
     name: "LanceDB",
     description: [
-      "Your vectors and document text are stored privately on this instance of OutamationLLM",
+      "Your vectors and document text are stored privately on this instance of OutamationAI",
     ],
     logo: LanceDbLogo,
   },
@@ -252,11 +252,11 @@ export const VECTOR_DB_PRIVACY = {
 
 export const EMBEDDING_ENGINE_PRIVACY = {
   native: {
-    name: "OutamationLLM Embedder",
+    name: "OutamationAI Embedder",
     description: [
-      "Your document text is embedded privately on this instance of OutamationLLM",
+      "Your document text is embedded privately on this instance of OutamationAI",
     ],
-    logo: OutamationLLMIcon,
+    logo: OutamationAIIcon,
   },
   openai: {
     name: "OpenAI",

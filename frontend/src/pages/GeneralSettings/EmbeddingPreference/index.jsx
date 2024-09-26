@@ -3,7 +3,7 @@ import Sidebar from "@/components/SettingsSidebar";
 import { isMobile } from "react-device-detect";
 import System from "@/models/system";
 import showToast from "@/utils/toast";
-import OutamationLLMIcon from "@/media/logo/outamation-llm-icon.png";
+import OutamationAIIcon from "@/media/logo/outamation-llm-icon.png";
 import OpenAiLogo from "@/media/llmprovider/openai.png";
 import AzureOpenAiLogo from "@/media/llmprovider/azure.png";
 import LocalAiLogo from "@/media/llmprovider/localai.png";
@@ -36,12 +36,12 @@ import { useTranslation } from "react-i18next";
 
 const EMBEDDERS = [
   {
-    name: "OutamationLLM Embedder",
+    name: "OutamationAI Embedder",
     value: "native",
-    logo: OutamationLLMIcon,
+    logo: OutamationAIIcon,
     options: (settings) => <NativeEmbeddingOptions settings={settings} />,
     description:
-      "Use the built-in embedding provider for OutamationLLM. Zero setup!",
+      "Use the built-in embedding provider for OutamationAI. Zero setup!",
   },
   {
     name: "OpenAI",

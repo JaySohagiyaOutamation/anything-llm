@@ -68,11 +68,11 @@ const TRANSLATIONS = {
 
   welcomeMessage: {
     part1:
-      "Bem-vindo ao OutamationLLM, OutamationLLM é uma ferramenta de IA de código aberto da Mintplex Labs que transforma qualquer coisa em um chatbot treinado que você pode consultar e conversar. OutamationLLM é um software BYOK (bring-your-own-keys | traga suas próprias chaves), portanto, não há assinatura, taxa ou cobranças para este software fora dos serviços que você deseja usar com ele.",
+      "Bem-vindo ao OutamationAI, OutamationAI é uma ferramenta de IA de código aberto da Mintplex Labs que transforma qualquer coisa em um chatbot treinado que você pode consultar e conversar. OutamationAI é um software BYOK (bring-your-own-keys | traga suas próprias chaves), portanto, não há assinatura, taxa ou cobranças para este software fora dos serviços que você deseja usar com ele.",
     part2:
-      "OutamationLLM é a maneira mais fácil de reunir produtos de IA poderosos como OpenAi, GPT-4, LangChain, PineconeDB, ChromaDB e outros serviços em um pacote organizado sem complicações para aumentar sua produtividade em 100x.",
+      "OutamationAI é a maneira mais fácil de reunir produtos de IA poderosos como OpenAi, GPT-4, LangChain, PineconeDB, ChromaDB e outros serviços em um pacote organizado sem complicações para aumentar sua produtividade em 100x.",
     part3:
-      "OutamationLLM pode ser executado totalmente localmente em sua máquina com pouca sobrecarga que você nem perceberá que está lá! Não é necessário GPU. A instalação em nuvem e localmente também está disponível.\nO ecossistema de ferramentas de IA fica mais poderoso a cada dia. OutamationLLM facilita o uso.",
+      "OutamationAI pode ser executado totalmente localmente em sua máquina com pouca sobrecarga que você nem perceberá que está lá! Não é necessário GPU. A instalação em nuvem e localmente também está disponível.\nO ecossistema de ferramentas de IA fica mais poderoso a cada dia. OutamationAI facilita o uso.",
     githubIssue: "Criar uma issue no Github",
     user1: "Como eu começo?!",
     part4:
@@ -81,7 +81,7 @@ const TRANSLATIONS = {
     user2:
       "Isso é como um Dropbox de IA ou algo assim? E quanto a conversar? Não é um chatbot?",
     part5:
-      "OutamationLLM é mais do que um Dropbox mais inteligente.\n\nOutamationLLM oferece duas maneiras de conversar com seus dados:\n\n<i>Consulta:</i> Seus chats retornarão dados ou inferências encontradas com os documentos em seu workspace ao qual tem acesso. Adicionar mais documentos ao Workspace o torna mais inteligente!\n\n<i>Conversacional:</i> Seus documentos + seu histórico de chat em andamento contribuem para o conhecimento do LLM ao mesmo tempo. Ótimo para adicionar informações em tempo real baseadas em texto ou correções e mal-entendidos que o LLM possa ter.\n\nVocê pode alternar entre qualquer modo \n<i>no meio da conversa!</i>",
+      "OutamationAI é mais do que um Dropbox mais inteligente.\n\nOutamationAI oferece duas maneiras de conversar com seus dados:\n\n<i>Consulta:</i> Seus chats retornarão dados ou inferências encontradas com os documentos em seu workspace ao qual tem acesso. Adicionar mais documentos ao Workspace o torna mais inteligente!\n\n<i>Conversacional:</i> Seus documentos + seu histórico de chat em andamento contribuem para o conhecimento do LLM ao mesmo tempo. Ótimo para adicionar informações em tempo real baseadas em texto ou correções e mal-entendidos que o LLM possa ter.\n\nVocê pode alternar entre qualquer modo \n<i>no meio da conversa!</i>",
     user3: "Uau, isso soa incrível, deixe-me experimentar já!",
     part6: "Divirta-se!",
     starOnGithub: "Dar estrela no GitHub",
@@ -118,7 +118,7 @@ const TRANSLATIONS = {
       add: "Adicionar nova mensagem",
       save: "Salvar Mensagens",
       heading: "Explique para mim",
-      body: "os benefícios do OutamationLLM",
+      body: "os benefícios do OutamationAI",
     },
     pfp: {
       title: "Imagem de Perfil do Assistente",
@@ -324,7 +324,7 @@ const TRANSLATIONS = {
       system: "sistema",
       user: "usuário",
       message: "mensagem",
-      assistant: "Assistente de Chat OutamationLLM",
+      assistant: "Assistente de Chat OutamationAI",
       "double-click": "Clique duas vezes para editar...",
       save: "Salvar Mensagens",
     },
@@ -341,7 +341,7 @@ const TRANSLATIONS = {
   api: {
     title: "Chaves API",
     description:
-      "As chaves API permitem que o titular acesse e gerencie programaticamente esta instância do OutamationLLM.",
+      "As chaves API permitem que o titular acesse e gerencie programaticamente esta instância do OutamationAI.",
     link: "Leia a documentação da API",
     generate: "Gerar Nova Chave API",
     table: {
@@ -354,7 +354,7 @@ const TRANSLATIONS = {
   llm: {
     title: "Preferência de LLM",
     description:
-      "Estas são as credenciais e configurações para seu provedor preferido de chat e incorporação de LLM. É importante que essas chaves estejam atualizadas e corretas, caso contrário, o OutamationLLM não funcionará corretamente.",
+      "Estas são as credenciais e configurações para seu provedor preferido de chat e incorporação de LLM. É importante que essas chaves estejam atualizadas e corretas, caso contrário, o OutamationAI não funcionará corretamente.",
     provider: "Provedor de LLM",
   },
 
@@ -364,7 +364,7 @@ const TRANSLATIONS = {
       "Estas são as credenciais e configurações para seu provedor preferido de modelo de transcrição. É importante que essas chaves estejam atualizadas e corretas, caso contrário, os arquivos de mídia e áudio não serão transcritos.",
     provider: "Provedor de Transcrição",
     "warn-start":
-      "Usar o modelo whisper local em máquinas com RAM ou CPU limitados pode travar o OutamationLLM ao processar arquivos de mídia.",
+      "Usar o modelo whisper local em máquinas com RAM ou CPU limitados pode travar o OutamationAI ao processar arquivos de mídia.",
     "warn-recommend":
       "Recomendamos pelo menos 2GB de RAM e upload de arquivos <10Mb.",
     "warn-end":
@@ -376,11 +376,11 @@ const TRANSLATIONS = {
     "desc-start":
       "Ao usar um LLM que não suporta nativamente um mecanismo de incorporação - pode ser necessário especificar adicionalmente as credenciais para incorporação de texto.",
     "desc-end":
-      "A incorporação é o processo de transformar texto em vetores. Essas credenciais são necessárias para transformar seus arquivos e prompts em um formato que o OutamationLLM possa usar para processar.",
+      "A incorporação é o processo de transformar texto em vetores. Essas credenciais são necessárias para transformar seus arquivos e prompts em um formato que o OutamationAI possa usar para processar.",
     provider: {
       title: "Provedor de Incorporação",
       description:
-        "Não é necessária configuração ao usar o mecanismo de incorporação nativo do OutamationLLM.",
+        "Não é necessária configuração ao usar o mecanismo de incorporação nativo do OutamationAI.",
     },
   },
 
@@ -411,7 +411,7 @@ const TRANSLATIONS = {
   vector: {
     title: "Banco de Dados Vetorial",
     description:
-      "Estas são as credenciais e configurações de como sua instância do OutamationLLM funcionará. É importante que essas chaves estejam atualizadas e corretas.",
+      "Estas são as credenciais e configurações de como sua instância do OutamationAI funcionará. É importante que essas chaves estejam atualizadas e corretas.",
     provider: {
       title: "Provedor de Banco de Dados Vetorial",
       description: "Não há configuração necessária para o LanceDB.",
@@ -459,7 +459,7 @@ const TRANSLATIONS = {
     password: {
       title: "Proteção por Senha",
       description:
-        "Proteja sua instância do OutamationLLM com uma senha. Se você esquecer esta senha, não há método de recuperação, então certifique-se de salvar esta senha.",
+        "Proteja sua instância do OutamationAI com uma senha. Se você esquecer esta senha, não há método de recuperação, então certifique-se de salvar esta senha.",
     },
     instance: {
       title: "Proteger Instância com Senha",
@@ -486,7 +486,7 @@ const TRANSLATIONS = {
   privacy: {
     title: "Privacidade e Tratamento de Dados",
     description:
-      "Esta é a sua configuração de como os provedores de terceiros conectados e o OutamationLLM tratam seus dados.",
+      "Esta é a sua configuração de como os provedores de terceiros conectados e o OutamationAI tratam seus dados.",
     llm: "Seleção de LLM",
     embedding: "Preferência de Incorporação",
     vector: "Banco de Dados Vetorial",
