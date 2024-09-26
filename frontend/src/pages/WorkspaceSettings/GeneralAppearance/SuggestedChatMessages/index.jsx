@@ -143,7 +143,7 @@ export default function SuggestedChatMessages({ slug }) {
       {editingIndex >= 0 && (
         <div className="flex flex-col gap-y-4 mr-2 mt-8">
           <div className="w-1/2">
-            <label className="text-black bg-white text-sm font-semibold block mb-2">
+            <label className="text-black bg-[#f8fafe] text-sm font-semibold block mb-2">
               Heading
             </label>
             <input

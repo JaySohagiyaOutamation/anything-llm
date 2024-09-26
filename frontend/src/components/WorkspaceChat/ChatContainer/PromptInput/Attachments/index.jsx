@@ -113,7 +113,7 @@ function AttachmentItem({ attachment }) {
         <div
           data-tooltip-id={`attachment-uid-${uid}-success`}
           data-tooltip-content={`${file.name} will be attached to this prompt. It will not be embedded into the workspace permanently.`}
-          className={`relative h-14 px-2 py-2 flex items-center gap-x-4 rounded-lg bg-zinc-800 border border-white/20 w-[200px] group`}
+          className={`relative h-14 px-2 py-2 flex items-center gap-x-4 rounded-lg bg-zinc-600 border border-white/20 w-[200px] group`}
         >
           <div className="invisible group-hover:visible absolute -top-[5px] -right-[5px] w-fit h-fit z-[10]">
             <button
