@@ -126,7 +126,7 @@ function CitationDetailModal({ source, onClose }) {
 
   return (
     <ModalWrapper isOpen={source}>
-      <div className="w-full max-w-2xl bg-main-gradient rounded-lg shadow border border-white/10 overflow-hidden">
+      <div className="w-full max-w-2xl bg-[#f8fafe] rounded-lg shadow border border-white/10 overflow-hidden">
         <div className="relative p-6 border-b rounded-t border-gray-500/50">
           <div className="w-full flex gap-x-2 items-center">
             {isUrl ? (

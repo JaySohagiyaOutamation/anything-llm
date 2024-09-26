@@ -38,7 +38,6 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
   const sendRecoveryCodes = async () => {
     try {
       const response = await System.sendRecoveryCodes(email);
-      console.log('response: ', response);
       if (response.success) {
         setMessage('Recovery codes sent successfully.');
       } else {

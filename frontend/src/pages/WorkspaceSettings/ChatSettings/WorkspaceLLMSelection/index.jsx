@@ -37,7 +37,7 @@ export default function WorkspaceLLMSelection({
 }) {
   const [filteredLLMs, setFilteredLLMs] = useState([]);
   const [selectedLLM, setSelectedLLM] = useState(
-    workspace?.chatProvider ?? "default"
+    workspace?.chatProvider ?? "openai"
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [searchMenuOpen, setSearchMenuOpen] = useState(false);
