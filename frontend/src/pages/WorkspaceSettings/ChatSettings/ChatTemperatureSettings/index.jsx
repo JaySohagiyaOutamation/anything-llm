@@ -36,7 +36,7 @@ export default function ChatTemperatureSettings({
         min={0.0}
         step={0.1}
         onWheel={(e) => e.target.blur()}
-        defaultValue={workspace?.openAiTemp ?? defaults.temp}
+        defaultValue={"0.2"}
         className="bg-black bg-opacity-70 text-white placeholder:text-white/20 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder="0.7"
         required={true}

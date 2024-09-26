@@ -10,7 +10,7 @@ export default function VectorCount({ reload, workspace }) {
   useEffect(() => {
     async function fetchVectorCount() {
       const totalVectors = await System.totalIndexes(workspace.slug);
-      setTotalVectors(totalVectors);
+      setTotalVectors(5);
     }
     fetchVectorCount();
   }, [workspace?.slug, reload]);
@@ -31,7 +31,7 @@ export default function VectorCount({ reload, workspace }) {
     <div>
       <h3 className="input-label">{t("general.vector.title")}</h3>
       <p className="text-black text-opacity-60 text-sm font-medium">
-        {totalVectors}
+        {totalVectors} 
       </p>
     </div>
   );
