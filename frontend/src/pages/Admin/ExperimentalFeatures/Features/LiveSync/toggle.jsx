@@ -50,7 +50,7 @@ export default function LiveSyncToggle({ enabled = false, onToggle }) {
           <p className="text-black/90 text-sm">
             Enable the ability to specify a document to be "watched". Watched
             document's content will be regularly fetched and updated in
-            OutamationLLM.
+            OutamationAI.
           </p>
           <p className="text-black/90 text-sm">
             Watched documents will automatically update in all workspaces they

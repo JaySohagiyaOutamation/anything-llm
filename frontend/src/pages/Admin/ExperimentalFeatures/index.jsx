@@ -192,7 +192,7 @@ function FeatureVerification({ children }) {
               <div className="p-6 space-y-6 flex h-full w-full">
                 <div className="w-full flex flex-col gap-y-4 text-black">
                   <p>
-                    Experimental features of OutamationLLM are features that we
+                    Experimental features of OutamationAI are features that we
                     are piloting and are <b>opt-in</b>. We proactively will
                     condition or warn you on any potential concerns should any
                     exist prior to approval of any feature.
@@ -212,7 +212,7 @@ function FeatureVerification({ children }) {
                         Increased cost or use of any connected LLM or embedding
                         provider.
                       </li>
-                      <li>Potential bugs or issues using OutamationLLM.</li>
+                      <li>Potential bugs or issues using OutamationAI.</li>
                     </ul>
                   </div>
 
@@ -226,7 +226,7 @@ function FeatureVerification({ children }) {
                       <li>The feature being used is not currently stable.</li>
                       <li>
                         The feature may not be available in future versions,
-                        configurations, or subscriptions of OutamationLLM.
+                        configurations, or subscriptions of OutamationAI.
                       </li>
                       <li>
                         Your privacy settings <b>will be honored</b> with use of

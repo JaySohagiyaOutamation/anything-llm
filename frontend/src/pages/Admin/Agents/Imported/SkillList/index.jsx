@@ -18,7 +18,7 @@ export default function ImportedSkillList({
             target="_blank"
             className="text-black/80 hover:underline"
           >
-            OutamationLLM Agent Docs
+            OutamationAI Agent Docs
           </a>
           .
         </p>

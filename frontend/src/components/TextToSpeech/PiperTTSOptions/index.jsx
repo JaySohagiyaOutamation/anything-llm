@@ -149,7 +149,7 @@ function DemoVoiceSample({ voiceId }) {
         setLoading(true);
         const client = new PiperTTSClient({ voiceId });
         const blobUrl = await client.getAudioBlobForText(
-          "Hello, welcome to OutamationLLM!"
+          "Hello, welcome to OutamationAI!"
         );
         setAudioSrc(blobUrl);
         setLoading(false);

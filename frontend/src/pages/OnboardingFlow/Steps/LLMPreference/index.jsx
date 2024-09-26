@@ -9,7 +9,7 @@ import OllamaLogo from "@/media/llmprovider/ollama.png";
 import LMStudioLogo from "@/media/llmprovider/lmstudio.png";
 import LocalAiLogo from "@/media/llmprovider/localai.png";
 import TogetherAILogo from "@/media/llmprovider/togetherai.png";
-import OutamationLLMIcon from "@/media/logo/outamation-llm-icon.png";
+import OutamationAIIcon from "@/media/logo/outamation-llm-icon.png";
 import MistralLogo from "@/media/llmprovider/mistral.jpeg";
 import HuggingFaceLogo from "@/media/llmprovider/huggingface.png";
 import PerplexityLogo from "@/media/llmprovider/perplexity.png";
@@ -50,7 +50,7 @@ import { useNavigate } from "react-router-dom";
 
 const TITLE = "LLM Preference";
 const DESCRIPTION =
-  "OutamationLLM can work with many LLM providers. This will be the service which handles chatting.";
+  "OutamationAI can work with many LLM providers. This will be the service which handles chatting.";
 
 const LLMS = [
   {
@@ -194,10 +194,10 @@ const LLMS = [
   {
     name: "Native",
     value: "native",
-    logo: OutamationLLMIcon,
+    logo: OutamationAIIcon,
     options: (settings) => <NativeLLMOptions settings={settings} />,
     description:
-      "Use a downloaded custom Llama model for chatting on this OutamationLLM instance.",
+      "Use a downloaded custom Llama model for chatting on this OutamationAI instance.",
   },
 ];
 
@@ -240,7 +240,7 @@ export default function LLMPreference({
     const data = {};
     const formData = new FormData(form);
     data.LLMProvider = selectedLLM;
-    // Default to OutamationLLM embedder and LanceDB
+    // Default to OutamationAI embedder and LanceDB
     data.EmbeddingEngine = "native";
     data.VectorDB = "lancedb";
     for (var [key, value] of formData.entries()) data[key] = value;

@@ -20,8 +20,8 @@ const webBrowsing = {
               call: JSON.stringify({ query: "Winner of today's world series" }),
             },
             {
-              prompt: "What is OutamationLLM?",
-              call: JSON.stringify({ query: "OutamationLLM" }),
+              prompt: "What is OutamationAI?",
+              call: JSON.stringify({ query: "OutamationAI" }),
             },
             {
               prompt: "Current AAPL stock price",
@@ -164,7 +164,7 @@ const webBrowsing = {
               headers: {
                 Authorization: `Bearer ${process.env.AGENT_SEARCHAPI_API_KEY}`,
                 "Content-Type": "application/json",
-                "X-SearchApi-Source": "OutamationLLM",
+                "X-SearchApi-Source": "OutamationAI",
               },
             })
               .then((res) => res.json())

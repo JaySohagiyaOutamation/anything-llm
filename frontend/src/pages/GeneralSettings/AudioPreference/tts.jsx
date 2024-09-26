@@ -5,7 +5,7 @@ import LLMItem from "@/components/LLMSelection/LLMItem";
 import { CaretUpDown, MagnifyingGlass, X } from "@phosphor-icons/react";
 import CTAButton from "@/components/lib/CTAButton";
 import OpenAiLogo from "@/media/llmprovider/openai.png";
-import OutamationLLMIcon from "@/media/logo/outamation-llm-icon.png";
+import OutamationAIIcon from "@/media/logo/outamation-llm-icon.png";
 import ElevenLabsIcon from "@/media/ttsproviders/elevenlabs.png";
 import PiperTTSIcon from "@/media/ttsproviders/piper.png";
 import BrowserNative from "@/components/TextToSpeech/BrowserNative";
@@ -17,7 +17,7 @@ const PROVIDERS = [
   {
     name: "System native",
     value: "native",
-    logo: OutamationLLMIcon,
+    logo: OutamationAIIcon,
     options: (settings) => <BrowserNative settings={settings} />,
     description: "Uses your browser's built in TTS service if supported.",
   },
@@ -112,7 +112,7 @@ export default function TextToSpeechProvider({ settings }) {
           </div>
           <p className="text-xs leading-[18px] font-base text-black text-opacity-60">
             Here you can specify what kind of text-to-speech providers you would
-            want to use in your OutamationLLM experience. By default, we use the
+            want to use in your OutamationAI experience. By default, we use the
             browser's built in support for these services, but you may want to
             use others.
           </p>

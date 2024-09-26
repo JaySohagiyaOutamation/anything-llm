@@ -69,11 +69,11 @@ const TRANSLATIONS = {
 
   welcomeMessage: {
     part1:
-      "Welcome to OutamationLLM, OutamationLLM is an open-source AI tool by Mintplex Labs that turns anything into a trained chatbot you can query and chat with. OutamationLLM is a BYOK (bring-your-own-keys) software so there is no subscription, fee, or charges for this software outside of the services you want to use with it.",
+      "Welcome to OutamationAI, OutamationAI is an open-source AI tool by Mintplex Labs that turns anything into a trained chatbot you can query and chat with. OutamationAI is a BYOK (bring-your-own-keys) software so there is no subscription, fee, or charges for this software outside of the services you want to use with it.",
     part2:
-      "OutamationLLM is the easiest way to put powerful AI products like OpenAi, GPT-4, LangChain, PineconeDB, ChromaDB, and other services together in a neat package with no fuss to increase your productivity by 100x.",
+      "OutamationAI is the easiest way to put powerful AI products like OpenAi, GPT-4, LangChain, PineconeDB, ChromaDB, and other services together in a neat package with no fuss to increase your productivity by 100x.",
     part3:
-      "OutamationLLM can run totally locally on your machine with little overhead you wont even notice it's there! No GPU needed. Cloud and on-premises installation is available as well.\nThe AI tooling ecosystem gets more powerful everyday. OutamationLLM makes it easy to use.",
+      "OutamationAI can run totally locally on your machine with little overhead you wont even notice it's there! No GPU needed. Cloud and on-premises installation is available as well.\nThe AI tooling ecosystem gets more powerful everyday. OutamationAI makes it easy to use.",
     githubIssue: "Create an issue on Github",
     user1: "How do I get started?!",
     part4:
@@ -82,7 +82,7 @@ const TRANSLATIONS = {
     user2:
       "Is this like an AI dropbox or something? What about chatting? It is a chatbot isn't it?",
     part5:
-      "OutamationLLM is more than a smarter Dropbox.\n\nOutamationLLM offers two ways of talking with your data:\n\n<i>Query:</i> Your chats will return data or inferences found with the documents in your workspace it has access to. Adding more documents to the Workspace make it smarter! \n\n<i>Conversational:</i> Your documents + your on-going chat history both contribute to the LLM knowledge at the same time. Great for appending real-time text-based info or corrections and misunderstandings the LLM might have. \n\nYou can toggle between either mode \n<i>in the middle of chatting!</i>",
+      "OutamationAI is more than a smarter Dropbox.\n\nOutamationAI offers two ways of talking with your data:\n\n<i>Query:</i> Your chats will return data or inferences found with the documents in your workspace it has access to. Adding more documents to the Workspace make it smarter! \n\n<i>Conversational:</i> Your documents + your on-going chat history both contribute to the LLM knowledge at the same time. Great for appending real-time text-based info or corrections and misunderstandings the LLM might have. \n\nYou can toggle between either mode \n<i>in the middle of chatting!</i>",
     user3: "Wow, this sounds amazing, let me try it out already!",
     part6: "Have Fun!",
     starOnGithub: "Star on GitHub",
@@ -119,7 +119,7 @@ const TRANSLATIONS = {
       add: "Add new message",
       save: "Save Messages",
       heading: "Explain to me",
-      body: "the benefits of OutamationLLM",
+      body: "the benefits of OutamationAI",
     },
     pfp: {
       title: "Assistant Profile Image",
@@ -322,7 +322,7 @@ const TRANSLATIONS = {
       system: "system",
       user: "user",
       message: "message",
-      assistant: "OutamationLLM Chat Assistant",
+      assistant: "OutamationAI Chat Assistant",
       "double-click": "Double click to edit...",
       save: "Save Messages",
     },
@@ -339,7 +339,7 @@ const TRANSLATIONS = {
   api: {
     title: "API Keys",
     description:
-      "API keys allow the holder to programmatically access and manage this OutamationLLM instance.",
+      "API keys allow the holder to programmatically access and manage this OutamationAI instance.",
     link: "Read the API documentation",
     generate: "Generate New API Key",
     table: {
@@ -352,7 +352,7 @@ const TRANSLATIONS = {
   llm: {
     title: "LLM Preference",
     description:
-      "These are the credentials and settings for your preferred LLM chat & embedding provider. Its important these keys are current and correct or else OutamationLLM will not function properly.",
+      "These are the credentials and settings for your preferred LLM chat & embedding provider. Its important these keys are current and correct or else OutamationAI will not function properly.",
     provider: "LLM Provider",
   },
 
@@ -362,7 +362,7 @@ const TRANSLATIONS = {
       "These are the credentials and settings for your preferred transcription model provider. Its important these keys are current and correct or else media files and audio will not transcribe.",
     provider: "Transcription Provider",
     "warn-start":
-      "Using the local whisper model on machines with limited RAM or CPU can stall OutamationLLM when processing media files.",
+      "Using the local whisper model on machines with limited RAM or CPU can stall OutamationAI when processing media files.",
     "warn-recommend":
       "We recommend at least 2GB of RAM and upload files <10Mb.",
     "warn-end":
@@ -374,11 +374,11 @@ const TRANSLATIONS = {
     "desc-start":
       "When using an LLM that does not natively support an embedding engine - you may need to additionally specify credentials to for embedding text.",
     "desc-end":
-      "Embedding is the process of turning text into vectors. These credentials are required to turn your files and prompts into a format which OutamationLLM can use to process.",
+      "Embedding is the process of turning text into vectors. These credentials are required to turn your files and prompts into a format which OutamationAI can use to process.",
     provider: {
       title: "Embedding Provider",
       description:
-        "There is no set up required when using OutamationLLM's native embedding engine.",
+        "There is no set up required when using OutamationAI's native embedding engine.",
     },
   },
 
@@ -409,7 +409,7 @@ const TRANSLATIONS = {
   vector: {
     title: "Vector Database",
     description:
-      "These are the credentials and settings for how your OutamationLLM instance will function. It's important these keys are current and correct.",
+      "These are the credentials and settings for how your OutamationAI instance will function. It's important these keys are current and correct.",
     provider: {
       title: "Vector Database Provider",
       description: "There is no configuration needed for LanceDB.",
@@ -458,7 +458,7 @@ const TRANSLATIONS = {
     password: {
       title: "Password Protection",
       description:
-        "Protect your OutamationLLM instance with a password. If you forget this there is no recovery method so ensure you save this password.",
+        "Protect your OutamationAI instance with a password. If you forget this there is no recovery method so ensure you save this password.",
     },
     instance: {
       title: "Password Protect Instance",
@@ -485,7 +485,7 @@ const TRANSLATIONS = {
   privacy: {
     title: "Privacy & Data-Handling",
     description:
-      "This is your configuration for how connected third party providers and OutamationLLM handle your data.",
+      "This is your configuration for how connected third party providers and OutamationAI handle your data.",
     llm: "LLM Selection",
     embedding: "Embedding Preference",
     vector: "Vector Database",

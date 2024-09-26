@@ -147,7 +147,7 @@ export default function UploadFile({
       </form>
       <div className="mt-6 text-center text-black text-opacity-90 text-xs font-medium w-[560px]">
         These files will be uploaded to the document processor running on this
-        OutamationLLM instance. These files are not sent or shared with a third
+        OutamationAI instance. These files are not sent or shared with a third
         party.
       </div>
     </div>
