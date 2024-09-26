@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import OutamationLLMIcon from "@/media/logo/outamation-llm-icon.png";
+import OutamationLLMIcon from "../../../../../public/favicon.png";
 import WorkspaceLLMItem from "./WorkspaceLLMItem";
 import { AVAILABLE_LLM_PROVIDERS } from "@/pages/GeneralSettings/LLMPreference";
 import { CaretUpDown, MagnifyingGlass, X } from "@phosphor-icons/react";

@@ -37,6 +37,7 @@ export default function ChatModelSelection({
       </div>
     );
   }
+  const defaultChatModel = provider === "openai" ? "gpt-4o" : workspace?.chatModel;
 
   return (
     <div>
@@ -64,7 +65,7 @@ export default function ChatModelSelection({
                 <option
                   key={model}
                   value={model}
-                  selected={workspace?.chatModel === model}
+                  selected={defaultChatModel === model}
                 >
                   {model}
                 </option>
@@ -79,7 +80,7 @@ export default function ChatModelSelection({
                 <option
                   key={model.id}
                   value={model.id}
-                  selected={workspace?.chatModel === model.id}
+                  selected={defaultChatModel === model.id}
                 >
                   {model.id}
                 </option>
@@ -97,7 +98,7 @@ export default function ChatModelSelection({
                     <option
                       key={model.id}
                       value={model.id}
-                      selected={workspace?.chatModel === model.id}
+                      selected={defaultChatModel === model.id}
                     >
                       {model.name}
                     </option>

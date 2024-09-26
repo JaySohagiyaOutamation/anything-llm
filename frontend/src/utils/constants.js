@@ -45,3 +45,4 @@ export function fullApiUrl() {
 export const POPUP_BROWSER_EXTENSION_EVENT = "NEW_BROWSER_EXTENSION_CONNECTION";
 
 export const OUTAMATION_LOGO_URL = "https://outamation.com/wp-content/uploads/2022/01/hori-logo-1-e1657530120873-2048x522.png"
+export const OUTAMATION_ICON_URL = "https://outamation.com/wp-content/uploads/2022/06/favicon-150x150.png"
