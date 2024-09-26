@@ -34,19 +34,19 @@ export default {
     },
   },
   github: () => {
-    return "https://github.com/Mintplex-Labs/anything-llm";
+    return "https://outamation.com/";
   },
   discord: () => {
-    return "https://discord.com/invite/6UyHPeGZAC";
+    return "https://outamation.com/";
   },
   docs: () => {
-    return "https://docs.anythingllm.com";
+    return "https://outamation.com/";
   },
   mailToMintplex: () => {
-    return "mailto:team@mintplexlabs.com";
+    return "mailto:info@outamation.com";
   },
   hosting: () => {
-    return "https://my.mintplexlabs.com/aio-checkout?product=anythingllm";
+    return "https://outamation.com/";
   },
   workspace: {
     chat: (slug) => {

@@ -36,12 +36,12 @@ import { useTranslation } from "react-i18next";
 
 const EMBEDDERS = [
   {
-    name: "OutamationAI Embedder",
+    name: "Outamation AI Embedder",
     value: "native",
     logo: OutamationAIIcon,
     options: (settings) => <NativeEmbeddingOptions settings={settings} />,
     description:
-      "Use the built-in embedding provider for OutamationAI. Zero setup!",
+      "Use the built-in embedding provider for Outamation AI. Zero setup!",
   },
   {
     name: "OpenAI",

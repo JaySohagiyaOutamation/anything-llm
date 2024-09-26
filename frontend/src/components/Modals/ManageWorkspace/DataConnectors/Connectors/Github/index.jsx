@@ -78,7 +78,7 @@ export default function GithubOptions() {
                   type="url"
                   name="repo"
                   className="bg-black/70 text-white placeholder-white/55 text-sm rounded-lg  block w-full p-2.5"
-                  placeholder="https://github.com/Mintplex-Labs/anything-llm"
+                  placeholder="https://outamation.com/"
                   required={true}
                   autoComplete="off"
                   onChange={(e) => setRepo(e.target.value)}

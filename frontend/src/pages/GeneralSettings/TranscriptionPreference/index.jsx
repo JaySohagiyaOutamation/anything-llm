@@ -22,7 +22,7 @@ const PROVIDERS = [
     description: "Leverage the OpenAI Whisper-large model using your API key.",
   },
   {
-    name: "OutamationAI Built-In",
+    name: "Outamation AI Built-In",
     value: "local",
     logo: OutamationAIIcon,
     options: (settings) => <NativeTranscriptionOptions settings={settings} />,
