@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import OutamationLLM from "./media/logo/anything-llm.png";
-import DefaultLoginLogo from "./media/illustrations/login-logo.svg";
+import OutamationLLM from "../public/outamation-llm.png";
+import DefaultLoginLogo from "../public/favicon.png";
 import System from "./models/system";
 import { OUTAMATION_LOGO_URL } from "./utils/constants";
 
