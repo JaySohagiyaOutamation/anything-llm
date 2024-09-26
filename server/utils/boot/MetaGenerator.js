@@ -45,21 +45,21 @@ class MetaGenerator {
       {
         tag: "title",
         props: null,
-        content: "OutamationAI | Your personal LLM trained on anything",
+        content: "Outamation AI | Your personal LLM trained on anything",
       },
 
       {
         tag: "meta",
         props: {
           name: "title",
-          content: "OutamationAI | Your personal LLM trained on anything",
+          content: "Outamation AI | Your personal LLM trained on anything",
         },
       },
       {
         tag: "meta",
         props: {
           description: "title",
-          content: "OutamationAI | Your personal LLM trained on anything",
+          content: "Outamation AI | Your personal LLM trained on anything",
         },
       },
 
@@ -73,14 +73,14 @@ class MetaGenerator {
         tag: "meta",
         props: {
           property: "og:title",
-          content: "OutamationAI | Your personal LLM trained on anything",
+          content: "Outamation AI | Your personal LLM trained on anything",
         },
       },
       {
         tag: "meta",
         props: {
           property: "og:description",
-          content: "OutamationAI | Your personal LLM trained on anything",
+          content: "Outamation AI | Your personal LLM trained on anything",
         },
       },
       {
@@ -105,14 +105,14 @@ class MetaGenerator {
         tag: "meta",
         props: {
           property: "twitter:title",
-          content: "OutamationAI | Your personal LLM trained on anything",
+          content: "Outamation AI | Your personal LLM trained on anything",
         },
       },
       {
         tag: "meta",
         props: {
           property: "twitter:description",
-          content: "OutamationAI | Your personal LLM trained on anything",
+          content: "Outamation AI | Your personal LLM trained on anything",
         },
       },
       {
@@ -191,7 +191,7 @@ class MetaGenerator {
           props: null,
           content:
             customTitle ??
-            "OutamationAI | Your personal LLM trained on anything",
+            "Outamation AI | Your personal LLM trained on anything",
         },
       ];
     }

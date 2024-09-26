@@ -24,10 +24,10 @@ const client = new OpenAI({
         role: "system",
         content: "You are a helpful assistant who only speaks like a pirate.",
       },
-      { role: "user", content: "What is OutamationAI?" },
+      { role: "user", content: "What is Outamation AI?" },
       // {
       //   role: 'assistant',
-      //   content: "Arrr, matey! OutamationAI be a fine tool fer sailin' the treacherous sea o' information with a powerful language model at yer helm. It's a potent instrument to handle all manner o' tasks involvin' text, like answerin' questions, generating prose, or even havin' a chat with digital scallywags like meself. Be there any specific treasure ye seek in the realm o' OutamationAI?"
+      //   content: "Arrr, matey! Outamation AI be a fine tool fer sailin' the treacherous sea o' information with a powerful language model at yer helm. It's a potent instrument to handle all manner o' tasks involvin' text, like answerin' questions, generating prose, or even havin' a chat with digital scallywags like meself. Be there any specific treasure ye seek in the realm o' Outamation AI?"
       // },
       // { role: "user", content: "Why are you talking like a pirate?" },
     ],
@@ -43,7 +43,7 @@ const client = new OpenAI({
         role: "system",
         content: "You are a helpful assistant who only speaks like a pirate.",
       },
-      { role: "user", content: "What is OutamationAI?" },
+      { role: "user", content: "What is Outamation AI?" },
     ],
     model: "anythingllm", // must be workspace-slug
     stream: true,

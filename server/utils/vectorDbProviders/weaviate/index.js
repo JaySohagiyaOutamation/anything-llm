@@ -203,7 +203,7 @@ const Weaviate = {
               .classCreator()
               .withClass({
                 class: camelCase(namespace),
-                description: `Class created by OutamationAI named ${camelCase(
+                description: `Class created by Outamation AI named ${camelCase(
                   namespace
                 )}`,
                 vectorizer: "none",
@@ -312,7 +312,7 @@ const Weaviate = {
           .classCreator()
           .withClass({
             class: camelCase(namespace),
-            description: `Class created by OutamationAI named ${camelCase(
+            description: `Class created by Outamation AI named ${camelCase(
               namespace
             )}`,
             vectorizer: "none",

@@ -15,7 +15,7 @@ export default function LanguagePreference() {
           Display Language
         </h2>
         <p className="text-xs leading-[18px] font-base text-black/70">
-          Select the preferred language to render OutamationAI's UI in, when
+          Select the preferred language to render Outamation AI's UI in, when
           applicable.
         </p>
       </div>

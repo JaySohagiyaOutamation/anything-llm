@@ -1,7 +1,7 @@
 const { WorkspaceChats } = require("../../../../models/workspaceChats");
 
 /**
- * Plugin to save chat history to OutamationAI DB.
+ * Plugin to save chat history to Outamation AI DB.
  */
 const chatHistory = {
   name: "chat-history",

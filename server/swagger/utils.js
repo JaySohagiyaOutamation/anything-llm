@@ -15,7 +15,7 @@ function useSwagger(app) {
       fs.readFileSync(path.resolve(__dirname, 'index.css')),
       fs.readFileSync(path.resolve(__dirname, 'dark-swagger.css'))
     ].join('\n\n\n'),
-    customSiteTitle: 'OutamationAI Developer API Documentation',
+    customSiteTitle: 'Outamation AI Developer API Documentation',
     customfavIcon: faviconUrl(),
   }
 

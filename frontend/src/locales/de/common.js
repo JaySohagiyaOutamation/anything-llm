@@ -66,11 +66,11 @@ const TRANSLATIONS = {
 
   welcomeMessage: {
     part1:
-      "Willkommen bei OutamationAI, OutamationAI ist ein Open-Source-KI-Tool von Mintplex Labs, das alles in einen trainierten Chatbot verwandelt, den Sie abfragen und mit dem Sie chatten können. OutamationAI ist eine BYOK-Software (Bring-Your-Own-Keys), daher gibt es keine Abonnements, Gebühren oder Kosten für diese Software außerhalb der Dienste, die Sie damit nutzen möchten.",
+      "Willkommen bei Outamation AI, Outamation AI ist ein Open-Source-KI-Tool von Mintplex Labs, das alles in einen trainierten Chatbot verwandelt, den Sie abfragen und mit dem Sie chatten können. Outamation AI ist eine BYOK-Software (Bring-Your-Own-Keys), daher gibt es keine Abonnements, Gebühren oder Kosten für diese Software außerhalb der Dienste, die Sie damit nutzen möchten.",
     part2:
-      "OutamationAI ist der einfachste Weg, leistungsstarke KI-Produkte wie OpenAI, GPT-4, LangChain, PineconeDB, ChromaDB und andere Dienste in einem übersichtlichen Paket ohne Aufwand zusammenzufassen, um Ihre Produktivität um das 100-fache zu steigern.",
+      "Outamation AI ist der einfachste Weg, leistungsstarke KI-Produkte wie OpenAI, GPT-4, LangChain, PineconeDB, ChromaDB und andere Dienste in einem übersichtlichen Paket ohne Aufwand zusammenzufassen, um Ihre Produktivität um das 100-fache zu steigern.",
     part3:
-      "OutamationAI kann vollständig lokal auf Ihrem Computer mit geringem Overhead laufen - Sie werden nicht einmal bemerken, dass es da ist! Keine GPU erforderlich. Cloud- und On-Premises-Installation ist ebenfalls verfügbar.\nDas KI-Tool-Ökosystem wird jeden Tag leistungsfähiger. OutamationAI macht es einfach, es zu nutzen.",
+      "Outamation AI kann vollständig lokal auf Ihrem Computer mit geringem Overhead laufen - Sie werden nicht einmal bemerken, dass es da ist! Keine GPU erforderlich. Cloud- und On-Premises-Installation ist ebenfalls verfügbar.\nDas KI-Tool-Ökosystem wird jeden Tag leistungsfähiger. Outamation AI macht es einfach, es zu nutzen.",
     githubIssue: "Erstellen Sie ein Problem auf Github",
     user1: "Wie fange ich an?!",
     part4:
@@ -79,7 +79,7 @@ const TRANSLATIONS = {
     user2:
       "Ist das so eine Art KI-Dropbox oder so? Was ist mit dem Chatten? Es ist doch ein Chatbot, oder?",
     part5:
-      "OutamationAI ist mehr als eine intelligentere Dropbox.\n\nOutamationAI bietet zwei Möglichkeiten, mit Ihren Daten zu sprechen:\n\n<i>Abfrage:</i> Ihre Chats geben Daten oder Schlussfolgerungen zurück, die in den Dokumenten Ihres Arbeitsbereichs gefunden wurden, auf die es Zugriff hat. Je mehr Dokumente Sie dem Arbeitsbereich hinzufügen, desto intelligenter wird er! \n\n<i>Konversation:</i> Ihre Dokumente + Ihr laufender Chat-Verlauf tragen gleichzeitig zum LLM-Wissen bei. Großartig für das Anhängen von Echtzeit-Textinformationen oder Korrekturen und Missverständnissen, die das LLM haben könnte. \n\nSie können zwischen beiden Modi wechseln \n<i>mitten im Chatten!</i>",
+      "Outamation AI ist mehr als eine intelligentere Dropbox.\n\nOutamation AI bietet zwei Möglichkeiten, mit Ihren Daten zu sprechen:\n\n<i>Abfrage:</i> Ihre Chats geben Daten oder Schlussfolgerungen zurück, die in den Dokumenten Ihres Arbeitsbereichs gefunden wurden, auf die es Zugriff hat. Je mehr Dokumente Sie dem Arbeitsbereich hinzufügen, desto intelligenter wird er! \n\n<i>Konversation:</i> Ihre Dokumente + Ihr laufender Chat-Verlauf tragen gleichzeitig zum LLM-Wissen bei. Großartig für das Anhängen von Echtzeit-Textinformationen oder Korrekturen und Missverständnissen, die das LLM haben könnte. \n\nSie können zwischen beiden Modi wechseln \n<i>mitten im Chatten!</i>",
     user3: "Wow, das klingt erstaunlich, lass es mich gleich ausprobieren!",
     part6: "Viel Spaß!",
     starOnGithub: "Stern auf GitHub",
@@ -114,7 +114,7 @@ const TRANSLATIONS = {
       add: "Neue Nachricht hinzufügen",
       save: "Nachrichten speichern",
       heading: "Erkläre mir",
-      body: "die Vorteile von OutamationAI",
+      body: "die Vorteile von Outamation AI",
     },
     pfp: {
       title: "Assistent-Profilbild",
@@ -315,7 +315,7 @@ const TRANSLATIONS = {
       system: "System",
       user: "Benutzer",
       message: "Nachricht",
-      assistant: "OutamationAI Chat-Assistent",
+      assistant: "Outamation AI Chat-Assistent",
       "double-click": "Doppelklicken zum Bearbeiten...",
       save: "Nachrichten speichern",
     },
@@ -331,7 +331,7 @@ const TRANSLATIONS = {
   api: {
     title: "API-Schlüssel",
     description:
-      "API-Schlüssel ermöglichen es dem Besitzer, programmatisch auf diese OutamationAI-Instanz zuzugreifen und sie zu verwalten.",
+      "API-Schlüssel ermöglichen es dem Besitzer, programmatisch auf diese Outamation AI-Instanz zuzugreifen und sie zu verwalten.",
     link: "Lesen Sie die API-Dokumentation",
     generate: "Neuen API-Schlüssel generieren",
     table: {
@@ -344,7 +344,7 @@ const TRANSLATIONS = {
   llm: {
     title: "LLM-Präferenz",
     description:
-      "Dies sind die Anmeldeinformationen und Einstellungen für Ihren bevorzugten LLM-Chat- und Einbettungsanbieter. Es ist wichtig, dass diese Schlüssel aktuell und korrekt sind, sonst wird OutamationAI nicht richtig funktionieren.",
+      "Dies sind die Anmeldeinformationen und Einstellungen für Ihren bevorzugten LLM-Chat- und Einbettungsanbieter. Es ist wichtig, dass diese Schlüssel aktuell und korrekt sind, sonst wird Outamation AI nicht richtig funktionieren.",
     provider: "LLM-Anbieter",
   },
 
@@ -354,7 +354,7 @@ const TRANSLATIONS = {
       "Dies sind die Anmeldeinformationen und Einstellungen für Ihren bevorzugten Transkriptionsmodellanbieter. Es ist wichtig, dass diese Schlüssel aktuell und korrekt sind, sonst werden Mediendateien und Audio nicht transkribiert.",
     provider: "Transkriptionsanbieter",
     "warn-start":
-      "Die Verwendung des lokalen Whisper-Modells auf Maschinen mit begrenztem RAM oder CPU kann OutamationAI bei der Verarbeitung von Mediendateien zum Stillstand bringen.",
+      "Die Verwendung des lokalen Whisper-Modells auf Maschinen mit begrenztem RAM oder CPU kann Outamation AI bei der Verarbeitung von Mediendateien zum Stillstand bringen.",
     "warn-recommend":
       "Wir empfehlen mindestens 2 GB RAM und das Hochladen von Dateien <10 MB.",
     "warn-end":
@@ -366,11 +366,11 @@ const TRANSLATIONS = {
     "desc-start":
       "Bei der Verwendung eines LLM, das keine native Unterstützung für eine Einbettungs-Engine bietet, müssen Sie möglicherweise zusätzlich Anmeldeinformationen für die Texteinbettung angeben.",
     "desc-end":
-      "Einbettung ist der Prozess, Text in Vektoren umzuwandeln. Diese Anmeldeinformationen sind erforderlich, um Ihre Dateien und Prompts in ein Format umzuwandeln, das OutamationAI zur Verarbeitung verwenden kann.",
+      "Einbettung ist der Prozess, Text in Vektoren umzuwandeln. Diese Anmeldeinformationen sind erforderlich, um Ihre Dateien und Prompts in ein Format umzuwandeln, das Outamation AI zur Verarbeitung verwenden kann.",
     provider: {
       title: "Einbettungsanbieter",
       description:
-        "Bei Verwendung der nativen Einbettungs-Engine von OutamationAI ist keine Einrichtung erforderlich.",
+        "Bei Verwendung der nativen Einbettungs-Engine von Outamation AI ist keine Einrichtung erforderlich.",
     },
   },
 
@@ -400,7 +400,7 @@ const TRANSLATIONS = {
   vector: {
     title: "Vektordatenbank",
     description:
-      "Dies sind die Anmeldeinformationen und Einstellungen für die Funktionsweise Ihrer OutamationAI-Instanz. Es ist wichtig, dass diese Schlüssel aktuell und korrekt sind.",
+      "Dies sind die Anmeldeinformationen und Einstellungen für die Funktionsweise Ihrer Outamation AI-Instanz. Es ist wichtig, dass diese Schlüssel aktuell und korrekt sind.",
     provider: {
       title: "Vektordatenbankanbieter",
       description: "Für LanceDB ist keine Konfiguration erforderlich.",
@@ -447,7 +447,7 @@ const TRANSLATIONS = {
     password: {
       title: "Passwortschutz",
       description:
-        "Schützen Sie Ihre OutamationAI-Instanz mit einem Passwort. Wenn Sie dieses vergessen, gibt es keine Wiederherstellungsmethode, also stellen Sie sicher, dass Sie dieses Passwort speichern.",
+        "Schützen Sie Ihre Outamation AI-Instanz mit einem Passwort. Wenn Sie dieses vergessen, gibt es keine Wiederherstellungsmethode, also stellen Sie sicher, dass Sie dieses Passwort speichern.",
     },
     instance: {
       title: "Instanz mit Passwort schützen",
@@ -472,7 +472,7 @@ const TRANSLATIONS = {
   privacy: {
     title: "Datenschutz & Datenverarbeitung",
     description:
-      "Dies ist Ihre Konfiguration dafür, wie verbundene Drittanbieter und OutamationAI Ihre Daten behandeln.",
+      "Dies ist Ihre Konfiguration dafür, wie verbundene Drittanbieter und Outamation AI Ihre Daten behandeln.",
     llm: "LLM-Auswahl",
     embedding: "Einbettungspräferenz",
     vector: "Vektordatenbank",
