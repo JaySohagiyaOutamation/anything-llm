@@ -114,7 +114,7 @@ export default function NewSQLConnection({ isOpen, closeModal, onSubmit }) {
                 <label className="text-black text-sm font-semibold block my-4">
                   Select your SQL engine
                 </label>
-                <div className="grid md:grid-cols-4 gap-4 grid-cols-2">
+                <div className="grid md:grid-cols-3 gap-4 grid-cols-2">
                   <DBEngine
                     provider="postgresql"
                     active={engine === "postgresql"}

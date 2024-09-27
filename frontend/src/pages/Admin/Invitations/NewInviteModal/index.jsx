@@ -67,10 +67,10 @@ export default function NewInviteModal({ closeModal }) {
           <button
             onClick={closeModal}
             type="button"
-            className="transition-all duration-300 text-white bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+            className="transition-all duration-300 text-white  hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-200 hover:border-slate-100 hover:border-opacity-50 border-transparent border"
             data-modal-hide="staticModal"
           >
-            <X className="text-gray-400 text-lg" />
+            <X className="text-gray-700 text-lg" />
           </button>
         </div>
         <form onSubmit={handleCreate}>

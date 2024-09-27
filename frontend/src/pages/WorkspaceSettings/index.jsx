@@ -82,7 +82,7 @@ function ShowWorkspaceChat() {
         <div className="flex gap-x-10 pt-6 pb-4 ml-16 mr-8 border-b-2 border-white border-opacity-10">
           <Link
             to={paths.workspace.chat(slug)}
-            className="absolute top-2 left-2 md:top-4 md:left-4 transition-all duration-300 p-2 rounded-full text-white bg-black hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border z-10"
+            className="absolute top-2 left-2 md:top-4 md:left-4 transition-all duration-300 p-2 rounded-full text-white bg-black hover:bg-gray-200 hover:border-slate-100 hover:border-opacity-50 border-transparent border z-10"
           >
             <ArrowUUpLeft className="h-5 w-5" weight="fill" />
           </Link>

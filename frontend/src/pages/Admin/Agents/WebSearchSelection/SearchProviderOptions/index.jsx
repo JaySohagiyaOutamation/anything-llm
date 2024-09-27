@@ -196,7 +196,7 @@ export function BingSearchOptions({ settings }) {
       <p className="text-sm text-black/70 my-2">
         To set up a Bing Web Search API subscription:
       </p>
-      <ol className="list-decimal text-sm text-white/60 ml-6">
+      <ol className="list-decimal text-sm text-black/60 ml-6">
         <li>
           Go to the Azure portal:{" "}
           <a

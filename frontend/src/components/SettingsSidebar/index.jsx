@@ -96,7 +96,7 @@ export default function SettingsSidebar() {
                 <div className="flex gap-x-2 items-center text-slate-500 shrink-0">
                   <a
                     href={paths.home()}
-                    className="transition-all duration-300 p-2 rounded-full text-white bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+                    className="transition-all duration-300 p-2 rounded-full text-white bg-sidebar-button hover:bg-gray-200 hover:border-slate-100 hover:border-opacity-50 border-transparent border"
                   >
                     <House className="h-4 w-4" />
                   </a>

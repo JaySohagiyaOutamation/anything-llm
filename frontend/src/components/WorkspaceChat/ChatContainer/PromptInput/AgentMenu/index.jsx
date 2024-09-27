@@ -145,10 +145,10 @@ function FirstTimeAgentUser() {
             <button
               onClick={dismiss}
               type="button"
-              className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+              className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-sidebar-button hover:bg-gray-200 hover:border-slate-100 hover:border-opacity-50 border-transparent border"
               data-modal-hide="staticModal"
             >
-              <X className="text-gray-300 text-lg" />
+              <X className="text-gray-700 text-lg" />
             </button>
           </div>
           <div className="p-6 space-y-6 flex h-full w-full">

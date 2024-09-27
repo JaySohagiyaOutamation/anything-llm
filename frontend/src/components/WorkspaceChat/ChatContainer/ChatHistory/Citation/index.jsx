@@ -155,9 +155,9 @@ function CitationDetailModal({ source, onClose }) {
           <button
             onClick={onClose}
             type="button"
-            className="absolute top-6 right-6 transition-all duration-300 text-gray-600 bg-transparent hover:border-black/60 rounded-lg text-sm p-1.5 inline-flex items-center bg-sidebar-button hover:bg-menu-item-selected-gradient hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+            className="absolute top-6 right-6 transition-all duration-300 text-gray-600 bg-transparent hover:border-black/60 rounded-lg text-sm p-1.5 inline-flex items-center bg-sidebar-button hover:bg-gray-200 hover:border-slate-100 hover:border-opacity-50 border-transparent border"
           >
-            <X className="text-gray-300 text-lg" />
+            <X className="text-gray-700 text-lg" />
           </button>
         </div>
         <div

@@ -71,7 +71,7 @@ export default function AccountModal({ user, hideModal }) {
           <button
             onClick={hideModal}
             type="button"
-            className="text-gray-400 bg-transparent hover:border-white/60 rounded-lg p-1.5 ml-auto inline-flex items-center hover:bg-menu-item-selected-gradient hover:border-slate-100 border-transparent"
+            className="text-gray-400 bg-transparent hover:border-white/60 rounded-lg p-1.5 ml-auto inline-flex items-center hover:bg-gray-200 hover:border-slate-100 border-transparent"
           >
             <X className="text-lg" />
           </button>
