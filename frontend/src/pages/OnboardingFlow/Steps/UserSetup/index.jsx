@@ -240,14 +240,6 @@ const MyTeam = ({ setMultiUserLoginValid, myTeamSubmitRef, navigate }) => {
       email: formData.get("email"),
     };
     const { success, error } = await System.setupMultiUser(data);
-    if(success){
-      const {success , message} = await System.sendRecoveryCodes(data.email);
-      if(!success){
-        showToast(`Error: ${message}`, "error");
-        return;
-      }
-    }
-
     if (!success) {
       showToast(`Error: ${error}`, "error");
       return;
