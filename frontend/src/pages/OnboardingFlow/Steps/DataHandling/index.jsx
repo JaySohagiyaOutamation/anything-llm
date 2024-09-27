@@ -95,7 +95,7 @@ export const LLM_SELECTION_PRIVACY = {
   native: {
     name: "Custom Llama Model",
     description: [
-      "Your model and chats are only accessible on this OutamationAI instance",
+      "Your model and chats are only accessible on this Outamation AI instance",
     ],
     logo: OutamationAIIcon,
   },
@@ -244,7 +244,7 @@ export const VECTOR_DB_PRIVACY = {
   lancedb: {
     name: "LanceDB",
     description: [
-      "Your vectors and document text are stored privately on this instance of OutamationAI",
+      "Your vectors and document text are stored privately on this instance of Outamation AI",
     ],
     logo: LanceDbLogo,
   },
@@ -252,9 +252,9 @@ export const VECTOR_DB_PRIVACY = {
 
 export const EMBEDDING_ENGINE_PRIVACY = {
   native: {
-    name: "OutamationAI Embedder",
+    name: "Outamation AI Embedder",
     description: [
-      "Your document text is embedded privately on this instance of OutamationAI",
+      "Your document text is embedded privately on this instance of Outamation AI",
     ],
     logo: OutamationAIIcon,
   },
