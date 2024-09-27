@@ -233,7 +233,7 @@ export const AVAILABLE_LLM_PROVIDERS = [
     logo: OutamationAIIcon,
     options: (settings) => <NativeLLMOptions settings={settings} />,
     description:
-      "Use a downloaded custom Llama model for chatting on this OutamationAI instance.",
+      "Use a downloaded custom Llama model for chatting on this Outamation AI instance.",
     requiredConfig: [],
   },
 ];

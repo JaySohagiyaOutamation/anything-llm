@@ -50,7 +50,7 @@ import { useNavigate } from "react-router-dom";
 
 const TITLE = "LLM Preference";
 const DESCRIPTION =
-  "OutamationAI can work with many LLM providers. This will be the service which handles chatting.";
+  "Outamation AI can work with many LLM providers. This will be the service which handles chatting.";
 
 const LLMS = [
   {
@@ -197,7 +197,7 @@ const LLMS = [
     logo: OutamationAIIcon,
     options: (settings) => <NativeLLMOptions settings={settings} />,
     description:
-      "Use a downloaded custom Llama model for chatting on this OutamationAI instance.",
+      "Use a downloaded custom Llama model for chatting on this Outamation AI instance.",
   },
 ];
 
