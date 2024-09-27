@@ -1,7 +1,7 @@
 import paths from "@/utils/paths";
 import LGroupImg from "./l_group.png";
 import RGroupImg from "./r_group.png";
-import OutamationAILogo from "@/media/logo/anything-llm-old.png";
+import OutamationAILogo from "@/media/logo/outamation-llm.png";
 import { useNavigate } from "react-router-dom";
 
 export default function OnboardingHome() {
@@ -25,7 +25,7 @@ export default function OnboardingHome() {
             <img
               src={OutamationAILogo}
               alt="OutamationAI"
-              className="md:h-[50px] flex-shrink-0 max-w-[300px]"
+              className="md:h-[80px] flex-shrink-0 max-w-[300px]"
             />
             <button
               onClick={() => navigate(paths.onboarding.llmPreference())}
