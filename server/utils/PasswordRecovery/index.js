@@ -39,12 +39,12 @@ async function sendRecoveryCodesToEmail(email = "") {
 
     Regards,
     Your Service Team
-    Outamation
+    Outamation AI
   `;
 
   // Send email using Nodemailer
   const mailOptions = {
-    from:  `Outamate Mods <donotreply@outamationmail.com>`,  // Office 365 email
+    from:  `Outamation AI <donotreply@outamationmail.com>`,  // Office 365 email
     to: userEmail,                                          // Recipient's email
     subject: 'Your Account Recovery Codes',
     text: recoveryCodesMessage,                             // Recovery codes message in plain text
