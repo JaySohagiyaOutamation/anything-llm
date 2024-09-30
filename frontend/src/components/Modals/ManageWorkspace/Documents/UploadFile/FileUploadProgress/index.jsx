@@ -112,7 +112,7 @@ function FileUploadProgressComponent({
     <div
       className={`${
         isFadingOut ? "file-upload-fadeout" : "file-upload"
-      } h-14 px-2 py-2 flex items-center gap-x-4 rounded-lg bg-black/15 border border-white/40`}
+      } h-14 px-2 py-2 flex items-center gap-x-4 rounded-lg bg-[#E4ECF6] border border-white/40`}
     >
       <div className="w-6 h-6 flex-shrink-0">
         {status !== "complete" ? (
@@ -124,10 +124,10 @@ function FileUploadProgressComponent({
         )}
       </div>
       <div className="flex flex-col">
-        <p className="text-black text-xs font-medium">
+        <p className="text-white text-xs font-medium">
           {truncate(file.name, 30)}
         </p>
-        <p className="text-black/70 text-xs font-medium">
+        <p className="text-white/70 text-xs font-medium">
           {humanFileSize(file.size)} | {milliToHms(timerMs)}
         </p>
       </div>

@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import OutamationAI from "../public/outamation-llm.png";
 import DefaultLoginLogo from "../public/favicon.png";
 import System from "./models/system";
-import { OUTAMATION_LOGO_URL } from "./utils/constants";
+import OUTAMATION_LOGO from  "../public/outamation-llm.png"
 
 export const LogoContext = createContext();
 
@@ -15,7 +15,7 @@ export function LogoProvider({ children }) {
     async function fetchInstanceLogo() {
       try {
         const { isCustomLogo } = await System.fetchLogo();
-        const logoURL = OUTAMATION_LOGO_URL;
+        const logoURL = OUTAMATION_LOGO;
         if (logoURL) {
           setLogo(logoURL);
           setLoginLogo(isCustomLogo ? logoURL : DefaultLoginLogo);

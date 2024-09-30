@@ -804,6 +804,6 @@ does not extend the close button beyond the viewport. */
   font-size: 20px;
 }
 
-.custom-span strong{
-  color : black;
+strong{
+  color : black !important;
 }
