@@ -97,23 +97,23 @@ const Citation = memo(({ source, onClick }) => {
   );
 });
 
-function SkeletonLine() {
-  const numOfBoxes = Math.floor(Math.random() * 5) + 2;
-  return (
-    <div className="flex space-x-2 mb-2">
-      {Array.from({ length: numOfBoxes }).map((_, index) => (
-        <div
-          key={index}
-          className="bg-black/20 rounded"
-          style={{
-            width: `${Math.random() * 150 + 50}px`,
-            height: "20px",
-          }}
-        ></div>
-      ))}
-    </div>
-  );
-}
+// function SkeletonLine() {
+//   const numOfBoxes = Math.floor(Math.random() * 5) + 2;
+//   return (
+//     <div className="flex space-x-2 mb-2">
+//       {Array.from({ length: numOfBoxes }).map((_, index) => (
+//         <div
+//           key={index}
+//           className="bg-black/20 rounded"
+//           style={{
+//             width: `${Math.random() * 150 + 50}px`,
+//             height: "20px",
+//           }}
+//         ></div>
+//       ))}
+//     </div>
+//   );
+// }
 
 function omitChunkHeader(text) {
   if (!text.startsWith("<document_metadata>")) return text;
@@ -165,9 +165,9 @@ function CitationDetailModal({ source, onClose }) {
           style={{ maxHeight: "calc(100vh - 200px)" }}
         >
           <div className="p-6 space-y-2 flex-col">
-            {[...Array(3)].map((_, idx) => (
+            {/* {[...Array(3)].map((_, idx) => (
               <SkeletonLine key={idx} />
-            ))}
+            ))} */}
             {chunks.map(({ text, score }, idx) => (
               <div key={idx} className="pt-6 text-black">
                 <div className="flex flex-col w-full justify-start pb-6 gap-y-1">
@@ -195,9 +195,9 @@ function CitationDetailModal({ source, onClose }) {
                     </>
                   )}
                 </div>
-                {[...Array(3)].map((_, idx) => (
+                {/* {[...Array(3)].map((_, idx) => (
                   <SkeletonLine key={idx} />
-                ))}
+                ))} */}
               </div>
             ))}
             <div className="mb-6"></div>

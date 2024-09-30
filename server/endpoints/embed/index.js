@@ -25,12 +25,14 @@ function embeddedEndpoints(app) {
         const {
           sessionId,
           message,
+          currentURL,
           // optional keys for override of defaults if enabled.
           prompt = null,
           model = null,
           temperature = null,
           username = null,
         } = reqBody(request);
+        console.log(currentURL);
 
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Content-Type", "text/event-stream");
