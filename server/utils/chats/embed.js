@@ -147,7 +147,7 @@ async function streamChatWithForEmbed(
     },
     rawHistory
   );
-
+console.log(currentURL);
   // If streaming is not explicitly enabled for connector
   // we do regular waiting of a response and send a single chunk.
   if (LLMConnector.streamingEnabled() !== true) {
