@@ -18,8 +18,7 @@ export default function NewUserModal() {
     const { success, error } = await Invite.acceptInvite(code, data);
     if (success) {
       const { valid, user, token, message } = await System.requestToken(data);
-      const {success} = await System.sendRecoveryCodes(data.email);
-      if (valid && success && !!token && !!user) {
+      if (valid && !!token && !!user) {
         window.localStorage.setItem(AUTH_USER, JSON.stringify(user));
         window.localStorage.setItem(AUTH_TOKEN, token);
         window.location = paths.home();
