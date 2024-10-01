@@ -3,14 +3,14 @@ import showToast from "@/utils/toast";
 import { Plus } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { OUTAMATION_ICON_URL } from "../../../../../src/utils/constants"
+import OUTAMATION_ICON  from "../../../../../public/favicon.png"
 
 export default function WorkspacePfp({ workspace, slug }) {
   const [pfp, setPfp] = useState(null);
   const { t } = useTranslation();
   useEffect(() => {
     async function fetchWorkspace() {
-      const pfpUrl = OUTAMATION_ICON_URL;
+      const pfpUrl = OUTAMATION_ICON;
       setPfp(pfpUrl);
     }
     fetchWorkspace();
