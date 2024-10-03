@@ -12,8 +12,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: 'donotreply@outamationmail.com', // Double-check this
-    pass: 'vmpcmkylbzpjclpn',            // Double-check this
+    user: process.env.SMTP_EMAIL, // Double-check this
+    pass: process.env.SMTP_PASS,            // Double-check this
   }
 });
 

@@ -26,14 +26,14 @@ function embeddedEndpoints(app) {
           sessionId,
           message,
           currentURL,
+          pageCodeBlobUrl,
           // optional keys for override of defaults if enabled.
           prompt = null,
           model = null,
           temperature = null,
           username = null,
         } = reqBody(request);
-        console.log(currentURL);
-
+    
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Content-Type", "text/event-stream");
         response.setHeader("Access-Control-Allow-Origin", "*");
