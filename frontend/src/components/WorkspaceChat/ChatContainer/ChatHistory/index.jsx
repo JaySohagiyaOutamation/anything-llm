@@ -287,8 +287,8 @@ function WorkspaceChatSuggestions({ suggestions = [], sendSuggestion }) {
           className="text-left p-2.5 border rounded-xl border-white/20 bg-gray-500"
           onClick={() => sendSuggestion(suggestion.heading, suggestion.message)}
         >
-          <p className="font-semibold">{suggestion.heading}</p>
-          <p>{suggestion.message}</p>
+          <p className="text-white">{suggestion.heading}</p>
+          <p className>{suggestion.message}</p>
         </button>
       ))}
     </div>
