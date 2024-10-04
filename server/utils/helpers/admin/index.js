@@ -9,7 +9,13 @@ function validRoleSelection(currentUser = {}, newUserParams = {}) {
     return { valid: true, error: null }; // not updating role, so skip.
   if (currentUser.role === ROLES.admin) return { valid: true, error: null };
   if (currentUser.role === ROLES.manager) {
-    const validRoles = [ROLES.manager, ROLES.default];
+    const validRoles = [ROLES.manager, ROLES.default,ROLES.supervisor];
+    if (!validRoles.includes(newUserParams.role))
+      return { valid: false, error: "Invalid role selection for user." };
+    return { valid: true, error: null };
+  }
+  if (currentUser.role === ROLES.supervisor) {
+    const validRoles = [ROLES.supervisor, ROLES.default];
     if (!validRoles.includes(newUserParams.role))
       return { valid: false, error: "Invalid role selection for user." };
     return { valid: true, error: null };
@@ -20,8 +26,8 @@ function validRoleSelection(currentUser = {}, newUserParams = {}) {
 // Check to make sure with this update that includes a role change to an existing admin to a non-admin
 // that we still have at least one admin left or else they will lock themselves out.
 async function canModifyAdmin(userToModify, updates) {
-  // if updates don't include role property
-  // or the user being modified isn't an admin currently
+  // ifu updates don't include role property
+  // or the ser being modified isn't an admin currently
   // or the updates role is equal to the users current role.
   // skip validation.
   if (!updates.hasOwnProperty("role")) return { valid: true, error: null };

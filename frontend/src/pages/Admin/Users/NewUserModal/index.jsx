@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { X } from "@phosphor-icons/react";
 import Admin from "@/models/admin";
 import { userFromStorage } from "@/utils/request";
 import { RoleHintDisplay } from "..";
+import Workspace from "@/models/workspace";
 
 export default function NewUserModal({ closeModal }) {
   const [error, setError] = useState(null);
+  const [workspaces,setWorkspaces] = useState([]);
+  const [selectedWorkspace,setSelectedWorkspace] = useState("");
   const [role, setRole] = useState("default");
 
   const handleCreate = async (e) => {
@@ -20,6 +23,15 @@ export default function NewUserModal({ closeModal }) {
   };
 
   const user = userFromStorage();
+
+  useEffect(() => {
+    async function getWorkspaces() {
+      const workspaces = await Workspace.all();
+      console.log('workspaces: ', workspaces);
+      setWorkspaces(workspaces);
+    }
+    getWorkspaces();
+  }, []);
 
   return (
     <div className="relative w-full max-w-2xl max-h-full">
@@ -124,12 +136,35 @@ export default function NewUserModal({ closeModal }) {
                 >
                   <option value="default">Default</option>
                   <option value="manager">Manager</option>
+                  <option value="supervisor">Supervisor</option>
                   {user?.role === "admin" && (
                     <option value="admin">Administrator</option>
                   )}
                 </select>
                 <RoleHintDisplay role={role} />
               </div>
+              {role === "supervisor" && 
+                <div>
+                <label
+                  htmlFor="selectedWorkspace"
+                  className="block mb-2 text-sm font-medium text-black"
+                >
+                  Workspace
+                </label>
+                <select
+                  name="selectedWorkspace"
+                  required={true}
+                  onChange={(e) => setSelectedWorkspace(e.target.value)}
+                  className="rounded-lg bg-black bg-opacity-70 text-white placeholder:text-white/70 px-4 py-2 text-sm border-gray-500 focus:ring-blue-500 focus:border-blue-500 w-full"
+                >
+                  
+                {workspaces.map((workspace,index) => <option value={`${workspace.name}`} key={index}>{workspace.name}</option>
+                 )}
+               
+                </select>
+              
+              </div>
+              }
               {error && <p className="text-red-400 text-sm">Error: {error}</p>}
               <p className="text-black text-xs md:text-sm">
                 After creating a user they will need to login with their initial

@@ -37,6 +37,14 @@ model workspace_documents {
   workspace            workspaces            @relation(fields: [workspaceId], references: [id])
   document_sync_queues document_sync_queues?
 }
+model supervisor_documents {
+   id                   Int                   @id @default(autoincrement())
+   workspaceId          Int
+   userId               Int
+   docId                String?               
+   user                 users                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+   workspace            workspaces            @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+}
 
 model invites {
   id            Int      @id @default(autoincrement())

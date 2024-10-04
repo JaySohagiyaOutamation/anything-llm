@@ -97,6 +97,7 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
                 >
                   <option value="default">Default</option>
                   <option value="manager">Manager</option>
+                  <option value="supervisor">Supervisor</option>
                   {currentUser?.role === "admin" && (
                     <option value="admin">Administrator</option>
                   )}

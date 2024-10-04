@@ -108,6 +108,10 @@ const ROLE_HINT = {
     "Can only send chats with workspaces they are added to by admin or managers.",
     "Cannot modify any settings at all.",
   ],
+  supervisor: [
+    "Can only send chats with workspaces they are added to by admin or managers.",
+    "Can upload documents in workspaces and update that workspaces.",
+  ],
   manager: [
     "Can view, create, and delete any workspaces and modify workspace-specific settings.",
     "Can create, update and invite new users to the instance.",
@@ -121,7 +125,7 @@ const ROLE_HINT = {
 
 export function RoleHintDisplay({ role }) {
   return (
-    <div className="flex flex-col gap-y-1 py-1 pb-4">
+    <div className="flex flex-col gap-y-1 py-1 pb-1">
       <p className="text-sm font-medium text-black">Permissions</p>
       <ul className="flex flex-col gap-y-1 list-disc px-4">
         {ROLE_HINT[role ?? "default"].map((hints, i) => {
