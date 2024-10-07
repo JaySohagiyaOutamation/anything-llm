@@ -125,7 +125,7 @@ const Workspace = {
   },
 
   getWithUser: async function (user = null, clause = {}) {
-    if ([ROLES.admin, ROLES.manager].includes(user.role))
+    if ([ROLES.admin, ROLES.manager, ROLES.supervisor].includes(user.role))
       return this.get(clause);
 
     try {
@@ -204,7 +204,7 @@ const Workspace = {
     limit = null,
     orderBy = null
   ) {
-    if ([ROLES.admin, ROLES.manager].includes(user.role))
+    if ([ROLES.admin, ROLES.manager, ROLES.supervisor].includes(user.role))
       return await this.where(clause, limit, orderBy);
 
     try {

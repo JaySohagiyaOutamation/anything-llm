@@ -37,13 +37,12 @@ model workspace_documents {
   workspace            workspaces            @relation(fields: [workspaceId], references: [id])
   document_sync_queues document_sync_queues?
 }
-model supervisor_documents {
+model supervisorDocuments {
    id                   Int                   @id @default(autoincrement())
    workspaceId          Int
    userId               Int
-   docId                String?               
-   user                 users                 @relation(fields: [userId], references: [id], onDelete: Cascade)
-   workspace            workspaces            @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+   user                 users                 @relation(fields: [userId], references: [id])
+   workspace            workspaces            @relation(fields: [workspaceId], references: [id])
 }
 
 model invites {
@@ -86,6 +85,7 @@ model users {
   workspace_agent_invocations workspace_agent_invocations[]
   slash_command_presets       slash_command_presets[]
   browser_extension_api_keys  browser_extension_api_keys[]
+  supervisorDocuments         supervisorDocuments[]        // Added this relation
 }
 
 model recovery_codes {
@@ -150,6 +150,7 @@ model workspaces {
   embed_configs                embed_configs[]
   threads                      workspace_threads[]
   workspace_agent_invocations  workspace_agent_invocations[]
+  supervisorDocuments          supervisorDocuments[]         // Added this relation
 }
 
 model workspace_threads {

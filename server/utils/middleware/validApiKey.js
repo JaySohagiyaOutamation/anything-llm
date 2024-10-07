@@ -6,7 +6,9 @@ async function validApiKey(request, response, next) {
   response.locals.multiUserMode = multiUserMode;
 
   const auth = request.header("Authorization");
+  console.log('auth: ', auth);
   const bearerKey = auth ? auth.split(" ")[1] : null;
+  console.log('bearerKey: ', bearerKey);
   if (!bearerKey) {
     response.status(403).json({
       error: "No valid api key found.",
