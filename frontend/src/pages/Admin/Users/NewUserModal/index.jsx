@@ -22,8 +22,10 @@ export default function NewUserModal({ closeModal }) {
     console.log('workspaceName: ', workspaceName);
     await new Promise((resolve) => setTimeout(resolve,10000));
    if(user && workspaceName) {
-    await Supervisor.createSupervisor(workspaceName,user.id)
+   await Supervisor.createSupervisor(workspaceName,user.id)
+
    }
+   await new Promise((resolve) => setTimeout(resolve,10000));
 
     if (!!user) window.location.reload();
     setError(error);

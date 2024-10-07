@@ -51,7 +51,10 @@ function apiSupervisorDocumentEndpoints(app) {
           currUser.id
         );
 
-        return response.status(200).json({ supervisorDocument });
+        if(supervisorDocument) {
+          return response.status(200).json({sucess:true,message:"Supervisor created"});
+        }
+       
       } catch (error) {
         console.error(error);
         return response.status(500).json({ error: "Failed to create supervisor document" });

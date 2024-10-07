@@ -41,8 +41,8 @@ model supervisorDocuments {
    id                   Int                   @id @default(autoincrement())
    workspaceId          Int
    userId               Int
-   user                 users                 @relation(fields: [userId], references: [id])
-   workspace            workspaces            @relation(fields: [workspaceId], references: [id])
+   user                 users                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+   workspace            workspaces            @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 }
 
 model invites {
