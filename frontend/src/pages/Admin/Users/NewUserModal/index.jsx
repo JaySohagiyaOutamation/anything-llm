@@ -19,11 +19,8 @@ export default function NewUserModal({ closeModal }) {
     const form = new FormData(e.target);
     for (var [key, value] of form.entries()) data[key] = value;
     const { user, error } = await Admin.newUser(data);
-    console.log('workspaceName: ', workspaceName);
-    await new Promise((resolve) => setTimeout(resolve,10000));
    if(user && workspaceName) {
    await Supervisor.createSupervisor(workspaceName,user.id)
-
    }
     if (!!user) window.location.reload();
     setError(error);

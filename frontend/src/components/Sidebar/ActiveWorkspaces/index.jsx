@@ -118,66 +118,65 @@ export default function ActiveWorkspaces() {
                         : truncate(workspace.name, 20)}
                     </p>
                   </div>
+                 
                   {(isActive || isHovered || gearHover[workspace.id]) &&
-                  user?.role !== "default" ? (
-                    <div className="flex items-center gap-x-[2px]">
-                      <div
-                        className={`flex hover:bg-[#646768] p-[2px] rounded-[4px] text-[#A7A8A9] hover:text-white ${
-                          uploadHover[workspace.id] ? "bg-[#469ec9]" : ""
-                        }`}
-                      >
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setSelectedWs(workspace);
-                            showModal();
-                          }}
-                          onMouseEnter={() =>
-                            handleUploadMouseEnter(workspace.id)
-                          }
-                          onMouseLeave={() =>
-                            handleUploadMouseLeave(workspace.id)
-                          }
-                          className="rounded-md flex items-center justify-center ml-auto"
-                        >
-                          <UploadSimple
-                            className="h-[20px] w-[20px]"
-                            weight="bold"
-                          />
-                        </button>
-                      </div>
+  (user?.role === "admin" || user?.role === "manager" || user?.role === "supervisor") ? (
+    <div className="flex items-center gap-x-[2px]">
+      {/* Upload button for supervisor, admin, and manager */}
+      {(user?.role === "admin" || user?.role === "manager" || user?.role === "supervisor") && (
+        <div
+          className={`flex hover:bg-[#646768] p-[2px] rounded-[4px] text-[#A7A8A9] hover:text-white ${
+            uploadHover[workspace.id] ? "bg-[#469ec9]" : ""
+          }`}
+        >
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              setSelectedWs(workspace);
+              showModal();
+            }}
+            onMouseEnter={() => handleUploadMouseEnter(workspace.id)}
+            onMouseLeave={() => handleUploadMouseLeave(workspace.id)}
+            className="rounded-md flex items-center justify-center ml-auto"
+          >
+            <UploadSimple className="h-[20px] w-[20px]" weight="bold" />
+          </button>
+        </div>
+      )}
 
-                      <Link
-                        type="button"
-                        to={
-                          isInWorkspaceSettings
-                            ? paths.workspace.chat(workspace.slug)
-                            : paths.workspace.settings.generalAppearance(
-                                workspace.slug
-                              )
-                        }
-                        onMouseEnter={() => handleGearMouseEnter(workspace.id)}
-                        onMouseLeave={() => handleGearMouseLeave(workspace.id)}
-                        className="rounded-md flex items-center justify-center text-[#A7A8A9] hover:text-white ml-auto"
-                        aria-label="General appearance settings"
-                      >
-                        <div className="flex hover:bg-[#646768] p-[2px] rounded-[4px]">
-                          <GearSix
-                            color={
-                              isInWorkspaceSettings && workspace.slug === slug
-                                ? "#46C8FF"
-                                : gearHover[workspace.id]
-                                  ? "#FFFFFF"
-                                  : "#A7A8A9"
-                            }
-                            weight="bold"
-                            className="h-[20px] w-[20px]"
-                          />
-                        </div>
-                      </Link>
-                    </div>
-                  ) : null}
+      {/* Settings link/gear icon for admin and manager only */}
+      {(user?.role === "admin" || user?.role === "manager") && (
+        <Link
+          type="button"
+          to={
+            isInWorkspaceSettings
+              ? paths.workspace.chat(workspace.slug)
+              : paths.workspace.settings.generalAppearance(workspace.slug)
+          }
+          onMouseEnter={() => handleGearMouseEnter(workspace.id)}
+          onMouseLeave={() => handleGearMouseLeave(workspace.id)}
+          className="rounded-md flex items-center justify-center text-[#A7A8A9] hover:text-white ml-auto"
+          aria-label="General appearance settings"
+        >
+          <div className="flex hover:bg-[#646768] p-[2px] rounded-[4px]">
+            <GearSix
+              color={
+                isInWorkspaceSettings && workspace.slug === slug
+                  ? "#46C8FF"
+                  : gearHover[workspace.id]
+                  ? "#FFFFFF"
+                  : "#A7A8A9"
+              }
+              weight="bold"
+              className="h-[20px] w-[20px]"
+            />
+          </div>
+        </Link>
+      )}
+    </div>
+  ) : null}
+
                 </div>
               </a>
             </div>
