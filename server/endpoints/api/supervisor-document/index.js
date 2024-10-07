@@ -10,7 +10,7 @@ function apiSupervisorDocumentEndpoints(app) {
   if (!app) return;
 
   app.post(
-    "/supervisor/documents/new",
+    "/supervisor/new",
     [ strictMultiUserRoleValid([ROLES.admin, ROLES.manager, ROLES.supervisor])],
     async (request, response) => {
       try {

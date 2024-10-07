@@ -4,11 +4,12 @@ import Admin from "@/models/admin";
 import { userFromStorage } from "@/utils/request";
 import { RoleHintDisplay } from "..";
 import Workspace from "@/models/workspace";
+import Supervisor from "@/models/supervisor";
 
 export default function NewUserModal({ closeModal }) {
   const [error, setError] = useState(null);
   const [workspaces,setWorkspaces] = useState([]);
-  const [selectedWorkspace,setSelectedWorkspace] = useState("");
+  const [workspaceName,setWorkspaceName] = useState("");
   const [role, setRole] = useState("default");
 
   const handleCreate = async (e) => {
@@ -18,6 +19,12 @@ export default function NewUserModal({ closeModal }) {
     const form = new FormData(e.target);
     for (var [key, value] of form.entries()) data[key] = value;
     const { user, error } = await Admin.newUser(data);
+    console.log('workspaceName: ', workspaceName);
+    await new Promise((resolve) => setTimeout(resolve,10000));
+   if(user && workspaceName) {
+    await Supervisor.createSupervisor(workspaceName,user.id)
+   }
+
     if (!!user) window.location.reload();
     setError(error);
   };
@@ -32,6 +39,12 @@ export default function NewUserModal({ closeModal }) {
     }
     getWorkspaces();
   }, []);
+  
+  useEffect(() => {
+    if (workspaces.length === 1) {
+      setWorkspaceName(workspaces[0].name);
+    }
+  }, [workspaces, setWorkspaceName]); 
 
   return (
     <div className="relative w-full max-w-2xl max-h-full">
@@ -146,22 +159,29 @@ export default function NewUserModal({ closeModal }) {
               {role === "supervisor" && 
                 <div>
                 <label
-                  htmlFor="selectedWorkspace"
+                  htmlFor="workspaceName"
                   className="block mb-2 text-sm font-medium text-black"
                 >
                   Workspace
                 </label>
-                <select
-                  name="selectedWorkspace"
+                {workspaces.length === 0 && 
+               <>
+                 <span className="text-xs text-black/60">
+              No workspaces found
+            </span>
+               </>}
+              { workspaces.length > 0 && <select
+                  name="workspaceName"
                   required={true}
-                  onChange={(e) => setSelectedWorkspace(e.target.value)}
+                  onChange={(e) => setWorkspaceName(e.target.value)}
+                  value={workspaces.length === 1 ? workspaces[0].name : ""}
                   className="rounded-lg bg-black bg-opacity-70 text-white placeholder:text-white/70 px-4 py-2 text-sm border-gray-500 focus:ring-blue-500 focus:border-blue-500 w-full"
                 >
                   
                 {workspaces.map((workspace,index) => <option value={`${workspace.name}`} key={index}>{workspace.name}</option>
                  )}
                
-                </select>
+                </select>}
               
               </div>
               }
