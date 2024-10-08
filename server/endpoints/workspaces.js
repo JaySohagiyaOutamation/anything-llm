@@ -34,6 +34,7 @@ const { getTTSProvider } = require("../utils/TextToSpeech");
 const { WorkspaceThread } = require("../models/workspaceThread");
 const truncate = require("truncate");
 const { purgeDocument } = require("../utils/files/purgeDocument");
+const { changeFileByDocId } = require("./utils");
 
 function workspaceEndpoints(app) {
   if (!app) return;
@@ -115,10 +116,13 @@ function workspaceEndpoints(app) {
       handleFileUpload,
     ],
     async function (request, response) {
+ 
       try {
         const Collector = new CollectorApi();
         const { originalname } = request.file;
         const processingOnline = await Collector.online();
+        const {role,workspaceId} = request.body;
+        console.log('{role,workspaceId: ', role,workspaceId);
 
         if (!processingOnline) {
           response
@@ -131,11 +135,16 @@ function workspaceEndpoints(app) {
           return;
         }
 
-        const { success, reason } =
-          await Collector.processDocument(originalname);
+        const { success, reason,documents } =
+        await Collector.processDocument(originalname);
+        console.log('documents.id: ', documents[0].id);
+        const fileName = `${documents[0].title}-${documents[0].id}.json`;
         if (!success) {
           response.status(500).json({ success: false, error: reason }).end();
           return;
+        }
+        if(success){
+          await changeFileByDocId(fileName,workspaceId,role)
         }
 
         Collector.log(

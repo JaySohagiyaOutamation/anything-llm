@@ -5,6 +5,7 @@ import System from "../../../../models/system";
 import showToast from "../../../../utils/toast";
 import Directory from "./Directory";
 import WorkspaceDirectory from "./WorkspaceDirectory";
+import useUser from "@/hooks/useUser";
 
 // OpenAI Cost per token
 // ref: https://openai.com/pricing#:~:text=%C2%A0/%201K%20tokens-,Embedding%20models,-Build%20advanced%20search
@@ -16,6 +17,7 @@ const MODEL_COSTS = {
 };
 
 export default function DocumentSettings({ workspace, systemSettings }) {
+  const { user } = useUser();
   const [highlightWorkspace, setHighlightWorkspace] = useState(false);
   const [availableDocs, setAvailableDocs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -190,7 +192,7 @@ export default function DocumentSettings({ workspace, systemSettings }) {
     setSelectedItems({});
   };
 
-  return (
+  return ( 
     <div className="flex upload-modal-mt-6 z-10 relative">
       <Directory
         files={availableDocs}

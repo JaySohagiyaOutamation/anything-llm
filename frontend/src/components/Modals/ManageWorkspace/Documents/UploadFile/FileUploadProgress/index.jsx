@@ -4,6 +4,7 @@ import { CheckCircle, XCircle } from "@phosphor-icons/react";
 import Workspace from "../../../../../../models/workspace";
 import { humanFileSize, milliToHms } from "../../../../../../utils/numbers";
 import PreLoader from "../../../../../Preloader";
+import useUser from "@/hooks/useUser";
 
 function FileUploadProgressComponent({
   slug,
@@ -12,6 +13,7 @@ function FileUploadProgressComponent({
   setFiles,
   rejected = false,
   reason = null,
+  workspaceId,
   onUploadSuccess,
   onUploadError,
   setLoading,
@@ -21,6 +23,7 @@ function FileUploadProgressComponent({
   const [status, setStatus] = useState("pending");
   const [error, setError] = useState("");
   const [isFadingOut, setIsFadingOut] = useState(false);
+  const {user} = useUser();
 
   const fadeOut = (cb) => {
     setIsFadingOut(true);
@@ -41,8 +44,12 @@ function FileUploadProgressComponent({
       const start = Number(new Date());
       const formData = new FormData();
       formData.append("file", file, file.name);
+      formData.append("role", user.role); // Append user role
+      formData.append("workspaceId", workspaceId); // Append workspace ID
+      console.log(Array.from(formData.entries()));
+
       const timer = setInterval(() => {
-        setTimerMs(Number(new Date()) - start);
+        setTimerMs(Number(new Date()) - start);   
       }, 100);
 
       // Chunk streaming not working in production so we just sit and wait

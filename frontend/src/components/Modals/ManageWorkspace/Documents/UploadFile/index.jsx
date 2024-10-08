@@ -120,6 +120,7 @@ export default function UploadFile({
                 onUploadError={handleUploadError}
                 setLoading={setLoading}
                 setLoadingMessage={setLoadingMessage}
+                workspaceId={workspace.id}
               />
             ))}
           </div>

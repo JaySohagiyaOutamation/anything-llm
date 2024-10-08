@@ -99,7 +99,7 @@ function apiDocumentEndpoints(app) {
         const { success, reason, documents } =
           await Collector.processDocument(originalname);
         if (!success) {
-          response
+                    response
             .status(500)
             .json({ success: false, error: reason, documents })
             .end();
@@ -113,6 +113,8 @@ function apiDocumentEndpoints(app) {
         await EventLogs.logEvent("api_document_uploaded", {
           documentName: originalname,
         });
+        
+      
         response.status(200).json({ success: true, error: null, documents });
       } catch (e) {
         console.error(e.message, e);
