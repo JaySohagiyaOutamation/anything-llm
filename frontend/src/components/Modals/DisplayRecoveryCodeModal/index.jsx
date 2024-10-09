@@ -75,7 +75,7 @@ export default function RecoveryCodeModal({
             "Close"
           ) : (
             <>
-              <DownloadSimple color="bold" weight="bold" size={18} />
+              <DownloadSimple color="white" weight="bold" size={18} />
               <p>Download</p>
             </>
           )}

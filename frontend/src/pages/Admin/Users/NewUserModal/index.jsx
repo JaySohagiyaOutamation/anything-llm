@@ -44,23 +44,23 @@ export default function NewUserModal({ closeModal }) {
   };
 
   return (
-    <div className="relative w-full max-w-2xl max-h-full">
-      <div className="relative bg-white rounded-lg shadow">
-        <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
-          <h3 className="text-xl font-semibold text-black">
-            Add user to instance
-          </h3>
-          <button
-            onClick={closeModal}
-            type="button"
-            className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-white hover:bg-gray-200 hover:border-slate-100 hover:border-opacity-50 border-transparent border"
-            data-modal-hide="staticModal"
-          >
-            <X className="text-gray-700 text-lg" />
-          </button>
-        </div>
-        <form onSubmit={handleCreate}>
-          <div className="p-6 space-y-6 flex h-full w-full">
+    <div className="relative w-full max-w-2xl max-h-[90vh] flex flex-col bg-white rounded-lg shadow">
+      <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
+        <h3 className="text-xl font-semibold text-black">
+          Add user to instance
+        </h3>
+        <button
+          onClick={closeModal}
+          type="button"
+          className="transition-all duration-300 text-gray-400 bg-transparent hover:border-white/60 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center bg-white hover:bg-gray-200 hover:border-slate-100 hover:border-opacity-50 border-transparent border"
+          data-modal-hide="staticModal"
+        >
+          <X className="text-gray-700 text-lg" />
+        </button>
+      </div>
+      <div className="overflow-y-auto flex-grow">
+        <form onSubmit={handleCreate} className="flex flex-col h-full">
+          <div className="p-6 space-y-6">
             <div className="w-full flex flex-col gap-y-4">
               <div>
                 <label
@@ -193,7 +193,7 @@ export default function NewUserModal({ closeModal }) {
               </p>
             </div>
           </div>
-          <div className="flex w-full justify-between items-center p-6 space-x-2 border-t rounded-b border-gray-500/50">
+          <div className="flex w-full justify-between items-center p-6 space-x-2 border-t border-gray-500/50">
             <button
               onClick={closeModal}
               type="button"
