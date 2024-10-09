@@ -35,6 +35,7 @@ const { WorkspaceThread } = require("../models/workspaceThread");
 const truncate = require("truncate");
 const { purgeDocument } = require("../utils/files/purgeDocument");
 const { changeFileByDocId } = require("./utils");
+const SupervisorDocumentsService = require("../models/supervisorDocumentsService");
 
 function workspaceEndpoints(app) {
   if (!app) return;
@@ -337,16 +338,46 @@ function workspaceEndpoints(app) {
     }
   );
 
+  // app.get(
+  //   "/workspaces",
+  //   [validatedRequest, flexUserRoleValid([ROLES.all])],
+  //   async (request, response) => {
+  //     try {
+  //       const user = await userFromSession(request, response);
+  //       console.log('user: ', user.role);
+  //       const userId = user.id;
+
+  //       const {workspaceId} = await SupervisorDocumentsService.getWorkspaceIdByUserId(userId);
+  //       console.log('workspaceId: ', workspaceId);
+  //       const workspaces = multiUserMode(response)
+  //       ? await Workspace.whereWithUser(user)
+  //       : await Workspace.where();
+        
+  //       console.log('workspaces: ', workspaces);
+  //       response.status(200).json({ workspaces });
+  //     } catch (e) {
+  //       console.error(e.message, e);
+  //       response.sendStatus(500).end();
+  //     }
+  //   }
+  // );
   app.get(
     "/workspaces",
     [validatedRequest, flexUserRoleValid([ROLES.all])],
     async (request, response) => {
       try {
         const user = await userFromSession(request, response);
-        const workspaces = multiUserMode(response)
-          ? await Workspace.whereWithUser(user)
-          : await Workspace.where();
-
+        const userId = user.id;
+  
+        const {workspaceId} = await SupervisorDocumentsService.getWorkspaceIdByUserId(userId);
+  
+        let workspaces;
+        if (user.role === 'supervisor') {
+          workspaces = await Workspace.where({ id: workspaceId });
+        } else {
+          workspaces = multiUserMode(response) ? await Workspace.whereWithUser (user) : await Workspace.where();
+        }
+  
         response.status(200).json({ workspaces });
       } catch (e) {
         console.error(e.message, e);
@@ -354,7 +385,6 @@ function workspaceEndpoints(app) {
       }
     }
   );
-
   app.get(
     "/workspace/:slug",
     [validatedRequest, flexUserRoleValid([ROLES.all])],

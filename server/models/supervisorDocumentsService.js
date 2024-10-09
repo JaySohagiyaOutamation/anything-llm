@@ -18,10 +18,25 @@ const SupervisorDocumentsService = {
           return { workspaceId: null, error: error.message };
         }
       },
-      
   
-    // Create a new supervisor document entry
-create: async function ({ workspaceId, userId }) {
+    // get workspaceId by userId for quering 
+    getWorkspaceIdByUserId: async function (userId) {
+      try {
+        const supervisorDoc = await prisma.supervisorDocuments.findFirst({
+          where: { userId: userId },
+        });
+    
+        if (!supervisorDoc) {
+          throw new Error(`supervisorDoc with userId ${userId} not found.`);
+        }
+    
+        return { workspaceId: supervisorDoc.workspaceId, error: null };
+      } catch (error) {
+        console.error("Failed to find supervisorDoc by userId:", error.message);
+        return { workspaceId: null, error: error.message };
+      }
+    },
+    create: async function ({ workspaceId, userId }) {
     try {
       // Ensure userId is an integer
       const userIdInt = parseInt(userId, 10);
