@@ -24,6 +24,8 @@ export default function Sidebar() {
   } = useNewWorkspaceModal();
   const { t } = useTranslation();
 
+  const canCreateWorkspace = user?.role === "admin" || user?.role === "manager";
+
   return (
     <div>
       <Link
@@ -46,7 +48,7 @@ export default function Sidebar() {
             <div className="relative h-[calc(100%-60px)] flex flex-col w-full justify-between pt-[10px] overflow-y-scroll no-scroll">
               <div className="flex flex-col gap-y-2 pb-[60px] overflow-y-scroll no-scroll">
                 <div className="flex gap-x-2 items-center justify-between">
-                  {(!user || user?.role !== "default") && (
+                  {canCreateWorkspace && (
                     <button
                       onClick={showNewWsModal}
                       className="flex flex-grow w-[75%] h-[44px] gap-x-2 py-[5px] px-2.5 mb-2 bg-black rounded-[8px] text-white  justify-center items-center transition-all duration-300"
@@ -85,9 +87,9 @@ export function SidebarMobileHeader() {
   const { user } = useUser();
   const { t } = useTranslation();
 
+  const canCreateWorkspace = user?.role === "admin" || user?.role === "manager";
+
   useEffect(() => {
-    // Darkens the rest of the screen
-    // when sidebar is open.
     function handleBg() {
       if (showSidebar) {
         setTimeout(() => {
@@ -141,7 +143,6 @@ export function SidebarMobileHeader() {
           className="relative h-[100vh] fixed top-0 left-0  rounded-r-[26px] bg-sidebar w-[80%] p-[18px] "
         >
           <div className="w-full h-full flex flex-col overflow-x-hidden items-between">
-            {/* Header Information */}
             <div className="flex w-full items-center justify-between gap-x-4">
               <div className="flex shrink-1 w-fit items-center justify-start">
                 <img
@@ -151,19 +152,18 @@ export function SidebarMobileHeader() {
                   style={{ objectFit: "contain" }}
                 />
               </div>
-              {(!user || user?.role !== "default") && (
+              {canCreateWorkspace && (
                 <div className="flex gap-x-2 items-center text-slate-500 shink-0">
                   <SettingsButton />
                 </div>
               )}
             </div>
 
-            {/* Primary Body */}
             <div className="h-full flex flex-col w-full justify-between pt-4 ">
               <div className="h-auto md:sidebar-items">
                 <div className=" flex flex-col gap-y-4 overflow-y-scroll no-scroll pb-[60px]">
                   <div className="flex gap-x-2 items-center justify-between">
-                    {(!user || user?.role !== "default") && (
+                    {canCreateWorkspace && (
                       <button
                         onClick={showNewWsModal}
                         className="flex flex-grow w-[75%] h-[44px] gap-x-2 py-[5px] px-4 bg-white rounded-lg text-sidebar justify-center items-center hover:bg-opacity-80 transition-all duration-300"
