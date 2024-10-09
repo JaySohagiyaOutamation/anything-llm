@@ -7,13 +7,10 @@ import Directory from "./Directory";
 import WorkspaceDirectory from "./WorkspaceDirectory";
 import useUser from "@/hooks/useUser";
 
-// OpenAI Cost per token
-// ref: https://openai.com/pricing#:~:text=%C2%A0/%201K%20tokens-,Embedding%20models,-Build%20advanced%20search
-
 const MODEL_COSTS = {
-  "text-embedding-ada-002": 0.0000001, // $0.0001 / 1K tokens
-  "text-embedding-3-small": 0.00000002, // $0.00002 / 1K tokens
-  "text-embedding-3-large": 0.00000013, // $0.00013 / 1K tokens
+  "text-embedding-ada-002": 0.0000001,
+  "text-embedding-3-small": 0.00000002,
+  "text-embedding-3-large": 0.00000013,
 };
 
 export default function DocumentSettings({ workspace, systemSettings }) {
@@ -38,22 +35,37 @@ export default function DocumentSettings({ workspace, systemSettings }) {
     const documentsInWorkspace =
       currentWorkspace.documents.map((doc) => doc.docpath) || [];
 
+    // Filter documents based on user role
+    const filterDocuments = (folder) => {
+      if (user.role === 'supervisor') {
+        // For supervisor, filter items in each folder
+        return folder.items.filter(item => {
+          // Check if the item has the required properties
+          return (
+            item.role === 'supervisor' &&
+            String(item.workspaceId) === String(currentWorkspace.id)
+          );
+        });
+      }
+      return folder.items;
+    };
+
     // Documents that are not in the workspace
     const availableDocs = {
       ...localFiles,
       items: localFiles.items.map((folder) => {
-        if (folder.items && folder.type === "folder") {
+        if (folder.type === "folder") {
+          const filteredItems = filterDocuments({ ...folder });
           return {
             ...folder,
-            items: folder.items.filter(
+            items: filteredItems.filter(
               (file) =>
                 file.type === "file" &&
                 !documentsInWorkspace.includes(`${folder.name}/${file.name}`)
             ),
           };
-        } else {
-          return folder;
         }
+        return folder;
       }),
     };
 
@@ -61,20 +73,28 @@ export default function DocumentSettings({ workspace, systemSettings }) {
     const workspaceDocs = {
       ...localFiles,
       items: localFiles.items.map((folder) => {
-        if (folder.items && folder.type === "folder") {
+        if (folder.type === "folder") {
+          const filteredItems = filterDocuments({ ...folder });
           return {
             ...folder,
-            items: folder.items.filter(
+            items: filteredItems.filter(
               (file) =>
                 file.type === "file" &&
                 documentsInWorkspace.includes(`${folder.name}/${file.name}`)
             ),
           };
-        } else {
-          return folder;
         }
+        return folder;
       }),
     };
+
+    // Remove empty folders
+    availableDocs.items = availableDocs.items.filter(
+      (folder) => folder.items && folder.items.length > 0
+    );
+    workspaceDocs.items = workspaceDocs.items.filter(
+      (folder) => folder.items && folder.items.length > 0
+    );
 
     setAvailableDocs(availableDocs);
     setWorkspaceDocs(workspaceDocs);
@@ -98,26 +118,27 @@ export default function DocumentSettings({ workspace, systemSettings }) {
     setSelectedItems({});
     setHasChanges(false);
     setHighlightWorkspace(false);
-    await Workspace.modifyEmbeddings(workspace.slug, changesToSend)
-      .then((res) => {
-        if (!!res.message) {
-          showToast(`Error: ${res.message}`, "error", { clear: true });
-          return;
-        }
-        showToast("Workspace updated successfully.", "success", {
-          clear: true,
-        });
-      })
-      .catch((error) => {
-        showToast(`Workspace update failed: ${error}`, "error", {
-          clear: true,
-        });
+    
+    try {
+      const res = await Workspace.modifyEmbeddings(workspace.slug, changesToSend);
+      if (!!res.message) {
+        showToast(`Error: ${res.message}`, "error", { clear: true });
+        return;
+      }
+      showToast("Workspace updated successfully.", "success", {
+        clear: true,
       });
 
-    setMovedItems([]);
-    await fetchKeys(true);
-    setLoading(false);
-    setLoadingMessage("");
+      setMovedItems([]);
+      await fetchKeys(true);
+    } catch (error) {
+      showToast(`Workspace update failed: ${error}`, "error", {
+        clear: true,
+      });
+    } finally {
+      setLoading(false);
+      setLoadingMessage("");
+    }
   };
 
   const moveSelectedItemsToWorkspace = () => {
@@ -144,13 +165,11 @@ export default function DocumentSettings({ workspace, systemSettings }) {
       }
     });
 
-    // Do not do cost estimation unless the embedding engine is OpenAi.
     if (systemSettings?.EmbeddingEngine === "openai") {
       const COST_PER_TOKEN =
         MODEL_COSTS[
           systemSettings?.EmbeddingModelPref || "text-embedding-ada-002"
         ];
-
       const dollarAmount = (totalTokenCount / 1000) * COST_PER_TOKEN;
       setEmbeddingsCost(dollarAmount);
     }
@@ -164,6 +183,7 @@ export default function DocumentSettings({ workspace, systemSettings }) {
       let foundItem = null;
       let foundFolderIndex = null;
 
+      // Remove from available docs
       newAvailableDocs.items = newAvailableDocs.items.map(
         (folder, folderIndex) => {
           const remainingItems = folder.items.filter((file) => {
@@ -182,17 +202,39 @@ export default function DocumentSettings({ workspace, systemSettings }) {
         }
       );
 
+      // Add to workspace docs
       if (foundItem) {
-        newWorkspaceDocs.items[foundFolderIndex].items.push(foundItem);
+        const targetFolder = newWorkspaceDocs.items.find(
+          (f) => f.name === availableDocs.items[foundFolderIndex].name
+        );
+
+        if (targetFolder) {
+          if (!targetFolder.items) {
+            targetFolder.items = [];
+          }
+          targetFolder.items.push(foundItem);
+        } else {
+          // Create new folder if it doesn't exist in workspace docs
+          newWorkspaceDocs.items.push({
+            name: availableDocs.items[foundFolderIndex].name,
+            type: "folder",
+            items: [foundItem],
+          });
+        }
       }
     }
+
+    // Remove empty folders
+    newAvailableDocs.items = newAvailableDocs.items.filter(
+      (folder) => folder.items && folder.items.length > 0
+    );
 
     setAvailableDocs(newAvailableDocs);
     setWorkspaceDocs(newWorkspaceDocs);
     setSelectedItems({});
   };
 
-  return ( 
+  return (
     <div className="flex upload-modal-mt-6 z-10 relative">
       <Directory
         files={availableDocs}

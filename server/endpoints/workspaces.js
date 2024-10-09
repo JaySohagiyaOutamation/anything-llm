@@ -116,13 +116,13 @@ function workspaceEndpoints(app) {
       handleFileUpload,
     ],
     async function (request, response) {
- 
+
       try {
         const Collector = new CollectorApi();
         const { originalname } = request.file;
         const processingOnline = await Collector.online();
-        const {role,workspaceId} = request.body;
-        console.log('{role,workspaceId: ', role,workspaceId);
+        const { role, workspaceId } = request.body;
+        console.log('{role,workspaceId: ', role, workspaceId);
 
         if (!processingOnline) {
           response
@@ -135,16 +135,17 @@ function workspaceEndpoints(app) {
           return;
         }
 
-        const { success, reason,documents } =
-        await Collector.processDocument(originalname);
-        console.log('documents.id: ', documents[0].id);
-        const fileName = `${documents[0].title}-${documents[0].id}.json`;
+        const { success, reason, documents } =
+          await Collector.processDocument(originalname);
+        console.log('documents.title: ', documents[0].title);
+        const hyphenatedTitle = documents[0].title.replace(/\s+/g, '-');
+        const fileName = `${hyphenatedTitle}-${documents[0].id}.json`;
         if (!success) {
           response.status(500).json({ success: false, error: reason }).end();
           return;
         }
-        if(success){
-          await changeFileByDocId(fileName,workspaceId,role)
+        if (success) {
+          await changeFileByDocId(fileName, workspaceId, role)
         }
 
         Collector.log(
@@ -242,8 +243,8 @@ function workspaceEndpoints(app) {
           message:
             failedToEmbed.length > 0
               ? `${failedToEmbed.length} documents failed to add.\n\n${errors
-                  .map((msg) => `${msg}`)
-                  .join("\n\n")}`
+                .map((msg) => `${msg}`)
+                .join("\n\n")}`
               : null,
         });
       } catch (e) {
@@ -790,11 +791,11 @@ function workspaceEndpoints(app) {
         // and is a valid thread slug.
         const threadId = !!threadSlug
           ? (
-              await WorkspaceThread.get({
-                slug: String(threadSlug),
-                workspace_id: workspace.id,
-              })
-            )?.id ?? null
+            await WorkspaceThread.get({
+              slug: String(threadSlug),
+              workspace_id: workspace.id,
+            })
+          )?.id ?? null
           : null;
         const chatsToFork = await WorkspaceChats.where(
           {
@@ -888,6 +889,7 @@ function workspaceEndpoints(app) {
       try {
         const { slug = null } = request.params;
         const user = await userFromSession(request, response);
+        const {role,workspaceId} = request.body;
         const currWorkspace = multiUserMode(response)
           ? await Workspace.getWithUser(user, { slug })
           : await Workspace.get({ slug });
@@ -912,13 +914,18 @@ function workspaceEndpoints(app) {
           return;
         }
 
-        const { success, reason, documents } =
-          await Collector.processDocument(originalname);
+        const { success, reason,documents } =
+        await Collector.processDocument(originalname);
+        console.log('documents.id: ', documents[0].id);
+        const fileName = `${documents[0].title}-${documents[0].id}.json`;
         if (!success || documents?.length === 0) {
           response.status(500).json({ success: false, error: reason }).end();
           return;
         }
-
+        if(success){
+          await changeFileByDocId(fileName,workspaceId,role)
+        }
+ 
         Collector.log(
           `Document ${originalname} uploaded processed and successfully. It is now available in documents.`
         );

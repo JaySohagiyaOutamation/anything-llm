@@ -126,6 +126,8 @@ export function DnDFileUploaderProvider({ workspace, children }) {
 
       const formData = new FormData();
       formData.append("file", attachment.file, attachment.file.name);
+      formData.append("role",user.role);
+      formData.append("workspaceId",workspace.id);
       Workspace.uploadAndEmbedFile(workspace.slug, formData).then(
         ({ response, data }) => {
           const updates = {

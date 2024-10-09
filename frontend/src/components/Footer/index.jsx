@@ -16,6 +16,7 @@ import SettingsButton from "../SettingsButton";
 import { isMobile } from "react-device-detect";
 import { Tooltip } from "react-tooltip";
 import { v4 } from "uuid";
+import useUser from "@/hooks/useUser";
 
 export const MAX_ICONS = 3;
 export const ICON_COMPONENTS = {
@@ -32,6 +33,7 @@ export const ICON_COMPONENTS = {
 
 export default function Footer() {
   const [footerData, setFooterData] = useState(false);
+  const {user } = useUser();
 
   useEffect(() => {
     async function fetchFooterData() {
@@ -91,8 +93,8 @@ export default function Footer() {
               />
             </a>
           </ToolTipWrapper>
-          {!isMobile && <SettingsButton />}
-        </div>
+          {!isMobile && (user.role === 'manager' || user.role === 'admin') && <SettingsButton />}
+          </div>
       </div>
     );
   }
