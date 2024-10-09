@@ -50,7 +50,7 @@ function ShowWorkspaceChat() {
         {!isMobile && <Sidebar />}
         <WorkspaceChatContainer loading={loading} workspace={workspace} />
       </div>
-      <FineTuningAlert />
+      {/* <FineTuningAlert /> */}
     </>
   );
 }

@@ -178,7 +178,7 @@ export default function SettingsSidebar() {
           </div>
         </div>
       </div>
-      <FineTuningAlert />
+      {/* <FineTuningAlert /> */}
     </>
   );
 }
