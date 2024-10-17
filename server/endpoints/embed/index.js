@@ -26,7 +26,7 @@ function embeddedEndpoints(app) {
           sessionId,
           message,
           currentURL,
-          pageCodeBlobUrl,
+          pageSourceCode,
           // optional keys for override of defaults if enabled.
           prompt = null,
           model = null,
@@ -40,7 +40,7 @@ function embeddedEndpoints(app) {
         response.setHeader("Connection", "keep-alive");
         response.flushHeaders();
 
-        await streamChatWithForEmbed(response, embed, message, sessionId, {
+        await streamChatWithForEmbed(response, embed, message,currentURL,pageSourceCode, sessionId, {
           prompt,
           model,
           temperature,

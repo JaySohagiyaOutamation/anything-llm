@@ -53,6 +53,24 @@ const Workspace = {
     return slugifyModule(...args);
   },
 
+  whereIn: async function (ids = [], limit = null, orderBy = null) {
+    if (ids.length === 0) return [];
+  
+    try {
+      const results = await prisma.workspaces.findMany({
+        where: {
+          id: { in: ids },
+        },
+        ...(limit !== null ? { take: limit } : {}),
+        ...(orderBy !== null ? { orderBy } : {}),
+      });
+      return results;
+    } catch (error) {
+      console.error("Error fetching workspaces by IDs:", error.message);
+      return [];
+    }
+  },
+  
   new: async function (name = null, creatorId = null) {
     if (!name) return { result: null, message: "name cannot be null" };
     var slug = this.slugify(name, { lower: true });

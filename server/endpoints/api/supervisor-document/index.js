@@ -52,7 +52,7 @@ function apiSupervisorDocumentEndpoints(app) {
         );
 
         if(supervisorDocument) {
-          return response.status(200).json({sucess:true,message:"Supervisor created"});
+          return response.status(200).json({sucess:true,message:"Supervisor created",workspaceId:workspaceId});
         }
        
       } catch (error) {

@@ -7,6 +7,7 @@ const {
   safeJsonParse,
 } = require("../utils/http");
 const { normalizePath, isWithin } = require("../utils/files");
+const { WorkspaceUser } = require('../models/workspaceUsers'); 
 const { Workspace } = require("../models/workspace");
 const { Document } = require("../models/documents");
 const { DocumentVectors } = require("../models/vectors");
@@ -362,6 +363,30 @@ function workspaceEndpoints(app) {
   //     }
   //   }
   // );
+  // app.get(
+  //   "/workspaces",
+  //   [validatedRequest, flexUserRoleValid([ROLES.all])],
+  //   async (request, response) => {
+  //     try {
+  //       const user = await userFromSession(request, response);
+  //       const userId = user.id;
+  
+  //       const {workspaceId} = await SupervisorDocumentsService.getWorkspaceIdByUserId(userId);
+  
+  //       let workspaces;
+  //       if (user.role === 'supervisor') {
+  //         workspaces = await Workspace.where({ id: workspaceId });
+  //       }else {
+  //         workspaces = multiUserMode(response) ? await Workspace.whereWithUser (user) : await Workspace.where();
+  //       }
+        
+  //       response.status(200).json({ workspaces });
+  //     } catch (e) {
+  //       console.error(e.message, e);
+  //       response.sendStatus(500).end();
+  //     }
+  //   }
+  // );
   app.get(
     "/workspaces",
     [validatedRequest, flexUserRoleValid([ROLES.all])],
@@ -369,16 +394,25 @@ function workspaceEndpoints(app) {
       try {
         const user = await userFromSession(request, response);
         const userId = user.id;
-  
-        const {workspaceId} = await SupervisorDocumentsService.getWorkspaceIdByUserId(userId);
+        console.log('userId: ', userId);
   
         let workspaces;
         if (user.role === 'supervisor') {
-          workspaces = await Workspace.where({ id: workspaceId });
-        } else {
+          const workspaceUsers = await WorkspaceUser.where({ user_id: userId });
+          console.log('workspaceUsers: ', workspaceUsers);
+          const workspaceIds = workspaceUsers.map(wsUser => wsUser.workspace_id);
+          console.log('workspaceIds: ', workspaceIds);
+          
+          if (workspaceIds.length > 0) {
+            workspaces = await Workspace.whereIn(workspaceIds);
+          } else {
+            workspaces = []; 
+          }        
+        }
+        else {
           workspaces = multiUserMode(response) ? await Workspace.whereWithUser (user) : await Workspace.where();
         }
-  
+
         response.status(200).json({ workspaces });
       } catch (e) {
         console.error(e.message, e);

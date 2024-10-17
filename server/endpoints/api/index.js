@@ -9,6 +9,7 @@ const { apiUserManagementEndpoints } = require("./userManagement");
 const { apiOpenAICompatibleEndpoints } = require("./openai");
 const { apiEmbedEndpoints } = require("./embed");
 const {apiSupervisorDocumentEndpoints} = require("./supervisor-document");
+const {apiWorkspaceUserEndpoints} = require("./workspaceUser");
 
 // All endpoints must be documented and pass through the validApiKey Middleware.
 // How to JSDoc an endpoint
@@ -26,6 +27,7 @@ function developerEndpoints(app, router) {
   apiOpenAICompatibleEndpoints(router);
   apiEmbedEndpoints(router);
   apiSupervisorDocumentEndpoints(router);
+  apiWorkspaceUserEndpoints(router);
 }
 
 module.exports = { developerEndpoints };

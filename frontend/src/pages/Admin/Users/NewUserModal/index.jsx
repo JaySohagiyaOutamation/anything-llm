@@ -3,6 +3,7 @@ import { X } from "@phosphor-icons/react";
 import Admin from "@/models/admin";
 import { userFromStorage } from "@/utils/request";
 import { RoleHintDisplay } from "..";
+import WorkspaceUser from "@/models/workspaceUser"
 import Workspace from "@/models/workspace";
 import Supervisor from "@/models/supervisor";
 
@@ -18,9 +19,13 @@ export default function NewUserModal({ closeModal }) {
     const data = {};
     const form = new FormData(e.target);
     for (var [key, value] of form.entries()) data[key] = value;
-    const { user, error } = await Admin.newUser(data);
+    const { user, error } = await Admin.newUser(data);    
+
     if (user && workspaceName) {
-      await Supervisor.createSupervisor(workspaceName, user.id);
+      const {workspaceId} = await Supervisor.createSupervisor(workspaceName, user.id);
+      console.log('WorkspaceId1: ', workspaceId);
+      console.log('userId1: ', user.id);
+      await WorkspaceUser.create(user.id,workspaceId);
     }
     if (!!user) window.location.reload();
     setError(error);

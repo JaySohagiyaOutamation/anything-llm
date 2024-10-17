@@ -14,6 +14,10 @@ async function streamChatWithForEmbed(
   embed,
   /** @type {String} */
   message,
+    /** @type {String} */
+    currentURL,
+      /** @type {String} */
+      pageSourceCode,
   /** @type {String} */
   sessionId,
   { promptOverride, modelOverride, temperatureOverride, username }
@@ -135,19 +139,21 @@ async function streamChatWithForEmbed(
     });
     return;
   }
-
+   const updatedMessage = "This is cuurent page url: "+ currentURL + " And this html source code  of this page "+ pageSourceCode+ " And this is the input message "+message;
+   console.log('message: ', message);
+   console.log('pageSourceCode in server: ', pageSourceCode);
   // Compress message to ensure prompt passes token limit with room for response
   // and build system messages based on inputs and history.
   const messages = await LLMConnector.compressMessages(
     {
       systemPrompt: chatPrompt(embed.workspace),
-      userPrompt: message,
+      userPrompt: updatedMessage,
       contextTexts,
       chatHistory,
     },
     rawHistory
   );
-console.log(currentURL);
+// console.log(currentURL);
   // If streaming is not explicitly enabled for connector
   // we do regular waiting of a response and send a single chunk.
   if (LLMConnector.streamingEnabled() !== true) {
