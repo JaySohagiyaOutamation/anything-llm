@@ -2,11 +2,11 @@ import { API_BASE } from "@/utils/constants";
 import { baseHeaders } from "@/utils/request";
 
 const Supervisor = {
-  createSupervisor: async ( workspaceName,userId) => {
+  createSupervisor: async ( selectedWorkspaces,userId) => {
     return await fetch(`${API_BASE}/supervisor/new`, {
       method: "POST",
       headers: baseHeaders(),
-      body: JSON.stringify({ workspaceName,userId }),
+      body: JSON.stringify({ selectedWorkspaces,userId }),
     })
       .then((res) => res.json())
       .catch((e) => {

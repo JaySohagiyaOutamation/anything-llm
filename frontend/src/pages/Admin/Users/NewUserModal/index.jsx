@@ -3,33 +3,43 @@ import { X } from "@phosphor-icons/react";
 import Admin from "@/models/admin";
 import { userFromStorage } from "@/utils/request";
 import { RoleHintDisplay } from "..";
-import WorkspaceUser from "@/models/workspaceUser"
+// import WorkspaceUser from "@/models/workspaceUser"
 import Workspace from "@/models/workspace";
 import Supervisor from "@/models/supervisor";
 
 export default function NewUserModal({ closeModal }) {
   const [error, setError] = useState(null);
+  const [supervisorError, setSupervisorError] = useState("");
   const [workspaces, setWorkspaces] = useState([]);
-  const [workspaceName, setWorkspaceName] = useState("");
+  // const [workspaceName, setWorkspaceName] = useState("");
   const [role, setRole] = useState("default");
+  const [selectedWorkspaces, setSelectedWorkspaces] = useState([]);
 
   const handleCreate = async (e) => {
     setError(null);
+    setSupervisorError(null); // Reset supervisor error if any
     e.preventDefault();
+  
     const data = {};
     const form = new FormData(e.target);
     for (var [key, value] of form.entries()) data[key] = value;
-    const { user, error } = await Admin.newUser(data);    
-
-    if (user && workspaceName) {
-      const {workspaceId} = await Supervisor.createSupervisor(workspaceName, user.id);
-      console.log('WorkspaceId1: ', workspaceId);
-      console.log('userId1: ', user.id);
-      await WorkspaceUser.create(user.id,workspaceId);
+  
+    // Check if the user role is "supervisor" and no workspaces are selected
+    if (data.role === "supervisor" && selectedWorkspaces.length === 0) {
+      setSupervisorError("Please select at least one workspace");
+      return; // Return early to prevent user creation
     }
+  
+    const { user, error } = await Admin.newUser(data);
+  
+    if (user && user.role === "supervisor" && selectedWorkspaces.length > 0) {
+      await Supervisor.createSupervisor(selectedWorkspaces, user.id);
+    }
+  
     if (!!user) window.location.reload();
     setError(error);
   };
+  
 
   const user = userFromStorage();
 
@@ -37,15 +47,18 @@ export default function NewUserModal({ closeModal }) {
     async function getWorkspaces() {
       const workspaces = await Workspace.all();
       setWorkspaces(workspaces);
-      if (workspaces.length > 0) {
-        setWorkspaceName(workspaces[0].name);
-      }
     }
     getWorkspaces();
   }, []);
 
+
   const handleWorkspaceChange = (e) => {
-    setWorkspaceName(e.target.value);
+    const { value, checked } = e.target;
+    if (checked) {
+      setSelectedWorkspaces((prev) => [...prev, value]); // Add the workspace
+    } else {
+      setSelectedWorkspaces((prev) => prev.filter((workspace) => workspace !== value)); // Remove the workspace
+    }
   };
 
   return (
@@ -169,28 +182,42 @@ export default function NewUserModal({ closeModal }) {
                   {workspaces.length === 0 ? (
                     <span className="text-xs text-black/60">No workspaces found</span>
                   ) : (
-                    <select
-                      name="workspaceName"
-                      required={true}
-                      onChange={handleWorkspaceChange}
-                      value={workspaceName}
-                      className="rounded-lg bg-black bg-opacity-70 text-white placeholder:text-white/70 px-4 py-2 text-sm border-gray-500 focus:ring-blue-500 focus:border-blue-500 w-full"
-                    >
-                      <option value="" disabled className="text-white/60">Select a workspace</option>
-                      {workspaces.map((workspace, index) => (
-                        <option value={workspace.name} key={index}>
-                          {workspace.name}
-                        </option>
-                      ))}
-                    </select>
+                    // <select
+                    //   name="workspaceName"
+                    //   required={true}
+                    //   onChange={handleWorkspaceChange}
+                    //   value={workspaceName}
+                    //   className="rounded-lg bg-black bg-opacity-70 text-white placeholder:text-white/70 px-4 py-2 text-sm border-gray-500 focus:ring-blue-500 focus:border-blue-500 w-full"
+                    // >
+                    //   <option value="" disabled className="text-white/60">Select a workspace</option>
+                    //   {workspaces.map((workspace, index) => (
+                    //     <option value={workspace.name} key={index}>
+                    //       {workspace.name}
+                    //     </option>
+                    //   ))}
+                    // </select>
+                    workspaces.map((workspace, index) => (
+                      <label key={index} className="flex items-center space-x-2">
+                        <input
+                          type="checkbox"
+                          value={workspace.name}
+                          onChange={handleWorkspaceChange}
+                          checked={selectedWorkspaces.includes(workspace.name)} // Ensure checkbox reflects selected state
+                          className="form-checkbox text-blue-500 rounded"
+                        />
+                        <span className="text-black">{workspace.name}</span>
+                      </label>
+                    ))
                   )}
-                  {workspaceName && (
+                  {(selectedWorkspaces.length !== 0) && (
                     <p className="mt-2 text-xs text-black/60">
-                      Selected workspace: {workspaceName}
+                      Selected workspaces: {selectedWorkspaces.join(", ")}
+                    
                     </p>
                   )}
                 </div>
               )}
+              {supervisorError && <p className="text-red-400 text-xs"> {supervisorError}</p>}
               {error && <p className="text-red-400 text-sm">Error: {error}</p>}
               <p className="text-black text-xs md:text-sm">
                 After creating a user they will need to login with their initial
