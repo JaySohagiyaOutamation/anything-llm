@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { X } from "@phosphor-icons/react";
 import Admin from "@/models/admin";
 import { RoleHintDisplay } from "../..";
+import Workspace from "@/models/workspace";
+import Supervisor from "@/models/supervisor";
 
 export default function EditUserModal({ currentUser, user, closeModal }) {
   const [role, setRole] = useState(user.role);
+  const [workspacesList, setWorkspacesList] = useState([]);
+  const [allWorkspaces, setAllWorkspaces] = useState([]);
+  const [selectedWorkspaces, setSelectedWorkspaces] = useState([]);
+  const [selectedWorkspacesToAdd, setSelectedWorkspacesToAdd] = useState([]);
+  const [filteredWorkspaces, setFilteredWorkspaces] = useState([]);
   const [error, setError] = useState(null);
 
   const handleUpdate = async (e) => {
@@ -16,10 +23,75 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
       if (!value || value === null) continue;
       data[key] = value;
     }
+    if (role === "supervisor" && selectedWorkspaces.length > 0) {
+      await Supervisor.removeSupervisor(selectedWorkspaces, user.id);
+    }
+    if (role === "supervisor" && selectedWorkspacesToAdd.length > 0) {
+      await Supervisor.createSupervisor(selectedWorkspacesToAdd, user.id);
+    }
     const { success, error } = await Admin.updateUser(user.id, data);
+
     if (success) window.location.reload();
     setError(error);
   };
+
+  const fetchWorkspacesName = async (userId) => {
+    try {
+      const { workspacesName } = await Workspace.getWorkspacesName(userId);
+      setWorkspacesList(workspacesName);
+    } catch (error) {
+      console.log('error: ', error);
+    }
+  }
+
+  const handleWorkspaceCheckbox = (e, workspace) => {
+    if (e.target.checked) {
+      // Add the workspace to the selectedWorkspaces array
+      setSelectedWorkspaces((prevSelected) => [...prevSelected, workspace]);
+    } else {
+      // Remove the workspace from the selectedWorkspaces array
+      setSelectedWorkspaces((prevSelected) =>
+        prevSelected.filter((selected) => selected !== workspace)
+      );
+    }
+  };
+  const handleAllWorkspaceCheckbox = (e, workspace) => {
+    if (e.target.checked) {
+      // Add the workspace to the selectedWorkspaces array
+      setSelectedWorkspacesToAdd((prevSelected) => [...prevSelected, workspace]);
+    } else {
+      // Remove the workspace from the selectedWorkspaces array
+      setSelectedWorkspacesToAdd((prevSelected) =>
+        prevSelected.filter((selected) => selected !== workspace)
+      );
+    }
+  };
+  async function fetchWorkspaces() {
+    Workspace.all()
+      .then((workspaces) => {
+        const workspacesName = workspaces.map((workspace) => { return workspace.name })
+        return setAllWorkspaces(workspacesName);
+      })
+      .catch(() => setAllWorkspaces([]));
+  }
+
+  useEffect(() => {
+    if (user.role === "supervisor") {
+      const userId = user.id;
+      fetchWorkspacesName(userId);
+      fetchWorkspaces();
+    }
+  }, [])
+
+  useEffect(() => {
+    if (allWorkspaces.length > 0 && workspacesList.length === 0) {
+      setFilteredWorkspaces(allWorkspaces); // Update filteredWorkspaces instead of allWorkspaces
+    }
+    if (allWorkspaces.length > 0 && workspacesList.length > 0) {
+      const filtered = allWorkspaces.filter(name => !workspacesList.includes(name));
+      setFilteredWorkspaces(filtered); // Update filteredWorkspaces instead of allWorkspaces
+    }
+  }, [allWorkspaces, workspacesList]);
 
   return (
     <div className="relative w-[500px] max-w-2xl max-h-full">
@@ -102,6 +174,66 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
                     <option value="admin">Administrator</option>
                   )}
                 </select>
+                {role === "supervisor" && (
+                  <div className="flex justify-between">
+                    <div>
+                      <label
+                        htmlFor="workspaces"
+                        className="block mb-2 mt-3 text-sm font-medium text-gray-700"
+                      >
+                        Remove workspaces
+                      </label>
+
+                      {/* List of workspaces with checkboxes */}
+                      <div className="mt-2">
+                        {workspacesList.map((workspace, index) => (
+                          <div key={index} className="flex items-center mb-1">
+                            <input
+                              type="checkbox"
+                              id={`workspace-${index}`}
+                              value={workspace}
+                              onChange={(e) => handleWorkspaceCheckbox(e, workspace)}
+                              className="mr-2"
+                            />
+                            <label htmlFor={`workspace-${index}`} className="text-gray-700 text-xs">
+                              {workspace}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+
+
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="workspaces"
+                        className="block mb-2 mt-3 text-sm font-medium text-gray-700"
+                      >
+                        Add workspaces
+                      </label>
+
+                      {/* List of workspaces with checkboxes */}
+                      <div className="mt-2">
+                        {filteredWorkspaces && filteredWorkspaces.map((workspace, index) => (
+                          <div key={index} className="flex items-center mb-1">
+                            <input
+                              type="checkbox"
+                              id={`workspace-${index}`}
+                              value={workspace}
+                              onChange={(e) => handleAllWorkspaceCheckbox(e, workspace)}
+                              className="mr-2"
+                            />
+                            <label htmlFor={`workspace-${index}`} className="text-gray-700 text-xs">
+                              {workspace}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+
+
+                    </div>
+                  </div>
+                )}
                 <RoleHintDisplay role={role} />
               </div>
               {error && <p className="text-red-400 text-sm">Error: {error}</p>}

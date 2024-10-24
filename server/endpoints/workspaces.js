@@ -394,14 +394,11 @@ function workspaceEndpoints(app) {
       try {
         const user = await userFromSession(request, response);
         const userId = user.id;
-        console.log('userId: ', userId);
   
         let workspaces;
         if (user.role === 'supervisor') {
           const workspaceUsers = await WorkspaceUser.where({ user_id: userId });
-          console.log('workspaceUsers: ', workspaceUsers);
           const workspaceIds = workspaceUsers.map(wsUser => wsUser.workspace_id);
-          console.log('workspaceIds: ', workspaceIds);
           
           if (workspaceIds.length > 0) {
             workspaces = await Workspace.whereIn(workspaceIds);
@@ -420,6 +417,35 @@ function workspaceEndpoints(app) {
       }
     }
   );
+  app.post(
+    "/supervisor/workspaces",
+    [flexUserRoleValid([ROLES.manager,ROLES.admin])], // Middleware for validation
+    async (request, response) => {
+      try {
+       const userId = parseInt(request.body);
+        
+        // Fetch workspaceIds associated with the given userId
+        const workspaceIds = await WorkspaceUser.getWorkspaceIds(userId);
+        
+        let workspacesName;
+        
+        if (workspaceIds.length > 0) {
+          // Fetch workspaces by workspaceIds and return an array of workspace names
+          const workspaces = await Workspace.whereIn(workspaceIds);
+          workspacesName = workspaces.map((workspace) => workspace.name); // Use the array of names as workspaces
+        } else {
+          workspacesName = []; // Return an empty array if no workspaceIds are found
+        }
+  
+        // Respond with the array of workspace names
+        response.status(200).json({ workspacesName });
+      } catch (e) {
+        console.error(e.message, e);
+        response.sendStatus(500).end();
+      }
+    }
+  );
+  
   app.get(
     "/workspace/:slug",
     [validatedRequest, flexUserRoleValid([ROLES.all])],
@@ -980,7 +1006,6 @@ function workspaceEndpoints(app) {
 
         const { success, reason,documents } =
         await Collector.processDocument(originalname);
-        console.log('documents.id: ', documents[0].id);
         const fileName = `${documents[0].title}-${documents[0].id}.json`;
         if (!success || documents?.length === 0) {
           response.status(500).json({ success: false, error: reason }).end();

@@ -15,7 +15,6 @@ function apiWorkspaceUserEndpoints(app) {
     async (request, response) => {
       try {
         const currUser = await userFromSession(request, response);
-        console.log("currUser: ", currUser);
         const { workspaceId, userId } = reqBody(request);
 
         // Validate request body fields
@@ -50,6 +49,21 @@ function apiWorkspaceUserEndpoints(app) {
       }
     }
   );
+  app.post(
+    "/workspace-user/supervisor/workspaces",
+    [strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    async (request, response) => {
+      try {
+        const { userId } = reqBody(request);
+        const workspaceIds = await WorkspaceUser.getWorkspaceIds(userId);
+        response.status(200).json({ workspaceIds });
+      } catch (e) {
+        console.error(e);
+        response.sendStatus(500).end();
+      }
+    }
+  );
+
 }
 
 module.exports = { apiWorkspaceUserEndpoints };

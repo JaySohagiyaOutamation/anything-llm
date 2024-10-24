@@ -18,7 +18,6 @@ function apiSupervisorDocumentEndpoints(app) {
     async (request, response) => {
       try {
         const currUser = await userFromSession(request, response);
-        console.log('currUser: ', currUser);
         const documentParams = reqBody(request);
 
         if (!documentParams.workspaceName || !documentParams.userId) {
@@ -27,7 +26,6 @@ function apiSupervisorDocumentEndpoints(app) {
         }
 
         const { workspaceId, error: workspaceError } = await SupervisorDocumentsService.getWorkspaceIdByName(documentParams.workspaceName);
-        console.log('workspaceId: ', workspaceId);
 
         if (workspaceError) {
           response.status(400).json({ error: workspaceError });
@@ -38,7 +36,6 @@ function apiSupervisorDocumentEndpoints(app) {
             workspaceId,
             userId: documentParams.userId,
         });
-        console.log('supervisorDocument: ', supervisorDocument);
         
         if (error) {
           response.status(500).json({ error });
@@ -66,11 +63,10 @@ function apiSupervisorDocumentEndpoints(app) {
   );
   app.post(
     "/supervisor/new",
-    [strictMultiUserRoleValid([ROLES.admin, ROLES.manager, ROLES.supervisor])],
+    [strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
     async (request, response) => {
       try {
         const currUser = await userFromSession(request, response);
-        console.log('currUser: ', currUser);
         const documentParams = reqBody(request);
   
         // Ensure selectedWorkspaces and userId are provided
@@ -86,7 +82,6 @@ function apiSupervisorDocumentEndpoints(app) {
         // Loop through each workspace name and create a supervisor entry
         for (const workspaceName of documentParams.selectedWorkspaces) {
           const { workspaceId, error: workspaceError } = await SupervisorDocumentsService.getWorkspaceIdByName(workspaceName);
-          console.log('workspaceId: ', workspaceId);
   
           if (workspaceError || !workspaceId) {
             failedWorkspaces.push({ workspaceName, error: workspaceError || "Invalid workspace" });
@@ -97,7 +92,6 @@ function apiSupervisorDocumentEndpoints(app) {
             workspaceId,
             userId: documentParams.userId,
           });
-          console.log('supervisorDocument: ', supervisorDocument);
   
           if (error) {
             failedWorkspaces.push({ workspaceName, error });
@@ -116,7 +110,6 @@ function apiSupervisorDocumentEndpoints(app) {
             currUser.id
           );
         }
-        console.log("workspaceIds in server in supervisorDocs: ",workspaceIds );
         await WorkspaceUser.createMany(documentParams.userId,workspaceIds);
   
         // Prepare the response after all workspaces are processed
@@ -140,6 +133,87 @@ function apiSupervisorDocumentEndpoints(app) {
       }
     }
   );
+
+  app.delete(
+    "/supervisor/remove",
+    [strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    async (request, response) => {
+      try {
+        const currUser = await userFromSession(request, response);
+        const documentParams = reqBody(request);
+  
+        // Ensure selectedWorkspaces and userId are provided
+        if (!documentParams.selectedWorkspaces || !Array.isArray(documentParams.selectedWorkspaces) || !documentParams.userId) {
+          return response.status(400).json({ error: "Missing required fields: selectedWorkspaces (array), userId" });
+        }
+  
+        const failedWorkspaces = [];
+        const deletedWorkspaces = [];
+        const workspaceIds = [];
+        
+        // Loop through each workspace name and fetch the corresponding workspaceId
+        for (const workspaceName of documentParams.selectedWorkspaces) {
+          const { workspaceId, error: workspaceError } = await SupervisorDocumentsService.getWorkspaceIdByName(workspaceName);
+          
+          if (workspaceError || !workspaceId) {
+            failedWorkspaces.push({ workspaceName, error: workspaceError || "Invalid workspace" });
+            continue; // Skip to the next workspace in case of error
+          }
+          
+          workspaceIds.push(workspaceId);
+          
+          // Delete supervisor document associated with this workspaceId and userId
+          const { error: deleteSupervisorError } = await SupervisorDocumentsService.delete({
+            workspaceId,
+            userId: documentParams.userId,
+          });
+          
+          if (deleteSupervisorError) {
+            failedWorkspaces.push({ workspaceName, error: deleteSupervisorError });
+            continue;
+          }
+          
+          // Add the deleted workspace to the response list
+          deletedWorkspaces.push({ workspaceId, workspaceName });
+      
+          // Log the delete event
+          await EventLogs.logEvent(
+            "supervisor_document_deleted",
+            {
+              userId: documentParams.userId,
+              workspaceId,
+            },
+            currUser.id
+          );
+        }
+  
+        // Delete records from WorkspaceUser table for the given userId and workspaceIds
+        if (workspaceIds.length > 0) {
+          await WorkspaceUser.deleteMany(documentParams.userId, workspaceIds);
+        }
+  
+        // Prepare the response after all workspaces are processed
+        if (deletedWorkspaces.length > 0) {
+          return response.status(200).json({
+            success: true,
+            message: "Supervisor records deleted for selected workspaces",
+            deletedWorkspaces,
+            failedWorkspaces,
+          });
+        } else {
+          return response.status(400).json({
+            success: false,
+            message: "Failed to delete supervisor records",
+            failedWorkspaces,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+        return response.status(500).json({ error: "Failed to delete supervisor records" });
+      }
+    }
+  );
+  
   
 }
 
