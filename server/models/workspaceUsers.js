@@ -61,6 +61,31 @@ const WorkspaceUser = {
     }
   },
 
+  getWorkspaceIds: async function (userId) {
+    try {
+      // Fetch all workspace_users entries associated with the given userId
+      const workspaceAssociations = await prisma.workspace_users.findMany({
+        where: {
+          user_id: userId,
+        },
+        select: {
+          workspace_id: true, // Only select workspace_id from the results
+        },
+      });
+  
+      // Extract workspace IDs into an array
+      const workspaceIds = workspaceAssociations.map(
+        (association) => association.workspace_id
+      );
+  
+      return workspaceIds; // Return the array of workspace IDs
+    } catch (error) {
+      console.error("Error fetching workspace IDs:", error.message);
+      throw error;
+    }
+  },
+  
+
   where: async function (clause = {}, limit = null) {
     try {
       const results = await prisma.workspace_users.findMany({
@@ -92,6 +117,27 @@ const WorkspaceUser = {
     }
     return;
   },
+  deleteMany: async function (userId, workspaceIds = []) {
+    if (workspaceIds.length === 0) return; // No workspaceIds to delete
+  
+    try {
+      // Use a transaction to delete multiple entries based on userId and workspaceIds
+      await prisma.$transaction(
+        workspaceIds.map((workspaceId) =>
+          prisma.workspace_users.deleteMany({
+            where: {
+              user_id: userId,
+              workspace_id: workspaceId,
+            },
+          })
+        )
+      );
+    } catch (error) {
+      console.error("Failed to delete workspace users:", error.message);
+    }
+    return;
+  },
+  
 };
 
 module.exports.WorkspaceUser = WorkspaceUser;

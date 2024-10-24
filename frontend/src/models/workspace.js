@@ -35,6 +35,22 @@ const Workspace = {
 
     return { workspace, message };
   },
+  getWorkspacesName: async function (userId) {
+    const { workspacesName } = await fetch(
+      `${API_BASE}/supervisor/workspaces`,
+      {
+        method: "POST",
+        body: JSON.stringify(userId),
+        headers: baseHeaders(),
+      }
+    )
+    .then((res) => res.json())
+    .catch((e) => {
+      return { workspacesName: null };
+    });
+
+    return { workspacesName };
+  },
   modifyEmbeddings: async function (slug, changes = {}) {
     const { workspace, message } = await fetch(
       `${API_BASE}/workspace/${slug}/update-embeddings`,
@@ -205,10 +221,9 @@ const Workspace = {
       method: "GET",
       headers: baseHeaders(),
     })
-      .then((res) => res.json())
-      .then((res) => res.workspaces || [])
-      .catch(() => []);
-
+    .then((res) => res.json())
+    .then((res) => res.workspaces || [])
+    .catch(() => []);
     return workspaces;
   },
   bySlug: async function (slug = "") {
