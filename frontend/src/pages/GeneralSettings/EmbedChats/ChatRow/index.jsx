@@ -108,9 +108,9 @@ export default function ChatRow({ chat, onDelete }) {
 const TextPreview = ({ text, closeModal }) => {
   return (
     <div className="relative w-full md:max-w-2xl max-h-full">
-      <div className="relative bg-main-gradient rounded-lg shadow">
+      <div className="relative bg-white rounded-lg shadow">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-600">
-          <h3 className="text-xl font-semibold text-white">Viewing Text</h3>
+          <h3 className="text-xl font-semibold text-black">Viewing Text</h3>
           <button
             onClick={closeModal}
             type="button"
@@ -120,7 +120,7 @@ const TextPreview = ({ text, closeModal }) => {
           </button>
         </div>
         <div className="w-full p-6">
-          <pre className="w-full h-[200px] py-2 px-4 whitespace-pre-line overflow-auto rounded-lg bg-zinc-900 border border-gray-500 text-white text-sm">
+          <pre className="w-full h-[200px] py-2 px-4 whitespace-pre-line overflow-auto rounded-lg bg-[#f8fafe] border border-gray-500 text-black text-sm">
             {text}
           </pre>
         </div>
@@ -144,17 +144,17 @@ const ConnectionDetails = ({
   if (verbose) {
     return (
       <>
-        <p className="text-xs text-slate-400">sessionID: {sessionId}</p>
+        <p className="text-xs text-black">sessionID: {sessionId}</p>
         {details.username && (
-          <p className="text-xs text-slate-400">username: {details.username}</p>
+          <p className="text-xs text-black">username: {details.username}</p>
         )}
         {details.ip && (
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-black">
             client ip address: {details.ip}
           </p>
         )}
         {details.host && (
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-black">
             client host URL: {details.host}
           </p>
         )}
@@ -165,10 +165,10 @@ const ConnectionDetails = ({
   return (
     <>
       {details.username && (
-        <p className="text-xs text-slate-400">{details.username}</p>
+        <p className="text-xs text-black">{details.username}</p>
       )}
-      {details.ip && <p className="text-xs text-slate-400">{details.ip}</p>}
-      {details.host && <p className="text-xs text-slate-400">{details.host}</p>}
+      {details.ip && <p className="text-xs text-black">{details.ip}</p>}
+      {details.host && <p className="text-xs text-black">{details.host}</p>}
     </>
   );
 };
