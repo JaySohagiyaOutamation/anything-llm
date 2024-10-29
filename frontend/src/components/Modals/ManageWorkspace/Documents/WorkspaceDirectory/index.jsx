@@ -26,18 +26,18 @@ function WorkspaceDirectory({
     return (
       <div className="px-8">
         <div className="flex items-center justify-start w-[560px]">
-          <h3 className="text-white text-base font-bold ml-5">
+          <h3 className="text-black text-base font-bold ml-5">
             {workspace.name}
           </h3>
         </div>
-        <div className="relative w-[560px] h-[445px] bg-zinc-900 rounded-2xl mt-5">
-          <div className="text-white/80 text-xs grid grid-cols-12 py-2 px-8">
+        <div className="relative w-[560px] h-[445px] bg-[#E4ECF6] rounded-2xl mt-5">
+          <div className="text-black/80 text-xs grid grid-cols-12 py-2 px-8">
             <p className="col-span-5">Name</p>
             <p className="col-span-2" />
           </div>
           <div className="w-full h-full flex items-center justify-center flex-col gap-y-5">
             <PreLoader />
-            <p className="text-white/80 text-sm font-semibold animate-pulse text-center w-1/3">
+            <p className="text-black/80 text-sm font-semibold animate-pulse text-center w-1/3">
               {loadingMessage}
             </p>
           </div>

@@ -62,7 +62,7 @@ export default function AgentModelSelection({
           name="agentModel"
           required={true}
           disabled={true}
-          className="bg-white text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          className="bg-black text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         >
           <option disabled={true} selected={true}>
             {t("agent.mode.wait")}

@@ -1,10 +1,12 @@
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+
 function recommendedSettings(provider = null) {
   switch (provider) {
     case "mistral":
       return { temp: 0 };
     default:
-      return { temp: 0.7 };
+      return { temp: 0.2 }; // Set default to 0.2
   }
 }
 
@@ -13,8 +15,21 @@ export default function ChatTemperatureSettings({
   workspace,
   setHasChanges,
 }) {
-  const defaults = recommendedSettings(settings?.LLMProvider);
   const { t } = useTranslation();
+  const defaults = recommendedSettings(settings?.LLMProvider);
+
+  const [temperature, setTemperature] = useState(workspace?.openAiTemp ?? defaults.temp);
+
+  useEffect(() => {
+    setTemperature(workspace?.openAiTemp ?? defaults.temp);
+  }, [workspace?.openAiTemp, defaults.temp]);
+
+  const handleTemperatureChange = (e) => {
+    const newTemp = parseFloat(e.target.value);
+    setTemperature(newTemp);
+    setHasChanges(true);
+  };
+
   return (
     <div>
       <div className="flex flex-col">
@@ -36,12 +51,12 @@ export default function ChatTemperatureSettings({
         min={0.0}
         step={0.1}
         onWheel={(e) => e.target.blur()}
-        defaultValue={"0.2"}
+        value={temperature}
         className="bg-black bg-opacity-70 text-white placeholder:text-white/20 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder="0.7"
         required={true}
         autoComplete="off"
-        onChange={() => setHasChanges(true)}
+        onChange={handleTemperatureChange}
       />
     </div>
   );
