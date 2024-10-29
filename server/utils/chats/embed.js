@@ -14,10 +14,10 @@ async function streamChatWithForEmbed(
   embed,
   /** @type {String} */
   message,
-    /** @type {String} */
-    currentURL,
-      /** @type {String} */
-      pageSourceCode,
+  /** @type {String} */
+  currentURL,
+  /** @type {String} */
+  currentPageSourceCode,
   /** @type {String} */
   sessionId,
   { promptOverride, modelOverride, temperatureOverride, username }
@@ -91,18 +91,18 @@ async function streamChatWithForEmbed(
   const vectorSearchResults =
     embeddingsCount !== 0
       ? await VectorDb.performSimilaritySearch({
-          namespace: embed.workspace.slug,
-          input: message,
-          LLMConnector,
-          similarityThreshold: embed.workspace?.similarityThreshold,
-          topN: embed.workspace?.topN,
-          filterIdentifiers: pinnedDocIdentifiers,
-        })
+        namespace: embed.workspace.slug,
+        input: message,
+        LLMConnector,
+        similarityThreshold: embed.workspace?.similarityThreshold,
+        topN: embed.workspace?.topN,
+        filterIdentifiers: pinnedDocIdentifiers,
+      })
       : {
-          contextTexts: [],
-          sources: [],
-          message: null,
-        };
+        contextTexts: [],
+        sources: [],
+        message: null,
+      };
 
   // Failed similarity search if it was run at all and failed.
   if (!!vectorSearchResults.message) {
@@ -139,9 +139,12 @@ async function streamChatWithForEmbed(
     });
     return;
   }
-   const updatedMessage = "This is cuurent page url: "+ currentURL + " And this html source code  of this page "+ pageSourceCode+ " And this is the input message "+message;
-   console.log('message: ', message);
-   console.log('pageSourceCode in server: ', pageSourceCode);
+  let updatedMessage;
+  if (currentURL === "" && currentPageSourceCode === "") {
+    updatedMessage = message;
+  } else {
+    updatedMessage = "This is cuurent page url: " + currentURL + " And this html source code  of this page " + currentPageSourceCode + " And this is the input message " + message;
+  }
   // Compress message to ensure prompt passes token limit with room for response
   // and build system messages based on inputs and history.
   const messages = await LLMConnector.compressMessages(
@@ -153,7 +156,7 @@ async function streamChatWithForEmbed(
     },
     rawHistory
   );
-// console.log(currentURL);
+  // console.log(currentURL);
   // If streaming is not explicitly enabled for connector
   // we do regular waiting of a response and send a single chunk.
   if (LLMConnector.streamingEnabled() !== true) {
@@ -187,9 +190,9 @@ async function streamChatWithForEmbed(
     response: { text: completeText, type: chatMode },
     connection_information: response.locals.connection
       ? {
-          ...response.locals.connection,
-          username: !!username ? String(username) : null,
-        }
+        ...response.locals.connection,
+        username: !!username ? String(username) : null,
+      }
       : { username: !!username ? String(username) : null },
     sessionId,
   });

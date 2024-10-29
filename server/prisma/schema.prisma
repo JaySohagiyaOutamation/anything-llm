@@ -135,7 +135,7 @@ model workspaces {
   openAiHistory                Int                            @default(20)
   lastUpdatedAt                DateTime                       @default(now())
   openAiPrompt                 String?
-  similarityThreshold          Float?                         @default(0.25)
+  similarityThreshold          Float?                         @default(0.5)
   chatProvider                 String?
   chatModel                    String?
   topN                         Int?                           @default(4)
