@@ -238,6 +238,7 @@ model embed_configs {
   enabled                    Boolean       @default(false)
   chat_mode                  String        @default("query")
   allowlist_domains          String?
+  allow_sending_url          Boolean       @default(false)
   allow_model_override       Boolean       @default(false)
   allow_temperature_override Boolean       @default(false)
   allow_prompt_override      Boolean       @default(false)

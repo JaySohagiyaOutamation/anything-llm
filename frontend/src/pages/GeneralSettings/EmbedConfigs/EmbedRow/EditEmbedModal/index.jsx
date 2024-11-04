@@ -69,6 +69,12 @@ export default function EditEmbedModal({ embed, closeModal }) {
                 hint="Limit the amount of chats a session user can send with this embed in a 24 hour period. Zero is unlimited."
                 defaultValue={embed.max_chats_per_session}
               />
+                 <BooleanInput
+                name="allow_sending_url"
+                title="Send URL and Source Code"
+                hint="Allow user to send url and source code of current page to LLM."
+                defaultValue={embed.allow_sending_url}
+              />
               <BooleanInput
                 name="allow_model_override"
                 title="Enable dynamic model use"

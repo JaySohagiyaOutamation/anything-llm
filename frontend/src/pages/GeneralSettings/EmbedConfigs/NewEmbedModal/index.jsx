@@ -14,6 +14,8 @@ export function enforceSubmissionSchema(form) {
 
   // Always set value on nullable keys since empty or off will not send anything from form element.
   if (!data.hasOwnProperty("allowlist_domains")) data.allowlist_domains = null;
+  if (!data.hasOwnProperty("allow_sending_url"))
+    data.allow_sending_url = false;
   if (!data.hasOwnProperty("allow_model_override"))
     data.allow_model_override = false;
   if (!data.hasOwnProperty("allow_temperature_override"))
@@ -67,6 +69,11 @@ export default function NewEmbedModal({ closeModal }) {
                 name="max_chats_per_session"
                 title="Max chats per session"
                 hint="Limit the amount of chats a session user can send with this embed in a 24 hour period. Zero is unlimited."
+              />
+              <BooleanInput
+                name="allow_sending_url"
+                title="Send URL and Source Code"
+                hint="Allow user to send url and source code of current page to LLM."
               />
               <BooleanInput
                 name="allow_model_override"

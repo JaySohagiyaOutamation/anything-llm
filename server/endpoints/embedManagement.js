@@ -29,6 +29,30 @@ function embedManagementEndpoints(app) {
     }
   );
 
+  app.get(
+    "/embed/:embedId",
+    [flexUserRoleValid([ROLES.all])],
+    async (request, response) => {
+      const { embedId } = request.params; // Extract embedId from request parameters
+      try {
+        // Find the embed configuration by UUID (embedId)
+        const embed = await EmbedConfig.get({ uuid: embedId }); // Adjust this method based on your ORM
+  
+        if (!embed) {
+          return response.status(404).json({ message: "Embed not found" });
+        }
+  
+        // Respond with the allow_sending_url property
+        response.status(200).json({ embed: embed });
+      } catch (e) {
+        console.error(e);
+        response.sendStatus(500).end();
+      }
+    }
+  );
+  
+  
+
   app.post(
     "/embeds/new",
     [validatedRequest, flexUserRoleValid([ROLES.admin])],

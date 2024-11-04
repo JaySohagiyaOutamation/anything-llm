@@ -8,6 +8,7 @@ const EmbedConfig = {
     "enabled",
     "allowlist_domains",
     "allow_model_override",
+    "allow_sending_url",
     "allow_temperature_override",
     "allow_prompt_override",
     "max_chats_per_day",
@@ -26,6 +27,10 @@ const EmbedConfig = {
           allowlist_domains: validatedCreationData(
             data?.allowlist_domains,
             "allowlist_domains"
+          ),
+          allow_sending_url: validatedCreationData(
+            data?.allow_sending_url,
+            "allow_sending_url"
           ),
           allow_model_override: validatedCreationData(
             data?.allow_model_override,
@@ -181,6 +186,7 @@ const EmbedConfig = {
 
 const BOOLEAN_KEYS = [
   "allow_model_override",
+  "allow_sending_url",
   "allow_temperature_override",
   "allow_prompt_override",
   "enabled",
