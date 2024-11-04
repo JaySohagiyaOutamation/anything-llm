@@ -252,6 +252,12 @@ const MyTeam = ({ setMultiUserLoginValid, myTeamSubmitRef, navigate }) => {
     window.localStorage.setItem(AUTH_USER, JSON.stringify(user));
     window.localStorage.setItem(AUTH_TOKEN, token);
     window.localStorage.removeItem(AUTH_TIMESTAMP);
+
+    System.sendWelcomeEmailToUser(user).catch((emailError) => {
+      console.error(`Failed to send welcome email: ${emailError}`);
+      showToast(`Failed to send welcome email: ${emailError}`, "error");
+  });
+  
   };
 
   const setNewUsername = (e) => setUsername(e.target.value);

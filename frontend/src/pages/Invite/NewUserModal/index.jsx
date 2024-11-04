@@ -18,7 +18,10 @@ export default function NewUserModal() {
     const { success, error } = await Invite.acceptInvite(code, data);
     if (success) {
       const { valid, user, token, message } = await System.requestToken(data);
+
+      console.log('User created during invite: ', user); 
       if (valid && !!token && !!user) {
+        System.sendWelcomeEmailToUser(user);
         window.localStorage.setItem(AUTH_USER, JSON.stringify(user));
         window.localStorage.setItem(AUTH_TOKEN, token);
         window.location = paths.home();

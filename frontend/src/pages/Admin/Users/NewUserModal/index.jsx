@@ -6,6 +6,7 @@ import { RoleHintDisplay } from "..";
 // import WorkspaceUser from "@/models/workspaceUser"
 import Workspace from "@/models/workspace";
 import Supervisor from "@/models/supervisor";
+import System from "@/models/system";
 
 export default function NewUserModal({ closeModal }) {
   const [error, setError] = useState(null);
@@ -19,27 +20,37 @@ export default function NewUserModal({ closeModal }) {
     setError(null);
     setSupervisorError(null); // Reset supervisor error if any
     e.preventDefault();
-  
+
     const data = {};
     const form = new FormData(e.target);
     for (var [key, value] of form.entries()) data[key] = value;
-  
+
     // Check if the user role is "supervisor" and no workspaces are selected
     if (data.role === "supervisor" && selectedWorkspaces.length === 0) {
       setSupervisorError("Please select at least one workspace");
       return; // Return early to prevent user creation
     }
-  
+
     const { user, error } = await Admin.newUser(data);
-  
+
     if (user && user.role === "supervisor" && selectedWorkspaces.length > 0) {
       await Supervisor.createSupervisor(selectedWorkspaces, user.id);
     }
-  
-    if (!!user) window.location.reload();
-    setError(error);
+
+    // Send welcome email in the background
+    if (user) {
+      setTimeout(() => {
+        System.sendWelcomeEmailToUser(user);
+      }, 0); // Asynchronous email sending
+    }
+
+    if (user) {
+      closeModal(); // Close modal immediately
+      window.location.reload(); // Reload after user creation
+    } else {
+      setError(error);
+    }
   };
-  
 
   const user = userFromStorage();
 

@@ -49,6 +49,7 @@ const {
   recoverAccount,
   resetPassword,
   sendRecoveryCodesToEmail,
+  sendWelcomeEmailToUser,
   generateRecoveryCodes,
 } = require("../utils/PasswordRecovery");
 const { SlashCommandPresets } = require("../models/slashCommandsPresets");
@@ -296,6 +297,25 @@ function systemEndpoints(app) {
         response
           .status(500)
           .json({ success: false, message: "Internal server error" });
+      }
+    }
+  );
+
+  app.post(
+    "/system/send-welcome-email",
+    async (request, response) => {
+      try {
+        const userData = reqBody(request); // Expects username and email
+        const { success, message, error } = await sendWelcomeEmailToUser(userData);
+  
+        if (success) {
+          response.status(200).json({ success, message });
+        } else {
+          response.status(400).json({ success, message: error });
+        }
+      } catch (error) {
+        console.error("Error sending welcome email", error.message);
+        response.status(500).json({ success: false, message: "Internal server error" });
       }
     }
   );

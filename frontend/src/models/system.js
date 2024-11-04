@@ -116,6 +116,24 @@ import AgentPlugins from "./experimental/agentPlugins";
         return { success: false, error: e.message };
       });
   },
+  sendWelcomeEmailToUser: async function (user) {
+    return await fetch(`${API_BASE}/system/send-welcome-email`, {
+      method: "POST",
+      headers: baseHeaders(),
+      body: JSON.stringify(user),
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || "Error sending welcome email.");
+        }
+        return data;
+      })
+      .catch((e) => {
+        console.error(e);
+        return { success: false, error: e.message };
+      });
+  },
   resetPassword: async function (token, newPassword, confirmPassword) {
     return await fetch(`${API_BASE}/system/reset-password`, {
       method: "POST",

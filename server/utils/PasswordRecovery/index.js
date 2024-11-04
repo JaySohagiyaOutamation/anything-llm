@@ -58,6 +58,41 @@ async function sendRecoveryCodesToEmail(email = "") {
   }
 }
 
+async function sendWelcomeEmailToUser(userData) {
+  const { username, email } = userData;
+
+  const welcomeMessage = `
+Hello ${username},
+
+Welcome to Outamation AI! We’re thrilled to have you on board.
+
+🗂 Account Details :
+Username: ${username}
+
+🔐 Account Security :
+If you ever forget your password, you can easily recover your account using the recovery codes we provided.
+
+We're here to support you as you explore and make the most of Outamation AI. Should you have any questions or need assistance, please feel free to reach out.
+
+Regards,
+Outamation AI Team
+`;
+
+  const mailOptions = {
+    from: `Outamation AI <donotreply@outamationmail.com>`,
+    to: email,
+    subject: 'Welcome to Outamation AI!',
+    text: welcomeMessage,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return { success: true, message: "Welcome email sent successfully." };
+  } catch (error) {
+    return { success: false, error: "Failed to send welcome email: " + error.message };
+  }
+}
+
 
 async function generateRecoveryCodes(userId) {
   const newRecoveryCodes = [];
@@ -153,5 +188,6 @@ module.exports = {
   recoverAccount,
   resetPassword,
   generateRecoveryCodes,
-  sendRecoveryCodesToEmail
+  sendRecoveryCodesToEmail,
+  sendWelcomeEmailToUser
 };
