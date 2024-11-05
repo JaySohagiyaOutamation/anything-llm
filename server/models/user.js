@@ -75,6 +75,7 @@ const User = {
   create: async function ({
     username,
     password,
+    email,
     role = "default",
     dailyMessageLimit = null,
   }) {

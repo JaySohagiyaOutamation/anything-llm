@@ -4,7 +4,7 @@ import Admin from "@/models/admin";
 import { RoleHintDisplay } from "../..";
 import Workspace from "@/models/workspace";
 import Supervisor from "@/models/supervisor";
-import { MessageLimitInput, RoleHintDisplay } from "../..";
+import { MessageLimitInput } from "../..";
 
 export default function EditUserModal({ currentUser, user, closeModal }) {
   const [role, setRole] = useState(user.role);
