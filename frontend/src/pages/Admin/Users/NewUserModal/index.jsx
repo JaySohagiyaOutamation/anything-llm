@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { X } from "@phosphor-icons/react";
 import Admin from "@/models/admin";
 import { userFromStorage } from "@/utils/request";
-import { RoleHintDisplay } from "..";
 // import WorkspaceUser from "@/models/workspaceUser"
 import Workspace from "@/models/workspace";
 import Supervisor from "@/models/supervisor";
 import System from "@/models/system";
+import { MessageLimitInput, RoleHintDisplay } from "..";
 
 export default function NewUserModal({ closeModal }) {
   const [error, setError] = useState(null);
@@ -15,6 +15,10 @@ export default function NewUserModal({ closeModal }) {
   // const [workspaceName, setWorkspaceName] = useState("");
   const [role, setRole] = useState("default");
   const [selectedWorkspaces, setSelectedWorkspaces] = useState([]);
+  const [messageLimit, setMessageLimit] = useState({
+    enabled: false,
+    limit: 10,
+  });
 
   const handleCreate = async (e) => {
     setError(null);
@@ -30,6 +34,7 @@ export default function NewUserModal({ closeModal }) {
       setSupervisorError("Please select at least one workspace");
       return; // Return early to prevent user creation
     }
+    data.dailyMessageLimit = messageLimit.enabled ? messageLimit.limit : null;
 
     const { user, error } = await Admin.newUser(data);
 
@@ -109,13 +114,13 @@ export default function NewUserModal({ closeModal }) {
                   pattern="^[a-z0-9_-]+$"
                   onInvalid={(e) =>
                     e.target.setCustomValidity(
-                      "Username must be only contain lowercase letters, numbers, underscores, and hyphens with no spaces"
+                      "Username must only contain lowercase letters, numbers, underscores, and hyphens with no spaces"
                     )
                   }
                   onChange={(e) => e.target.setCustomValidity("")}
                 />
-                <p className="mt-2 text-xs text-black/60">
-                  Username must be only contain lowercase letters, numbers,
+<p className="mt-2 text-xs text-black/60">
+Username must only contain lowercase letters, numbers,
                   underscores, and hyphens with no spaces
                 </p>
               </div>
@@ -229,6 +234,12 @@ export default function NewUserModal({ closeModal }) {
                 </div>
               )}
               {supervisorError && <p className="text-red-400 text-xs"> {supervisorError}</p>}
+              <MessageLimitInput
+                role={role}
+                enabled={messageLimit.enabled}
+                limit={messageLimit.limit}
+                updateState={setMessageLimit}
+              />
               {error && <p className="text-red-400 text-sm">Error: {error}</p>}
               <p className="text-black text-xs md:text-sm">
                 After creating a user they will need to login with their initial

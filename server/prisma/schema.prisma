@@ -75,6 +75,7 @@ model users {
   seen_recovery_codes         Boolean?                      @default(false)
   createdAt                   DateTime                      @default(now())
   lastUpdatedAt               DateTime                      @default(now())
+  dailyMessageLimit           Int?
   workspace_chats             workspace_chats[]
   workspace_users             workspace_users[]
   embed_configs               embed_configs[]
@@ -86,6 +87,7 @@ model users {
   slash_command_presets       slash_command_presets[]
   browser_extension_api_keys  browser_extension_api_keys[]
   supervisorDocuments         supervisorDocuments[]        // Added this relation
+  temporary_auth_tokens       temporary_auth_tokens[]
 }
 
 model recovery_codes {
@@ -320,4 +322,16 @@ model browser_extension_api_keys {
   user          users?   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@index([user_id])
+}
+
+model temporary_auth_tokens {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  userId    Int
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@index([userId])
 }

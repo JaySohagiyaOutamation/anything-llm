@@ -3,7 +3,9 @@ import System from "@/models/system";
 
 export default function ElevenLabsOptions({ settings }) {
   const [inputValue, setInputValue] = useState(settings?.TTSElevenLabsKey);
-  const [openAIKey, setOpenAIKey] = useState(settings?.TTSElevenLabsKey);
+  const [elevenLabsKey, setElevenLabsKey] = useState(
+    settings?.TTSElevenLabsKey
+  );
 
   return (
     <div className="flex gap-x-4">
@@ -21,11 +23,11 @@ export default function ElevenLabsOptions({ settings }) {
           autoComplete="off"
           spellCheck={false}
           onChange={(e) => setInputValue(e.target.value)}
-          onBlur={() => setOpenAIKey(inputValue)}
+          onBlur={() => setElevenLabsKey(inputValue)}
         />
       </div>
       {!settings?.credentialsOnly && (
-        <ElevenLabsModelSelection settings={settings} apiKey={openAIKey} />
+        <ElevenLabsModelSelection settings={settings} apiKey={elevenLabsKey} />
       )}
     </div>
   );
@@ -92,7 +94,11 @@ function ElevenLabsModelSelection({ apiKey, settings }) {
           .map((organization) => (
             <optgroup key={organization} label={organization}>
               {groupedModels[organization].map((model) => (
-                <option key={model.id} value={model.id}>
+                <option
+                  key={model.id}
+                  value={model.id}
+                  selected={model.id === settings?.TTSElevenLabsVoiceModel}
+                >
                   {model.name}
                 </option>
               ))}

@@ -3,10 +3,7 @@ const { WorkspaceThread } = require("../../../models/workspaceThread");
 const { Workspace } = require("../../../models/workspace");
 const { validApiKey } = require("../../../utils/middleware/validApiKey");
 const { reqBody, multiUserMode } = require("../../../utils/http");
-const {
-  streamChatWithWorkspace,
-  VALID_CHAT_MODE,
-} = require("../../../utils/chats/stream");
+const { VALID_CHAT_MODE } = require("../../../utils/chats/stream");
 const { Telemetry } = require("../../../models/telemetry");
 const { EventLogs } = require("../../../models/eventLogs");
 const {
@@ -34,12 +31,14 @@ function apiWorkspaceThreadEndpoints(app) {
           type: 'string'
       }
       #swagger.requestBody = {
-        description: 'Optional userId associated with the thread',
+        description: 'Optional userId associated with the thread, thread slug and thread name',
         required: false,
         content: {
           "application/json": {
             example: {
-              userId: 1
+              userId: 1,
+              name: 'Name',
+              slug: 'thread-slug'
             }
           }
         }
@@ -70,18 +69,24 @@ function apiWorkspaceThreadEndpoints(app) {
       }
       */
       try {
-        const { slug } = request.params;
-        const { userId } = reqBody(request);
-        const workspace = await Workspace.get({ slug });
+        const wslug = request.params.slug;
+        let { userId = null, name = null, slug = null } = reqBody(request);
+        const workspace = await Workspace.get({ slug: wslug });
 
         if (!workspace) {
           response.sendStatus(400).end();
           return;
         }
 
+        // If the system is not multi-user and you pass in a userId
+        // it needs to be nullified as no users exist. This can still fail validation
+        // as we don't check if the userID is valid.
+        if (!response.locals.multiUserMode && !!userId) userId = null;
+
         const { thread, message } = await WorkspaceThread.new(
           workspace,
-          userId ? Number(userId) : null
+          userId ? Number(userId) : null,
+          { name, slug }
         );
 
         await Telemetry.sendTelemetry("workspace_thread_created", {

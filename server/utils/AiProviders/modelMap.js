@@ -26,6 +26,9 @@ const MODEL_MAP = {
     "gemini-1.5-flash-latest": 1_048_576,
     "gemini-1.5-pro-latest": 2_097_152,
     "gemini-1.5-pro-exp-0801": 2_097_152,
+    "gemini-1.5-pro-exp-0827": 2_097_152,
+    "gemini-1.5-flash-exp-0827": 1_048_576,
+    "gemini-1.5-flash-8b-exp-0827": 1_048_576,
   },
   groq: {
     "gemma2-9b-it": 8192,
@@ -49,6 +52,17 @@ const MODEL_MAP = {
     "gpt-4-turbo-preview": 128_000,
     "gpt-4": 8_192,
     "gpt-4-32k": 32_000,
+    "o1-preview": 128_000,
+    "o1-preview-2024-09-12": 128_000,
+    "o1-mini": 128_000,
+    "o1-mini-2024-09-12": 128_000,
+  },
+  deepseek: {
+    "deepseek-chat": 128_000,
+    "deepseek-coder": 128_000,
+  },
+  xai: {
+    "grok-beta": 131_072,
   },
 };
 

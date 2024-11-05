@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Tooltip } from "react-tooltip";
-import { At, Flask, X } from "@phosphor-icons/react";
-import ModalWrapper from "@/components/ModalWrapper";
-import { useModal } from "@/hooks/useModal";
+import { At } from "@phosphor-icons/react";
 import { useIsAgentSessionActive } from "@/utils/chat/agent";
 
 export default function AvailableAgentsButton({ showing, setShowAgents }) {
@@ -107,7 +105,6 @@ export function AvailableAgents({
           </div>
         </div>
       </div>
-      {showing && <FirstTimeAgentUser />}
     </>
   );
 }

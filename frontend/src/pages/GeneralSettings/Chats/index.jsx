@@ -11,6 +11,7 @@ import { CaretDown, Download, Sparkle, Trash } from "@phosphor-icons/react";
 import { saveAs } from "file-saver";
 import { useTranslation } from "react-i18next";
 import paths from "@/utils/paths";
+import { CanViewChatHistory } from "@/components/CanViewChatHistory";
 
 const exportOptions = {
   csv: {
@@ -59,7 +60,7 @@ export default function WorkspaceChats() {
   const { t } = useTranslation();
 
   const handleDumpChats = async (exportType) => {
-    const chats = await System.exportChats(exportType);
+    const chats = await System.exportChats(exportType, "workspace");
     if (!!chats) {
       const { name, mimeType, fileExtension, filenameFunc } =
         exportOptions[exportType];
@@ -106,7 +107,8 @@ export default function WorkspaceChats() {
 
   useEffect(() => {
     async function fetchChats() {
-      const { chats: _chats, hasPages = false } = await System.chats(offset);
+      const { chats: _chats = [], hasPages = false } =
+        await System.chats(offset);
       setChats(_chats);
       setCanNext(hasPages);
       setLoading(false);
@@ -115,6 +117,7 @@ export default function WorkspaceChats() {
   }, [offset]);
 
   return (
+    <CanViewChatHistory>
     <div className="w-screen h-screen overflow-hidden bg-white flex">
       <Sidebar />
       <div
@@ -158,6 +161,7 @@ export default function WorkspaceChats() {
                     ))}
                   </div>
                 </div>
+              
               </div>
               {chats.length > 0 && (
                 <>
@@ -181,19 +185,21 @@ export default function WorkspaceChats() {
             <p className="text-xs leading-[18px] font-base text-black text-opacity-60">
               {t("recorded.description")}
             </p>
+            </div>
+            <ChatsContainer
+              loading={loading}
+              chats={chats}
+              setChats={setChats}
+              offset={offset}
+              setOffset={setOffset}
+              canNext={canNext}
+              t={t}
+            />
+           
           </div>
-          <ChatsContainer
-            loading={loading}
-            chats={chats}
-            setChats={setChats}
-            offset={offset}
-            setOffset={setOffset}
-            canNext={canNext}
-            t={t}
-          />
         </div>
       </div>
-    </div>
+    </CanViewChatHistory>
   );
 }
 

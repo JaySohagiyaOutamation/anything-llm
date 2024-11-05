@@ -9,6 +9,7 @@ export const SEEN_WATCH_ALERT = "anythingllm_watched_document_alert";
 
 export const USER_BACKGROUND_COLOR = "bg-[#e4ecf6]";
 export const AI_BACKGROUND_COLOR = "bg-[#f8fafe]";
+export const APPEARANCE_SETTINGS = "anythingllm_appearance_settings";
 
 export const OLLAMA_COMMON_URLS = [
   "http://127.0.0.1:11434",

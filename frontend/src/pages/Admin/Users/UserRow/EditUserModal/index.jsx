@@ -4,6 +4,7 @@ import Admin from "@/models/admin";
 import { RoleHintDisplay } from "../..";
 import Workspace from "@/models/workspace";
 import Supervisor from "@/models/supervisor";
+import { MessageLimitInput, RoleHintDisplay } from "../..";
 
 export default function EditUserModal({ currentUser, user, closeModal }) {
   const [role, setRole] = useState(user.role);
@@ -13,6 +14,10 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
   const [selectedWorkspacesToAdd, setSelectedWorkspacesToAdd] = useState([]);
   const [filteredWorkspaces, setFilteredWorkspaces] = useState([]);
   const [error, setError] = useState(null);
+  const [messageLimit, setMessageLimit] = useState({
+    enabled: user.dailyMessageLimit !== null,
+    limit: user.dailyMessageLimit || 10,
+  });
 
   const handleUpdate = async (e) => {
     setError(null);
@@ -29,6 +34,12 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
     if (role === "supervisor" && selectedWorkspacesToAdd.length > 0) {
       await Supervisor.createSupervisor(selectedWorkspacesToAdd, user.id);
     }
+    if (messageLimit.enabled) {
+      data.dailyMessageLimit = messageLimit.limit;
+    } else {
+      data.dailyMessageLimit = null;
+    }
+
     const { success, error } = await Admin.updateUser(user.id, data);
 
     if (success) window.location.reload();
@@ -130,7 +141,7 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
                   autoComplete="off"
                 />
                 <p className="mt-2 text-xs text-black/80">
-                  Username must be only contain lowercase letters, numbers,
+                  Username must only contain lowercase letters, numbers,
                   underscores, and hyphens with no spaces
                 </p>
               </div>
@@ -236,6 +247,12 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
                 )}
                 <RoleHintDisplay role={role} />
               </div>
+              <MessageLimitInput
+                role={role}
+                enabled={messageLimit.enabled}
+                limit={messageLimit.limit}
+                updateState={setMessageLimit}
+              />
               {error && <p className="text-red-400 text-sm">Error: {error}</p>}
             </div>
           </div>
