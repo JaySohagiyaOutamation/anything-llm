@@ -7,8 +7,10 @@ import ConfluenceOptions from "./Connectors/Confluence";
 import { useState } from "react";
 import ConnectorOption from "./ConnectorOption";
 import WebsiteDepthOptions from "./Connectors/WebsiteDepth";
+ 
 
 export const DATA_CONNECTORS = {
+
   github: {
     name: "GitHub Repo",
     image: ConnectorImages.github,
@@ -47,6 +49,7 @@ export const DATA_CONNECTORS = {
 export default function DataConnectors() {
   const [selectedConnector, setSelectedConnector] = useState("github");
   const [searchQuery, setSearchQuery] = useState("");
+
 
   const filteredConnectors = Object.keys(DATA_CONNECTORS).filter((slug) =>
     DATA_CONNECTORS[slug].name.toLowerCase().includes(searchQuery.toLowerCase())
