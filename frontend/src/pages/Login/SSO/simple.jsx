@@ -51,4 +51,5 @@ export default function SimpleSSOPassthrough() {
 
   // Loading state by default
   return <FullScreenLoader />;
+  
 }
