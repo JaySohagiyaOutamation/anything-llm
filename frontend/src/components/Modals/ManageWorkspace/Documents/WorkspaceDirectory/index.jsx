@@ -124,13 +124,13 @@ function WorkspaceDirectory({
               highlightWorkspace ? "border-4 border-cyan-300/80 z-[999]" : ""
             }`}
           />
-          <div className="relative w-full h-full bg-zinc-900 rounded-2xl overflow-hidden">
-            <div className="text-white/80 text-xs grid grid-cols-12 py-2 px-3.5 border-b border-white/20 bg-zinc-900 sticky top-0 z-10">
+          <div className="relative w-full h-full bg-[#E4ECF6] rounded-2xl overflow-hidden">
+            <div className="text-black/80 text-xs grid grid-cols-12 py-2 px-3.5 border-b border-black/20 bg-[#E4ECF6] sticky top-0 z-10">
               <div className="col-span-10 flex items-center gap-x-[4px]">
                 {!hasChanges &&
                 files.items.some((folder) => folder.items.length > 0) ? (
                   <div
-                    className="shrink-0 w-3 h-3 rounded border-[1px] border-white flex justify-center items-center cursor-pointer"
+                    className="shrink-0 w-3 h-3 rounded border-[1px] border-black flex justify-center items-center cursor-pointer"
                     role="checkbox"
                     aria-checked={
                       Object.keys(selectedItems).length ===
@@ -146,7 +146,7 @@ function WorkspaceDirectory({
                       files.items.reduce(
                         (sum, folder) => sum + folder.items.length,
                         0
-                      ) && <div className="w-2 h-2 bg-white rounded-[2px]" />}
+                      ) && <div className="w-2 h-2 bg-black rounded-[2px]" />}
                   </div>
                 ) : (
                   <div className="shrink-0 w-3 h-3" />
@@ -187,7 +187,7 @@ function WorkspaceDirectory({
             </div>
             {Object.keys(selectedItems).length > 0 && !hasChanges && (
               <div className="absolute bottom-[12px] left-0 right-0 flex justify-center pointer-events-none">
-                <div className="mx-auto bg-white/40 rounded-lg py-1 px-2 pointer-events-auto">
+                <div className="mx-auto bg-black/30 rounded-lg py-1 px-2 pointer-events-auto">
                   <div className="flex flex-row items-center gap-x-2">
                     <button
                       onClick={toggleSelectAll}

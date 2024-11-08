@@ -29,10 +29,10 @@ export default function ShowScrollbar() {
   return (
     <div className="flex flex-col w-full gap-y-4 mt-6">
       <div className="flex flex-col gap-y-1">
-        <h2 className="text-base leading-6 font-bold text-white">
+        <h2 className="text-base leading-6 font-bold text-black">
           Show chat window scrollbar
         </h2>
-        <p className="text-xs leading-[18px] font-base text-white/60">
+        <p className="text-xs leading-[18px] font-base text-black/70">
           Enable or disable the scrollbar in the chat window
         </p>
         <div className="mt-2">
@@ -47,7 +47,7 @@ export default function ShowScrollbar() {
               disabled={saving}
               className="peer sr-only"
             />
-            <div className="pointer-events-none peer h-6 w-11 rounded-full bg-stone-400 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:shadow-xl after:border after:border-gray-600 after:bg-white after:box-shadow-md after:transition-all after:content-[''] peer-checked:bg-lime-300 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800"></div>
+            <div className="pointer-events-none peer h-6 w-11 rounded-full bg-stone-400 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:shadow-xl after:border after:border-gray-600 after:bg-white after:box-shadow-md after:transition-all after:content-[''] peer-checked:bg-sky-500 peer-checked:after:translate-x-full peer-checked:after:border-white"></div>
           </label>
         </div>
       </div>

@@ -69,13 +69,13 @@ export default function WorkspaceFileRow({
         <div className="shrink-0 w-3 h-3">
           {!disableSelection ? (
             <div
-              className="w-full h-full rounded border-[1px] border-white flex justify-center items-center cursor-pointer"
+              className="w-full h-full rounded border-[1px] border-black flex justify-center items-center cursor-pointer"
               role="checkbox"
               aria-checked={selected}
               tabIndex={0}
               onClick={handleRowSelection}
             >
-              {selected && <div className="w-2 h-2 bg-white rounded-[2px]" />}
+              {selected && <div className="w-2 h-2 bg-black rounded-[2px]" />}
             </div>
           ) : null}
         </div>

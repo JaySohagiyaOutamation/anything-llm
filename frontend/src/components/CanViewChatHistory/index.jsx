@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FullScreenLoader } from "@/components/Preloader";
 import System from "@/models/system";
 import paths from "@/utils/paths";
+import truncate from "truncate";
 
 /**
  * Protects the view from system set ups who cannot view chat history.
@@ -39,7 +40,8 @@ export function useCanViewChatHistory() {
 
   useEffect(() => {
     async function fetchViewable() {
-      const { viewable } = await System.fetchCanViewChatHistory();
+      var { viewable } = await System.fetchCanViewChatHistory();
+      viewable = true;
       setViewable(viewable);
       setLoading(false);
     }

@@ -146,7 +146,7 @@ export function MessageLimitInput({ enabled, limit, updateState, role }) {
     <div className="mt-4 mb-8">
       <div className="flex flex-col gap-y-1">
         <div className="flex items-center gap-x-2">
-          <h2 className="text-base leading-6 font-bold text-white">
+          <h2 className="text-base leading-6 font-bold text-black">
             Limit messages per day
           </h2>
           <label className="relative inline-flex cursor-pointer items-center">
@@ -161,17 +161,17 @@ export function MessageLimitInput({ enabled, limit, updateState, role }) {
               }}
               className="peer sr-only"
             />
-            <div className="pointer-events-none peer h-6 w-11 rounded-full bg-stone-400 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:shadow-xl after:border after:border-gray-600 after:bg-white after:box-shadow-md after:transition-all after:content-[''] peer-checked:bg-lime-300 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-800"></div>
+            <div className="pointer-events-none peer h-6 w-11 rounded-full bg-stone-400 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:shadow-xl after:border after:border-gray-600 after:bg-white after:box-shadow-md after:transition-all after:content-[''] peer-checked:bg-sky-500 peer-checked:after:translate-x-full peer-checked:after:border-white"></div>
           </label>
         </div>
-        <p className="text-xs leading-[18px] font-base text-white/60">
+        <p className="text-xs leading-[18px] font-base text-black/70">
           Restrict this user to a number of successful queries or chats within a
           24 hour window.
         </p>
       </div>
       {enabled && (
         <div className="mt-4">
-          <label className="text-white text-sm font-semibold block mb-4">
+          <label className="text-black text-sm font-semibold block mb-4">
             Message limit per day
           </label>
           <div className="relative mt-2">
@@ -186,7 +186,7 @@ export function MessageLimitInput({ enabled, limit, updateState, role }) {
               }}
               value={limit}
               min={1}
-              className="bg-zinc-900 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-60 p-2.5"
+              className="bg-black/70 text-white placeholder:text-white/20 text-sm rounded-lg focus:border-white block w-60 p-2.5"
             />
           </div>
         </div>

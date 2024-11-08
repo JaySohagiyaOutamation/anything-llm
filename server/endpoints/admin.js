@@ -26,6 +26,8 @@ const {
 } = require("../utils/middleware/multiUserProtected");
 const { validatedRequest } = require("../utils/middleware/validatedRequest");
 const ImportedPlugin = require("../utils/agents/imported");
+const { sendWelcomeEmailToUser } = require("../utils/PasswordRecovery");
+const { WorkspaceUser } = require("../models/workspaceUsers");
 
 function adminEndpoints(app) {
   if (!app) return;
@@ -76,6 +78,58 @@ function adminEndpoints(app) {
        
 
         response.status(200).json({ user: newUser, error });
+      } catch (e) {
+        console.error(e);
+        response.sendStatus(500).end();
+      }
+    }
+  );
+
+  app.post(
+    "/admin/bulk-users/new",
+    [validatedRequest, strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    async (request, response) => {
+      try {
+        const currUser = await userFromSession(request, response);
+        const newUserParams = reqBody(request);
+        const { username, email, password, workspaceId } = newUserParams;
+        const roleValidation = validRoleSelection(currUser, newUserParams);
+        console.log('workspaceId: ', workspaceId);
+  
+        if (!roleValidation.valid) {
+          response
+            .status(200)
+            .json({ user: null, error: roleValidation.error });
+          return;
+        }
+  
+        const { user: newUser, error } = await User.create({ username, email, password });
+        if (error) {
+          response.status(200).json({ user: null, error });
+          return;
+        }
+  
+        if (newUser) {
+          await sendWelcomeEmailToUser(newUser);
+          await EventLogs.logEvent(
+            "user_created",
+            {
+              userName: newUser.username,
+              createdBy: currUser.username,
+            },
+            currUser.id
+          );
+        }
+        const userId = newUser.id;
+        console.log('newUser: ', newUser);
+        console.log('userId: ', userId);
+        const workspaceUserCreated = await WorkspaceUser.create(userId, workspaceId);
+        if (!workspaceUserCreated) {
+          response.status(500).json({ user: newUser, error: "Failed to create workspace-user relationship" });
+          return;
+        }
+  
+        response.status(200).json({ user: newUser, error: null });
       } catch (e) {
         console.error(e);
         response.sendStatus(500).end();
