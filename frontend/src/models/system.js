@@ -39,6 +39,20 @@ import AgentPlugins from "./experimental/agentPlugins";
       .then((res) => res.results)
       .catch(() => null);
   },
+  googleSSOLogin: async function (token) {
+    return await fetch(`${API_BASE}/auth/google`, {
+      method: "POST",
+      body: JSON.stringify({token}),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Could not validate login.");
+        return res.json();
+      })
+      .then((res) => res.payload)
+      .catch((e) => {
+        return { valid: false, message: e.message };
+      });
+  },
   localFiles: async function () {
     return await fetch(`${API_BASE}/system/local-files`, {
       headers: baseHeaders(),

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import System from "../../../models/system";
 import SingleUserAuth from "./SingleUserAuth";
 import MultiUserAuth from "./MultiUserAuth";
@@ -12,14 +12,51 @@ import illustration from "@/media/illustrations/login-illustration.svg";
 
 export default function PasswordModal({ mode = "single" }) {
   const { loginLogo } = useLogo();
+  const googleButtonRef = useRef(null); // Reference for the Google button
+
+  // Google sign-in callback
+  const handleGoogleSignIn = async (response) => {
+    const token = response.credential; // This is the Google token received
+    try {
+      // Verify token with backend and handle login
+      const res = await System.googleSSOLogin(token); // Backend endpoint to verify Google token
+      if (res?.payload) {
+        // Store auth details in localStorage
+        window.localStorage.setItem(AUTH_USER, JSON.stringify(res.user));
+        window.localStorage.setItem(AUTH_TOKEN, res.token);
+        window.localStorage.setItem(AUTH_TIMESTAMP, Number(new Date()));
+        // Redirect or update UI as needed
+      } else {
+        console.error("Google sign-in failed:", res.message);
+      }
+    } catch (error) {
+      console.error("Error during Google sign-in:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (googleButtonRef.current) {
+      // Initialize Google Sign-In button with the callback
+      window.google.accounts.id.initialize({
+        client_id: "895208350570-n1965so7sn576248vqotjummjo3pska1.apps.googleusercontent.com", // Replace with your Google Client ID
+        callback: handleGoogleSignIn,
+      });
+      window.google.accounts.id.renderButton(googleButtonRef.current, {
+        theme: "outline",
+        size: "large",
+        text: "continue_with",
+      });
+    }
+  }, []);
+
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] h-full bg-white flex flex-col md:flex-row items-center justify-center">
       <div
         style={{
           background: `
-    radial-gradient(circle at center, transparent 40%, black 100%),
-    linear-gradient(180deg, #85F8FF 0%, #65A6F2 100%)
-  `,
+            radial-gradient(circle at center, transparent 40%, black 100%),
+            linear-gradient(180deg, #85F8FF 0%, #65A6F2 100%)
+          `,
           width: "575px",
           filter: "blur(150px)",
           opacity: "0.4",
@@ -42,11 +79,14 @@ export default function PasswordModal({ mode = "single" }) {
           } absolute max-h-[65px] md:bg-white md:shadow-[0_4px_14px_rgba(0,0,0,0.25)]`}
           style={{ objectFit: "contain" }}
         />
+        {/* Render Google Sign-In button */}
         {mode === "single" ? <SingleUserAuth /> : <MultiUserAuth />}
+        <div ref={googleButtonRef} className="mb-6"></div>
       </div>
     </div>
   );
 }
+
 
 export function usePasswordModal(notry = false) {
   const [auth, setAuth] = useState({
