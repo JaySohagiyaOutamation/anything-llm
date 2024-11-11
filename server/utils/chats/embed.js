@@ -111,7 +111,7 @@ async function streamChatWithForEmbed(
       textResponse: null,
       sources: [],
       close: true,
-      error: "Failed to connect to vector database provider.",
+      error: "Failed to connect to vector database provider. ",
     });
     return;
   }
