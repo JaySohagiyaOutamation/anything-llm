@@ -2,8 +2,10 @@ const { reqBody } = require("../../../utils/http");
 const { validApiKey } = require("../../../utils/middleware/validApiKey");
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client('895208350570-n1965so7sn576248vqotjummjo3pska1.apps.googleusercontent.com');
+const jwt = require("jsonwebtoken"); // Assuming you're using JWT
 
-function apiAuthEndpoints(app) {
+
+  function apiAuthEndpoints(app) {
   if (!app) return;
 
   app.get("/v1/auth", [validApiKey], (_, response) => {
@@ -33,29 +35,40 @@ function apiAuthEndpoints(app) {
   });
 
   app.post('/auth/google', async (req, res) => {
-    const  {token}  = reqBody(req);
-    console.log('token: ', token);
+    const { token } = reqBody(req);  // Make sure reqBody is correctly extracting the token
+  
+    console.log('Received token:', token);
   
     if (!token) {
       return res.status(400).json({ success: false, message: 'Token is required' });
     }
   
     try {
-      // Verify the Google token
       const ticket = await client.verifyIdToken({
         idToken: token,
         audience: "895208350570-n1965so7sn576248vqotjummjo3pska1.apps.googleusercontent.com",
       });
+      console.log('Verified ticket:', ticket);
       const payload = ticket.getPayload();
-
-
-      // Token is verified successfully
-      res.status(200).json({ success: true,payload});
+  
+      const appToken = jwt.sign(
+        { email: payload.email, name: payload.name },
+        process.env.JWT_SECRET,
+        { expiresIn: '1h' }
+      );
+      console.log('Generated appToken:', appToken);
+  
+      res.status(200).json({
+        success: true,
+        token: appToken,
+        user: { email: payload.email, name: payload.name, picture: payload.picture }
+      });
     } catch (error) {
       console.error('Error during authentication:', error);
       res.status(500).json({ success: false, message: 'Failed to authenticate token' });
     }
   });
+  
   
 }
 

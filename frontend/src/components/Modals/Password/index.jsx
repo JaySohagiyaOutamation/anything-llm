@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+// import { useHistory } from "react-router-dom"; // Assuming you're using react-router
 import System from "../../../models/system";
-import SingleUserAuth from "./SingleUserAuth";
-import MultiUserAuth from "./MultiUserAuth";
 import {
   AUTH_TOKEN,
   AUTH_USER,
@@ -9,30 +8,50 @@ import {
 } from "../../../utils/constants";
 import useLogo from "../../../hooks/useLogo";
 import illustration from "@/media/illustrations/login-illustration.svg";
+import MultiUserAuth from "./MultiUserAuth";
+import SingleUserAuth from "./SingleUserAuth";
 
 export default function PasswordModal({ mode = "single" }) {
   const { loginLogo } = useLogo();
   const googleButtonRef = useRef(null); // Reference for the Google button
+  // const history = useHistory(); // For redirection after login
+  const [loading, setLoading] = useState(false);
 
-  // Google sign-in callback
   const handleGoogleSignIn = async (response) => {
-    const token = response.credential; // This is the Google token received
+    setLoading(true);
+    const token = response.credential;
+  
+    if (!token) {
+      console.error("No token received.");
+      setLoading(false);
+      return;
+    }
+  
     try {
-      // Verify token with backend and handle login
-      const res = await System.googleSSOLogin(token); // Backend endpoint to verify Google token
-      if (res?.payload) {
-        // Store auth details in localStorage
+      console.log("Sending token:", token);
+      const res = await System.googleSSOLogin(token);
+      console.log("Server response:", res);
+  
+      if (res?.valid) {
         window.localStorage.setItem(AUTH_USER, JSON.stringify(res.user));
         window.localStorage.setItem(AUTH_TOKEN, res.token);
         window.localStorage.setItem(AUTH_TIMESTAMP, Number(new Date()));
-        // Redirect or update UI as needed
+        // history.push("/dashboard");
+        window.location.href = "/workspace/general"; // Redirect to the workspace
+
       } else {
         console.error("Google sign-in failed:", res.message);
       }
     } catch (error) {
       console.error("Error during Google sign-in:", error);
+    } finally {
+      setLoading(false);
     }
   };
+  
+  
+  // Render loading indicator
+  
 
   useEffect(() => {
     if (googleButtonRef.current) {
@@ -86,6 +105,7 @@ export default function PasswordModal({ mode = "single" }) {
     </div>
   );
 }
+
 
 
 export function usePasswordModal(notry = false) {

@@ -40,19 +40,29 @@ import AgentPlugins from "./experimental/agentPlugins";
       .catch(() => null);
   },
   googleSSOLogin: async function (token) {
-    return await fetch(`${API_BASE}/auth/google`, {
-      method: "POST",
-      body: JSON.stringify({token}),
+  return await fetch(`${API_BASE}/auth/google`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",  // Add Content-Type header to specify the payload format
+    },
+    body: JSON.stringify({ token }),  // Sending token in the request body
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("Could not validate login.");
+      return res.json();
     })
-      .then((res) => {
-        if (!res.ok) throw new Error("Could not validate login.");
-        return res.json();
-      })
-      .then((res) => res.payload)
-      .catch((e) => {
-        return { valid: false, message: e.message };
-      });
-  },
+    .then((res) => {
+      // Check for the success property to confirm successful login
+      if (res.success) {
+        return { valid: true, token: res.token, user: res.user }; // Return the necessary data
+      } else {
+        return { valid: false, message: res.message || "Unknown error" };
+      }
+    })
+    .catch((e) => {
+      return { valid: false, message: e.message };
+    });
+},
   localFiles: async function () {
     return await fetch(`${API_BASE}/system/local-files`, {
       headers: baseHeaders(),
