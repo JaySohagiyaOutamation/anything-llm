@@ -74,41 +74,54 @@ const User = {
 
   create: async function ({
     username,
-    password,
+    password = null, // Default to null for SSO users
     email,
     role = "default",
     dailyMessageLimit = null,
   }) {
-    const passwordCheck = this.checkPasswordComplexity(password);
-    if (!passwordCheck.checkedOK) {
-      return { user: null, error: passwordCheck.error };
+    if (!email || String(email).trim() === "") {
+      return { user: null, error: "Email is required" };
     }
-
+  
     try {
-      // Do not allow new users to bypass validation
-      if (!this.usernameRegex.test(username))
+      // Validate username
+      if (!this.usernameRegex.test(username)) {
         throw new Error(
           "Username must only contain lowercase letters, numbers, underscores, and hyphens with no spaces"
         );
-
-      const bcrypt = require("bcrypt");
-      const hashedPassword = bcrypt.hashSync(password, 10);
+      }
+  
+      let hashedPassword = null;
+  
+      // Only hash password if provided (for non-SSO users)
+      if (password) {
+        const passwordCheck = this.checkPasswordComplexity(password);
+        if (!passwordCheck.checkedOK) {
+          return { user: null, error: passwordCheck.error };
+        }
+        const bcrypt = require("bcrypt");
+        hashedPassword = bcrypt.hashSync(password, 10);
+      }
+  
+      // Create user
       const user = await prisma.users.create({
         data: {
           username: this.validations.username(username),
-          password: hashedPassword,
-          email: email,
+          password: hashedPassword, // Can be null for SSO
+          email,
           role: this.validations.role(role),
           dailyMessageLimit:
             this.validations.dailyMessageLimit(dailyMessageLimit),
         },
       });
+  
       return { user: this.filterFields(user), error: null };
     } catch (error) {
       console.error("FAILED TO CREATE USER.", error.message);
       return { user: null, error: error.message };
     }
   },
+  
   // Log the changes to a user object, but omit sensitive fields
   // that are not meant to be logged.
   loggedChanges: function (updates, prev = {}) {

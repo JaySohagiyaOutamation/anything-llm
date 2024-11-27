@@ -57,13 +57,14 @@ CREATE TABLE "users" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "username" TEXT,
     "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
+    "password" TEXT,
     "pfpFilename" TEXT,
     "role" TEXT NOT NULL DEFAULT 'default',
     "suspended" INTEGER NOT NULL DEFAULT 0,
     "seen_recovery_codes" BOOLEAN DEFAULT false,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "lastUpdatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "lastUpdatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "dailyMessageLimit" INTEGER
 );
 
 -- CreateTable
@@ -114,7 +115,7 @@ CREATE TABLE "workspaces" (
     "openAiHistory" INTEGER NOT NULL DEFAULT 20,
     "lastUpdatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "openAiPrompt" TEXT,
-    "similarityThreshold" REAL DEFAULT 0.25,
+    "similarityThreshold" REAL DEFAULT 0.5,
     "chatProvider" TEXT,
     "chatModel" TEXT,
     "topN" INTEGER DEFAULT 4,
@@ -210,6 +211,7 @@ CREATE TABLE "embed_configs" (
     "enabled" BOOLEAN NOT NULL DEFAULT false,
     "chat_mode" TEXT NOT NULL DEFAULT 'query',
     "allowlist_domains" TEXT,
+    "allow_sending_url" BOOLEAN NOT NULL DEFAULT false,
     "allow_model_override" BOOLEAN NOT NULL DEFAULT false,
     "allow_temperature_override" BOOLEAN NOT NULL DEFAULT false,
     "allow_prompt_override" BOOLEAN NOT NULL DEFAULT false,
@@ -291,6 +293,16 @@ CREATE TABLE "browser_extension_api_keys" (
     CONSTRAINT "browser_extension_api_keys_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+-- CreateTable
+CREATE TABLE "temporary_auth_tokens" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "token" TEXT NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "expiresAt" DATETIME NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "temporary_auth_tokens_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "api_keys_secret_key" ON "api_keys"("secret");
 
@@ -356,3 +368,12 @@ CREATE UNIQUE INDEX "browser_extension_api_keys_key_key" ON "browser_extension_a
 
 -- CreateIndex
 CREATE INDEX "browser_extension_api_keys_user_id_idx" ON "browser_extension_api_keys"("user_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "temporary_auth_tokens_token_key" ON "temporary_auth_tokens"("token");
+
+-- CreateIndex
+CREATE INDEX "temporary_auth_tokens_token_idx" ON "temporary_auth_tokens"("token");
+
+-- CreateIndex
+CREATE INDEX "temporary_auth_tokens_userId_idx" ON "temporary_auth_tokens"("userId");

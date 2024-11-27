@@ -57,15 +57,33 @@ import AgentPlugins from "./experimental/agentPlugins";
     return Number(new Date()) > expiresAtMs;
   },
 
-  checkAuth: async function (currentToken = null) {
-    const valid = await fetch(`${API_BASE}/system/check-token`, {
-      headers: baseHeaders(currentToken),
-    })
-      .then((res) => res.ok)
-      .catch(() => false);
+  // checkAuth: async function (currentToken = null) {
+  //   const valid = await fetch(`${API_BASE}/system/check-token`, {
+  //     headers: baseHeaders(currentToken),
+  //   })
+  //     .then((res) => res.ok)
+  //     .catch(() => false);
 
-    window.localStorage.setItem(AUTH_TIMESTAMP, Number(new Date()));
-    return valid;
+  //   window.localStorage.setItem(AUTH_TIMESTAMP, Number(new Date()));
+  //   return valid;
+  // },
+  checkAuth: async function (currentToken = null) {
+    try {
+      const valid = await fetch(`${API_BASE}/system/check-token`, {
+        method: 'GET',
+        headers: {
+          ...baseHeaders(currentToken),
+          'Authorization': `Bearer ${currentToken}`
+        }
+      }).then((res) => res.ok)
+      .catch(() => false);
+  
+      window.localStorage.setItem(AUTH_TIMESTAMP, Number(new Date()));
+      return valid;
+    } catch (error) {
+      console.error('Token validation error:', error);
+      return false;
+    }
   },
   requestToken: async function (body) {
     return await fetch(`${API_BASE}/request-token`, {

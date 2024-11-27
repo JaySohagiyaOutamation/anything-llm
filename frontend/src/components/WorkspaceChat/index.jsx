@@ -50,7 +50,7 @@ export default function WorkspaceChat({ loading, workspace }) {
                 <div className="flex w-full justify-center items-center mt-4">
                   <a
                     href={paths.home()}
-                    className="border border-slate-200 text-black hover:bg-slate-600 hover:text-slate-800 px-4 py-2 rounded-lg text-sm items-center flex gap-x-2 transition-all duration-300"
+                    className="border border-slate-200 text-white bg-black  px-4 py-2 rounded-lg text-sm items-center flex gap-x-2 transition-all duration-300"
                   >
                     Go back to homepage
                   </a>
