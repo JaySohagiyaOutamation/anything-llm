@@ -28,6 +28,19 @@ const Admin = {
         return { user: null, error: e.message };
       });
   },
+  authGoogle: async (token) => {
+    return await fetch(`${API_BASE}/auth/google`, {
+      method: "POST",
+      headers: baseHeaders(),
+      body: JSON.stringify(token),
+    })
+    .then( (res) =>  res.json()
+    )
+      .catch((e) => {
+        console.error(e);
+        return { user: null, error: e.message };
+      });
+  },
   updateUser: async (userId, data) => {
     return await fetch(`${API_BASE}/admin/user/${userId}`, {
       method: "POST",

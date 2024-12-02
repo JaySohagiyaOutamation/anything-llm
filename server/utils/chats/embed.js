@@ -153,7 +153,15 @@ async function streamChatWithForEmbed(
   if (currentURL === "" && currentPageSourceCode === "") {
     updatedMessage = message;
   } else {
-    updatedMessage = "This is cuurent page url: " + currentURL + " And this html source code  of this page " + currentPageSourceCode + " And this is the input message " + message;
+    if (message.includes("url") || message.includes("source code") ||  message.includes("page")) {
+      updatedMessage = "The input prompt is " + message +
+          " and the current URL of this page is " + currentURL +
+          " and the source code of this page is " + currentPageSourceCode + ".";
+  } else {
+      updatedMessage = "The input prompt is " + message +
+          ".";
+  }
+    // updatedMessage = "This is cuurent page url: " + currentURL + " And this html source code  of this page " + currentPageSourceCode + " And this is the input message " + message;
   }
   // Compress message to ensure prompt passes token limit with room for response
   // and build system messages based on inputs and history.

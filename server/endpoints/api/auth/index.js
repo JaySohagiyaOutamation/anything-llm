@@ -7,6 +7,7 @@ const { PrismaClient } = require('@prisma/client');
 const { ROLES } = require("../../../utils/middleware/multiUserProtected");
 const { WorkspaceUser } = require("../../../models/workspaceUsers");
 const SupervisorDocumentsService = require("../../../models/supervisorDocumentsService");
+const { reqBody } = require("../../../utils/http");
 const prisma = new PrismaClient();
 
 function apiAuthEndpoints(app) {
@@ -88,7 +89,7 @@ function apiAuthEndpoints(app) {
   // });
 
 app.post("/auth/google", async (req, res) => {
-  const { token } = req.body;
+  const  token  = reqBody(req);
 
   if (!token) {
     return res

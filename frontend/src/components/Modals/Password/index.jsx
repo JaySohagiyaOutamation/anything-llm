@@ -11,6 +11,7 @@ import useLogo from "../../../hooks/useLogo";
 import illustration from "@/media/illustrations/login-illustration.svg";
 import axios from 'axios';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import Admin from "@/models/admin";
 
 
 // export default function PasswordModal({ mode = "single" }) {
@@ -219,33 +220,18 @@ export default function PasswordModal({ mode = "single" }) {
 
     try {
       const token = response.credential;
-      
-      const res = await axios.post('http://localhost:3001/api/auth/google', 
-        { token }, 
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          // Add timeout to catch potential network issues
-          timeout: 10000 
-        }
-      );
-
+      const res = await Admin.authGoogle(token);
       console.log(res);
-      const data = res.data;
-      console.log('data: ', data);
-
- 
-      if (data.success) {
-        localStorage.setItem(AUTH_TOKEN, data.token);
-        localStorage.setItem(AUTH_USER, JSON.stringify(data.user));
+      if (res.success) {
+        localStorage.setItem(AUTH_TOKEN, res.token);
+        localStorage.setItem(AUTH_USER, JSON.stringify(res.user));
         localStorage.setItem(AUTH_TIMESTAMP, Date.now());
 
         // Optional: Add role-based redirection
         window.location.href = "/"; 
       } else {
-        setError(data.message || "Google Sign-In failed");
-        console.error("Google Sign-In failed:", data.message);
+        setError(res.message || "Google Sign-In failed");
+        console.error("Google Sign-In failed:", res.message);
       }
     } catch (error) {
       // Detailed error logging
@@ -258,7 +244,7 @@ export default function PasswordModal({ mode = "single" }) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        setError(`Server Error: ${error.response.data.message || error.response.statusText}`);
+        setError(`Server Error: ${error.response.res.message || error.response.statusText}`);
       } else if (error.request) {
         // The request was made but no response was received
         setError('No response received from server. Please check your network connection.');
