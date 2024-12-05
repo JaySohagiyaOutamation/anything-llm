@@ -1,6 +1,7 @@
 const { validApiKey } = require("../../../utils/middleware/validApiKey");
 const { OAuth2Client } = require('google-auth-library');
 const jwt = require('jsonwebtoken');
+const axios = require('axios');
 const client = new OAuth2Client("445488174246-uh811cmlrp3bg7vlj10snfml8jt8rffr.apps.googleusercontent.com");
 const { User } = require("../../../models/user");
 const { PrismaClient } = require('@prisma/client');
@@ -88,34 +89,137 @@ function apiAuthEndpoints(app) {
   //   }
   // });
 
-app.post("/auth/google", async (req, res) => {
-  const  token  = reqBody(req);
+// app.post("/auth/microsoft", async (req, res) => {
+//   const  token  = reqBody(req);
 
+//   if (!token) {
+//     return res
+//       .status(400)
+//       .json({ success: false, message: "Google ID token is required" });
+//   }
+
+//   try {
+//     const ticket = await client.verifyIdToken({
+//       idToken: token,
+//       audience:
+//         "445488174246-uh811cmlrp3bg7vlj10snfml8jt8rffr.apps.googleusercontent.com",
+//     });
+
+//     const payload = ticket.getPayload();
+//     console.log('payload: ', payload);
+
+//     if (!payload.email_verified) {
+//       return res.status(403).json({
+//         success: false,
+//         message: "Email not verified by Google",
+//       });
+//     }
+
+//     // Check if the user already exists using the User.get method
+//     const existingUser = await User.get({ email: payload.email });
+
+//     let user;
+//     if (existingUser) {
+//       user = existingUser;
+//     } else {
+//       // Create a new user if no existing user is found
+//       const { user: newUser, error } = await User.create({
+//         username: payload.name.toLowerCase().replace(/\s+/g, ""),
+//         email: payload.email,
+//         role: ROLES.default,
+//       });
+
+//       if (error) {
+//         console.error("Error creating user:", error);
+//         return res.status(500).json({
+//           success: false,
+//           message: "Failed to create a new user",
+//           error,
+//         });
+//       }
+
+//       user = newUser;
+//     }
+
+//     const { workspaceId, error: workspaceError } = await SupervisorDocumentsService.getWorkspaceIdByName("general");
+//     console.log('workspaceId: ', workspaceId);
+
+//     if (workspaceError) {
+//       response.status(400).json({ error: workspaceError });
+//       return;
+//     }
+
+//     const workspaceUserCreated = await WorkspaceUser.create(user.id, workspaceId);
+//     if (!workspaceUserCreated) {
+//       response.status(500).json({ error: "Failed to create workspace-user relationship" });
+//       return;
+//     }
+
+//     // Generate JWT token for the authenticated user
+//     const appToken = jwt.sign(
+//       {
+//         id: user.id,
+//         name: user.username,
+//         iat: Math.floor(Date.now() / 1000),
+//         exp: Math.floor(Date.now() / 1000) + 60 * 60, // Token expires in 1 hour
+//       },
+//       process.env.JWT_SECRET,
+//       { algorithm: "HS256" }
+//     );
+
+//     return res.status(200).json({
+//       success: true,
+//       token: appToken,
+//       user,
+//     });
+//   } catch (error) {
+//     console.error("Google authentication error:", error.message);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Failed to authenticate with Google",
+//       error: error.message,
+//     });
+//   }
+// });
+
+app.post("/auth/microsoft", async (req, res) => {
+  const  token = reqBody(req);
   if (!token) {
     return res
       .status(400)
-      .json({ success: false, message: "Google ID token is required" });
+      .json({ success: false, message: "Microsoft ID token is required" });
   }
 
   try {
-    const ticket = await client.verifyIdToken({
-      idToken: token,
-      audience:
-        "445488174246-uh811cmlrp3bg7vlj10snfml8jt8rffr.apps.googleusercontent.com",
+    // Verify the token with Microsoft API
+    const microsoftResponse = await fetch("https://graph.microsoft.com/v1.0/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
-
-    const payload = ticket.getPayload();
-    console.log('payload: ', payload);
-
-    if (!payload.email_verified) {
+    
+  
+    if (!microsoftResponse.ok) {
+      const errorDetail = await microsoftResponse.json();
       return res.status(403).json({
         success: false,
-        message: "Email not verified by Google",
+        message: "Invalid Microsoft token",
+        error: errorDetail,
+      });
+    }
+    const microsoftUser = await microsoftResponse.json();
+
+    if (!microsoftUser || !microsoftUser.mail) {
+      return res.status(400).json({
+        success: false,
+        message: "Failed to fetch user information from Microsoft",
       });
     }
 
-    // Check if the user already exists using the User.get method
-    const existingUser = await User.get({ email: payload.email });
+    const email = microsoftUser.mail || microsoftUser.userPrincipalName;
+
+    // Check if the user already exists
+    const existingUser = await User.get({ email });
 
     let user;
     if (existingUser) {
@@ -123,8 +227,8 @@ app.post("/auth/google", async (req, res) => {
     } else {
       // Create a new user if no existing user is found
       const { user: newUser, error } = await User.create({
-        username: payload.name.toLowerCase().replace(/\s+/g, ""),
-        email: payload.email,
+        username: microsoftUser.displayName.toLowerCase().replace(/\s+/g, ""),
+        email,
         role: ROLES.default,
       });
 
@@ -140,18 +244,19 @@ app.post("/auth/google", async (req, res) => {
       user = newUser;
     }
 
-    const { workspaceId, error: workspaceError } = await SupervisorDocumentsService.getWorkspaceIdByName("general");
-    console.log('workspaceId: ', workspaceId);
+    const { workspaceId, error: workspaceError } =
+      await SupervisorDocumentsService.getWorkspaceIdByName("general");
+    console.log("workspaceId: ", workspaceId);
 
     if (workspaceError) {
-      response.status(400).json({ error: workspaceError });
-      return;
+      return res.status(400).json({ error: workspaceError });
     }
 
     const workspaceUserCreated = await WorkspaceUser.create(user.id, workspaceId);
     if (!workspaceUserCreated) {
-      response.status(500).json({ error: "Failed to create workspace-user relationship" });
-      return;
+      return res.status(500).json({
+        error: "Failed to create workspace-user relationship",
+      });
     }
 
     // Generate JWT token for the authenticated user
@@ -172,10 +277,10 @@ app.post("/auth/google", async (req, res) => {
       user,
     });
   } catch (error) {
-    console.error("Google authentication error:", error.message);
+    console.error("Microsoft authentication error:", error.message);
     return res.status(500).json({
       success: false,
-      message: "Failed to authenticate with Google",
+      message: "Failed to authenticate with Microsoft",
       error: error.message,
     });
   }

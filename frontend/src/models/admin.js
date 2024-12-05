@@ -28,8 +28,8 @@ const Admin = {
         return { user: null, error: e.message };
       });
   },
-  authGoogle: async (token) => {
-    return await fetch(`${API_BASE}/auth/google`, {
+  authMicrosoft: async (token) => {
+    return await fetch(`${API_BASE}/auth/microsoft`, {
       method: "POST",
       headers: baseHeaders(),
       body: JSON.stringify(token),

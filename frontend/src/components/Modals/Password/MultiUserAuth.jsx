@@ -8,6 +8,7 @@ import { useModal } from "@/hooks/useModal";
 import RecoveryCodeModal from "@/components/Modals/DisplayRecoveryCodeModal";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
+import { GoogleLogin } from "@react-oauth/google";
 
 const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
   const [username, setUsername] = useState("");
@@ -395,6 +396,7 @@ export default function MultiUserAuth() {
               <b>{t("login.multi-user.reset")}</b>
             </button>
           </div>
+          
         </div>
       </form>
 
