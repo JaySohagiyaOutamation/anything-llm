@@ -10,6 +10,7 @@ import {
 import useLogo from "../../../hooks/useLogo";
 import illustration from "@/media/illustrations/login-illustration.svg";
 import Admin from "@/models/admin";
+import { useMsal } from "@azure/msal-react";
 
 // export default function PasswordModal({ mode = "single" }) {
 //   const { loginLogo } = useLogo();
@@ -49,10 +50,6 @@ import Admin from "@/models/admin";
 //   );
 // }
 
-
-
-
-
 export default function PasswordModal({ mode = "single" }) {
   const { loginLogo } = useLogo();
   const [isLoading, setIsLoading] = useState(false);
@@ -61,11 +58,11 @@ export default function PasswordModal({ mode = "single" }) {
 
   const handleMicrosoftSignIn = async () => {
     setIsLoading(true);
-    setError(null); 
+    setError(null);
 
     try {
       const loginResponse = await instance.loginPopup({
-        scopes: ["https://graph.microsoft.com/User.Read"],        
+        scopes: ["https://graph.microsoft.com/User.Read"],
       });
 
       const token = loginResponse.accessToken; // Use the ID token or access token
@@ -88,57 +85,81 @@ export default function PasswordModal({ mode = "single" }) {
     }
   };
 
+  const microsoftButton = (
+    // <button
+    //   onClick={handleMicrosoftSignIn}
+    //   disabled={isLoading}
+    //   className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+    // >
+    //   {isLoading ? "Signing in..." : "Sign in with Microsoft"}
+    // </button>
+    <button
+      onClick={handleMicrosoftSignIn}
+      disabled={isLoading}
+      className="flex items-center justify-center px-4 py-2 bg-white text-black border border-gray-300 rounded-lg shadow-sm hover:shadow-md  disabled:opacity-50 transition"
+      style={{
+        fontFamily: '"Segoe UI", Arial, sans-serif',
+        fontSize: "15px",
+        fontWeight: 400,
+      }}
+    >
+      <img
+        src="../../../../src/media/logo/Microsoft_logo.svg"
+        alt="Microsoft Logo"
+        className="w-5 h-5 mr-2"
+        style={{ backgroundColor: "#ffffff" }}
+      />
+      {isLoading ? "Signing in..." : "Sign in with Microsoft"}
+    </button>
+  );
+
   return (
-      <div className="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] h-full bg-white flex flex-col md:flex-row items-center justify-center">
-        <div
-          style={{
-            background: `
+    <div className="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] h-full bg-white flex flex-col md:flex-row items-center justify-center">
+      <div
+        style={{
+          background: `
               radial-gradient(circle at center, transparent 40%, black 100%),
               linear-gradient(180deg, #85F8FF 0%, #65A6F2 100%)
             `,
-            width: "575px",
-            filter: "blur(150px)",
-            opacity: "0.4",
-          }}
-          className="absolute left-0 top-0 z-0 h-full w-full"
+          width: "575px",
+          filter: "blur(150px)",
+          opacity: "0.4",
+        }}
+        className="absolute left-0 top-0 z-0 h-full w-full"
+      />
+      <div className="hidden md:flex md:w-1/2 md:h-full md:items-center md:justify-center">
+        <img
+          className="w-full h-full object-contain z-50"
+          src={illustration}
+          alt="login illustration"
         />
-        <div className="hidden md:flex md:w-1/2 md:h-full md:items-center md:justify-center">
-          <img
-            className="w-full h-full object-contain z-50"
-            src={illustration}
-            alt="login illustration"
-          />
-        </div>
-        <div className="flex flex-col items-center justify-center h-full w-full md:w-1/2 z-50 relative -mt-20">
-          <img
-            src={loginLogo}
-            alt="Logo"
-            className={`hidden relative z-20 md:flex rounded-2xl w-fit m-4 ${
-              mode === "single" ? "md:top-2" : "md:top-12"
-            } absolute max-h-[65px] md:bg-white md:shadow-[0_4px_14px_rgba(0,0,0,0.25)]`}
-            style={{ objectFit: "contain" }}
-          />
-          {mode === "single" ? (
-            <SingleUserAuth
-          
-            />
-          ) : (
-            <MultiUserAuth
-            />
-          )}
-
-          <button
-            onClick={handleMicrosoftSignIn}
-            disabled={isLoading}
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-          >
-            {isLoading ? "Signing in..." : "Sign in with Microsoft"}
-          </button>
-        </div>
       </div>
+      <div className="flex flex-col items-center justify-center h-full w-full md:w-1/2 z-50 relative -mt-20">
+        <img
+          src={loginLogo}
+          alt="Logo"
+          className={`hidden relative z-20 md:flex rounded-2xl w-fit m-4 ${
+            mode === "single" ? "md:top-2" : "md:top-12"
+          } absolute max-h-[65px] md:bg-white md:shadow-[0_4px_14px_rgba(0,0,0,0.25)]`}
+          style={{ objectFit: "contain" }}
+        />
+        {mode === "single" ? (
+          <SingleUserAuth microsoftButton={microsoftButton} />
+        ) : (
+          <MultiUserAuth microsoftButton={microsoftButton} />
+        )}
+
+        {/* <button
+          onClick={handleMicrosoftSignIn}
+          disabled={isLoading}
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          {isLoading ? "Signing in..." : "Sign in with Microsoft"}
+        </button> */}
+      </div>
+    </div>
   );
 }
-
 
 export function usePasswordModal(notry = false) {
   const [auth, setAuth] = useState({

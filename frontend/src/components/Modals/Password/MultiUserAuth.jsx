@@ -8,19 +8,18 @@ import { useModal } from "@/hooks/useModal";
 import RecoveryCodeModal from "@/components/Modals/DisplayRecoveryCodeModal";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
-import { GoogleLogin } from "@react-oauth/google";
 
 const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState('');
-
+  const [message, setMessage] = useState("");
 
   const [recoveryCodeInputs, setRecoveryCodeInputs] = useState(
     Array(2).fill("")
   );
-  const areRecoveryCodesFilled = recoveryCodeInputs.every(code => code.trim() !== "");
-
+  const areRecoveryCodesFilled = recoveryCodeInputs.every(
+    (code) => code.trim() !== ""
+  );
 
   const handleRecoveryCodeChange = (index, value) => {
     const updatedCodes = [...recoveryCodeInputs];
@@ -40,22 +39,18 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
     try {
       const response = await System.sendRecoveryCodes(email);
       if (response.success) {
-        setMessage('Recovery codes sent successfully.');
+        setMessage("Recovery codes sent successfully.");
       } else {
         setMessage(response.error);
       }
     } catch (error) {
       console.error("Error sending recovery codes:", error);
-      setMessage('Error sending recovery codes.');
+      setMessage("Error sending recovery codes.");
     }
   };
-  
-  
 
   return (
-    <div
-      className="flex flex-col justify-center items-center relative rounded-2xl md:bg-[#f8fafe] md:shadow-[0_4px_14px_rgba(0,0,0,0.25)] md:px-8 px-0 py-4 w-full md:w-fit mt-10 md:mt-0"
-    >
+    <div className="flex flex-col justify-center items-center relative rounded-2xl md:bg-[#f8fafe] md:shadow-[0_4px_14px_rgba(0,0,0,0.25)] md:px-8 px-0 py-4 w-full md:w-fit mt-10 md:mt-0">
       <div className="flex items-start justify-between pt-11 pb-9 w-screen md:w-full md:px-12 px-6 ">
         <div className="flex flex-col gap-y-4 w-full">
           <h3 className="text-4xl md:text-lg font-bold text-black text-center md:text-left">
@@ -93,7 +88,6 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="bg-blue-100 bg-opacity-70 text-black placeholder-black/70  text-sm rounded-md p-2.5 w-full h-[48px] md:w-[300px] md:h-[34px]"
-
             />
             {email && (
               <button
@@ -105,9 +99,7 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
             )}
 
             {/* Display response message */}
-            {message && (
-              <p className="text-sm text-sky-500 mt-2">{message}</p>
-            )}
+            {message && <p className="text-sm text-sky-500 mt-2">{message}</p>}
           </div>
 
           <div className="flex flex-col gap-y-2">
@@ -138,7 +130,7 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
         <button
           type="submit"
           onClick={handleSubmit}
-          disabled={username.trim() === "" || !areRecoveryCodesFilled}  // Check array length for recovery codes
+          disabled={username.trim() === "" || !areRecoveryCodesFilled} // Check array length for recovery codes
           className=" md:w-[300px] text-white text-sm font-bold focus:ring-4 focus:outline-none rounded-md border-[1.5px] border-primary-button md:h-[34px] h-[48px]  bg-primary-button focus:z-10 w-full"
         >
           {t("login.password-reset.title")}
@@ -151,9 +143,7 @@ const RecoveryForm = ({ onSubmit, setShowRecoveryForm }) => {
           {t("login.password-reset.back-to-login")}
         </button>
       </div>
-
     </div>
-
   );
 };
 
@@ -219,7 +209,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
   );
 };
 
-export default function MultiUserAuth() {
+export default function MultiUserAuth({ microsoftButton }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -395,8 +385,8 @@ export default function MultiUserAuth() {
               {t("login.multi-user.forgot-pass")}?
               <b>{t("login.multi-user.reset")}</b>
             </button>
+            {microsoftButton}
           </div>
-          
         </div>
       </form>
 

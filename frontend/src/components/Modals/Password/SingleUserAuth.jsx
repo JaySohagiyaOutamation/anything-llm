@@ -7,7 +7,7 @@ import { useModal } from "@/hooks/useModal";
 import RecoveryCodeModal from "@/components/Modals/DisplayRecoveryCodeModal";
 import { useTranslation } from "react-i18next";
 
-export default function SingleUserAuth() {
+export default function SingleUserAuth({ microsoftButton }) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -108,9 +108,10 @@ export default function SingleUserAuth() {
               disabled={loading}
               type="submit"
               className=" md:w-[300px] text-white text-sm font-bold focus:ring-4 focus:outline-none rounded-md border-[1.5px] border-primary-button md:h-[34px] h-[48px]  bg-primary-button focus:z-10 w-full"
-              >
+            >
               {loading ? "Validating..." : "Login"}
             </button>
+            {microsoftButton}
           </div>
         </div>
       </form>
