@@ -1,32 +1,38 @@
 const bcrypt = require("bcrypt");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 const { v4, validate } = require("uuid");
 const { User } = require("../../models/user");
+const SMTP_EMAIL = process.env.VITE_SMTP_EMAIL;
+const SMTP_PASS = process.env.VITE_SMTP_PASS;
 const {
   RecoveryCode,
   PasswordResetToken,
 } = require("../../models/passwordRecovery");
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.office365.com',
+  host: "smtp.office365.com",
   port: 587,
   secure: false,
   auth: {
-    user: "donotreply@outamationmail.com", // Double-check this
-    pass: "vmpcmkylbzpjclpn",            // Double-check this
-  }
+    user: SMTP_EMAIL, // Double-check this
+    pass: SMTP_PASS,
+  },
 });
 
 async function sendRecoveryCodesToEmail(email = "") {
-  const user = await User.get({ email});
+  const user = await User.get({ email });
   if (!user) return { success: false, error: "User not found." };
 
   const allUserHashes = await RecoveryCode.hashesForUser(user.id);
   if (allUserHashes.length === 0)
-    return { success: false, error: "No recovery codes available for this user." };
+    return {
+      success: false,
+      error: "No recovery codes available for this user.",
+    };
 
   const userEmail = user.email;
-  if (!userEmail) return { success: false, error: "User does not have an associated email." };
+  if (!userEmail)
+    return { success: false, error: "User does not have an associated email." };
 
   const recoveryCodesMessage = `
     Hello ${user.username},
@@ -44,15 +50,18 @@ async function sendRecoveryCodesToEmail(email = "") {
 
   // Send email using Nodemailer
   const mailOptions = {
-    from:  `Outamation AI <donotreply@outamationmail.com>`,  // Office 365 email
-    to: userEmail,                                          // Recipient's email
-    subject: 'Your Account Recovery Codes',
-    text: recoveryCodesMessage,                             // Recovery codes message in plain text
+    from: `Outamation AI <donotreply@outamationmail.com>`, // Office 365 email
+    to: userEmail, // Recipient's email
+    subject: "Your Account Recovery Codes",
+    text: recoveryCodesMessage, // Recovery codes message in plain text
   };
 
   try {
     await transporter.sendMail(mailOptions);
-    return { success: true, message: "Recovery codes sent successfully to the associated email." };
+    return {
+      success: true,
+      message: "Recovery codes sent successfully to the associated email.",
+    };
   } catch (error) {
     return { success: false, error: "Failed to send email: " + error.message };
   }
@@ -81,7 +90,7 @@ Outamation AI Team
   const mailOptions = {
     from: `Outamation AI <donotreply@outamationmail.com>`,
     to: email,
-    subject: 'Welcome to Outamation AI!',
+    subject: "Welcome to Outamation AI!",
     text: welcomeMessage,
   };
 
@@ -89,10 +98,12 @@ Outamation AI Team
     await transporter.sendMail(mailOptions);
     return { success: true, message: "Welcome email sent successfully." };
   } catch (error) {
-    return { success: false, error: "Failed to send welcome email: " + error.message };
+    return {
+      success: false,
+      error: "Failed to send welcome email: " + error.message,
+    };
   }
 }
-
 
 async function generateRecoveryCodes(userId) {
   const newRecoveryCodes = [];
@@ -189,5 +200,5 @@ module.exports = {
   resetPassword,
   generateRecoveryCodes,
   sendRecoveryCodesToEmail,
-  sendWelcomeEmailToUser
+  sendWelcomeEmailToUser,
 };

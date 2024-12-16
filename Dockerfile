@@ -120,6 +120,14 @@ WORKDIR /app
 FROM build AS frontend-build
 COPY --chown=anythingllm:anythingllm ./frontend /app/frontend/
 WORKDIR /app/frontend
+
+# Define build-time arguments for Vite environment variables
+
+# Set the ARG values as environment variables
+ENV VITE_CLIENT_ID='a0f64050-6cbd-44da-93e8-159582b11c98'
+ENV VITE_AUTHORITY='https://login.microsoftonline.com/d0dd8c54-2968-4466-a8e7-9684352ae906'
+# ENV VITE_REDIRECT_URI='http://localhost:3000'
+
 RUN yarn install --network-timeout 100000 && yarn cache clean
 RUN yarn build && \
     cp -r dist /tmp/frontend-build && \

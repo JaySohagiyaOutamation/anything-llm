@@ -11,6 +11,7 @@ import useLogo from "../../../hooks/useLogo";
 import illustration from "@/media/illustrations/login-illustration.svg";
 import Admin from "@/models/admin";
 import { useMsal } from "@azure/msal-react";
+import logo from "../../../media/logo/Microsoft_logo.svg";
 
 // export default function PasswordModal({ mode = "single" }) {
 //   const { loginLogo } = useLogo();
@@ -104,7 +105,7 @@ export default function PasswordModal({ mode = "single" }) {
       }}
     >
       <img
-        src="../../../../src/media/logo/Microsoft_logo.svg"
+        src={logo}
         alt="Microsoft Logo"
         className="w-5 h-5 mr-2"
         style={{ backgroundColor: "#ffffff" }}

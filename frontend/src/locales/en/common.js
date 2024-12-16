@@ -86,7 +86,7 @@ const TRANSLATIONS = {
     user3: "Wow, this sounds amazing, let me try it out already!",
     part6: "Have Fun!",
     starOnGithub: "Star on GitHub",
-    contact: "Contact Mintplex Labs",
+    contact: "Contact Outamation AI",
   },
 
   "new-workspace": {
