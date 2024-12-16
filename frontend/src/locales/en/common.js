@@ -173,7 +173,7 @@ const TRANSLATIONS = {
       title: "Chat History",
       "desc-start":
         "The number of previous chats that will be included in the response's short-term memory.",
-      recommend: "Recommend 20. ",
+      recommend: "Recommend 10. ",
       "desc-end":
         "Anything more than 45 is likely to lead to continuous chat failures depending on message size.",
     },
@@ -206,7 +206,7 @@ const TRANSLATIONS = {
       title: "Max Context Snippets",
       description:
         "This setting controls the maximum amount of context snippets the will be sent to the LLM for per chat or query.",
-      recommend: "Recommended: 4",
+      recommend: "Recommended: 8",
     },
     doc: {
       title: "Document similarity threshold",

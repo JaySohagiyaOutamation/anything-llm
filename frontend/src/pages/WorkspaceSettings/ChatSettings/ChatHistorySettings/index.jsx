@@ -20,9 +20,9 @@ export default function ChatHistorySettings({ workspace, setHasChanges }) {
         max={45}
         step={1}
         onWheel={(e) => e.target.blur()}
-        defaultValue={workspace?.openAiHistory ?? 20}
+        defaultValue={workspace?.openAiHistory ?? 10}
         className="bg-black bg-opacity-70 text-white placeholder:text-white/20 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        placeholder="20"
+        placeholder="10"
         required={true}
         autoComplete="off"
         onChange={() => setHasChanges(true)}

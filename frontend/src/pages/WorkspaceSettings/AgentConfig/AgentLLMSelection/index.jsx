@@ -69,7 +69,7 @@ export default function AgentLLMSelection({
 }) {
   const [filteredLLMs, setFilteredLLMs] = useState([]);
   const [selectedLLM, setSelectedLLM] = useState(
-    workspace?.agentProvider ?? "none"
+    workspace?.agentProvider ?? "openai"
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [searchMenuOpen, setSearchMenuOpen] = useState(false);

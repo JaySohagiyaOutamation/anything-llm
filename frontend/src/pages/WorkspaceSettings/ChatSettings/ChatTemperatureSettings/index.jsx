@@ -6,7 +6,7 @@ function recommendedSettings(provider = null) {
     case "mistral":
       return { temp: 0 };
     default:
-      return { temp: 0.2 }; // Set default to 0.2
+      return { temp: 0 }; // Set default to 0
   }
 }
 
