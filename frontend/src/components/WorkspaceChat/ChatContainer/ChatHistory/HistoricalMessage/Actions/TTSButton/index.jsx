@@ -6,13 +6,13 @@ import System from "@/models/system";
 
 export default function TTSMessage({ slug, chatId, message }) {
   const [settings, setSettings] = useState({});
-  const [provider, setProvider] = useState("native");
+  const [provider, setProvider] = useState("openai");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getSettings() {
       const _settings = await System.keys();
-      setProvider(_settings?.TextToSpeechProvider ?? "native");
+      setProvider(_settings?.TextToSpeechProvider ?? "openai");
       setSettings(_settings);
       setLoading(false);
     }

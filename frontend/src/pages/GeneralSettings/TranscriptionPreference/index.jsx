@@ -81,7 +81,8 @@ export default function TranscriptionModelPreference() {
     async function fetchKeys() {
       const _settings = await System.keys();
       setSettings(_settings);
-      setSelectedProvider(_settings?.WhisperProvider || "local");
+      setSelectedProvider(_settings?.WhisperProvider || "openai");
+      // setSelectedProvider("openai");
       setLoading(false);
     }
     fetchKeys();
@@ -97,6 +98,8 @@ export default function TranscriptionModelPreference() {
   const selectedProviderObject = PROVIDERS.find(
     (provider) => provider.value === selectedProvider
   );
+
+  // const selectedProviderObject = PROVIDERS[0];
 
   return (
     <div className="w-screen h-screen overflow-hidden bg-white flex">

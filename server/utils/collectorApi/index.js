@@ -17,7 +17,7 @@ class CollectorApi {
 
   #attachOptions() {
     return {
-      whisperProvider: process.env.WHISPER_PROVIDER || "local",
+      whisperProvider: process.env.WHISPER_PROVIDER || "openai",
       WhisperModelPref: process.env.WHISPER_MODEL_PREF,
       openAiKey: process.env.OPEN_AI_KEY || null,
     };

@@ -142,7 +142,7 @@ class AWSBedrockLLM {
   }
 
   static promptWindowLimit(_modelName) {
-    const limit = process.env.AWS_BEDROCK_LLM_MODEL_TOKEN_LIMIT || 8191;
+    const limit = process.env.AWS_BEDROCK_LLM_MODEL_TOKEN_LIMIT || 1000;
     if (!limit || isNaN(Number(limit)))
       throw new Error("No valid token context limit was set.");
     return Number(limit);
@@ -151,7 +151,7 @@ class AWSBedrockLLM {
   // Ensure the user set a value for the token limit
   // and if undefined - assume 4096 window.
   promptWindowLimit() {
-    const limit = process.env.AWS_BEDROCK_LLM_MODEL_TOKEN_LIMIT || 8191;
+    const limit = process.env.AWS_BEDROCK_LLM_MODEL_TOKEN_LIMIT || 1000;
     if (!limit || isNaN(Number(limit)))
       throw new Error("No valid token context limit was set.");
     return Number(limit);

@@ -288,7 +288,7 @@ export default function LLMPreference({
     const formData = new FormData(form);
     data.LLMProvider = selectedLLM;
     // Default to OutamationAI embedder and LanceDB
-    data.EmbeddingEngine = "native";
+    data.EmbeddingEngine = "openai";
     data.VectorDB = "lancedb";
     for (var [key, value] of formData.entries()) data[key] = value;
 

@@ -120,7 +120,7 @@ export default function GeneralEmbeddingPreference() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredEmbedders, setFilteredEmbedders] = useState([]);
-  const [selectedEmbedder, setSelectedEmbedder] = useState(null);
+  const [selectedEmbedder, setSelectedEmbedder] = useState("openai");
   const [searchMenuOpen, setSearchMenuOpen] = useState(false);
   const searchInputRef = useRef(null);
   const { isOpen, openModal, closeModal } = useModal();
@@ -191,7 +191,7 @@ export default function GeneralEmbeddingPreference() {
     async function fetchKeys() {
       const _settings = await System.keys();
       setSettings(_settings);
-      setSelectedEmbedder(_settings?.EmbeddingEngine || "native");
+      setSelectedEmbedder(_settings?.EmbeddingEngine || "openai");
       setHasEmbeddings(_settings?.HasExistingEmbeddings || false);
       setHasCachedEmbeddings(_settings?.HasCachedEmbeddings || false);
       setLoading(false);

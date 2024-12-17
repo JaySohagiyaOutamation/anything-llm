@@ -211,7 +211,7 @@ const SystemSettings = {
       // - Currently the only 3rd party is OpenAI, so is OPEN_AI_KEY is set
       // - then it can be shared.
       // --------------------------------------------------------
-      WhisperProvider: process.env.WHISPER_PROVIDER || "local",
+      WhisperProvider: process.env.WHISPER_PROVIDER || "openai",
       WhisperModelPref:
         process.env.WHISPER_MODEL_PREF || "Xenova/whisper-small",
 
@@ -219,7 +219,7 @@ const SystemSettings = {
       // TTS/STT  Selection Settings & Configs
       // - Currently the only 3rd party is OpenAI or the native browser-built in
       // --------------------------------------------------------
-      TextToSpeechProvider: process.env.TTS_PROVIDER || "native",
+      TextToSpeechProvider: process.env.TTS_PROVIDER || "openai",
       TTSOpenAIKey: !!process.env.TTS_OPEN_AI_KEY,
       TTSOpenAIVoiceModel: process.env.TTS_OPEN_AI_VOICE_MODEL,
 

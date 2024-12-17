@@ -19,7 +19,7 @@ async function asAudio({ fullFilePath = "", filename = "", options = {} }) {
     options?.whisperProvider
   )
     ? WHISPER_PROVIDERS[options?.whisperProvider]
-    : WHISPER_PROVIDERS.local;
+    : WHISPER_PROVIDERS.openai;
 
   console.log(`-- Working ${filename} --`);
   const whisper = new WhisperProvider({ options });
