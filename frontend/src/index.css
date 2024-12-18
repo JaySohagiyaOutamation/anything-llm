@@ -779,3 +779,48 @@ does not extend the close button beyond the viewport. */
 strong{
   color : black !important;
 }
+
+table {
+  width: 100%; 
+  border-collapse: collapse; 
+  border: 1px solid #ddd; 
+  border-radius: 5px; 
+  overflow: hidden; 
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); 
+}
+
+th {
+  color: #333333 !important; 
+  font-weight: bold;
+  border: 1px solid #ddd; 
+  padding: 10px; 
+  text-align: center; 
+  background-color: #ffffff;
+}
+
+td:first-child {
+  color: #333333 !important; 
+  font-weight: bold;
+  border: 1px solid #ddd; 
+  padding: 10px; 
+}
+
+td {
+  border: 1px solid #ddd; 
+  padding: 10px; 
+  text-align: center; 
+  color: #555555; 
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #e4ecf6; 
+  color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ffffff; 
+}
+
+table {
+  border: 2px solid #333333; 
+}
