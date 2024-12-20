@@ -204,14 +204,13 @@ export default function ChatHistory({
 
   return (
     <div
-    className={`markdown text-black/80 font-light ${textSize} h-full md:h-[83%] pb-[100px] pt-6 md:pt-0 md:pb-20 md:mx-0 overflow-y-scroll flex flex-col justify-start ${
-      showScrollbar ? "" : "no-scroll"
-    }`}
-    id="chat-history"
-    ref={chatHistoryRef}
-    onScroll={handleScroll}
-  >
-  
+      className={`markdowned text-black/80 font-light ${textSize} h-full md:h-[83%] pb-[100px] pt-6 md:pt-0 md:pb-20 md:mx-0 overflow-y-scroll flex flex-col justify-start ${
+        showScrollbar ? "" : "no-scroll"
+      }`}
+      id="chat-history"
+      ref={chatHistoryRef}
+      onScroll={handleScroll}
+    >
       {history.map((props, index) => {
         const isLastBotReply =
           index === history.length - 1 && props.role === "assistant";
@@ -265,7 +264,6 @@ export default function ChatHistory({
       {!isAtBottom && (
         <div className="fixed bottom-40 right-10 md:right-20 z-50 cursor-pointer animate-pulse">
           <div className="flex flex-col items-center">
-         
             <div
               className="p-1 rounded-full border border-white/10 bg-black/20 hover:text-black"
               onClick={() => {
@@ -315,4 +313,3 @@ function WorkspaceChatSuggestions({ suggestions = [], sendSuggestion }) {
     </div>
   );
 }
-

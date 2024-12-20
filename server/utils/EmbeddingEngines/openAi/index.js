@@ -13,7 +13,7 @@ class OpenAiEmbedder {
     this.maxConcurrentChunks = 500;
 
     // https://platform.openai.com/docs/guides/embeddings/embedding-models
-    this.embeddingMaxChunkLength = 1_000;
+    this.embeddingMaxChunkLength = 8_191;
   }
 
   async embedTextInput(textInput) {

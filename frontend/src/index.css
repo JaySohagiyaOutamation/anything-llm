@@ -780,47 +780,47 @@ strong{
   color : black !important;
 }
 
-table {
-  width: 100%; 
-  border-collapse: collapse; 
-  border: 1px solid #ddd; 
-  border-radius: 5px; 
-  overflow: hidden; 
-  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1); 
+.markdowned table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  margin-top: 15px;
 }
 
-th {
-  color: #333333 !important; 
+.markdowned th {
+  color: #333333 !important;
   font-weight: bold;
-  border: 1px solid #ddd; 
-  padding: 10px; 
-  text-align: center; 
+  font-size: 15px; /* Slightly smaller text for headers */
+  border: 1px solid #ddd;
+  padding: 8px; /* Reduce padding for smaller row height */
+  text-align: center;
   background-color: #ffffff;
 }
 
-td:first-child {
-  color: #333333 !important; 
-  font-weight: bold;
-  border: 1px solid #ddd; 
-  padding: 10px; 
+.markdowned td:first-child {
+  color: #333333 !important;
+  font-weight: 550; /* Make the first column bold */
+  font-size: 14px; /* Slightly smaller text for first column */
+  border: 1px solid #ddd;
+  padding: 6px; /* Reduce padding for smaller row height */
 }
 
-td {
-  border: 1px solid #ddd; 
-  padding: 10px; 
-  text-align: center; 
-  color: #555555; 
+.markdowned td {
+  border: 1px solid #ddd;
+  font-size: 14px; /* Slightly smaller text for all cells */
+  padding: 6px; /* Reduce padding for smaller row height */
+  text-align: center;
+  color: #555555;
 }
 
-tbody tr:nth-child(odd) {
-  background-color: #e4ecf6; 
-  color: #ffffff;
+.markdowned tbody tr:nth-child(odd) {
+  background-color: #e4ecf6;
 }
 
-tbody tr:nth-child(even) {
-  background-color: #ffffff; 
-}
-
-table {
-  border: 2px solid #333333; 
+.markdowned tbody tr:nth-child(even) {
+  background-color: #ffffff;
 }

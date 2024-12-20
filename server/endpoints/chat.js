@@ -74,7 +74,7 @@ function chatEndpoints(app) {
           Embedder: process.env.EMBEDDING_ENGINE || "inherit",
           VectorDbSelection: process.env.VECTOR_DB || "lancedb",
           multiModal: Array.isArray(attachments) && attachments?.length !== 0,
-          TTSSelection: process.env.TTS_PROVIDER || "openai",
+          TTSSelection: process.env.TTS_PROVIDER || "native",
         });
 
         await EventLogs.logEvent(
@@ -178,7 +178,7 @@ function chatEndpoints(app) {
           Embedder: process.env.EMBEDDING_ENGINE || "inherit",
           VectorDbSelection: process.env.VECTOR_DB || "lancedb",
           multiModal: Array.isArray(attachments) && attachments?.length !== 0,
-          TTSSelection: process.env.TTS_PROVIDER || "openai",
+          TTSSelection: process.env.TTS_PROVIDER || "native",
         });
 
         await EventLogs.logEvent(

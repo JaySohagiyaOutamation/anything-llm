@@ -61,7 +61,7 @@ export default function TextToSpeechProvider({ settings }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProviders, setFilteredProviders] = useState([]);
   const [selectedProvider, setSelectedProvider] = useState(
-    settings?.TextToSpeechProvider || "openai"
+    settings?.TextToSpeechProvider || "native"
   );
   const [searchMenuOpen, setSearchMenuOpen] = useState(false);
   const searchInputRef = useRef(null);

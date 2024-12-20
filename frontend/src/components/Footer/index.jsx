@@ -36,7 +36,7 @@ const LastUpdateIndicator = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   // Last update date - manually set or from build process
-  const lastUpdateDate = "12/10/2024";
+  const lastUpdateDate = "12/19/2024";
 
   return (
     <div
