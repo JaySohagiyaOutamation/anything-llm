@@ -34,6 +34,12 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
     if (role === "supervisor" && selectedWorkspacesToAdd.length > 0) {
       await Supervisor.createSupervisor(selectedWorkspacesToAdd, user.id);
     }
+    if (role === "default" && selectedWorkspaces.length > 0) {
+      await Supervisor.removeDefault(selectedWorkspaces, user.id);
+    }
+    if (role === "default" && selectedWorkspacesToAdd.length > 0) {
+      await Supervisor.createDefault(selectedWorkspacesToAdd, user.id);
+    }
     if (messageLimit.enabled) {
       data.dailyMessageLimit = messageLimit.limit;
     } else {
@@ -87,7 +93,7 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
   }
 
   useEffect(() => {
-    if (user.role === "supervisor") {
+    if (user.role === "supervisor" || user.role === "default") {
       const userId = user.id;
       fetchWorkspacesName(userId);
       fetchWorkspaces();
@@ -185,7 +191,7 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
                     <option value="admin">Administrator</option>
                   )}
                 </select>
-                {role === "supervisor" && (
+                {(role === "supervisor" || role === "default" )&& (
                   <div className="flex justify-between">
                     <div>
                       <label

@@ -14,8 +14,32 @@ const Supervisor = {
         return { success: false, error: e.message };
       });
   },
+  createDefault: async ( selectedWorkspaces,userId) => {
+    return await fetch(`${API_BASE}/default/new`, {
+      method: "POST",
+      headers: baseHeaders(),
+      body: JSON.stringify({ selectedWorkspaces,userId }),
+    })
+      .then((res) => res.json())
+      .catch((e) => {
+        console.error(e);
+        return { success: false, error: e.message };
+      });
+  },
   removeSupervisor: async ( selectedWorkspaces,userId) => {
     return await fetch(`${API_BASE}/supervisor/remove`, {
+      method: "DELETE",
+      headers: baseHeaders(),
+      body: JSON.stringify({ selectedWorkspaces,userId }),
+    })
+      .then((res) => res.json())
+      .catch((e) => {
+        console.error(e);
+        return { success: false, error: e.message };
+      });
+  },
+  removeDefault: async ( selectedWorkspaces,userId) => {
+    return await fetch(`${API_BASE}/default/remove`, {
       method: "DELETE",
       headers: baseHeaders(),
       body: JSON.stringify({ selectedWorkspaces,userId }),

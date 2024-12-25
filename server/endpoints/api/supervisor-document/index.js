@@ -133,6 +133,64 @@ function apiSupervisorDocumentEndpoints(app) {
       }
     }
   );
+  app.post(
+    "/default/new",
+    [strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    async (request, response) => {
+      try {
+        const documentParams = reqBody(request);
+  
+        // Ensure selectedWorkspaces and userId are provided
+        if (!documentParams.selectedWorkspaces || !Array.isArray(documentParams.selectedWorkspaces) || !documentParams.userId) {
+          response.status(400).json({ error: "Missing required fields: selectedWorkspaces (array), userId" });
+          return;
+        }
+  
+        const failedWorkspaces = [];
+        const createdWorkspaces = [];
+        const workspaceIds = [];
+  
+        // Loop through each workspace name and create a supervisor entry
+        for (const workspaceName of documentParams.selectedWorkspaces) {
+          const { workspaceId, error: workspaceError } = await SupervisorDocumentsService.getWorkspaceIdByName(workspaceName);
+  
+          if (workspaceError || !workspaceId) {
+            failedWorkspaces.push({ workspaceName, error: workspaceError || "Invalid workspace" });
+            continue; // Skip to the next workspace in case of error
+          }
+  
+          if (workspaceError) {
+            failedWorkspaces.push({ workspaceName, workspaceError });
+            continue;
+          }
+          workspaceIds.push(workspaceId);
+         
+        }
+
+        await WorkspaceUser.createMany(documentParams.userId,workspaceIds);
+
+  
+        // Prepare the response after all workspaces are processed
+        if (createdWorkspaces.length > 0) {
+          return response.status(200).json({
+            success: true,
+            message: "Default created for workspaces",
+            createdWorkspaces,
+            failedWorkspaces,
+          });
+        } else {
+          return response.status(400).json({
+            success: false,
+            message: "Failed to create Default documents",
+            failedWorkspaces,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+        return response.status(500).json({ error: "Failed to create Default documents" });
+      }
+    }
+  );
 
   app.delete(
     "/supervisor/remove",
@@ -207,6 +265,69 @@ function apiSupervisorDocumentEndpoints(app) {
             failedWorkspaces,
           });
         }
+      } catch (error) {
+        console.error(error);
+        return response.status(500).json({ error: "Failed to delete supervisor records" });
+      }
+    }
+  );
+  
+  app.delete(
+    "/default/remove",
+    [strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+    async (request, response) => {
+      try {
+        const documentParams = reqBody(request);
+  
+        // Ensure selectedWorkspaces and userId are provided
+        if (!documentParams.selectedWorkspaces || !Array.isArray(documentParams.selectedWorkspaces) || !documentParams.userId) {
+          return response.status(400).json({ error: "Missing required fields: selectedWorkspaces (array), userId" });
+        }
+  
+        const failedWorkspaces = [];
+        const deletedWorkspaces = [];
+        const workspaceIds = [];
+        
+        // Loop through each workspace name and fetch the corresponding workspaceId
+        for (const workspaceName of documentParams.selectedWorkspaces) {
+          const { workspaceId, error: workspaceError } = await SupervisorDocumentsService.getWorkspaceIdByName(workspaceName);
+          
+          if (workspaceError || !workspaceId) {
+            failedWorkspaces.push({ workspaceName, error: workspaceError || "Invalid workspace" });
+            continue; // Skip to the next workspace in case of error
+          }
+          
+          workspaceIds.push(workspaceId);
+        
+          
+          // Add the deleted workspace to the response list
+          deletedWorkspaces.push({ workspaceId, workspaceName });
+      
+          // Log the delete event
+         
+        }
+  
+        // Delete records from WorkspaceUser table for the given userId and workspaceIds
+        if (workspaceIds.length > 0) {
+          await WorkspaceUser.deleteMany(documentParams.userId, workspaceIds);
+        }  
+        // Prepare the response after all workspaces are processed
+        // Prepare the response after all workspaces are processed
+        if (deletedWorkspaces.length > 0) {
+          return response.status(200).json({
+            success: true,
+            message: "Default created for workspaces",
+            deletedWorkspaces,
+            failedWorkspaces,
+          });
+        } else {
+          return response.status(400).json({
+            success: false,
+            message: "Failed to create Default documents",
+            failedWorkspaces,
+          });
+        }
+       
       } catch (error) {
         console.error(error);
         return response.status(500).json({ error: "Failed to delete supervisor records" });

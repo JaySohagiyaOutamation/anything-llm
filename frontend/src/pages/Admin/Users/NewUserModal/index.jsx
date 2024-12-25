@@ -30,7 +30,7 @@ export default function NewUserModal({ closeModal }) {
     for (var [key, value] of form.entries()) data[key] = value;
 
     // Check if the user role is "supervisor" and no workspaces are selected
-    if (data.role === "supervisor" && selectedWorkspaces.length === 0) {
+    if ((data.role === "supervisor" || data.role === "default") && selectedWorkspaces.length === 0) {
       setSupervisorError("Please select at least one workspace");
       return; // Return early to prevent user creation
     }
@@ -40,6 +40,9 @@ export default function NewUserModal({ closeModal }) {
 
     if (user && user.role === "supervisor" && selectedWorkspaces.length > 0) {
       await Supervisor.createSupervisor(selectedWorkspaces, user.id);
+    }
+    if (user && user.role === "default" && selectedWorkspaces.length > 0) {
+      await Supervisor.createDefault(selectedWorkspaces, user.id);
     }
 
     // Send welcome email in the background
@@ -187,7 +190,7 @@ Username must only contain lowercase letters, numbers,
                 </select>
                 <RoleHintDisplay role={role} />
               </div>
-              {role === "supervisor" && (
+              {(role === "supervisor" || role === "default") && (
                 <div>
                   <label
                     htmlFor="workspaceName"
