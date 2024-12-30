@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dynamic URL Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
+  <style>
+    /* Change the background color to light blue */
+    body {
+      background-color: #f8fafe;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Main Page Content -->
+        <div id="main-page">
+            <h1>Welcome to the Main Page</h1>
+            <p>Click the button below to go to the new page.</p>
+            <button id="goto-new-page-btn">Go to New Page</button>
+        </div>
+
+        <!-- New Page Content (Initially Hidden) -->
+        <div id="new-page" class="hidden">
+            <h1>New Page</h1>
+            <p>You are now on a new page. The URL has changed without reloading.</p>
+            <button id="back-to-main-btn">Back to Main Page</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to switch to the new page and change the URL
+        function switchToNewPage() {
+            document.getElementById("main-page").classList.add("hidden");
+            document.getElementById("new-page").classList.remove("hidden");
+
+            // Update the URL to /new-page without reloading
+            history.pushState(null, "", "/new-page");
+        }
+
+        // Function to switch back to the main page and change the URL
+        function switchToMainPage() {
+            document.getElementById("new-page").classList.add("hidden");
+            document.getElementById("main-page").classList.remove("hidden");
+
+            // Update the URL back to /main without reloading
+            history.pushState(null, "", "/main");
+        }
+
+        // Add event listeners for button clicks
+        document.getElementById("goto-new-page-btn").addEventListener("click", switchToNewPage);
+        document.getElementById("back-to-main-btn").addEventListener("click", switchToMainPage);
+
+        // Handle back/forward navigation
+        window.addEventListener("popstate", function(event) {
+            if (window.location.pathname === "/new-page") {
+                switchToNewPage();
+            } else {
+                switchToMainPage();
+            }
+        });
+    </script>
+
+<script
+  data-embed-id="19bbf2f8-fa13-4417-8f60-36e5558a82c8"
+  data-base-api-url="http://localhost:3001/api/embed"
+  src="/dist/anythingllm-chat-widget.js">
+</script>
+<!-- Outamation AI (https://outamation.com/) -->
+
+  </body>
+  
+
+</body>
+</html>

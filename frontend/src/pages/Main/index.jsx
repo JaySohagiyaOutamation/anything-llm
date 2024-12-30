@@ -8,6 +8,8 @@ import UserMenu from "@/components/UserMenu";
 
 export default function Main() {
   const { loading, requiresAuth, mode } = usePasswordModal();
+  // const check = window.location.href.includes("mode=2");
+
 
   if (loading) return <FullScreenLoader />;
   if (requiresAuth !== false) {

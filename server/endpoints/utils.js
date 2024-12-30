@@ -58,6 +58,7 @@ async function getDiskStorage() {
 }
 
 const documentsPath = path.join(__dirname, "../storage/documents/custom-documents");
+const originalDocumentsPath = path.join(__dirname, "../storage/documents/original-documents");
 
 async function changeFileByDocId(fileName, workspaceId, role) {
   // Ensure the documents path exists
@@ -122,5 +123,7 @@ async function changeFileByDocId(fileName, workspaceId, role) {
 module.exports = {
   utilEndpoints,
   getGitVersion,
-  changeFileByDocId
+  changeFileByDocId,
+  documentsPath,
+  originalDocumentsPath,
 };

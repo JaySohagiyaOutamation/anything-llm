@@ -112,7 +112,7 @@ export default function EditUserModal({ currentUser, user, closeModal }) {
 
   return (
     <div className="relative w-[500px] max-w-2xl max-h-full">
-      <div className="relative bg-white rounded-lg shadow">
+      <div className="relative bg-white rounded-lg shadow max-h-[90vh] overflow-y-auto">
         <div className="flex items-start justify-between p-4 border-b rounded-t border-gray-500/50">
           <h3 className="text-xl font-semibold text-black">
             Edit {user.username}

@@ -7,7 +7,7 @@ const {
   safeJsonParse,
 } = require("../utils/http");
 const { normalizePath, isWithin } = require("../utils/files");
-const { WorkspaceUser } = require('../models/workspaceUsers'); 
+const { WorkspaceUser } = require("../models/workspaceUsers");
 const { Workspace } = require("../models/workspace");
 const { Document } = require("../models/documents");
 const { DocumentVectors } = require("../models/vectors");
@@ -36,7 +36,7 @@ const { WorkspaceThread } = require("../models/workspaceThread");
 const truncate = require("truncate");
 const { purgeDocument } = require("../utils/files/purgeDocument");
 const { changeFileByDocId } = require("./utils");
-const SupervisorDocumentsService = require("../models/supervisorDocumentsService");
+const { originalDocumentsPath } = require("./utils"); // Ensure you have the correct path to utils.js
 
 function workspaceEndpoints(app) {
   if (!app) return;
@@ -110,6 +110,65 @@ function workspaceEndpoints(app) {
     }
   );
 
+  // app.post(
+  //   "/workspace/:slug/upload",
+  //   [
+  //     validatedRequest,
+  //     flexUserRoleValid([ROLES.admin, ROLES.manager, ROLES.supervisor]),
+  //     handleFileUpload,
+  //   ],
+  //   async function (request, response) {
+
+  //     try {
+  //       const Collector = new CollectorApi();
+  //       const { originalname } = request.file;
+  //       const processingOnline = await Collector.online();
+  //       const { role, workspaceId } = request.body;
+  //       console.log('{role,workspaceId: ', role, workspaceId);
+
+  //       if (!processingOnline) {
+  //         response
+  //           .status(500)
+  //           .json({
+  //             success: false,
+  //             error: `Document processing API is not online. Document ${originalname} will not be processed automatically.`,
+  //           })
+  //           .end();
+  //         return;
+  //       }
+
+  //       const { success, reason, documents } =
+  //         await Collector.processDocument(originalname);
+  //       console.log('documents.title: ', documents[0].title);
+  //       const hyphenatedTitle = documents[0].title.replace(/\s+/g, '-');
+  //       const fileName = `${hyphenatedTitle}-${documents[0].id}.json`;
+  //       if (!success) {
+  //         response.status(500).json({ success: false, error: reason }).end();
+  //         return;
+  //       }
+  //       if (success) {
+  //         await changeFileByDocId(fileName, workspaceId, role)
+  //       }
+
+  //       Collector.log(
+  //         `Document ${originalname} uploaded processed and successfully. It is now available in documents.`
+  //       );
+  //       await Telemetry.sendTelemetry("document_uploaded");
+  //       await EventLogs.logEvent(
+  //         "document_uploaded",
+  //         {
+  //           documentName: originalname,
+  //         },
+  //         response.locals?.user?.id
+  //       );
+  //       response.status(200).json({ success: true, error: null });
+  //     } catch (e) {
+  //       console.error(e.message, e);
+  //       response.sendStatus(500).end();
+  //     }
+  //   }
+  // );
+
   app.post(
     "/workspace/:slug/upload",
     [
@@ -118,50 +177,90 @@ function workspaceEndpoints(app) {
       handleFileUpload,
     ],
     async function (request, response) {
-
       try {
         const Collector = new CollectorApi();
-        const { originalname } = request.file;
+        const { originalname, path: tempPath } = request.file;
+        const original = originalname;
         const processingOnline = await Collector.online();
         const { role, workspaceId } = request.body;
-        console.log('{role,workspaceId: ', role, workspaceId);
+        console.log("{role,workspaceId: ", role, workspaceId);
 
-        if (!processingOnline) {
-          response
-            .status(500)
-            .json({
+        // Create original-documents directory if it doesn't exist
+        fs.mkdir(originalDocumentsPath, { recursive: true }, (err) => {
+          if (err && err.code !== "EEXIST") {
+            console.error("Error creating directory:", err);
+            return response.status(500).json({
               success: false,
-              error: `Document processing API is not online. Document ${originalname} will not be processed automatically.`,
-            })
-            .end();
-          return;
-        }
+              error: `Failed to create directory: ${err.message}`,
+            });
+          }
 
-        const { success, reason, documents } =
-          await Collector.processDocument(originalname);
-        console.log('documents.title: ', documents[0].title);
-        const hyphenatedTitle = documents[0].title.replace(/\s+/g, '-');
-        const fileName = `${hyphenatedTitle}-${documents[0].id}.json`;
-        if (!success) {
-          response.status(500).json({ success: false, error: reason }).end();
-          return;
-        }
-        if (success) {
-          await changeFileByDocId(fileName, workspaceId, role)
-        }
+          // Store the original file
+          const originalFilePath = path.join(
+            originalDocumentsPath,
+            originalname
+          );
+          fs.copyFile(tempPath, originalFilePath, (copyErr) => {
+            if (copyErr) {
+              console.error("Error saving original file:", copyErr);
+              return response.status(500).json({
+                success: false,
+                error: `Failed to save original document: ${copyErr.message}`,
+              });
+            }
 
-        Collector.log(
-          `Document ${originalname} uploaded processed and successfully. It is now available in documents.`
-        );
-        await Telemetry.sendTelemetry("document_uploaded");
-        await EventLogs.logEvent(
-          "document_uploaded",
-          {
-            documentName: originalname,
-          },
-          response.locals?.user?.id
-        );
-        response.status(200).json({ success: true, error: null });
+            console.log(`Original file saved: ${originalFilePath}`);
+
+            // Continue with the document processing
+            if (!processingOnline) {
+              return response
+                .status(500)
+                .json({
+                  success: false,
+                  error: `Document processing API is not online. Document ${originalname} will not be processed automatically.`,
+                })
+                .end();
+            }
+
+            // Process the document using the correct file path
+            Collector.processDocument(original)
+              .then(({ success, reason, documents }) => {
+                if (!success) {
+                  return response
+                    .status(500)
+                    .json({ success: false, error: reason })
+                    .end();
+                }
+
+                const hyphenatedTitle = documents[0].title.replace(/\s+/g, "-");
+                const fileName = `${hyphenatedTitle}-${documents[0].id}.json`;
+
+                changeFileByDocId(fileName, workspaceId, role)
+                  .then(() => {
+                    Collector.log(
+                      `Document ${original} uploaded, processed, and stored successfully. It is now available in documents.`
+                    );
+                    Telemetry.sendTelemetry("document_uploaded");
+                    EventLogs.logEvent(
+                      "document_uploaded",
+                      {
+                        documentName: original,
+                      },
+                      response.locals?.user?.id
+                    );
+                    response.status(200).json({ success: true, error: null });
+                  })
+                  .catch((e) => {
+                    console.error(e.message, e);
+                    response.sendStatus(500).end();
+                  });
+              })
+              .catch((e) => {
+                console.error(e.message, e);
+                response.sendStatus(500).end();
+              });
+          });
+        });
       } catch (e) {
         console.error(e.message, e);
         response.sendStatus(500).end();
@@ -171,7 +270,10 @@ function workspaceEndpoints(app) {
 
   app.post(
     "/workspace/:slug/upload-link",
-    [validatedRequest, flexUserRoleValid([ROLES.admin, ROLES.manager, ROLES.supervisor])],
+    [
+      validatedRequest,
+      flexUserRoleValid([ROLES.admin, ROLES.manager, ROLES.supervisor]),
+    ],
     async (request, response) => {
       try {
         const Collector = new CollectorApi();
@@ -214,7 +316,10 @@ function workspaceEndpoints(app) {
 
   app.post(
     "/workspace/:slug/update-embeddings",
-    [validatedRequest, flexUserRoleValid([ROLES.admin, ROLES.manager, ROLES.supervisor])],
+    [
+      validatedRequest,
+      flexUserRoleValid([ROLES.admin, ROLES.manager, ROLES.supervisor]),
+    ],
     async (request, response) => {
       try {
         const user = await userFromSession(request, response);
@@ -245,8 +350,8 @@ function workspaceEndpoints(app) {
           message:
             failedToEmbed.length > 0
               ? `${failedToEmbed.length} documents failed to add.\n\n${errors
-                .map((msg) => `${msg}`)
-                .join("\n\n")}`
+                  .map((msg) => `${msg}`)
+                  .join("\n\n")}`
               : null,
         });
       } catch (e) {
@@ -354,7 +459,7 @@ function workspaceEndpoints(app) {
   //       const workspaces = multiUserMode(response)
   //       ? await Workspace.whereWithUser(user)
   //       : await Workspace.where();
-        
+
   //       console.log('workspaces: ', workspaces);
   //       response.status(200).json({ workspaces });
   //     } catch (e) {
@@ -370,16 +475,16 @@ function workspaceEndpoints(app) {
   //     try {
   //       const user = await userFromSession(request, response);
   //       const userId = user.id;
-  
+
   //       const {workspaceId} = await SupervisorDocumentsService.getWorkspaceIdByUserId(userId);
-  
+
   //       let workspaces;
   //       if (user.role === 'supervisor') {
   //         workspaces = await Workspace.where({ id: workspaceId });
   //       }else {
   //         workspaces = multiUserMode(response) ? await Workspace.whereWithUser (user) : await Workspace.where();
   //       }
-        
+
   //       response.status(200).json({ workspaces });
   //     } catch (e) {
   //       console.error(e.message, e);
@@ -394,20 +499,23 @@ function workspaceEndpoints(app) {
       try {
         const user = await userFromSession(request, response);
         const userId = user.id;
-  
+
         let workspaces;
-        if (user.role === 'supervisor') {
+        if (user.role === "supervisor") {
           const workspaceUsers = await WorkspaceUser.where({ user_id: userId });
-          const workspaceIds = workspaceUsers.map(wsUser => wsUser.workspace_id);
-          
+          const workspaceIds = workspaceUsers.map(
+            (wsUser) => wsUser.workspace_id
+          );
+
           if (workspaceIds.length > 0) {
             workspaces = await Workspace.whereIn(workspaceIds);
           } else {
-            workspaces = []; 
-          }        
-        }
-        else {
-          workspaces = multiUserMode(response) ? await Workspace.whereWithUser (user) : await Workspace.where();
+            workspaces = [];
+          }
+        } else {
+          workspaces = multiUserMode(response)
+            ? await Workspace.whereWithUser(user)
+            : await Workspace.where();
         }
 
         response.status(200).json({ workspaces });
@@ -419,16 +527,16 @@ function workspaceEndpoints(app) {
   );
   app.post(
     "/supervisor/workspaces",
-    [flexUserRoleValid([ROLES.manager,ROLES.admin])], // Middleware for validation
+    [flexUserRoleValid([ROLES.manager, ROLES.admin])], // Middleware for validation
     async (request, response) => {
       try {
-       const userId = parseInt(request.body);
-        
+        const userId = parseInt(request.body);
+
         // Fetch workspaceIds associated with the given userId
         const workspaceIds = await WorkspaceUser.getWorkspaceIds(userId);
-        
+
         let workspacesName;
-        
+
         if (workspaceIds.length > 0) {
           // Fetch workspaces by workspaceIds and return an array of workspace names
           const workspaces = await Workspace.whereIn(workspaceIds);
@@ -436,7 +544,7 @@ function workspaceEndpoints(app) {
         } else {
           workspacesName = []; // Return an empty array if no workspaceIds are found
         }
-  
+
         // Respond with the array of workspace names
         response.status(200).json({ workspacesName });
       } catch (e) {
@@ -445,7 +553,7 @@ function workspaceEndpoints(app) {
       }
     }
   );
-  
+
   app.get(
     "/workspace/:slug",
     [validatedRequest, flexUserRoleValid([ROLES.all])],
@@ -824,7 +932,10 @@ function workspaceEndpoints(app) {
 
   app.delete(
     "/workspace/:slug/remove-pfp",
-    [validatedRequest, flexUserRoleValid([ROLES.admin, ROLES.manager, ROLES.supervisor])],
+    [
+      validatedRequest,
+      flexUserRoleValid([ROLES.admin, ROLES.manager, ROLES.supervisor]),
+    ],
     async function (request, response) {
       try {
         const { slug } = request.params;
@@ -880,12 +991,12 @@ function workspaceEndpoints(app) {
         // Get threadId we are branching from if that request body is sent
         // and is a valid thread slug.
         const threadId = !!threadSlug
-          ? (
-            await WorkspaceThread.get({
-              slug: String(threadSlug),
-              workspace_id: workspace.id,
-            })
-          )?.id ?? null
+          ? ((
+              await WorkspaceThread.get({
+                slug: String(threadSlug),
+                workspace_id: workspace.id,
+              })
+            )?.id ?? null)
           : null;
         const chatsToFork = await WorkspaceChats.where(
           {
@@ -979,7 +1090,7 @@ function workspaceEndpoints(app) {
       try {
         const { slug = null } = request.params;
         const user = await userFromSession(request, response);
-        const {role,workspaceId} = request.body;
+        const { role, workspaceId } = request.body;
         const currWorkspace = multiUserMode(response)
           ? await Workspace.getWithUser(user, { slug })
           : await Workspace.get({ slug });
@@ -1004,17 +1115,17 @@ function workspaceEndpoints(app) {
           return;
         }
 
-        const { success, reason,documents } =
-        await Collector.processDocument(originalname);
+        const { success, reason, documents } =
+          await Collector.processDocument(originalname);
         const fileName = `${documents[0].title}-${documents[0].id}.json`;
         if (!success || documents?.length === 0) {
           response.status(500).json({ success: false, error: reason }).end();
           return;
         }
-        if(success){
-          await changeFileByDocId(fileName,workspaceId,role)
+        if (success) {
+          await changeFileByDocId(fileName, workspaceId, role);
         }
- 
+
         Collector.log(
           `Document ${originalname} uploaded processed and successfully. It is now available in documents.`
         );

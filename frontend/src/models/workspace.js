@@ -253,16 +253,16 @@ const Workspace = {
       .then((res) => res.ok)
       .catch(() => false);
   },
-  uploadFile: async function (slug, formData) {
-    const response = await fetch(`${API_BASE}/workspace/${slug}/upload`, {
-      method: "POST",
-      body: formData,
-      headers: baseHeaders(),
-    });
-   
-    const data = await response.json();
-    return { response, data };
-  },
+    uploadFile: async function (slug, formData) {
+      const response = await fetch(`${API_BASE}/workspace/${slug}/upload`, {
+        method: "POST",
+        body: formData,
+        headers: baseHeaders(),
+      });
+    
+      const data = await response.json();
+      return { response, data };
+    },
   uploadLink: async function (slug, link) {
     const response = await fetch(`${API_BASE}/workspace/${slug}/upload-link`, {
       method: "POST",

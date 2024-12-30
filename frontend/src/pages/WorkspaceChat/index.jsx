@@ -6,9 +6,11 @@ import Workspace from "@/models/workspace";
 import PasswordModal, { usePasswordModal } from "@/components/Modals/Password";
 import { isMobile } from "react-device-detect";
 import { FullScreenLoader } from "@/components/Preloader";
+import useUser from "@/hooks/useUser";
 
 export default function WorkspaceChat() {
   const { loading, requiresAuth, mode } = usePasswordModal();
+
 
   if (loading) return <FullScreenLoader />;
   if (requiresAuth !== false) {
@@ -22,6 +24,8 @@ function ShowWorkspaceChat() {
   const { slug } = useParams();
   const [workspace, setWorkspace] = useState(null);
   const [loading, setLoading] = useState(true);
+  const {user} = useUser();
+  const check = window.location.href.includes("mode=embed");
 
   useEffect(() => {
     async function getWorkspace() {
@@ -46,7 +50,7 @@ function ShowWorkspaceChat() {
   return (
     <>
       <div className="w-screen h-screen overflow-hidden bg-white flex">
-        {!isMobile && <Sidebar />}
+        {!isMobile && user?.role !== "default" && !check && <Sidebar />}
         <WorkspaceChatContainer loading={loading} workspace={workspace} />
       </div>
       {/* <FineTuningAlert /> */}
