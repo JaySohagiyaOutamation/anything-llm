@@ -772,7 +772,7 @@ function workspaceEndpoints(app) {
     "/workspace/:slug/update-pin",
     [
       validatedRequest,
-      flexUserRoleValid([ROLES.admin, ROLES.manager]),
+      flexUserRoleValid([ROLES.admin, ROLES.manager,ROLES.supervisor]),
       validWorkspaceSlug,
     ],
     async (request, response) => {
