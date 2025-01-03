@@ -346,8 +346,7 @@ const Workspace = {
       return results;
     } catch (error) {
       console.error(error.message);
-      return null;
-    }
+      throw new Error("Failed to fetch workspaces.");    }
   },
 
   /**
