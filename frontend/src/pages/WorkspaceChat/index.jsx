@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { default as WorkspaceChatContainer } from "@/components/WorkspaceChat";
 import Sidebar from "@/components/Sidebar";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import Workspace from "@/models/workspace";
 import PasswordModal, { usePasswordModal } from "@/components/Modals/Password";
 import { isMobile } from "react-device-detect";
@@ -25,7 +25,12 @@ function ShowWorkspaceChat() {
   const [workspace, setWorkspace] = useState(null);
   const [loading, setLoading] = useState(true);
   const {user} = useUser();
-  const check = window.location.href.includes("mode=embed");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Get the value of a specific parameter
+  const myParam = searchParams.get('mode'); 
+  const check = myParam === "embed" ? true : false;
+  console.log('check: ', check);
 
   useEffect(() => {
     async function getWorkspace() {
@@ -50,7 +55,7 @@ function ShowWorkspaceChat() {
   return (
     <>
       <div className="w-screen h-screen overflow-hidden bg-white flex">
-        {!isMobile && user?.role !== "default" && !check && <Sidebar />}
+      {!(user?.role === "default" && check) && !isMobile && <Sidebar />}
         <WorkspaceChatContainer loading={loading} workspace={workspace} />
       </div>
       {/* <FineTuningAlert /> */}
