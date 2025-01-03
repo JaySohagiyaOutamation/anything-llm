@@ -2,8 +2,10 @@ const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const { v4, validate } = require("uuid");
 const { User } = require("../../models/user");
-const SMTP_EMAIL = process.env.VITE_SMTP_EMAIL;
-const SMTP_PASS = process.env.VITE_SMTP_PASS;
+require('dotenv').config();
+// const SMTP_EMAIL = process.env.VITE_SMTP_EMAIL;
+// const SMTP_PASS = process.env.VITE_SMTP_PASS;
+
 const {
   RecoveryCode,
   PasswordResetToken,
@@ -14,8 +16,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: SMTP_EMAIL, // Double-check this
-    pass: SMTP_PASS,
+    user: 'donotreply@outamationmail.com', // Double-check this
+    pass: 'vmpcmkylbzpjclpn',
   },
 });
 
@@ -77,6 +79,45 @@ Welcome to Outamation AI! We’re thrilled to have you on board.
 
 🗂 Account Details :
 Username: ${username}
+
+🔐 Account Security :
+If you ever forget your password, you can easily recover your account using the recovery codes we provided.
+
+We're here to support you as you explore and make the most of Outamation AI. Should you have any questions or need assistance, please feel free to reach out.
+
+Regards,
+Outamation AI Team
+`;
+
+  const mailOptions = {
+    from: `Outamation AI <donotreply@outamationmail.com>`,
+    to: email,
+    subject: "Welcome to Outamation AI!",
+    text: welcomeMessage,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return { success: true, message: "Welcome email sent successfully." };
+  } catch (error) {
+    return {
+      success: false,
+      error: "Failed to send welcome email: " + error.message,
+    };
+  }
+}
+
+async function sendWelcomeEmailToBulkUser(userData) {
+  const { username, password, email } = userData;
+
+  const welcomeMessage = `
+Hello ${username},
+
+Welcome to Outamation AI! We’re thrilled to have you on board.
+
+🗂 Account Details :
+Username: ${username}
+Password: ${password}
 
 🔐 Account Security :
 If you ever forget your password, you can easily recover your account using the recovery codes we provided.
@@ -201,4 +242,5 @@ module.exports = {
   generateRecoveryCodes,
   sendRecoveryCodesToEmail,
   sendWelcomeEmailToUser,
+  sendWelcomeEmailToBulkUser
 };

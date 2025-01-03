@@ -26,7 +26,10 @@ const {
 } = require("../utils/middleware/multiUserProtected");
 const { validatedRequest } = require("../utils/middleware/validatedRequest");
 const ImportedPlugin = require("../utils/agents/imported");
-const { sendWelcomeEmailToUser } = require("../utils/PasswordRecovery");
+const {
+  sendWelcomeEmailToUser,
+  sendWelcomeEmailToBulkUser,
+} = require("../utils/PasswordRecovery");
 const { WorkspaceUser } = require("../models/workspaceUsers");
 
 function adminEndpoints(app) {
@@ -64,8 +67,8 @@ function adminEndpoints(app) {
 
         const { user: newUser, error } = await User.create(newUserParams);
         if (!!newUser) {
-        //  const {message,success} = await sendRecoveryCodesToEmail(newUserParams.email);
-        //  console.log('message: ', message,success);
+          //  const {message,success} = await sendRecoveryCodesToEmail(newUserParams.email);
+          //  console.log('message: ', message,success);
           await EventLogs.logEvent(
             "user_created",
             {
@@ -75,7 +78,6 @@ function adminEndpoints(app) {
             currUser.id
           );
         }
-       
 
         response.status(200).json({ user: newUser, error });
       } catch (e) {
@@ -85,6 +87,97 @@ function adminEndpoints(app) {
     }
   );
 
+  // app.post(
+  //   "/admin/bulk-users/new",
+  //   [validatedRequest, strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
+  //   async (request, response) => {
+  //     try {
+  //       const currUser = await userFromSession(request, response);
+  //       const newUserParams = reqBody(request);
+  //       const { username, email, password, workspaceName } = newUserParams;
+  //       const roleValidation = validRoleSelection(currUser, newUserParams);
+  //       // console.log('workspaceId: ', workspaceId);
+
+  //       const workspaceNames = workspaceName.split(",").map((name) => name.trim());
+  //       const workspaces = await Workspace._findMany({
+  //         where: {
+  //           name: { in: workspaceNames },
+  //         },
+  //         select: {
+  //           id: true,
+  //           name: true,
+  //         },
+  //       });
+
+  //       const fetchedWorkspaceNames = workspaces.map((w) => w.name);
+  //       const workspaceIds = workspaces.map((w) => w.id);
+
+  //       // Handle error if any workspace names are invalid
+  //       const invalidWorkspaces = workspaceNames.filter(
+  //         (name) => !fetchedWorkspaceNames.includes(name)
+  //       );
+
+  //       if (invalidWorkspaces.length > 0) {
+  //         response.status(400).json({
+  //           user: null,
+  //           error: `Invalid workspace names: ${invalidWorkspaces.join(", ")}`,
+  //         });
+  //         return;
+  //       }
+
+  //       if (!roleValidation.valid) {
+  //         response
+  //           .status(200)
+  //           .json({ user: null, error: roleValidation.error });
+  //         return;
+  //       }
+
+  //       const { user: newUser, error } = await User.create({ username, email, password });
+  //       if (error) {
+  //         response.status(200).json({ user: null, error });
+  //         return;
+  //       }
+
+  //       if (newUser) {
+  //         await sendWelcomeEmailToUser(newUser);
+  //         await EventLogs.logEvent(
+  //           "user_created",
+  //           {
+  //             userName: newUser.username,
+  //             createdBy: currUser.username,
+  //           },
+  //           currUser.id
+  //         );
+  //       }
+  //       const userId = newUser.id;
+  //       console.log('newUser: ', newUser);
+  //       console.log('userId: ', userId);
+  //       const workspaceUserPromises = workspaceIds.map((workspaceId) =>
+  //         WorkspaceUser.create(userId, workspaceId)
+  //       );
+  //       const workspaceUserResults = await Promise.all(workspaceUserPromises);
+
+  //       // const workspaceUserCreated = await WorkspaceUser.create(userId, workspaceId);
+  //       // if (!workspaceUserCreated) {
+  //       //   response.status(500).json({ user: newUser, error: "Failed to create workspace-user relationship" });
+  //       //   return;
+  //       // }
+  //       if (workspaceUserResults.includes(false)) {
+  //         response.status(500).json({
+  //           user: newUser,
+  //           error: "Failed to associate user with all workspaces",
+  //         });
+  //         return;
+  //       }
+
+  //       response.status(200).json({ user: newUser, error: null });
+  //     } catch (e) {
+  //       console.error(e);
+  //       response.sendStatus(500).end();
+  //     }
+  //   }
+  // );
+
   app.post(
     "/admin/bulk-users/new",
     [validatedRequest, strictMultiUserRoleValid([ROLES.admin, ROLES.manager])],
@@ -92,25 +185,68 @@ function adminEndpoints(app) {
       try {
         const currUser = await userFromSession(request, response);
         const newUserParams = reqBody(request);
-        const { username, email, password, workspaceId } = newUserParams;
-        const roleValidation = validRoleSelection(currUser, newUserParams);
-        console.log('workspaceId: ', workspaceId);
-  
+        const { email, password, workspaceName } = newUserParams;
+        const username = email.split("@")[0];
+        const roleValidation = validRoleSelection(currUser, {
+          username,
+          email,
+          password,
+          workspaceName,
+        });
+
+        const workspaceNames = workspaceName
+          .split(",")
+          .map((name) => name.trim());
+        const workspaces = await Workspace._findMany({
+          where: {
+            name: { in: workspaceNames },
+          },
+          select: {
+            id: true,
+            name: true,
+          },
+        });
+
+        const fetchedWorkspaceNames = workspaces.map((w) => w.name);
+        const workspaceIds = workspaces.map((w) => w.id);
+
+        // Handle error if any workspace names are invalid
+        const invalidWorkspaces = workspaceNames.filter(
+          (name) => !fetchedWorkspaceNames.includes(name)
+        );
+
+        if (invalidWorkspaces.length > 0) {
+          response.status(400).json({
+            user: null,
+            error: `Invalid workspace names: ${invalidWorkspaces.join(", ")}`,
+          });
+          return;
+        }
+
         if (!roleValidation.valid) {
           response
             .status(200)
             .json({ user: null, error: roleValidation.error });
           return;
         }
-  
-        const { user: newUser, error } = await User.create({ username, email, password });
+
+        const { user: newUser, error } = await User.create({
+          username,
+          email,
+          password,
+        });
         if (error) {
           response.status(200).json({ user: null, error });
           return;
         }
-  
+
         if (newUser) {
-          await sendWelcomeEmailToUser(newUser);
+          const userDetails = {
+            username: newUser.username,
+            email: newUser.email,
+            password: password,
+          };
+          await sendWelcomeEmailToBulkUser(userDetails);
           await EventLogs.logEvent(
             "user_created",
             {
@@ -121,14 +257,26 @@ function adminEndpoints(app) {
           );
         }
         const userId = newUser.id;
-        console.log('newUser: ', newUser);
-        console.log('userId: ', userId);
-        const workspaceUserCreated = await WorkspaceUser.create(userId, workspaceId);
-        if (!workspaceUserCreated) {
-          response.status(500).json({ user: newUser, error: "Failed to create workspace-user relationship" });
+        console.log("newUser: ", newUser);
+        console.log("userId: ", userId);
+        const workspaceUserPromises = workspaceIds.map((workspaceId) =>
+          WorkspaceUser.create(userId, workspaceId)
+        );
+        const workspaceUserResults = await Promise.all(workspaceUserPromises);
+
+        // const workspaceUserCreated = await WorkspaceUser.create(userId, workspaceId);
+        // if (!workspaceUserCreated) {
+        //   response.status(500).json({ user: newUser, error: "Failed to create workspace-user relationship" });
+        //   return;
+        // }
+        if (workspaceUserResults.includes(false)) {
+          response.status(500).json({
+            user: newUser,
+            error: "Failed to associate user with all workspaces",
+          });
           return;
         }
-  
+
         response.status(200).json({ user: newUser, error: null });
       } catch (e) {
         console.error(e);
