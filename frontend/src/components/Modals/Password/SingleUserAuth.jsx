@@ -15,6 +15,8 @@ export default function SingleUserAuth({ microsoftButton }) {
   const [downloadComplete, setDownloadComplete] = useState(false);
   const [token, setToken] = useState(null);
   const [customAppName, setCustomAppName] = useState(null);
+    const [redirectUri, setRedirectUri] = useState(null);
+
 
   const {
     isOpen: isRecoveryCodeModalOpen,
@@ -32,17 +34,14 @@ export default function SingleUserAuth({ microsoftButton }) {
     const { valid, token, message, recoveryCodes } =
       await System.requestToken(data);
     if (valid && !!token) {
-      setToken(token);
-      if (recoveryCodes) {
-        setRecoveryCodes(recoveryCodes);
-        openRecoveryCodeModal();
-      } else {
+      setToken(token); 
+    
         const redirectUrl = localStorage.getItem("redirectUrl");
         if (redirectUrl) {
           window.location.href = redirectUrl;
         } else { 
           window.location.href = "/";
-        }
+        
       }
     } else {
       setError(message);
@@ -120,13 +119,13 @@ export default function SingleUserAuth({ microsoftButton }) {
         </div>
       </form>
 
-      <ModalWrapper isOpen={isRecoveryCodeModalOpen}>
+      {/* <ModalWrapper isOpen={isRecoveryCodeModalOpen}>
         <RecoveryCodeModal
           recoveryCodes={recoveryCodes}
           onDownloadComplete={handleDownloadComplete}
           onClose={closeRecoveryCodeModal}
         />
-      </ModalWrapper>
+      </ModalWrapper> */}
     </>
   );
 }

@@ -220,6 +220,7 @@ export default function MultiUserAuth({ microsoftButton }) {
   const [showRecoveryForm, setShowRecoveryForm] = useState(false);
   const [showResetPasswordForm, setShowResetPasswordForm] = useState(false);
   const [customAppName, setCustomAppName] = useState(null);
+  // const [redirectUri, setRedirectUri] = useState(null);
 
   const {
     isOpen: isRecoveryCodeModalOpen,
@@ -239,20 +240,17 @@ export default function MultiUserAuth({ microsoftButton }) {
     if (valid && !!token && !!user) {
       setUser(user);
       setToken(token);
-
-      if (recoveryCodes) {
-        setRecoveryCodes(recoveryCodes);
-        openRecoveryCodeModal();
-      } else {
-        window.localStorage.setItem(AUTH_USER, JSON.stringify(user));
+      
+       window.localStorage.setItem(AUTH_USER, JSON.stringify(user));
         window.localStorage.setItem(AUTH_TOKEN, token);
         const redirectUrl = localStorage.getItem("redirectUrl");
+        // setRedirectUri(redirectUrl)
         if (redirectUrl) {
           window.location.href = redirectUrl;
         } else { 
           window.location.href = "/";
         }
-      }
+      
     } else {
       setError(message);
       setLoading(false);
@@ -395,13 +393,13 @@ export default function MultiUserAuth({ microsoftButton }) {
         </div>
       </form>
 
-      <ModalWrapper isOpen={isRecoveryCodeModalOpen} noPortal={true}>
+      {/* <ModalWrapper isOpen={isRecoveryCodeModalOpen} noPortal={true}>
         <RecoveryCodeModal
           recoveryCodes={recoveryCodes}
           onDownloadComplete={handleDownloadComplete}
           onClose={closeRecoveryCodeModal}
         />
-      </ModalWrapper>
+      </ModalWrapper> */}
     </>
   );
 }
