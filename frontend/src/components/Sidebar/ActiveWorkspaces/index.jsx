@@ -145,8 +145,8 @@ export default function ActiveWorkspaces() {
         </div>
       )}
 
-      {/* Settings link/gear icon for admin and manager only */}
-      {(user?.role === "admin" || user?.role === "manager") && (
+      {/* Settings link/gear icon for admin,supervisor and manager only */}
+      {(user?.role === "admin" || user?.role === "manager" || user?.role === "supervisor") && (
         <Link
           type="button"
           to={

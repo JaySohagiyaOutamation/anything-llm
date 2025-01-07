@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { FullScreenLoader } from "../Preloader";
 import validateSessionTokenForUser from "@/utils/session";
 import paths from "@/utils/paths";
@@ -125,6 +125,12 @@ export function ManagerRoute({ Component }) {
 
 export default function PrivateRoute({ Component }) {
   const { isAuthd, shouldRedirectToOnboarding } = useIsAuthenticated();
+  const currentUrl = window.location.href;
+
+  useEffect(() => {
+    localStorage.setItem("redirectUrl", currentUrl);
+  }, [currentUrl])
+
   if (isAuthd === null) return <FullScreenLoader />;
 
   if (shouldRedirectToOnboarding) {

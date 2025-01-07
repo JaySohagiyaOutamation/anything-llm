@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import System from "../../../models/system";
 import SingleUserAuth from "./SingleUserAuth";
 import MultiUserAuth from "./MultiUserAuth";
@@ -12,6 +12,7 @@ import illustration from "@/media/illustrations/login-illustration.svg";
 import Admin from "@/models/admin";
 import { useMsal } from "@azure/msal-react";
 import logo from "../../../media/logo/Microsoft_logo.svg";
+import { useNavigate } from "react-router-dom";
 
 // export default function PasswordModal({ mode = "single" }) {
 //   const { loginLogo } = useLogo();
@@ -56,6 +57,8 @@ export default function PasswordModal({ mode = "single" }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { instance } = useMsal();
+  const navigate = useNavigate();
+
 
   const handleMicrosoftSignIn = async () => {
     setIsLoading(true);
@@ -73,7 +76,12 @@ export default function PasswordModal({ mode = "single" }) {
         localStorage.setItem(AUTH_TOKEN, res.token);
         localStorage.setItem(AUTH_USER, JSON.stringify(res.user));
         localStorage.setItem(AUTH_TIMESTAMP, Date.now());
-        window.location.href = "/";
+        const redirectUrl = localStorage.getItem("redirectUrl");
+        if (redirectUrl) {
+          navigate(redirectUrl);
+        } else { 
+          window.location.href = "/";
+        }
       } else {
         setError(res.message || "Microsoft Sign-In failed");
         console.error("Microsoft Sign-In failed:", res.message);

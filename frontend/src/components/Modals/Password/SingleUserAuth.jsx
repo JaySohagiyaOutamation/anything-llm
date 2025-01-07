@@ -37,8 +37,12 @@ export default function SingleUserAuth({ microsoftButton }) {
         setRecoveryCodes(recoveryCodes);
         openRecoveryCodeModal();
       } else {
-        window.localStorage.setItem(AUTH_TOKEN, token);
-        window.location = paths.home();
+        const redirectUrl = localStorage.getItem("redirectUrl");
+        if (redirectUrl) {
+          window.location.href = redirectUrl;
+        } else { 
+          window.location.href = "/";
+        }
       }
     } else {
       setError(message);
